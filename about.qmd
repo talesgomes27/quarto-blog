@@ -1,0 +1,31 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      text: Email
+      href: mailto:talesgomes27@gmail.com
+    - icon: file-pdf
+      text: Resume
+      href: https://talesgomes27.github.io/curriculo/resume.html  
+    - icon: file-person
+      text: Datacamp
+      href: https://www.datacamp.com/profile/talesgomes27  
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/talesgomes27/
+    - icon: github
+      text: Github
+      href: https://github.com/talesgomes27
+
+---
+
+
+::: {#hero-heading}
+Hi!
+My name is Tales Gomes a Computer Engineer from Brazil 🇧🇷.
+
+I'm a [data analyst certified by Datacamp](https://www.datacamp.com/certificate/DA0010574268485).
+:::
