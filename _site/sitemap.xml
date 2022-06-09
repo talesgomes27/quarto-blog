@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog.talesgomes.netlify.app/index.html</loc>
-    <lastmod>2022-06-09T05:14:21.761Z</lastmod>
+    <lastmod>2022-06-09T05:40:50.239Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.talesgomes.netlify.app/about.html</loc>
+    <lastmod>2022-06-09T05:40:50.503Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.talesgomes.netlify.app/posts/welcome/index.html</loc>
+    <lastmod>2022-06-09T05:40:51.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.talesgomes.netlify.app/posts/post-with-code/index.html</loc>
+    <lastmod>2022-06-09T05:40:51.731Z</lastmod>
   </url>
 </urlset>

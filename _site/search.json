@@ -18,13 +18,13 @@
     "href": "posts/welcome/index.html",
     "title": "Welcome To My Blog",
     "section": "",
-    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by-sa/4.0/CitationBibTeX citation:@online{gomes2022,\n  author = {Tales Gomes},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-06-05},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTales Gomes. 2022. “Welcome To My Blog.” June 5, 2022."
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by-sa/4.0/CitationBibTeX citation:@online{gomes2022,\n  author = {Tales Gomes},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-06-05},\n  url = {https://blog.talesgomes.netlify.app/posts/welcome},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTales Gomes. 2022. “Welcome To My Blog.” June 5, 2022. https://blog.talesgomes.netlify.app/posts/welcome."
   },
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "Code\nprint(\"Hello World in Python!\")\n\n\nHello World in Python!\n\n\n\n\nCode\nprint(\"Hello World in R!\")\n\n\n[1] \"Hello World in R!\"\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by-sa/4.0/CitationBibTeX citation:@online{gomes2022,\n  author = {Tales Gomes},\n  title = {Post {With} {Code}},\n  date = {2022-06-08},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTales Gomes. 2022. “Post With Code.” June 8, 2022."
+    "text": "Code\nprint(\"Hello World in Python!\")\n\n\nHello World in Python!\n\n\n\n\nCode\nprint(\"Hello World in R!\")\n\n\n[1] \"Hello World in R!\"\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by-sa/4.0/CitationBibTeX citation:@online{gomes2022,\n  author = {Tales Gomes},\n  title = {Post {With} {Code}},\n  date = {2022-06-08},\n  url = {https://blog.talesgomes.netlify.app/posts/post-with-code},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTales Gomes. 2022. “Post With Code.” June 8, 2022. https://blog.talesgomes.netlify.app/posts/post-with-code."
   }
 ]
