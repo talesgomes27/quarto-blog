@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Data Tales"
+  title: "Tales Gomes"
   favicon: statics/favicon.png
   site-url: https://blog-talesgomes.netlify.app
   repo-url: https://github.com/talesgomes27/quarto-blog
