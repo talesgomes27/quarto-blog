@@ -13,7 +13,7 @@ license: "CC BY-SA"
 # Default for table of contents
 toc: true
 toc-title: Table of contents
-toc-location: right
+toc-location: left
 
 
 # Default Code fold behavior
