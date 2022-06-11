@@ -1,0 +1,719 @@
+---
+title: "How Does a Bike-Share Navigate Speedy Success?"
+description: "Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company's marketing team."
+date: "2021-09-18"
+categories: [data visualization, R, data analysis]
+image: "bike-share.jpg"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+
+## Global options
+#options(max.print="90")
+opts_chunk$set(echo=TRUE,
+                fig.align = 'center',
+                #out.width = "90%",
+	            cache=TRUE,
+                prompt=FALSE,
+                #tidy=TRUE,
+                comment=NA,
+                message=TRUE,
+                error=FALSE,
+                warning=FALSE)
+#opts_knit$set(width=90)
+
+
+```
+
+
+## Scenario
+
+You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company's future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your ecommendations, so they must be backed up with compelling data insights and professional data visualizations.
+
+## Ask Phase
+
+[**Guiding questions**]{.ul}
+
+1.  What is the problem you are trying to solve?
+
+    -   How do annual members and casual riders use Cyclistic bikes differently?
+
+    -   Why would casual riders buy Cyclistic annual memberships?
+
+    -   How can Cyclistic use digital media to influence casual riders to become members?
+
+2.  How can your insights drive business decisions?
+
+    -   improve the marketing campaign
+
+3.  Identify the business task
+
+    -   Undertand the diferente between casual users and members to improve the marketing campaign
+
+4.  Consider key stakeholders
+
+    -   Main stakeholders:
+
+        -   Cyclistic executive team
+
+        -   Lily Moreno
+
+    -   Secundary stakeholder:
+
+        -   Cyclistic marketing analytics team leader
+
+## Prepare
+
+1.  Where is your data located?
+
+    -   [Cyclistic bikeshare database](https://divvy-tripdata.s3.amazonaws.com/index.html)
+
+2.  How is the data organized?
+
+    -   the data base is organized in 12 files with month data from july 2020 to june 2021.
+
+3.  Are there issues with bias or credibility in this data?
+
+    -   Reliable -Yes, the data is reliable. The data is a primary source data based on a fictional company.
+
+    -   Original - Yes, the original public data can be located.
+
+    -   Comprehensive - Yes, no vital information is missing.
+
+    -   Current - Yes, the data base is updated monyhly.
+
+4.  How are you addressing licensing, privacy, security, and accessibility?
+
+    -   the data is distributed in this [license](https://www.divvybikes.com/data-license-agreement).
+
+5.  How did you verify the data's integrity?
+
+    -   Using R (ver. 4.1) and Rstudio (ver. 1.4)
+
+6.  How does it help you answer your question?
+
+    -   R is a powerful tool that makes it easy to manipulate large databases.
+
+7.  Are there any problems with the data?
+
+    -   Yes, Some missing values, but it did not interfere with the analysis.
+
+## Process Phases
+
+### Ingesting the data
+
+-   Ingesting the data using the [vroom](https://vroom.r-lib.org/articles/vroom.html) library and loading into the bikeshare_data.
+
+```{r}
+
+library(tidyverse) # used to filter the data
+library(lubridate) #used to work with date class. 
+library(Hmisc)
+library(kableExtra)
+
+#loding the files name and 
+files <- fs::dir_ls(path = "database/")
+files
+
+bikeshare_data <- vroom::vroom(files,
+                               col_names = TRUE)
+
+
+```
+
+```{r}
+
+glimpse(bikeshare_data)
+
+
+```
+
+
+### Verifing missing values
+
+```{r}
+
+bikeshare_data |>
+  is.na() |>
+  colSums()
+  
+
+```
+
+The missing data are grouped at the location variable (station name, latitude and longitude) 
+
+### filtering the data
+
+
+-   Filtering and Process the data using the tools in the [tidyverse](https://www.tidyverse.org/).
+
+    -   In this fase we created the following variables:
+
+        -   **trip_duration** - the trip duration in minutes;
+
+        -   **weekday_day** - The day of the week the trip takes place;
+
+        -   **is_weekend** - Test if the day is a weekend;
+
+        -   **date_month** - Stores the month the trip takes place;
+
+        -   **date_hour** - Stores the hour the trip takes place;
+
+        -   **date_season -** Stores the season of the year;
+
+        -   **day_time -** Stores the time of the day;
+
+        -   **trip_route -** Stores the route of the trip (start station to end station).
+
+    -   Then we keep the following variable:
+
+        -   **start_station_name**;
+
+        -   **ride_id**;
+
+        -   **rideable_type;**
+
+        -   **and member_casual.**
+
+    -   the we exclude the remaning original variables.
+
+    -   then we change the class of the categorical variables to factor.
+
+    -   And finally, we filter the data to contain only trip duration longer than 0 minutes.
+    
+I chose not to exclude missing values due to being limited to location variables (station names and geographic markers), as well as excluding trips shorter than two minutes to minimize data collection errors.
+
+```{r}
+#Filterring data.
+bikeshare_data <- bikeshare_data |>
+  mutate(trip_duration = as.numeric(ended_at - started_at)/60, 
+         weekday_day = wday(started_at, label = TRUE), 
+         is_weekend = ifelse((wday(started_at)==7 | 
+                              wday(started_at)==1), "yes", "no"), 
+         date_month = month(started_at, label = TRUE), 
+         date_hour = hour(started_at), 
+         date_season = case_when( 
+           month(started_at) == 1 | month(started_at) == 2 | month(started_at) == 3 ~ "winter",
+           month(started_at) == 4 | month(started_at) == 5 | month(started_at) == 6 ~ "spring",
+           month(started_at) == 7 | month(started_at) == 8 | month(started_at) == 9 ~ "summer",
+           month(started_at) == 10 | month(started_at) == 11 | month(started_at) == 12 ~ "fall"),
+         day_time = case_when( 
+           hour(started_at) < 6 ~ "dawn",
+           hour(started_at) >=6 & hour(started_at) < 12 ~ "morning",
+           hour(started_at) >= 12 & hour(started_at) < 18 ~ "afternoon",
+           hour(started_at) >= 18 ~ "night"),
+         trip_route = str_c(start_station_name, end_station_name, sep = " to ")) |> 
+  relocate(start_station_name, .before = trip_route) |> 
+  select(-(started_at:end_lng)) |> 
+  mutate(is_weekend = factor(is_weekend,
+                             levels = c("yes", "no"),
+                             ordered = TRUE),
+         rideable_type = factor(rideable_type,
+                                levels = c("docked_bike", "electric_bike", "classic_bike"),
+                                ordered = TRUE),
+         member_casual = factor(member_casual,
+                                levels = c("member", "casual"),
+                                ordered = TRUE),
+         date_season = factor(date_season,
+                              levels = c("winter", "spring", "summer", "fall"),
+                              ordered = TRUE),
+         date_hour = factor(date_hour,
+                            levels = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                                       12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23),
+                            ordered = TRUE),
+         day_time = factor(day_time, levels = c("dawn", "morning", "afternoon", "night"),
+                           ordered = TRUE)) |>
+  filter(trip_duration > 2) # Only taking in account trips Higher than 2 minutes
+
+```
+
+
+
+
+
+-   Checking the data
+
+```{r}
+glimpse(bikeshare_data)
+```
+
+## Analyse Phase
+
+-   First, we analyze the data broadly to see patterns, then group it by user type to see differences.
+
+```{r}
+#Using Hmisc package
+
+bikeshare_summary <- bikeshare_data |>
+  select(-c(ride_id, start_station_name, trip_route)) |>
+  describe(descript = "Statistical Description Summary", tabular = TRUE)
+
+html(bikeshare_summary, exclude1=TRUE, align= "c", scroll = TRUE, rows = 50)
+
+```
+
+```{r}
+
+size <- nrow(bikeshare_data)
+
+bikeshare_data |>
+  group_by(date_hour) |>
+  summarise(percent = round((n() / size) * 100, 2)) |>
+  arrange(desc(percent)) |>
+  kable(caption = "Total percent usage by the hour of the day") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    
+    position = "center",
+    fixed_thead = TRUE
+  )|>
+  scroll_box(width = "100%", height = "500px")
+
+
+```
+
+-   Analyzing the data generated by the "describe" function we can infer that:
+
+    -   Regarding the type of bikes, "classic_bike" is more than 41% of all trips, followed by "eletric_bike" with 31% and "docked_bike" with 28%;
+
+    -   Regarding to the type of user, "member" represents 55% while "casual" represents 45%;
+
+    -   Regarding to the day, "weekend" represents 33% of the races with a peak on Saturday and a minimum on Monday;
+
+    -   Regarding the time of day, it can be observed that the peak occurs at 17, 18 and 16 hours. The races decrease from afternoon, night, morning, until dawn.
+
+    -   Regarding to the month and season, the values decrease from summer,fall, spring to winter. With the busiest months being August, July, September and Octuber and the least busy months being February, January and March;
+
+    -   Regarding to the duration of the trip, the average duration is 24.26 minutes.
+
+```{r}
+bikeshare_skim_member <- bikeshare_data |> 
+  select(-c(ride_id, start_station_name, trip_route)) |>
+  group_by(member_casual) |> 
+  skimr::skim() |>
+  as_tibble()
+  
+
+bikeshare_skim_member |>
+  skimr::yank("numeric") |>
+  as_tibble() |>
+  kable(caption = "Trip duration difference between Casual users and members") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+    full_width = FALSE,
+    position = "center",
+    fixed_thead = TRUE
+  )
+```
+
+
+```{r}
+
+bikeshare_skim_member |>
+  skimr::yank("factor") |>
+  as_tibble() |>
+  kable(caption = "Behavior difference of Members and Casual users") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+    full_width = FALSE, 
+    position = "center",
+    fixed_thead = TRUE
+  )|>
+    scroll_box(width = "100%", height = "500px")
+  
+```
+
+
+
+-   Regarding the difference in usage between members and casual users, we can observe the following:
+
+    -   The trip duration is 2,45 times longer for casual users than members. Averaging 36.15 min for casual users and 14.71 min for members;
+
+    -   Regarding the type of bicycle, the most used for members, in descending order, are "classic", "eletric", and "docked". For casual users they are "classic", "docked" and "eletric";
+
+    -   Regarding the time of year, both users follow the general average with a peak in summer and less use in winter, however for casual users spring is busier than fall;
+
+    -   The busiest member months are August, September and July. For casual users, the busiest months are July, August and September;
+
+    -   Regarding the day of the week, the busiest days for members, in descending order, are Wednesday, Thursday and Friday. For casual users, the busiest days are Saturday, Sunday and Friday. With greater usage of the service on weekends for casual members compared to members;
+
+    -   Regarding the time of day both types of users have more runs in the afternoon, however in casual members the night is busier than in the morning.
+
+-   The Stations and routes more often used are the following:
+
+```{r}
+bikeshare_data |> 
+  group_by(start_station_name) |> 
+  summarise(number_of_trips = n()) |>
+  arrange(-number_of_trips) |> 
+  drop_na(start_station_name) |> 
+  slice(1:10) |>
+  kable(caption = "Top 10 most popular station") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center",
+    fixed_thead = TRUE
+  )
+
+```
+
+```{r}
+bikeshare_data |> 
+  group_by(trip_route) |> 
+  summarise(number_of_trips = n()) |>
+  arrange(-number_of_trips) |> 
+  drop_na(trip_route) |> 
+  slice(1:10) |>
+  kable(caption = "Top 10 most popular route") |> 
+   kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center",
+    fixed_thead = TRUE
+  )
+```
+
+
+
+
+## Share Phase
+
+### By the hour and the time of the day
+
+```{r}
+#| message: false
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, date_hour) |> 
+  summarise(n_trip = n(), .groups = 'drop') |>
+  ggplot(aes(x= date_hour, y = n_trip, color = member_casual, group = member_casual)) +  
+  geom_line() +
+  geom_point() + 
+  facet_grid(rows = vars(member_casual)) + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  scale_y_continuous(labels = scales::unit_format(unit = "k", scale = 1e-3)) +
+  ggthemes::theme_hc()+
+  labs(
+    title = "Number of trips by the hour of the day",
+    color = "Type of user",
+    fill = "Type of user",
+    x = "hour of the day",
+    y = "Number of trips (in Thousands)"
+    )   
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, date_hour) |> 
+  summarise(mean_trip = mean(trip_duration), .groups = 'drop') |>
+  ggplot(aes(x= date_hour, y = mean_trip, color = member_casual, group = member_casual)) +  
+  geom_line() +
+  geom_point() + 
+  facet_grid(rows = vars(member_casual), scales = "free_y") + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Number of trips by he hour of the day",
+      color = "Type of user",
+      fill = "Type of user",
+      x = "hour of the day",
+      y = "Trip duration (min)"
+    )
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, day_time) |> 
+  summarise(n_trip = n(), .groups = 'drop') |>
+  ggplot(mapping = aes(day_time, n_trip)) +  
+  geom_col(aes(color = member_casual, fill = member_casual), position = "dodge2")+
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  scale_y_continuous(limits = c(0,2000000), n.breaks = 10,labels = scales::unit_format(unit = "MM", scale = 1e-6)) +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Number of trips by the time of the day",
+      color = "Type of user",
+      fill = "Type of user",
+      x = "Time of the day",
+      y = "Number of trips (in Millions)"
+    )   
+
+
+```
+
+### By Month and Season
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, date_month) |> 
+  summarise(n_trip = n(), .groups = 'drop') |>
+  ggplot(aes(x= date_month, y = n_trip, color = member_casual, group = member_casual)) +  
+  geom_line() +
+  geom_point() + 
+  facet_grid(rows = vars(member_casual)) + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  scale_y_continuous(labels = scales::unit_format(unit = "k", scale = 1e-3)) +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Number of trips by the months and type of user",
+      color = "Type of user",
+      fill = "Type of user",
+      x = "Month of the year",
+      y = "Number of trips (in Thousands)"
+    )  
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, date_month) |> 
+  summarise(mean_duration = mean(trip_duration), .groups = 'drop') |>
+  ggplot(aes(x= date_month, y = mean_duration, color = member_casual, group = member_casual)) +  
+  geom_line() +
+  geom_point() + 
+  facet_grid(rows = vars(member_casual), scales = "free_y") + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Trip duration by the Months and type of user",
+      color = "Type of user",
+      fill = "Type of user",
+      x = "hour of the day",
+      y = "Trip duration (min)"
+    )
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+
+bikeshare_data |> 
+  group_by(member_casual, date_season) |>
+  summarise(n_trip = n(), .groups = "drop") |>
+  ggplot(mapping = aes(date_season, n_trip)) + 
+  geom_col(aes(color = member_casual, fill = member_casual), position = "dodge2") +
+  scale_y_continuous(n.breaks = 10,labels = scales::unit_format(unit = "MM", scale = 1e-6)) +
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Number of trips by seasons and type of user",
+      color = "Type of user",
+      fill = "Type of user",
+      x = "season of the year",
+      y = "Number of trips (in Millions)"
+    )  
+
+```
+
+### By type of the bike
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+
+bikeshare_data |> 
+  group_by(member_casual, rideable_type) |> 
+  summarise(n_trip = n(), .groups = "drop") |>
+  ggplot(mapping = aes(rideable_type, n_trip)) +  
+  geom_col(aes(color = member_casual, fill = member_casual), position = "dodge2")+
+  scale_y_continuous(n.breaks = 10,labels = scales::unit_format(unit = "MM", scale = 1e-6)) +
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Number of trips by the type of the bike and user",
+      color = "Type of user",
+      fill = "Type of user",
+      x = "type of the bike",
+      y = "Number of trips (in Millions)"
+    )
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, rideable_type, date_hour) |>
+  summarise(n_trip = n(), .groups = 'drop') |>
+  ggplot(aes(x= date_hour, y = n_trip, color = rideable_type, group = interaction(member_casual, rideable_type))) +  
+  geom_line() +
+  geom_point() + 
+  facet_grid(rows = vars(member_casual), scales = "free_y") + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  scale_y_continuous(labels = scales::unit_format(unit = "k", scale = 1e-3)) +
+  ggthemes::theme_hc() +
+  labs(
+      title = "Number of trips by the hour of the day, type of bike and type of user",
+      color = "Type of bike",
+      fill = "Type of bike",
+      x = "hour of the day",
+      y = "Number of trips (in Thousands)"
+    )
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(member_casual, rideable_type, date_hour) |> 
+  summarise(mean_duration = mean(trip_duration), .groups = 'drop') |>
+  ggplot(aes(x= date_hour, y = mean_duration, color = rideable_type, group = interaction(member_casual, rideable_type))) +  
+  geom_line() +
+  geom_point() +
+  facet_grid(rows = vars(member_casual), scales = "free_y") + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  ggthemes::theme_hc() +
+  labs(
+      title = "Duration of the trips by the type of the bike",
+      color = "Type of bike",
+      fill = "Type of bike",
+      x = "hour of the day",
+      y = "Trip duration (min)"
+    )
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+
+bikeshare_data |> 
+  group_by(member_casual, rideable_type, date_month) |> 
+  summarise(n_trip = n(), .groups = 'drop') |>
+  ggplot(aes(x= date_month, y = n_trip, color = rideable_type, group = interaction(member_casual, rideable_type))) +  
+  geom_line() +
+  geom_point() + 
+  facet_grid(rows = vars(member_casual), scales = "free_y") + 
+  ggthemes::scale_color_tableau(palette = "Superfishel Stone") +
+  ggthemes::scale_fill_tableau(palette = "Superfishel Stone") +
+  scale_y_continuous(labels = scales::unit_format(unit = "k", scale = 1e-3)) +
+  ggthemes::theme_hc()+
+  labs(
+      title = "Number of trips by the months",
+      color = "Type of bike",
+      fill = "Type of bike",
+      x = "Month of the year",
+      y = "No. of trips (in Thousands)"
+    )
+
+```
+
+### Stations and the Routs more offen used
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(start_station_name) |> 
+  summarise(n_trip = n()) |>
+  arrange(-n_trip) |> 
+  drop_na(start_station_name) |> 
+  slice(1:10) |> 
+  ggplot(mapping = aes(fct_reorder(start_station_name, -n_trip), n_trip)) +  
+  geom_col(aes(color = n_trip, fill = n_trip), position = "dodge2")+
+  coord_flip()+
+  ggthemes::scale_color_continuous_tableau(palette = "Blue") +
+  ggthemes::scale_fill_continuous_tableau(palette = "Blue") +
+  ggthemes::theme_hc()+
+
+  theme(legend.position="none")+
+  labs(
+    title = "10 most used start point",
+    x = "",
+    y = ""
+    )   
+
+```
+
+```{r}
+#| column: page
+#| out-width: 100%
+#| fig-dpi: 400
+
+bikeshare_data |> 
+  group_by(trip_route) |> 
+  summarise(n_trip = n()) |>
+  arrange(-n_trip) |> 
+  drop_na(trip_route) |> 
+  slice(1:10) |> 
+  ggplot(mapping = aes(fct_reorder(trip_route, -n_trip), n_trip)) +  
+  geom_col(aes(color = n_trip, fill = n_trip), position = "dodge2")+
+  coord_flip()+
+  ggthemes::scale_color_continuous_tableau(palette = "Blue") +
+  ggthemes::scale_fill_continuous_tableau(palette = "Blue") +
+  ggthemes::theme_hc()+
+  theme(legend.position="none")+
+  labs(
+    title = "Top 10 Routes",
+    x = "",
+    y = ""
+  )
+
+```
+
+## Act
+
+### Key findings
+ - Different of members, casual user use service more often during the weekend;
+ - Also have the mean duration of the trips 2,45 times longer than members;
+ - They have the highest trip duration during dawn (from 12 am to 5 am). With the pic at 2 am;
+ - Casual users use the service more from July to October;
+ - Although February is the month with the least trips, it is also the month with the longest duration of trips;
+ - Casual members use more docked bikes thans members and also have a longer average travel time for this type of bike.
+ 
+### Recommendations
+ - Create a subscription based on time-of-day to encourage casual users that ride, for exemple, from 9 pm to 5 am to subscribe;
+ - Implement discounts or a points system based on loyalty (frequency of use) and high trip-duration users;
+ - Create seasonal subscriptions such as summer and spring. Or implement discounts on temporary subscriptions (3, 6, 9, 12 months);
+ - Create subscription especific to ride on week day or on the weekend;
+ - Create subscriptions for specific types of bicycles. Plans to use only docked bicycles, for example.
+
+
