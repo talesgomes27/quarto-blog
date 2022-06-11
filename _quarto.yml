@@ -32,7 +32,13 @@ website:
 format:
   html:
     smooth-scroll: true
-    theme: yeti 
+    theme:
+      light: 
+        - flatly
+        - custom.scss 
+      dark: 
+        - darkly
+        - custom.scss
     css: styles.css
     citations-hover: true
     footnotes-hover: true

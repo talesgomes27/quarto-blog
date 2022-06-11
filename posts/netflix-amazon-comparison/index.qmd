@@ -1,0 +1,237 @@
+---
+title: "Comparison between Netflix and Amazon Prime"
+description: "Netflix and Amazon Prime are two of the most popular TV streaming services in the world. This document will compare the two and give you an idea of which one is better for you."
+date: "2022-06-09"
+categories: [data visualization, python, data analysis]
+image: "netflix-vs-amazon-prime.jpg"
+draft: true
+---
+
+## Objective
+
+This code is a comparison of Netflix and Amazon Prime. The data is from Kaggle, the [Netflix dataset](https://www.kaggle.com/datasets/victorsoeiro/netflix-tv-shows-and-movies) and [Amazon dataset](https://www.kaggle.com/datasets/victorsoeiro/amazon-prime-tv-shows-and-movies) websites.
+
+
+
+
+## Data Dictionary
+
+Both datasets have a content table with informtion about the titles and a role table with information about the cast and directiors with the same columns.
+
+```{python}
+#| label: tbl-content
+#| tbl-cap: Amazon and Netflix content table
+
+# Load Libriries to handle tables
+from IPython.display import Markdown
+from tabulate import tabulate
+
+
+content_table = [
+    ["ID", "The title ID on JustWatch"],
+    ["title", "The name of the title"],
+    ["show type", "TV show or movie"],
+    ["description", "A brief description"],
+    ["release year", "The year the title was released"],
+    ["age certification", "The age certification"],
+    ["runtime", "The length of the episode (SHOW) or movie (MOVIE)"],
+    ["genres", "A list of genres"],
+    ["production countries", "A list of countries that produced the title"],
+    ["seasons", "The number of seasons in the show"],
+    ["IMDB ID", "The IMDB ID of the title"],
+    ["IMDB Score", "The IMDB Score of the title"],
+    ["IMDB Votes", "The IMDB Votes of the title"],
+    ["TMDB Popularity", "The TMDB Popularity of the title"],
+    ["TMDB Score", "The TMDB Score of the title"]
+]
+
+Markdown(tabulate(
+  content_table, 
+  headers=["Column","Description"]
+))
+
+```
+
+```{python}
+#| label: tbl-role
+#| tbl-cap: Amazon and Netflix role table
+
+role_table = [
+    ["person ID", "The person ID on JustWatch"],
+    ["ID", "The title ID on JustWatch"],
+    ["name", "The actor or director's name"],
+    ["character name", "The character name"],
+    ["role", "The role of the actor or director"]
+]
+
+
+Markdown(tabulate(
+  role_table, 
+  headers=["Column","Description"]
+))
+
+
+
+```
+
+
+## Exploratory data analysis
+
+```{python}
+# Importing the libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Importing the Netflix dataset
+netflix_credits = pd.read_csv("dataset/netflix_data/credits.csv")
+netflix_titles = pd.read_csv("dataset/netflix_data/titles.csv")
+
+# Importing the Amazon dataset
+amazon_credits = pd.read_csv("dataset/netflix_data/credits.csv")
+amazon_titles = pd.read_csv("dataset/netflix_data/titles.csv")
+
+```
+
+### Data Check
+
+#### Netflix Data
+
+Take a look at the Neflix data:
+
+```{python}
+
+netflix_credits.head()
+
+```
+
+
+
+```{python}
+#| label: tbl-role-check
+#| tbl-cap: Netflix role table data check
+#| echo: false
+
+nf_credits_check = np.transpose([
+                                netflix_credits.columns,
+                                netflix_credits.dtypes,
+                                netflix_credits.isnull().sum()
+                                ])
+
+Markdown(tabulate(
+                  nf_credits_check,
+                  headers=["Columns","Column type", "Null count"]
+                  )
+        )
+
+
+
+
+```
+
+
+```{python}
+
+netflix_titles.head()
+
+```
+
+
+
+
+```{python}
+#| label: tbl-content-check
+#| tbl-cap: Netflix content table data check
+#| echo: false
+
+nf_titles_check = np.transpose([
+                                netflix_titles.columns,
+                                netflix_titles.dtypes,
+                                netflix_titles.isnull().sum()
+                                ])
+
+
+
+Markdown(tabulate(
+                  nf_titles_check,
+                  headers=["Columns","Column type", "Null count"]
+                  )
+        )
+
+```
+
+
+
+#### Amazon Data
+
+
+Taking a look at the Amazon data:
+
+```{python}
+
+amazon_credits.head()
+
+```
+
+
+
+```{python}
+#| label: tbl-amazon-role-check
+#| tbl-cap: Amazon role table data check
+#| echo: false
+
+amz_credits_check = np.transpose([
+                                amazon_credits.columns,
+                                amazon_credits.dtypes,
+                                amazon_credits.isnull().sum()
+                                ])
+
+Markdown(tabulate(
+                  amz_credits_check,
+                  headers=["Columns","Column type", "Null count"]
+                  )
+        )
+
+
+
+
+
+```
+
+
+
+```{python}
+
+amazon_titles.head()
+
+```
+
+
+
+
+
+```{python}
+#| label: tbl-amazon-content-check
+#| tbl-cap: Amazon content table data check
+#| echo: false
+
+amz_titles_check = np.transpose([
+                                amazon_titles.columns,
+                                amazon_titles.dtypes,
+                                amazon_titles.isnull().sum()
+                                ])
+
+
+
+Markdown(tabulate(
+                  amz_titles_check,
+                  headers=["Columns","Column type", "Null count"]
+                  )
+        )
+
+
+
+
+
+```
