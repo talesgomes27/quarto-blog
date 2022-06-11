@@ -1,17 +1,31 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "blog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJun 8, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJun 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\ndata visualization\n\n\nR\n\n\ndata analysis\n\n\n\n\nProject developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company’s marketing team.\n\n\n\n\n\n\nSep 18, 2021\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi! My name is Tales Gomes a Computer Engineer from Brazil 🇧🇷.\nI’m a data analyst certified by Datacamp."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
     "objectID": "posts/bike-share-navigate/index.html",
     "href": "posts/bike-share-navigate/index.html",
     "title": "How Does a Bike-Share Navigate Speedy Success?",
     "section": "",
     "text": "You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your ecommendations, so they must be backed up with compelling data insights and professional data visualizations."
-  },
-  {
-    "objectID": "posts/bike-share-navigate/index.html#scenario",
-    "href": "posts/bike-share-navigate/index.html#scenario",
-    "title": "Data Tales",
-    "section": "Scenario",
-    "text": "Scenario\nYou are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your ecommendations, so they must be backed up with compelling data insights and professional data visualizations."
   },
   {
     "objectID": "posts/bike-share-navigate/index.html#ask-phase",
@@ -54,13 +68,6 @@
     "title": "How Does a Bike-Share Navigate Speedy Success?",
     "section": "Act",
     "text": "Act\n\nKey findings\n\nDifferent of members, casual user use service more often during the weekend;\nAlso have the mean duration of the trips 2,45 times longer than members;\nThey have the highest trip duration during dawn (from 12 am to 5 am). With the pic at 2 am;\nCasual users use the service more from July to October;\nAlthough February is the month with the least trips, it is also the month with the longest duration of trips;\nCasual members use more docked bikes thans members and also have a longer average travel time for this type of bike.\n\n\n\nRecommendations\n\nCreate a subscription based on time-of-day to encourage casual users that ride, for exemple, from 9 pm to 5 am to subscribe;\nImplement discounts or a points system based on loyalty (frequency of use) and high trip-duration users;\nCreate seasonal subscriptions such as summer and spring. Or implement discounts on temporary subscriptions (3, 6, 9, 12 months);\nCreate subscription especific to ride on week day or on the weekend;\nCreate subscriptions for specific types of bicycles. Plans to use only docked bicycles, for example."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "blog",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJun 8, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJun 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\ndata visualization\n\n\nR\n\n\ndata analysis\n\n\n\n\nProject developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company’s marketing team.\n\n\n\n\n\n\nSep 18, 2021\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\ndata visualization\n\n\nR\n\n\ndata analysis\n\n\n\n\nProject developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company’s marketing team.\n\n\n\n\n\n\nSep 18, 2021\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
