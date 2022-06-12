@@ -1,9 +1,10 @@
 project:
   type: website
 
+
 website:
   title: "Yet Another Data Blog"
-  description: "A blog about data science, learning and technology by Tales Gomes"
+  description: "A blog about data science, learning and technology by Tales Gomes"  
   image: social.jpg
   favicon: favicon.png
   site-url: https://blog-talesgomes.netlify.app
