@@ -2,7 +2,9 @@ project:
   type: website
 
 website:
-  title: "Tales Gomes"
+  title: "Yet Another Data Blog"
+  description: "A blog about data science, learning and technology by Tales Gomes"
+  image: statics/social.jpg
   favicon: favicon.png
   site-url: https://blog-talesgomes.netlify.app
   repo-url: https://github.com/talesgomes27/quarto-blog
@@ -21,7 +23,8 @@ website:
         href: mailto:talesgomes27@gmail.com
   navbar:
     right:
-      - about.qmd
+      - text: Tales Gomes
+        href: about.qmd
       - text: Resume
         href: https://talesgomes27.github.io/curriculo/resume.html
       - icon: github
@@ -43,7 +46,6 @@ format:
     css: styles.css
     citations-hover: true
     footnotes-hover: true
-    include-in-header: meta.html
 
 
 editor: visual
