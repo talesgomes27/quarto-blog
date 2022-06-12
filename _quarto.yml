@@ -49,6 +49,7 @@ format:
     css: styles.css
     citations-hover: true
     footnotes-hover: true
+    include-in-header: meta.html
 
 
 editor: visual
