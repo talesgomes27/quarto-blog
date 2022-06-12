@@ -11,18 +11,15 @@ library(knitr)
 
 
 ## Global options
-#options(max.print="90")
 opts_chunk$set(echo=TRUE,
                 fig.align = 'center',
-                #out.width = "90%",
-	            cache=TRUE,
+                cache=TRUE,
                 prompt=FALSE,
-                #tidy=TRUE,
                 comment=NA,
                 message=TRUE,
                 error=FALSE,
                 warning=FALSE)
-#opts_knit$set(width=90)
+
 
 
 ```
@@ -386,7 +383,6 @@ bikeshare_data |>
 
 ```{r}
 #| message: false
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -412,7 +408,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -437,7 +432,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -464,7 +458,6 @@ bikeshare_data |>
 ### By Month and Season
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -490,7 +483,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -515,7 +507,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -542,7 +533,6 @@ bikeshare_data |>
 ### By type of the bike
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -567,7 +557,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -593,7 +582,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -617,8 +605,7 @@ bikeshare_data |>
 
 ```
 
-```{r}
-#| column: page
+```{r}  
 #| out-width: 100%
 #| fig-dpi: 400
 

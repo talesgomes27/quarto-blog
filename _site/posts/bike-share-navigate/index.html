@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.471">
+<meta name="generator" content="quarto-0.9.575">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -83,6 +83,26 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,15 +148,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tales Gomes - How Does a Bike-Share Navigate Speedy Success?">
-<meta property="og:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company's marketing team.">
+<meta property="og:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google.">
 <meta property="og:image" content="https://blog-talesgomes.netlify.app/posts/bike-share-navigate/bike-share.jpg">
 <meta property="og:site-name" content="Tales Gomes">
 <meta name="twitter:title" content="Tales Gomes - How Does a Bike-Share Navigate Speedy Success?">
-<meta name="twitter:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company's marketing team.">
+<meta name="twitter:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google.">
 <meta name="twitter:image" content="https://blog-talesgomes.netlify.app/posts/bike-share-navigate/bike-share.jpg">
 <meta name="twitter:creator" content="@talesgomes27">
 <meta name="twitter:card" content="summary_large_image">
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script><script src="../../site_libs/quarto-nav/headroom.min.js"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script><script src="../../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../../site_libs/quarto-search/fuse.min.js"></script><script src="../../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../../"><link href="../../favicon.png" rel="icon" type="image/png"><script src="../../site_libs/quarto-html/quarto.js"></script><script src="../../site_libs/quarto-html/popper.min.js"></script><script src="../../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../../site_libs/quarto-html/anchor.min.js"></script><link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet"><link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles"><link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles"><script src="../../site_libs/bootstrap/bootstrap.min.js"></script><link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"><link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme"><link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate"></head>
+</head>
 
 <body class="floating nav-fixed">
 
@@ -1435,9 +1455,9 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </section>
 <section id="share-phase" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="share-phase">Share Phase</h2>
-<section id="by-the-hour-and-the-time-of-the-day" class="level3 page-columns page-full">
+<section id="by-the-hour-and-the-time-of-the-day" class="level3">
 <h3 class="anchored" data-anchor-id="by-the-hour-and-the-time-of-the-day">By the hour and the time of the day</h3>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-12_17bdbfc9356fb2505da565cce7e36d9b">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-12_f0f2adb644f2b28db937ac8e30148476">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1459,7 +1479,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of trips (in Thousands)"</span></span>
 <span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    )   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1467,7 +1487,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-13_9bf3edd68767c587f2432c03bcacf0d2">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-13_18c70ad8553093ade4b7e71867c9c865">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1488,7 +1508,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Trip duration (min)"</span></span>
 <span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1496,7 +1516,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-14_29799ebb71e1a24dec6076720cf98f8e">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-14_c718d95e083b55d13f0fec1419ed7215">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1516,7 +1536,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Number of trips (in Millions)"</span></span>
 <span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    )   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1525,9 +1545,9 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </section>
-<section id="by-month-and-season" class="level3 page-columns page-full">
+<section id="by-month-and-season" class="level3">
 <h3 class="anchored" data-anchor-id="by-month-and-season">By Month and Season</h3>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-15_bf3793cf2d107a8d6440d4b4cdebd7e6">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-15_e8e755c7fe488f43f2e1fcfde82cc84d">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1549,7 +1569,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Number of trips (in Thousands)"</span></span>
 <span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1557,7 +1577,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-16_4c8939b3c5683b9c7eb1632632df0b8c">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-16_0dab971ce7f533452c6c46d7165ff513">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1578,7 +1598,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Trip duration (min)"</span></span>
 <span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1586,7 +1606,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-17_eee27d8c6371a8f3dd555c4c8baa1ed3">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-17_2a83b5b2be68059b61f2eeed39d8d2b7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1606,7 +1626,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Number of trips (in Millions)"</span></span>
 <span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>    )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1615,9 +1635,9 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </section>
-<section id="by-type-of-the-bike" class="level3 page-columns page-full">
+<section id="by-type-of-the-bike" class="level3">
 <h3 class="anchored" data-anchor-id="by-type-of-the-bike">By type of the bike</h3>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-18_25ba43b31c4ae11d09b608bf5f321802">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-18_6003c35e7bcca49951a904174e191328">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1637,7 +1657,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Number of trips (in Millions)"</span></span>
 <span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1645,7 +1665,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-19_30df483140053183c86d49126ae3108c">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-19_96e4573884c0f919df42d4eca6bdc11d">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1667,7 +1687,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Number of trips (in Thousands)"</span></span>
 <span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1675,7 +1695,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-20_ab9b2af6dd9b64479f28fa478bfb3abe">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-20_4a268435bca602181a3e6e69455bacbc">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1696,7 +1716,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Trip duration (min)"</span></span>
 <span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1704,7 +1724,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-21_55dfc1404ac18b631b9d8079ddaecbae">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-21_30d540e6f36d729da10149955f9819e6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1726,7 +1746,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"No. of trips (in Thousands)"</span></span>
 <span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -2037,4 +2057,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script></body></html>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
