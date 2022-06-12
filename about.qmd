@@ -1,5 +1,6 @@
 ---
 title: "About"
+comments: false
 image: statics/profile.jpg
 about:
   template: jolla
