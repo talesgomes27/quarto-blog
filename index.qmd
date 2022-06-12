@@ -12,6 +12,7 @@ listing:
   filter-ui: true
 page-layout: full
 title-block-banner: false
+include-in-header: meta.html 
 ---
 
 

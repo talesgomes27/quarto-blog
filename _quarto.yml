@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Tales Gomes"
-  image: statics/blog_image.jpg
+  image: statics/social.jpg
   description: "Blog about Data, curiosities, learning and technology."
   favicon: favicon.png
   site-url: https://blog-talesgomes.netlify.app
@@ -45,5 +45,13 @@ format:
     css: styles.css
     citations-hover: true
     footnotes-hover: true
+    include-in-header: meta.html
+
+
+editor: visual
+
+comments:
+  giscus:
+    repo: talesgomes27/quarto-blog
 
 
