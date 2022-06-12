@@ -3,7 +3,9 @@ project:
 
 website:
   title: "Tales Gomes"
-  favicon: statics/favicon.png
+  image: statics/blog_image.jpg
+  description: "Blog about Data, curiosities, learning and technology."
+  favicon: favicon.png
   site-url: https://blog-talesgomes.netlify.app
   repo-url: https://github.com/talesgomes27/quarto-blog
   open-graph: true
