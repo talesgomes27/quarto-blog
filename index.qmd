@@ -1,7 +1,8 @@
 ---
 title: "Posts"
+title-meta: "Tales Gomes's Blog"
 image: statics/blog_image.jpg
-description-meta: "Blog about Data, curiosities, learning and technology."
+description-meta: "A blog about data, curiosities, learning and technology."
 listing:
   contents: posts
   sort: "date desc"
