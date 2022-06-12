@@ -11,6 +11,9 @@ website:
   open-graph: true
   twitter-card:
     creator: "@talesgomes27"
+    title: "Yet Another Data Blog"
+    description: "A blog about data science, learning and technology by Tales Gomes"
+    image: statics/social.jpg
     card-style: summary_large_image
   page-footer:
     left: "Blog made with 🤎 and [Quarto](https://quarto.org/), by Tales Gomes."
