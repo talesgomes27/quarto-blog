@@ -1,7 +1,9 @@
 ---
 title: "About"
 comments: false
-image: statics/profile.jpg
+image: profile.jpg
+open-graph: true
+twitter-card: true
 about:
   template: jolla
   links:
