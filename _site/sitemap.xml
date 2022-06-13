@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog-talesgomes.netlify.app/index.html</loc>
-    <lastmod>2022-06-13T20:24:20.172Z</lastmod>
+    <lastmod>2022-06-13T20:35:18.053Z</lastmod>
   </url>
   <url>
     <loc>https://blog-talesgomes.netlify.app/about.html</loc>
-    <lastmod>2022-06-13T20:24:20.548Z</lastmod>
+    <lastmod>2022-06-13T20:35:18.425Z</lastmod>
   </url>
   <url>
     <loc>https://blog-talesgomes.netlify.app/posts/bike-share-navigate/index.html</loc>
-    <lastmod>2022-06-13T20:24:23.443Z</lastmod>
+    <lastmod>2022-06-13T20:35:22.945Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog-talesgomes.netlify.app/posts/bellabeat/index.html</loc>
+    <lastmod>2022-06-13T20:35:25.721Z</lastmod>
   </url>
 </urlset>

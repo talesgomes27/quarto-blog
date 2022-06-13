@@ -4,7 +4,7 @@ description: "Neste projeto procuro encontrar tendências de uso em um  banco de
 date: "2021-09-10"
 categories: [data visualization, R, data analysis]
 image: "bellabeat.jpg"
-draft: true
+draft: false
 ---
 
 ## Objetivo da análise
