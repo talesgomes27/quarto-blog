@@ -21,6 +21,8 @@ website:
       - icon: envelope
         href: mailto:talesgomes27@gmail.com
   navbar:
+    logo: logo.png
+    title: "Yet Another Data Blog"
     right:
       - text: Tales Gomes
         href: about.qmd
