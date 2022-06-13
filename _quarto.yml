@@ -6,17 +6,8 @@ website:
   title: "Yet Another Data Blog"
   description: "A blog about data science, learning and technology by Tales Gomes"  
   image: social.jpg
-  twitter-card: 
-    title: "Yet Another Data Blog"
-    description: "A blog about data science, learning and technology by Tales Gomes"
-    card-style: summary_large_image
-    image: "https://blog-talesgomes.netlify.app/social.jpg"
-    creator: "@talesgomes27"
-  open-graph: 
-    title: "Yet Another Data Blog"
-    description: "A blog about data science, learning and technology by Tales Gomes"
-    image: "https://blog-talesgomes.netlify.app/social.jpg"
-    site-name: "Yet Another Data Blog"
+  twitter-card: true 
+  open-graph: true
   favicon: favicon.png
   site-url: https://blog-talesgomes.netlify.app
   repo-url: https://github.com/talesgomes27/quarto-blog
