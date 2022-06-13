@@ -9,8 +9,16 @@ website:
   favicon: favicon.png
   site-url: https://blog-talesgomes.netlify.app
   repo-url: https://github.com/talesgomes27/quarto-blog
-  open-graph: true
-  twitter-card: true
+  open-graph:
+    title: "Yet Another Data Blog"
+    description: "A blog about data science, learning and technology by Tales Gomes"
+    image: "https://blog-talesgomes.netlify.app/social.jpg"
+  twitter-card:
+    creator: "@talesgomes27"
+    title: "Yet Another Data Blog"
+    description: "A blog about data science, learning and technology by Tales Gomes"
+    image: "https://blog-talesgomes.netlify.app/social.jpg"
+    card-style: "summary_large_image"
   page-footer:
     left: "Blog made with 🤎 and [Quarto](https://quarto.org/), by Tales Gomes."
     right:
@@ -45,7 +53,6 @@ format:
     css: styles.css
     citations-hover: true
     footnotes-hover: true
-    include-in-header: meta.html
 
 
 editor: visual
