@@ -2,16 +2,6 @@
 title: "Yet Another Data Blog"
 description: "A blog about data science, learning and technology by Tales Gomes"
 image: social.jpg
-open-graph:
-    title: "Yet Another Data Blog"
-    description: "A blog about data science, learning and technology by Tales Gomes"
-    image: "https://blog-talesgomes.netlify.app/social.jpg"
-twitter-card:
-  creator: "@talesgomes27"
-  title: "Yet Another Data Blog"
-  description: "A blog about data science, learning and technology by Tales Gomes"
-  image: "https://blog-talesgomes.netlify.app/social.jpg"
-  card-style: "summary_large_image"
 listing:
   contents: posts
   sort: "date desc"
@@ -22,6 +12,7 @@ listing:
 page-layout: full
 title-block-banner: false
 comments: false
+include-in-header: meta.html
 ---
 
 
