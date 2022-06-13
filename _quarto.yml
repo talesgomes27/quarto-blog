@@ -7,8 +7,6 @@ website:
   description: "A blog about data science, learning and technology by Tales Gomes"  
   image: social.jpg
   favicon: favicon.png
-  open-graph: true
-  twitter-card: true
   site-url: https://blog-talesgomes.netlify.app
   repo-url: https://github.com/talesgomes27/quarto-blog
   page-footer:
