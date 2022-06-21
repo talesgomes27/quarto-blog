@@ -34,6 +34,11 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(patchwork)
 
+
+# Definindo thema ggplot2 ------------------------------------------------
+
+theme_set(ggpubr::theme_pubclean())
+
 # Tratamento dos Dados diários --------------------------------------------------------------
 
 #Lendo o arquivos com dados diários e gravando em variáveis.
@@ -158,8 +163,8 @@ A tabela resultante pode ser encontrada a seguir:
 ```{r}
 #| column: page
 
-library(DT)
-datatable(daily_data)
+library(kableExtra)
+rmarkdown::paged_table(daily_data)
 ```
 
 ### Sumário dos dados
@@ -167,12 +172,27 @@ datatable(daily_data)
 ```{r}
 #| column: page
 
+skim_table_numeric <- daily_data |>
+  skimr::skim() |>
+  skimr::yank("numeric")
+
 skim_table <- daily_data |>
-  skimr::skim()
+  skimr::skim() |>
+  skimr::yank("factor")
 
 
-datatable(skim_table)
+kbl(skim_table) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
+
+
+```{r}
+#| column: page
+
+kbl(skim_table_numeric) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive", full_width = T))
+```
+
 
 Através do pacote *skimr* podemos gerar um relatório detalhado das variáveis da tabela resultante. Feito isso, podemos observar o seguinte:
 
@@ -298,7 +318,6 @@ plot2 <-  ggplot(daily_data_long) +
 
 patchwork1 <- plot1 + plot2 + plot_layout(guides='collect') & scale_color_viridis_d(aes(label = "Atividade")) &
 scale_fill_viridis_d(aes(label = "Atividade")) &
-ggpubr::theme_pubclean() &
 theme(legend.position='bottom')
 
 patchwork1 + plot_annotation(
@@ -322,7 +341,6 @@ plot3 <- daily_data_long |>
   geom_smooth(aes(x = activities_time, y = activities_dist), method = "lm")+
   scale_color_viridis_d(aes(label = "Atividade")) +
   scale_fill_viridis_d(aes(label = "Atividade")) +
-  ggpubr::theme_pubclean() +
   facet_wrap(vars(activities_type))+
   labs(
     x = "Tempo (h)",
@@ -350,7 +368,6 @@ plot4 <- ggplot(daily_data_long) +
   geom_smooth(aes(x = activities_time, y = calories), method = "lm")+
   scale_color_viridis_d(aes(label = "Atividade")) +
   scale_fill_viridis_d(aes(label = "Atividade")) +
-  ggpubr::theme_pubclean() +
   facet_wrap(vars(activities_type))+
   labs(
     x = "Tempo (h)",
@@ -377,7 +394,6 @@ plot5 <- daily_data_long |>
   geom_smooth(aes(x = activities_time, y = total_steps), method = "lm")+
   scale_color_viridis_d(aes(label = "Atividade")) +
   scale_fill_viridis_d(aes(label = "Atividade")) +
-  ggpubr::theme_pubclean() +
   facet_wrap(vars(activities_type))+
   labs(
     x = "Tempo (h)",
@@ -445,7 +461,6 @@ plot6 <- sleep_data |>
   geom_smooth(aes(x = total_steps, y = calories), method = "lm")+
   scale_color_viridis_d(aes(label = "Duração do sono")) +
   scale_fill_viridis_d(aes(label = "Duração do sono")) +
-  ggpubr::theme_pubclean() +
   facet_wrap(vars(range_sleep))+
   labs(
     x = "Total de passos",
@@ -474,11 +489,9 @@ sleep_data |>
   select(range_sleep, heartrate) |>
   drop_na(range_sleep) |>
   ggplot(aes(x = range_sleep, y = heartrate, color = range_sleep)) +
-  geom_violin() +
-  #geom_boxplot() +
+  geom_boxplot() +
   geom_jitter(alpha=0.2) +
   scale_color_viridis_d(aes(label = "Frequência cardíaca média"))+
-  ggpubr::theme_pubclean() +
   labs(
     x = NULL,
     y = "Frequência cardiáca",
@@ -492,36 +505,6 @@ sleep_data |>
 
 ```
 
-Comparando a média de horas dormidas com o índice de massa corporal médio vemos que usuários que dormem menos de 6 horas tem na média um percentual masa corporal maior que usuários que dormem entre 6 e 10 horas por dia.
-
-```{r}
-#| warning: false
-#| mensage: false
-
-sleep_data |>
-  select(range_sleep, bmi) |>
-  drop_na(range_sleep) |>
-  ggplot(aes(x = range_sleep, y = bmi, color = range_sleep)) +
-  #geom_violin(width=1.4) +
-  #geom_boxplot(width=0.1, alpha=0.2) +
-  #geom_boxplot() +
-  geom_violin() +
-  geom_jitter(alpha=0.2) +
-  scale_color_viridis_d(aes(label = "Indice de massa corporal"))+
-  scale_y_continuous(limits = c(20, 30), breaks = c(20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30)) +
-  ggpubr::theme_pubclean() +
-  labs(
-    x = NULL,
-    y = "Índice de massa corporal",
-    title = "Média do índice massa corporal em relação as horas dormidas diárias",
-    caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-  ) +
-  theme(legend.position='none')
-  
-
-
-```
 
 
 
@@ -537,4 +520,4 @@ Analisando os dados encontramos as seguintes relações:
 
 -   usuários que dormem menos de 6 horas por dia tentem a gastar, em média, menos calorias por dia;
 
--   usuários que dormem menos de 6 horas tendem a ter a frequência cardíaca e o índice de massa corporal maior que usuários que dormem de 6 a 10 horas por dia.
+-   usuários que dormem menos de 6 horas tendem a ter a frequência cardíaca maior que usuários que dormem de 6 a 10 horas por dia.

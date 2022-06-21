@@ -23,6 +23,7 @@ website:
   navbar:
     logo: logo.png
     title: "Yet Another Data Blog"
+    collapse-below: lg
     right:
       - text: Tales Gomes
         href: about.qmd
@@ -38,12 +39,8 @@ format:
   html:
     smooth-scroll: true
     theme:
-      light: 
-        - flatly
+        - default
         - custom.scss 
-      dark: 
-        - darkly
-        - custom.scss
     css: styles.css
     citations-hover: true
     footnotes-hover: true
