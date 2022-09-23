@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.575">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -14,10 +14,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -56,7 +61,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -69,7 +74,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -100,7 +105,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,11 +136,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Yet Another Data Blog - How Does a Bike-Share Navigate Speedy Success?">
-<meta property="og:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google.">
+<meta property="og:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company’s marketing team.">
 <meta property="og:image" content="https://blog-talesgomes.netlify.app/posts/bike-share-navigate/bike-share.jpg">
 <meta property="og:site-name" content="Yet Another Data Blog">
 <meta name="twitter:title" content="Yet Another Data Blog - How Does a Bike-Share Navigate Speedy Success?">
-<meta name="twitter:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google.">
+<meta name="twitter:description" content="Project developed for the acquisition of the professional certificate in data analysis, through the Coursera platform, under the instruction of Google. In it were collected, over 12 months, data about the users who subscribe to the service offered by the Bikeshare company and individual users, in order to identify the difference between the two groups in terms of how the service is used, with a view to developing recommendations for the company’s marketing team.">
 <meta name="twitter:image" content="https://blog-talesgomes.netlify.app/posts/bike-share-navigate/bike-share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -143,10 +151,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
-    <img src="../../logo.png" alt="">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Yet Another Data Blog</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -220,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -253,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
@@ -1430,7 +1442,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 </div>
 </div>
 </section>
-<section id="share-phase" class="level2 page-columns page-full">
+<section id="share-phase" class="level2">
 <h2 class="anchored" data-anchor-id="share-phase">Share Phase</h2>
 <section id="by-the-hour-and-the-time-of-the-day" class="level3">
 <h3 class="anchored" data-anchor-id="by-the-hour-and-the-time-of-the-day">By the hour and the time of the day</h3>
@@ -1459,7 +1471,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1488,7 +1500,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1516,7 +1528,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1549,7 +1561,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1578,7 +1590,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1606,7 +1618,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1637,7 +1649,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1667,7 +1679,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1696,7 +1708,7 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1726,15 +1738,15 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="stations-and-the-routs-more-offen-used" class="level3 page-columns page-full">
+<section id="stations-and-the-routs-more-offen-used" class="level3">
 <h3 class="anchored" data-anchor-id="stations-and-the-routs-more-offen-used">Stations and the Routs more offen used</h3>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-22_d20d33737afe65e35415e90c731c4669">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-22_f456b5bf9439d707848770eb67b09ac9">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1757,15 +1769,15 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span></span>
 <span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    )   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-23_ba721a92a95e67c34c12ec6809c618f1">
+<div class="cell" data-layout-align="center" data-fig.dpi="400" data-hash="index_cache/html/unnamed-chunk-23_cc3e73e2eca422fd10b70c6cf76464cf">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>bikeshare_data <span class="sc">|&gt;</span> </span>
@@ -1787,10 +1799,10 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span></span>
 <span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display column-page">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><a href="index_files/figure-html/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -1827,6 +1839,24 @@ iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAPFBMVEUAAAAFBQVLS0toaGiWlpaioqKp
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">https://creativecommons.org/licenses/by-sa/4.0/</a></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1876,7 +1906,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -1934,6 +1965,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true});</script>
 
 
 

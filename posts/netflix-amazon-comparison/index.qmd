@@ -4,6 +4,9 @@ description: "Netflix and Amazon Prime are two of the most popular TV streaming 
 date: "2022-06-09"
 categories: [data visualization, python, data analysis]
 image: "netflix-vs-amazon-prime.jpg"
+filters:
+   - lightbox
+lightbox: auto
 draft: true
 ---
 
@@ -54,7 +57,7 @@ Markdown(tabulate(
 
 ```{python}
 #| label: tbl-role
-#| tbl-cap: Amazon and Netflix role table
+#| tbl-cap: "Amazon and Netflix role table"
 
 role_table = [
     ["person ID", "The person ID on JustWatch"],
@@ -110,7 +113,7 @@ netflix_credits.head()
 
 ```{python}
 #| label: tbl-role-check
-#| tbl-cap: Netflix role table data check
+#| tbl-cap: "Netflix role table data check"
 #| echo: false
 
 nf_credits_check = np.transpose([
@@ -142,7 +145,7 @@ netflix_titles.head()
 
 ```{python}
 #| label: tbl-content-check
-#| tbl-cap: Netflix content table data check
+#| tbl-cap: "Netflix content table data check"
 #| echo: false
 
 nf_titles_check = np.transpose([
@@ -178,7 +181,7 @@ amazon_credits.head()
 
 ```{python}
 #| label: tbl-amazon-role-check
-#| tbl-cap: Amazon role table data check
+#| tbl-cap: "Amazon role table data check"
 #| echo: false
 
 amz_credits_check = np.transpose([
@@ -213,7 +216,7 @@ amazon_titles.head()
 
 ```{python}
 #| label: tbl-amazon-content-check
-#| tbl-cap: Amazon content table data check
+#| tbl-cap: "Amazon content table data check"
 #| echo: false
 
 amz_titles_check = np.transpose([

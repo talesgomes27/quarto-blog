@@ -46,7 +46,6 @@ format:
     footnotes-hover: true
 
 
-editor: visual
 
 comments:
   giscus:

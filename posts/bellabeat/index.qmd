@@ -5,6 +5,9 @@ date: "2021-09-10"
 categories: [data visualization, R, data analysis]
 image: "bellabeat.jpg"
 draft: false
+filters:
+   - lightbox
+lightbox: auto
 ---
 
 ## Objetivo da análise

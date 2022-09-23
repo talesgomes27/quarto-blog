@@ -4,6 +4,9 @@ description: "Project developed for the acquisition of the professional certific
 date: "2021-09-18"
 categories: [data visualization, R, data analysis]
 image: "bike-share.jpg"
+filters:
+   - lightbox
+lightbox: auto
 ---
 
 ```{r setup, include=FALSE}
@@ -634,7 +637,6 @@ bikeshare_data |>
 ### Stations and the Routs more offen used
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
@@ -661,7 +663,6 @@ bikeshare_data |>
 ```
 
 ```{r}
-#| column: page
 #| out-width: 100%
 #| fig-dpi: 400
 
