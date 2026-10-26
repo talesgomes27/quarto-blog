@@ -1,0 +1,52 @@
+{
+  "commit": "e1e75540334b7649bffdb43828d0e771d9e49184",
+  "run_id": 40338132076,
+  "base_url": "https://talesgomes27.github.io/quarto-blog/",
+  "checked_at": "2026-10-26T14:17:28.279406+00:00",
+  "results": [
+    {
+      "path": "posts/bellabeat/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "11bd1672fddd9787efd3e941e11681f75fd8c202ede574c5ed6a49167839f485"
+    },
+    {
+      "path": "posts/bellabeat/en.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "4bc15367e84e88170b3477dfde90a4837fbb53666b386e9f1ff688bc6ea619b3"
+    },
+    {
+      "path": "posts/bike-share-navigate/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d6756689c58754a061526b7111132a9869ad1b52875504810fdee7e1b1ff3343"
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "50925ae392c508311522546a67a4015c6a7898b3903cd34bfa3ad9988e5e5514"
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "750c32c94127a2137bdcf364acbe9e5144e306f0373b0b3ea8f16a7e4db481a6"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-icons.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "01253947f506e030589e4f33fc7ec7ccdfb9505e2e596dedf16445f12e243c0a"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-icons.woff",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f55513b7b591cb84a3b87ff0e34ea24d4831d6fedc22e54b911ca64b5b544a15"
+    }
+  ],
+  "local_browser": "PT desktop light; EN 375px dark; both icons rendered, 44px buttons, no overflow.",
+  "limits": "No real LinkedIn/email submission or physical-device test."
+}
