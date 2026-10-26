@@ -1,0 +1,171 @@
+{
+  "commit": "3c769511dceef66221d06511b0dda7b578c3d90f",
+  "run_id": 40336453500,
+  "base_url": "https://talesgomes27.github.io/quarto-blog/",
+  "checked_at": "2026-10-26T14:07:03.042119+00:00",
+  "results": [
+    {
+      "path": "404.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f359c886338b06e93eaae2aca49caaf5b5f417576537e5849e687eb8c0e1e4b0"
+    },
+    {
+      "path": "about.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d91d003f566de77d9900775278b2c95f9805de818de9916c2bdc01cd3c1379ed"
+    },
+    {
+      "path": "en/404.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "b1320abc49bf553bdc98438f3ddda193533414ca27bf2f1d667037afd217648a"
+    },
+    {
+      "path": "en/about.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f98de9edc04eed5faa60a5a3caeeb10b8ad39dda4444c60147f825a796222e72"
+    },
+    {
+      "path": "en/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "434162ca9682609b1d74202affa1f1fb5ec8eaf4f8715f8e8e81052ffeabf70b"
+    },
+    {
+      "path": "en/textos.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2af1b696da85318589d7b9ba6d9cb46df3298bee04b5fd2cc447355c119e24e7"
+    },
+    {
+      "path": "en/textos.xml",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "c35b9aa1c597d8971675f06af0c695bb7bd8a2d664229156fb75cddec35614dc"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "40f0ddb0981219dd260b639718e078dcc8567e4811efc8e92a0ac2e8fd963cc1"
+    },
+    {
+      "path": "posts/bellabeat/en.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "7dfd6924e41eb65d8d2b31e814317363dc007c2e398872df5bd5684467a87a66"
+    },
+    {
+      "path": "posts/bellabeat/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f7e8deb493b074cd83ead3945a0e2f536c1c51576d5e95e9f7a47d6532e2ad28"
+    },
+    {
+      "path": "posts/bike-share-navigate/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "b9e34673c9e9624549892c7ad589158df5fde7e9d3e8a42735b097205efaa696"
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d711253ceeaff5e31a7f8639a332d2a820a5a230a6a0a97fc06ba106d39bdc74"
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "67c6ae25077fd8fc6be8ac4b09131f32d9a443eaee1e405692d024b5ad836064"
+    },
+    {
+      "path": "textos.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "59ffec24fcfc100ff846e22c8bb73da21ffd1500d1340b36cfe34c5516820ec9"
+    },
+    {
+      "path": "textos.xml",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "93ee0f6c5f2d0175a2e12781bd10a0869760c485c2576fd87e6d13b448b4c349"
+    },
+    {
+      "path": "site_libs/quarto-contrib/link-previews-0.3.1/link-previews.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "d24259fc97669f02013189dbc8cd906ea00ecb135a50430f8ba5b509dafdfdeb"
+    },
+    {
+      "path": "site_libs/quarto-contrib/link-previews-0.3.1/link-previews.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "620a9023eaf3e6c27b15d6d2f8d4971c1df8db6e34bdeb76a3152e4ea9f8b54c"
+    },
+    {
+      "path": "site_libs/quarto-contrib/remember-1.0.0/remember.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f255f8204cd5f9332fb1e0b5336cac0215c4727bdd45a65c088f55400a43cef8"
+    },
+    {
+      "path": "site_libs/quarto-contrib/remember-1.0.0/remember.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "f167e49fb9e6986f6c9885bd166146da8d8e8479b78133a7893183bbc3073ad9"
+    },
+    {
+      "path": "site_libs/quarto-contrib/cite-this-1.0.4/cite-this.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "01b4ee28ccc3dbb207866abbb42c0b19172d5a80dd797c47d5db6d2b97679447"
+    },
+    {
+      "path": "site_libs/quarto-contrib/cite-this-1.0.4/cite-this.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "57569626f347bf0e0925cb5a2b096847b4102433ce687c920c8b7e4b67ab87ee"
+    },
+    {
+      "path": "site_libs/quarto-contrib/glightbox/glightbox.min.js",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "03dfe1fbce92a9f17fcd1a1501213bd820d050ab085c338419ab06a3631c9459"
+    },
+    {
+      "path": "site_libs/quarto-contrib/glightbox/glightbox.min.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "6d3f62d4d17969f9c70e9438cf671004725019e868123f2ebc295a006f8d5d2d"
+    },
+    {
+      "path": "site_libs/quarto-contrib/glightbox/lightbox.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "6b3fe0e87e89511791431a74df3b4026b4560b17e135440baa8435d0698afd01"
+    }
+  ],
+  "workflow_url": "https://github.com/talesgomes27/quarto-blog/actions/runs/40336453500",
+  "workflow_conclusion": "success",
+  "browser_smoke": {
+    "public": [
+      "Portuguese homepage preview loaded the Bike Share title and introduction with opaque theme background.",
+      "Portuguese Bike Share citation expanded with only ABNT/APA and its full published translation URL."
+    ],
+    "local": [
+      "PT/EN link previews, light/dark themes.",
+      "Remember accept, decline, Escape and Tab cycle.",
+      "Citation UI copy acknowledgment, downloaded BibTeX content and keyboard tabs.",
+      "375px English citation/sharing viewport in dark theme without overflow."
+    ],
+    "limits": [
+      "Clipboard content was not independently read.",
+      "No email, LinkedIn share or comment was submitted.",
+      "No physical-device or complete dependency security audit."
+    ]
+  }
+}

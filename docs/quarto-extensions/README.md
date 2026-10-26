@@ -64,6 +64,8 @@ Validação local: render completo das 13 páginas e cinco verificações Python
 
 Limites: a confirmação de cópia veio da interface, sem leitura independente do clipboard do sistema. Não houve envio de e-mail/LinkedIn nem teste em aparelho físico. A revisão das dependências foi dirigida à integração; não é uma auditoria de segurança completa. A extensão de citação ainda emite um aviso sobre a ausência de autor de `work`, escopo que não é exibido nem usado no portal.
 
+Publicação conferida no commit `3c769511dceef66221d06511b0dda7b578c3d90f`, workflow [40336453500](https://github.com/talesgomes27/quarto-blog/actions/runs/40336453500) concluído com sucesso. Os 24 destinos públicos consultados corresponderam byte a byte ao artefato local; hashes em [extensions-smoke-2026-10-26.json](../extensions-smoke-2026-10-26.json). Prévia da home e painel de citação do Bike Share em português também foram conferidos no navegador público.
+
 ## Recursos que o blog já tem
 
 - **Lightbox**: `lightbox: true` já é um recurso nativo do Quarto instalado. A pasta legada `_extensions/quarto-ext/lightbox` 0.1.1 continua presente; ela não precisa ser reativada ou duplicada. A renderização anterior já advertia sobre a incorporação ao Quarto.
