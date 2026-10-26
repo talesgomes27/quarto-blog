@@ -1,0 +1,124 @@
+{
+  "commit": "2be95cd681f7f26f03799a34a65d04438ae3a075",
+  "run_id": 40277301223,
+  "base_url": "https://talesgomes27.github.io/quarto-blog/",
+  "results": [
+    {
+      "path": "about.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "35563ea86c5d37d0568a544c8ae3ed3c2b9dd4829c10148137477118e259a508"
+    },
+    {
+      "path": "en/about.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "710de2b5d8a7582ea55684394fbf24ccb27bec516d0c9bcc4aaae588cb184b6c"
+    },
+    {
+      "path": "en/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "5be36bcc77e44e6b8fc6867a2a7942f2bc1f64519c2a28af686c47005e8585ed"
+    },
+    {
+      "path": "en/textos.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2124fca1de7f3f62119c6ad0832018c0880299b56fb342a82916a992000ccaaa"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "e1c44a0e6fdf04373772907dc7da89402f6b5b05b84a2b98b370ab93679f9f2c"
+    },
+    {
+      "path": "posts/bellabeat/en.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "25c6cba5bac057f3a7bdedb8e8fcd87996b8194136cc0ec0b25ff705f45aa2fc"
+    },
+    {
+      "path": "posts/bellabeat/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "ee7fa69d9377faa74db1677a87a72c5767088329d8f9d2f9cae38ee80cb79885"
+    },
+    {
+      "path": "posts/bike-share-navigate/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "1c3fae82510f6ff8de6168ea7599e932f44664ba07a81bde2c0b2a16a0c44c7d"
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "ea07f258e205f7a1c670c289d1930566fe3703c56ad8806180e577ed0580955d"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-4542385b07b9e5a8fe1a95b3fab40691.min.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "a90d31bb0f7bf7af7407d48b930492303635962f6adda7eec3985280584750d8"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "56a7959142014528d33b251272924c801ca160e1299fe040a4d666411610954e"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-dark-ab451912df58b659aa41e4f600c7c52c.min.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "44c0a6ec22c42ab36905191d4c3606fa9379ced28ed838e824679dd6cce66c46"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-dark-d8c6213261b78f3769df9ab9c7729fb0.min.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "ab2114161da62420c0ee1d83dde0b6dcb070add4777a19a6e32a426de941a1bd"
+    },
+    {
+      "path": "site_libs/bootstrap/bootstrap-icons.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "01253947f506e030589e4f33fc7ec7ccdfb9505e2e596dedf16445f12e243c0a"
+    },
+    {
+      "path": "site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "4adcfe89e815f52afcfd9b3f4cadb5331bd138dd7f72463185065a71f272fcb3"
+    },
+    {
+      "path": "styles.css?v=e6c6ebd009b2",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "e6c6ebd009b2964ea87552872f7e823ee90e4ba06998923608798a6fc15f2b13"
+    },
+    {
+      "path": "textos.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "b366f8110d9b246dc5baa5c5155950a3498aa969b3e404e98a1483273685ae87"
+    }
+  ],
+  "browser_checks": {
+    "native_toggle_light_dark": true,
+    "preference_persists_navigation_reload": true,
+    "giscus_theme_sync_light_dark_dimmed": true,
+    "mobile_overflow": false,
+    "mobile_toggle_target_px": [
+      44,
+      44
+    ],
+    "custom_css_version": "e6c6ebd009b2",
+    "light_restored_after_tests": true
+  },
+  "limitations": [
+    "Only the integrated browser was exercised."
+  ]
+}
