@@ -73,6 +73,19 @@ def test_localization():
     assert 'rel="alternate"' not in fallback
 
 
+def test_archive_controls():
+    source = fixture().replace("</main>", """<input class="search form-control" placeholder="Filtro">
+<div class="category" data-category="Ug==">R <span>(2)</span></div>
+<div class="listing-category" onclick="keepHandler()">R</div></main>""")
+    for page, label in [("textos.html", "Filtrar estudos"), ("en/textos.html", "Filter studies")]:
+        result = localize.localize(source, page)
+        assert f'aria-label="{label}"' in result
+        assert '<button type="button" class="category" data-category="Ug==">R <span>(2)</span></button>' in result
+        assert '<button type="button" class="listing-category" onclick="keepHandler()">R</button>' in result
+        assert localize.localize(result, page) == result
+    assert '<div class="category"' in localize.localize(source, "about.html")
+
+
 def test_render_hook():
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
@@ -80,10 +93,14 @@ def test_render_hook():
             path = root / page
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(fixture())
+        runtime = root / "site_libs/quarto-listing/quarto-listing.js"
+        runtime.parent.mkdir(parents=True, exist_ok=True)
+        runtime.write_text("historical runtime")
         previous = os.environ.get("QUARTO_PROJECT_OUTPUT_DIR")
         os.environ["QUARTO_PROJECT_OUTPUT_DIR"] = directory
         try:
             localize.main()
+            assert runtime.read_bytes() == (Path(localize.__file__).parent / "vendor/quarto-listing.js").read_bytes()
             assert ">Projects</span>" in (root / "en/index.html").read_text()
             for page in ("site_libs/library.html", "posts/netflix-amazon-comparison/index.html"):
                 assert (root / page).read_text() == fixture()
@@ -109,8 +126,20 @@ def validate_site(root):
                     assert (path.parent / link["href"]).is_file(), f"Broken language link: {page}: {link['href']}"
 
 
+    assert (root / "site_libs/quarto-listing/quarto-listing.js").read_bytes() == (Path(localize.__file__).parent / "vendor/quarto-listing.js").read_bytes()
+    for pair in localize.PAIRS[-2:]:
+        for page, locale in zip(pair, ("pt", "en")):
+            document = (root / page).read_text()
+            assert 'script.src = "https://giscus.app/client.js";' in document, page
+            assert f'script.dataset.lang = "{locale}";' in document, page
+            assert 'script.dataset.repoId = "R_kgDOHeSMkg";' in document, page
+            assert 'script.dataset.categoryId = "DIC_kwDOHeSMks4CPoEN";' in document, page
+            assert 'script.dataset.mapping = "title";' in document, page
+
+
 if __name__ == "__main__":
     test_localization()
+    test_archive_controls()
     test_render_hook()
     if len(sys.argv) > 1:
         validate_site(Path(sys.argv[1]))

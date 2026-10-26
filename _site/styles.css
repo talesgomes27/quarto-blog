@@ -155,3 +155,46 @@ pre, code, table { font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* The archive keeps Quarto's listing, search, sort and category behavior. */
+.writing-archive #quarto-content { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; grid-template-areas: "main categories"; gap: 3rem; max-width: 1320px; margin-inline: auto; padding: 3rem 2rem; }
+.writing-archive #quarto-document-content { grid-area: main; min-width: 0; padding-top: 0; margin-top: 0; }
+.writing-archive #title-block-header { margin-bottom: 1rem; }
+.writing-archive h1.title { font-size: clamp(2.5rem, 4.15vw, 4.1rem); font-weight: 700; line-height: 1.12; }
+.writing-archive .description { font-size: 1.42rem; line-height: 1.4; color: var(--muted); max-width: 60ch; }
+.writing-archive main > p { color: var(--muted); max-width: 65ch; margin-bottom: 2rem; }
+.writing-archive #quarto-margin-sidebar { grid-area: categories; position: static !important; align-self: start; width: auto; max-height: none !important; padding: 1.5rem; background: var(--paper); border-radius: 5px; }
+.writing-archive .quarto-listing-category-title { margin-top: 0; color: var(--ink); font-size: 1.5rem; font-weight: 700; }
+.writing-archive .quarto-listing-category .category { display: block; width: 100%; text-align: left; border: 0; background: transparent; font: inherit; padding-inline: 0; padding-block: .55rem; line-height: 1.4; color: var(--accent); }
+.writing-archive .quarto-listing-category .category.active { font-weight: 700; text-decoration: underline; text-underline-offset: .22em; }
+.writing-archive .listing-actions-group { gap: 1rem; margin-bottom: 1.5rem; }
+.writing-archive .listing-actions-group input, .writing-archive .listing-actions-group select { min-height: 44px; font-size: 1rem; border-color: var(--rule); }
+.writing-archive .listing-actions-group .input-group-text { background: var(--paper); border-color: var(--rule); }
+.writing-archive .quarto-listing-default .quarto-post { display: grid; grid-template-columns: minmax(10rem, .9fr) minmax(0, 1.4fr); grid-template-areas: "image body" "image date"; gap: .75rem 2rem; padding-block: 1.5rem; border-color: var(--rule); }
+.writing-archive .quarto-post .thumbnail { grid-area: image; padding: 0; margin: 0; }
+.writing-archive .quarto-post .thumbnail img { width: 100%; height: 14rem; object-fit: cover; border-radius: 5px; }
+.writing-archive .quarto-post .body { grid-area: body; padding: 0; }
+.writing-archive .quarto-post .listing-title { font-size: 1.9rem; font-weight: 700; line-height: 1.15; margin-block: 0 .75rem; }
+.writing-archive .quarto-post .listing-title a:hover { color: var(--accent); }
+.writing-archive .quarto-post .listing-description { font-size: 1.08rem; line-height: 1.5; margin-bottom: 0; }
+.writing-archive .quarto-post .listing-categories { gap: .4rem; margin-block: 0 .75rem; }
+.writing-archive .quarto-post .metadata { grid-area: date; padding: 0; font-size: 1rem; color: var(--muted); }
+.writing-archive .listing-no-matching { padding: 2rem; background: var(--paper); color: var(--ink); border-radius: 5px; }
+@media (max-width: 991px) {
+  .writing-archive #quarto-content { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main" "categories"; gap: 2rem; padding: 2rem 1.5rem; }
+  .writing-archive #quarto-margin-sidebar { display: block !important; }
+  .writing-archive .quarto-listing-category { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; }
+  .writing-archive .quarto-listing-category-title { margin-bottom: .5rem; }
+}
+@media (max-width: 575px) {
+  .writing-archive .quarto-listing-default .quarto-post { grid-template-columns: minmax(0, 1fr); grid-template-areas: "image" "body" "date"; gap: 1rem; }
+  .writing-archive .quarto-post .thumbnail img { height: 13rem; }
+  .writing-archive .listing-actions-group { flex-direction: column; }
+  .writing-archive .listing-actions-group .input-group { width: 100%; }
+}
+
+.writing-archive .listing-category { background: white; color: var(--accent); font-family: inherit; }
+@media (max-width: 991px) { .writing-archive .quarto-listing-category .category { width: auto; } }
+
+.writing-archive .quarto-post .listing-title a { font-weight: inherit; }
+.writing-archive .quarto-post .metadata a { font-size: inherit; }

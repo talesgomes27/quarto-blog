@@ -5,9 +5,14 @@ date: "2021-09-10"
 date-modified: "2026-10-26"
 categories: [visualização de dados, R, análise de dados]
 image: "bellabeat.jpg"
+image-alt: "Pessoas participando de uma atividade física em grupo."
 engine: markdown
 freeze: false
 lang: pt-BR
+comments:
+  giscus:
+    repo: talesgomes27/quarto-blog
+    language: pt
 translation-key: bellabeat
 lightbox: true
 ---

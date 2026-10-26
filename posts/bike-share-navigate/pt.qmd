@@ -6,10 +6,15 @@ date-modified: "2026-10-26"
 engine: markdown
 freeze: false
 lang: pt-BR
+comments:
+  giscus:
+    repo: talesgomes27/quarto-blog
+    language: pt
 toc-title: Neste estudo
 translation-key: bike-share
 categories: [visualização de dados, R, análise de dados]
 image: bike-share.jpg
+image-alt: "Bicicletas compartilhadas estacionadas em uma estação."
 lightbox: true
 ---
 

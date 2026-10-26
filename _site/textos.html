@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js?v=1.10.19"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -140,9 +140,11 @@ window.Quarto = {
 <meta property="og:description" content="Estudos de caso e análises sobre dados, com código, contexto e resultados.">
 <meta property="og:image" content="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/bike-share.jpg">
 <meta property="og:site_name" content="Tales Gomes">
+<meta property="og:image:alt" content="Bicicletas compartilhadas estacionadas em uma estação.">
 <meta name="twitter:title" content="Textos e estudos – Tales Gomes">
 <meta name="twitter:description" content="Estudos de caso e análises sobre dados, com código, contexto e resultados.">
 <meta name="twitter:image" content="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/bike-share.jpg">
+<meta name="twitter:image:alt" content="Bicicletas compartilhadas estacionadas em uma estação.">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- language-alternates -->
@@ -152,7 +154,7 @@ window.Quarto = {
 <!-- /language-alternates -->
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed writing-archive quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -205,7 +207,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categorias</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todos <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw==">análise de dados <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3M=">visualização de dados <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categorias</h5><div class="quarto-listing-category category-default"><button type="button" class="category" data-category="">Todos <span class="quarto-category-count">(2)</span></button><button type="button" class="category" data-category="YW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw==">análise de dados <span class="quarto-category-count">(2)</span></button><button type="button" class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></button><button type="button" class="category" data-category="dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3M=">visualização de dados <span class="quarto-category-count">(2)</span></button></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -233,7 +235,7 @@ window.Quarto = {
 </header>
 
 
-<p>Um arquivo dos projetos e análises publicados. Os estudos abaixo preservam os resultados da época de publicação.</p>
+<p>Explore as perguntas, o código e os resultados de cada análise. As revisões documentam as correções e preservam as fontes anteriores.</p>
 
 
 
@@ -258,14 +260,14 @@ window.Quarto = {
   </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filtro">
+      <input type="text" class="search form-control" placeholder="Filtro" aria-label="Filtrar estudos">
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3MlMkNSJTJDYW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw==" data-listing-date-sort="1631934000000" data-listing-file-modified-sort="1792990642574" data-listing-date-modified-sort="1792983600000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1519">
+<div class="quarto-post image-left" data-index="0" data-categories="dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3MlMkNSJTJDYW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw==" data-listing-date-sort="1631934000000" data-listing-file-modified-sort="1792992850526" data-listing-date-modified-sort="1792983600000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1519">
 <div class="thumbnail"><a href="./posts/bike-share-navigate/pt.html" class="no-external">
 
-<img loading="lazy" src="./posts/bike-share-navigate/bike-share.jpg" class="thumbnail-image">
+<img loading="lazy" src="./posts/bike-share-navigate/bike-share.jpg" class="thumbnail-image" alt="Bicicletas compartilhadas estacionadas em uma estação.">
 
 </a></div>
 <div class="body">
@@ -274,11 +276,11 @@ window.Quarto = {
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3M='); return false;">visualização de dados</div>
+<button type="button" class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3M='); return false;">visualização de dados</button>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+<button type="button" class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</button>
 
-<div class="listing-category" onclick="window.quartoListingCategory('YW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw=='); return false;">análise de dados</div>
+<button type="button" class="listing-category" onclick="window.quartoListingCategory('YW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw=='); return false;">análise de dados</button>
 
 </div>
 <div class="delink listing-description"><a href="./posts/bike-share-navigate/pt.html" class="no-external">
@@ -293,10 +295,10 @@ window.Quarto = {
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3MlMkNSJTJDYW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw==" data-listing-date-sort="1631242800000" data-listing-file-modified-sort="1792992271707" data-listing-date-modified-sort="1792983600000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1245">
+<div class="quarto-post image-left" data-index="1" data-categories="dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3MlMkNSJTJDYW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw==" data-listing-date-sort="1631242800000" data-listing-file-modified-sort="1792992850526" data-listing-date-modified-sort="1792983600000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1245">
 <div class="thumbnail"><a href="./posts/bellabeat/index.html" class="no-external">
 
-<img loading="lazy" src="./posts/bellabeat/bellabeat.jpg" class="thumbnail-image">
+<img loading="lazy" src="./posts/bellabeat/bellabeat.jpg" class="thumbnail-image" alt="Pessoas participando de uma atividade física em grupo.">
 
 </a></div>
 <div class="body">
@@ -305,11 +307,11 @@ window.Quarto = {
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3M='); return false;">visualização de dados</div>
+<button type="button" class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphJUMzJUE3JUMzJUEzbyUyMGRlJTIwZGFkb3M='); return false;">visualização de dados</button>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+<button type="button" class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</button>
 
-<div class="listing-category" onclick="window.quartoListingCategory('YW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw=='); return false;">análise de dados</div>
+<button type="button" class="listing-category" onclick="window.quartoListingCategory('YW4lQzMlQTFsaXNlJTIwZGUlMjBkYWRvcw=='); return false;">análise de dados</button>
 
 </div>
 <div class="delink listing-description"><a href="./posts/bellabeat/index.html" class="no-external">

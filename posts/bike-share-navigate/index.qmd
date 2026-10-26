@@ -10,6 +10,7 @@ toc-title: In this study
 translation-key: bike-share
 categories: [data visualization, R, data analysis]
 image: bike-share.jpg
+image-alt: "Shared bicycles parked at a docking station."
 lightbox: true
 ---
 

@@ -5,6 +5,7 @@ date: "2021-09-10"
 date-modified: "2026-10-26"
 categories: [data visualization, R, data analysis]
 image: "bellabeat.jpg"
+image-alt: "People taking part in a group exercise session."
 engine: markdown
 freeze: false
 lang: en

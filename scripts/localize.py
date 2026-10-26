@@ -4,6 +4,7 @@ import html
 import os
 import posixpath
 import re
+import shutil
 from pathlib import Path
 
 
@@ -93,6 +94,22 @@ def localize(document, page):
         lambda match: match[1] + ("Made with Quarto. By Tales Gomes." if english else "Feito com Quarto. Por Tales Gomes.") + match[2],
         document, count=1, flags=re.S,
     )
+    if page in ("textos.html", "en/textos.html"):
+        document = re.sub(
+            r'(src=["\'][^"\']*/quarto-listing\.js)(?:\?[^"\']*)?(["\'])',
+            r'\1?v=1.10.19\2', document,
+        )
+        document = re.sub(
+            r'<input\b[^>]*class=["\']search form-control["\'][^>]*>',
+            lambda match: set_attribute(match[0], "aria-label", "Filter studies" if english else "Filtrar estudos"),
+            document,
+        )
+        # Native buttons preserve Quarto's click handlers and also work with Enter/Space.
+        document = re.sub(
+            r'<div(\s[^>]*\bclass=["\'](?:category|listing-category)["\'][^>]*)>(.*?)</div>',
+            lambda match: '<button type="button"' + match[1] + '>' + match[2] + '</button>',
+            document, flags=re.S,
+        )
     document = ALTERNATES.sub("", document)
     if page in PAGES:
         alternatives = "\n<!-- language-alternates -->\n" + "\n".join(
@@ -105,6 +122,10 @@ def localize(document, page):
 
 def main():
     root = Path(os.environ.get("QUARTO_PROJECT_OUTPUT_DIR", "_site"))
+    # Historical freeze assets otherwise overwrite the renderer's current category decoder.
+    listing_runtime = root / "site_libs/quarto-listing/quarto-listing.js"
+    if listing_runtime.is_file():
+        shutil.copyfile(Path(__file__).parent / "vendor/quarto-listing.js", listing_runtime)
     for path in root.rglob("*.html"):
         page = path.relative_to(root).as_posix()
         if "site_libs" in path.relative_to(root).parts or "netflix-amazon-comparison" in path.relative_to(root).parts:

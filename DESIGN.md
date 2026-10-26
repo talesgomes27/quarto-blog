@@ -149,3 +149,7 @@ Usa o modelo nativo `trestles` do Quarto, com retrato e links profissionais à e
 O retrato `assets/profile/tales-gomes.jpg` é a primeira fotografia fornecida pelo autor nesta revisão, preservada sem edição ou recorte do arquivo (SHA-256: `0d7eba1fe7ae5b38778fc55e8ddc09820d2b1c2a41da675707f534891aa7dc92`). O rosto sem óculos e o sorriso orientaram a escolha. A imagem original permanece na proporção 374 × 512.
 
 Na preparação da publicação, o autor solicitou remover a marca Gemini. `tales-gomes-clean.png` é a edição usada nas duas páginas, feita com `image_gen` para remover somente a marca; a proveniência está no JSON adjacente e o arquivo original foi preservado.
+
+### Arquivo de textos
+
+`writing-archive` preserva a listagem, filtro textual, ordenação e categorias nativas do Quarto. O título usa a escala da abertura; linhas com fotografia à esquerda, texto e data à direita ficam separadas por linhas finas. Categorias ocupam uma lateral de papel verde no desktop e seguem os estudos no celular, onde a leitura começa pelo título e pelo filtro textual. O pós-processamento converte os controles de categoria em botões nativos e dá nome acessível ao filtro nos dois idiomas, preservando os handlers do Quarto.

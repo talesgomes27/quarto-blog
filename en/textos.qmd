@@ -2,12 +2,14 @@
 title: Writing and studies
 description: Data case studies and analyses, with code, context and results.
 comments: false
+body-classes: writing-archive
 listing:
   contents:
     - ../posts/bike-share-navigate/index.qmd
     - ../posts/bellabeat/en.qmd
   sort: "date desc"
   type: default
+  image-align: left
   categories: true
   filter-ui: true
   sort-ui: true
@@ -15,4 +17,4 @@ listing:
   date-format: "MMM D, YYYY"
 ---
 
-An archive of published projects and analyses. The studies below preserve the results from their original publication.
+Explore the questions, code and results behind each analysis. Revisions document corrections and preserve the earlier sources.
