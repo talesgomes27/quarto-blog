@@ -1,9 +1,21 @@
 ---
 title: Página não encontrada
+page-layout: full
+body-classes: error-page
 comments: false
 search: false
 ---
 
-O endereço pode ter mudado ou a página pode não existir.
+::: {.error-content}
+<img class="error-image" src="favicon.png" alt="" width="112" height="112">
 
-[Voltar ao início](index.qmd){.btn .btn-primary} ou [explorar o arquivo](textos.qmd).
+# Página não encontrada
+
+::: {.error-description}
+O endereço pode ter mudado ou a página pode não existir.
+:::
+
+::: {.error-actions}
+[Voltar ao início](index.qmd){.btn .btn-primary} [ou [explorar o arquivo](textos.qmd).]{.error-secondary}
+:::
+:::

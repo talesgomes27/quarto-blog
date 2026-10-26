@@ -99,6 +99,16 @@ h1, h2, h3 { color: var(--ink); text-wrap: balance; letter-spacing: -.025em; }
 .nav-footer { border-top: 1px solid var(--rule); color: var(--muted); }
 #quarto-document-content:not(:has(.portal-layout)) { padding-top: 2rem; line-height: 1.65; }
 .quarto-title .title { margin-bottom: 1rem; }
+.error-page #quarto-content { display: flex; align-items: center; justify-content: center; }
+.error-page #title-block-header { display: none; }
+.error-page #quarto-document-content { width: 100%; margin: 0; padding: 3rem 1.5rem; }
+.error-content { max-width: 48rem; margin-inline: auto; text-align: center; }
+.error-image { display: block; width: 7rem; height: auto; margin: 0 auto 1.5rem; }
+.error-content h1 { font-size: clamp(2.4rem, 5vw, 3.5rem); line-height: 1.15; margin: 0 0 1rem; }
+.error-description { color: var(--muted); font-size: clamp(1.2rem, 2vw, 1.4rem); line-height: 1.5; }
+.error-description p { margin: 0; }
+.error-actions { margin-top: 2rem; }
+.error-actions p { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem; margin: 0; }
 .quarto-listing-default .listing-title { font-size: 1.6rem; }
 .quarto-listing-default .listing-description { color: var(--muted); line-height: 1.5; }
 .quarto-listing-default .thumbnail-image { border-radius: 5px; object-fit: cover; }

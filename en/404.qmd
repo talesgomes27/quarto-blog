@@ -1,9 +1,21 @@
 ---
 title: Page not found
+page-layout: full
+body-classes: error-page
 comments: false
 search: false
 ---
 
-The address may have changed or the page may not exist.
+::: {.error-content}
+<img class="error-image" src="../favicon.png" alt="" width="112" height="112">
 
-[Back to home](index.qmd){.btn .btn-primary} or [browse the archive](textos.qmd).
+# Page not found
+
+::: {.error-description}
+The address may have changed or the page may not exist.
+:::
+
+::: {.error-actions}
+[Back to home](index.qmd){.btn .btn-primary} [or [browse the archive](textos.qmd).]{.error-secondary}
+:::
+:::
