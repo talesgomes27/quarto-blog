@@ -63,6 +63,9 @@ def localize(document, page):
 
     def anchor(match):
         tag, body = match.groups()
+        if "quarto-color-scheme-toggle" in attribute(tag, "class").split():
+            name = "Switch between light and dark themes" if english else "Alternar entre tema claro e escuro"
+            return set_attribute(set_attribute(tag, "aria-label", name), "title", name) + body + "</a>"
         if "navbar-brand" in attribute(tag, "class").split():
             return set_attribute(tag, "href", relative(home, page)) + body + "</a>"
         span = MENU_TEXT.search(body)

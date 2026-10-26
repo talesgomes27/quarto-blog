@@ -1,6 +1,6 @@
 ---
 name: Portal de Tales Gomes
-description: Portal claro de projetos, textos e tecnologia, com acento verde petróleo.
+description: Portal editorial de projetos, textos e tecnologia, com temas claro e escuro e acento verde petróleo.
 colors:
   ink: "#172f3f"
   muted: "#4c6170"
@@ -11,6 +11,16 @@ colors:
   accent-hover: "#094b46"
   code-background: "#f2f6f4"
   code-text: "#28574f"
+dark-colors:
+  canvas: "#12232e"
+  ink: "#e4eeef"
+  muted: "#adc1c9"
+  accent: "#84d3bf"
+  accent-hover: "#b1eadb"
+  paper: "#1c3540"
+  rule: "#405b66"
+  code-text: "#a7ddcd"
+  input-border: "#66828d"
 typography:
   display:
     fontFamily: "Mukta Malar, sans-serif"
@@ -75,7 +85,13 @@ O branco e os separadores finos dão estrutura. Fotografias sintéticas ilustram
 
 O acento primário verde petróleo marca links, botão de contato, página ativa e foco. A tinta azul escura sustenta títulos e texto; a tinta suavizada atende descrições e metadados. Branco é o fundo principal, papel verde pálido distingue a lateral e a cor de linha separa navegação, estudos e rodapé. O código tem fundo claro e texto verde próprios, definidos no tema SCSS.
 
-Os tokens acima são extraídos de `styles.css` e `custom.scss`. Cores auxiliares de seleção, barra de rolagem e divisória interna da lateral permanecem no CSS; não constituem uma escala adicional.
+Os tokens acima são definidos em `styles.css`, `custom.scss` e `custom-dark.scss`. Seleção, barra de rolagem, divisória interna, separador de idiomas, fundo principal e texto de botão usam papéis semânticos no CSS.
+
+### Tema escuro
+
+O tema claro mantém a paleta aprovada. A variante escura usa um fundo azul profundo, superfícies editoriais azul-esverdeadas, tinta clara e acento verde mais luminoso. Mantém tipografia, composição, conteúdo e imagens originais. O texto dos botões muda para azul profundo sobre o acento claro; links, hover, foco, seleção e barras de rolagem seguem a variante ativa.
+
+O Quarto compila duas variantes do tema `default`: `custom.scss` para claro e `custom-dark.scss` para escuro. O controle nativo da navbar alterna os temas e preserva a preferência de leitura entre páginas; a primeira opção configurada é a clara. A classe nativa `body.quarto-dark` ativa os tokens escuros. As variáveis SCSS adaptam componentes Bootstrap, tabelas, formulários, navegação, popovers e busca; o Giscus usa `light` e `dark_dimmed`, sincronizados pelo Quarto. Nenhum filtro de inversão é aplicado a imagens ou gráficos; figuras incorporadas podem preservar seus fundos claros.
 
 ## Typography
 
@@ -87,7 +103,7 @@ Metadados, código e tabelas usam números tabulares. Nos documentos fora da abe
 
 ## Layout
 
-A navbar nativa do Quarto é fixa, clara, com busca em overlay e colapso abaixo de `lg`. Tem borda inferior fina, espaçamento vertical de (.6rem) e lateral de (3.9%). Os links PT e EN são explícitos; no desktop uma barra separa os idiomas. A página ativa recebe cor de acento e sublinhado.
+A navbar nativa do Quarto é fixa, acompanha o tema ativo, tem seletor claro/escuro e busca em overlay e colapso abaixo de `lg`. Tem borda inferior fina, espaçamento vertical de (.6rem) e lateral de (3.9%). Os links PT e EN são explícitos; no desktop uma barra separa os idiomas. A página ativa recebe cor de acento e sublinhado.
 
 A abertura tem largura máxima de (1600px), centrada, com colunas (2.2fr / 1fr); a lateral tem mínimo de (300px). A coluna principal usa padding (1.45rem 2.8rem 1.5rem 4.15vw); acima de (1600px), o padding esquerdo passa a (4rem). Cada estudo distribui imagem e texto em (.8fr / 1.04fr), separados por (2.5rem), com linha entre estudos. O contato centralizado fecha a abertura e limita o texto a (67ch).
 
@@ -109,7 +125,7 @@ Imagens e miniaturas têm cantos suavizados; o botão é discretamente arredonda
 
 ### Navegação
 
-Marca em negrito, links de (1.08rem), fundo branco e uma linha inferior. O estado ativo é verde e sublinhado; busca, botão de menu e ícones profissionais são fornecidos pelo Quarto. A navegação de idioma leva à versão equivalente por meio da localização implementada no projeto.
+Marca em negrito, links de (1.08rem), fundo do tema ativo e uma linha inferior. O estado ativo é verde e sublinhado; busca, botão de menu e ícones profissionais são fornecidos pelo Quarto. A navegação de idioma leva à versão equivalente por meio da localização implementada no projeto.
 
 ### Links de leitura
 
@@ -117,7 +133,7 @@ O link de ação é verde, negrito e não quebra internamente. Links adjacentes 
 
 ### Botão de contato
 
-Um link com aparência de botão Quarto abre o endereço de contato. Usa fundo e borda de acento, texto branco e padding do token de componente. No hover, fundo e borda escurecem. Não há variante adicional customizada.
+Um link com aparência de botão Quarto abre o endereço de contato. Usa fundo e borda de acento, texto branco no tema claro e azul profundo no escuro, com padding do token de componente. No hover, fundo e borda usam o acento de hover da variante ativa. Não há variante adicional customizada.
 
 ### Linha de estudo e lateral editorial
 

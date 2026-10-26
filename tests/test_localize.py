@@ -35,7 +35,7 @@ def fixture():
 <div id="navbarCollapse"><ul>'''
     for label in ("Projetos", "Textos", "Sobre", "Contato", "PT", "EN"):
         header += f'<li class="nav-item"><a class="nav-link active" href="./index.html" aria-current="page"><span class="menu-text">{label}</span></a></li>'
-    return header + '''</ul></div></nav></header>
+    return header + '''</ul></div><a class="quarto-color-scheme-toggle" href="" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a></nav></header>
 <main><a href="keep.html">Conteúdo intacto</a><script>const untouched = true;</script></main>
 <footer><span id="footer-copy">Feito com Quarto. Por Tales Gomes.</span></footer>
 <script src="site_libs/quarto-nav/quarto-nav.js"></script></body></html>'''
@@ -61,6 +61,9 @@ def test_localization():
             assert '<button class="navbar-toggler" data-bs-target="#navbarCollapse" aria-expanded="false">Menu</button>' in result
             assert '<main><a href="keep.html">Conteúdo intacto</a><script>const untouched = true;</script></main>' in result
             assert '<script src="site_libs/quarto-nav/quarto-nav.js"></script>' in result
+            toggle_name = "Switch between light and dark themes" if index else "Alternar entre tema claro e escuro"
+            assert f'aria-label="{toggle_name}"' in result
+            assert 'onclick="window.quartoToggleColorScheme(); return false;"' in result
             assert result.count('rel="alternate"') == 3
             for language, target in (("pt-BR", pair[0]), ("en", pair[1]), ("x-default", pair[0])):
                 assert f'hreflang="{language}" href="{localize.SITE_URL}/{target}"' in result
@@ -126,6 +129,10 @@ def validate_site(root):
                     assert (path.parent / link["href"]).is_file(), f"Broken language link: {page}: {link['href']}"
 
 
+    for page in localize.PAGES:
+        document = (root / page).read_text()
+        assert 'class="quarto-color-scheme-toggle' in document, page
+        assert 'data-mode="dark"' in document and 'data-mode="light"' in document, page
     assert (root / "site_libs/quarto-listing/quarto-listing.js").read_bytes() == (Path(localize.__file__).parent / "vendor/quarto-listing.js").read_bytes()
     for pair in localize.PAIRS[-2:]:
         for page, locale in zip(pair, ("pt", "en")):
@@ -135,6 +142,7 @@ def validate_site(root):
             assert 'script.dataset.repoId = "R_kgDOHeSMkg";' in document, page
             assert 'script.dataset.categoryId = "DIC_kwDOHeSMks4CPoEN";' in document, page
             assert 'script.dataset.mapping = "title";' in document, page
+            assert 'id="giscus-alt-theme" value="dark_dimmed"' in document, page
 
 
 if __name__ == "__main__":

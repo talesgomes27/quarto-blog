@@ -1,0 +1,59 @@
+{
+  "tests": [
+    {
+      "page": "posts/bike-share-navigate/pt.html",
+      "locale": "pt",
+      "discussion_number": 1,
+      "comment_id": "DC_kwDOHeSMks4BJM3P",
+      "marker": "QA-20261026-01",
+      "posted_api_confirmed": true,
+      "posted_ui_confirmed": true,
+      "delete_mutation_succeeded": true,
+      "deletion_api_confirmed": true,
+      "deletion_ui_confirmed": true
+    },
+    {
+      "page": "posts/bike-share-navigate/index.html",
+      "locale": "en",
+      "discussion_number": 2,
+      "comment_id": "DC_kwDOHeSMks4BJM3c",
+      "marker": "QA-20261026-02",
+      "posted_api_confirmed": true,
+      "posted_ui_confirmed": true,
+      "delete_mutation_succeeded": true,
+      "deletion_api_confirmed": true,
+      "deletion_ui_confirmed": true
+    },
+    {
+      "page": "posts/bellabeat/index.html",
+      "locale": "pt",
+      "discussion_number": 3,
+      "comment_id": "DC_kwDOHeSMks4BJM3l",
+      "marker": "QA-20261026-03",
+      "posted_api_confirmed": true,
+      "posted_ui_confirmed": true,
+      "delete_mutation_succeeded": true,
+      "deletion_api_confirmed": true,
+      "deletion_ui_confirmed": true
+    },
+    {
+      "page": "posts/bellabeat/en.html",
+      "locale": "en",
+      "discussion_number": 4,
+      "comment_id": "DC_kwDOHeSMks4BJM3p",
+      "marker": "QA-20261026-04",
+      "posted_api_confirmed": true,
+      "posted_ui_confirmed": true,
+      "delete_mutation_succeeded": true,
+      "deletion_api_confirmed": true,
+      "deletion_ui_confirmed": true
+    }
+  ],
+  "remaining_test_comments": 0,
+  "remaining_total_comments": 0,
+  "discussion_count": 4,
+  "note": "Giscus created four empty article discussion threads; no test comments or reactions remain.",
+  "authentication": "Giscus authorization explicitly approved by the author; tests submitted through the live article iframe.",
+  "cleanup": "Only exact test bodies and verified IDs authored by talesgomes27 were deleted through GitHub GraphQL; existing content was not deleted.",
+  "sensitive_data": "No authentication tokens or browser session data stored in this report."
+}

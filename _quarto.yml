@@ -23,7 +23,6 @@ website:
     type: overlay
   navbar:
     title: Tales Gomes
-    background: light
     collapse-below: lg
     pinned: true
     right:
@@ -54,8 +53,12 @@ website:
 format:
   html:
     theme:
-      - default
-      - custom.scss
+      light:
+        - default
+        - custom.scss
+      dark:
+        - default
+        - custom-dark.scss
     css: styles.css
     toc: false
     title-block-banner: false
@@ -68,3 +71,6 @@ comments:
     repo-id: R_kgDOHeSMkg
     category: General
     category-id: DIC_kwDOHeSMks4CPoEN
+    theme:
+      light: light
+      dark: dark_dimmed

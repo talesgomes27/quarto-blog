@@ -43,3 +43,10 @@ Pedido: conferir comentários nos dois idiomas e adaptar Textos ao tema publicad
 - Concluído: commit `00d8c34cf314312809950ac4b2482f6f761dbfbf` publicado; workflow [40275442018](https://github.com/talesgomes27/quarto-blog/actions/runs/40275442018) terminou com sucesso. Oito arquivos públicos retornaram HTTP 200 e correspondem byte a byte ao artefato validado.
 - Browser público: quatro widgets Giscus carregaram sem erro visível de repositório/app, com editor, prévia e login no idioma correto; nenhum comentário ou reação enviado. Autenticação e envio efetivo não testados.
 - Textos público: categoria R mostra os dois estudos e Todos restaura a lista; página conferida visualmente. Registro: `docs/archive-comments-smoke-2026-10-26.json`.
+
+## Continuação — envio real de comentários e tema dark
+
+- Autor autorizou quatro comentários temporários e sua remoção, além do tema dark com alternância na navbar. A nova autorização Giscus no GitHub foi confirmada explicitamente antes do clique em Authorize.
+- Envios reais: Bike-share PT/EN e Bellabeat PT/EN confirmados pelo editor Giscus e pelo GitHub. Removidos somente os IDs dos testes, com comparação exata de corpo e autor. Zero comentários restantes confirmado na API e nos quatro formulários. Conversas vazias criadas pelo Giscus foram preservadas. Evidência sem tokens: `docs/comment-submission-tests-2026-10-26.json`.
+- Tema: alternância nativa Quarto light/dark, light existente preservado, dark com fundo azul profundo e acento verde. Preferência persiste entre páginas; fotos e gráficos não recebem inversão. Giscus acompanha light/dark_dimmed. Toggle nomeado em PT/EN e com área de toque de 44px.
+- Validação concluída: dark na home e Sobre desktop, Textos EN no celular, ausência de overflow, retorno ao light, persistência ao navegar/recarregar e stylesheet do Giscus alternando entre `/themes/light.css` e `/themes/dark_dimmed.css`. Revisão independente sem bloqueadores; contrastes dark de texto e links acima de AA. Testes de idioma/temas, preservação e aritmética dos estudos passaram. Estado: preparado para publicação do tema.
