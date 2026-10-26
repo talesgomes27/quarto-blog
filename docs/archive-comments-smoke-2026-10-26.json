@@ -1,0 +1,104 @@
+{
+  "base_url": "https://talesgomes27.github.io/quarto-blog/",
+  "commit": "00d8c34cf314312809950ac4b2482f6f761dbfbf",
+  "run_id": 40275442018,
+  "results": [
+    {
+      "path": "textos.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "2061ee2061ecadc5574bb8e3cb43630235918c38ad81291d01ab28bf72c2224d"
+    },
+    {
+      "path": "en/textos.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "c9d2088b656dcc9643567e53979a32a29e6ae1152d2b670d8ac793b31f7395ef"
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "fe94d1d37fb3bac21ee22f011a8c9c07605009a9151afc3916bfb59166bb6853"
+    },
+    {
+      "path": "site_libs/quarto-listing/quarto-listing.js?v=1.10.19",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "48c09833376066bdeafd898d8e56b5992c6b756e4d44acaada2cc0e73bcbcfe2"
+    },
+    {
+      "path": "posts/bellabeat/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "53492d894bc07c3ffbd5cc7c7c7e1fd42a539602964129aea17a2231a87283cd"
+    },
+    {
+      "path": "posts/bellabeat/en.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "8b5aefc3fd526500dea8630ff6f3325a9595e881c76471e8c8d5042d8129332f"
+    },
+    {
+      "path": "posts/bike-share-navigate/index.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "c9712ff430d569c78fb3a39ac4d02cffca7455af8c4df21db5ad78f4e6135ed1"
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.html",
+      "status": 200,
+      "matches_local": true,
+      "sha256": "bbdaf871172f150ea41650df707075e2c187014fe73ed6838efb718549b11e72"
+    }
+  ],
+  "giscus_browser_checks": [
+    {
+      "page": "posts/bellabeat/index.html",
+      "locale": "pt",
+      "form_loaded": true,
+      "visible_errors": false,
+      "controls": [
+        "Escreva",
+        "Prévia",
+        "Entre com GitHub"
+      ]
+    },
+    {
+      "page": "posts/bellabeat/en.html",
+      "locale": "en",
+      "form_loaded": true,
+      "visible_errors": false,
+      "controls": [
+        "Write",
+        "Preview",
+        "Sign in with GitHub"
+      ]
+    },
+    {
+      "page": "posts/bike-share-navigate/pt.html",
+      "locale": "pt",
+      "form_loaded": true,
+      "visible_errors": false,
+      "controls": [
+        "Escreva",
+        "Prévia",
+        "Entre com GitHub"
+      ]
+    },
+    {
+      "page": "posts/bike-share-navigate/index.html",
+      "locale": "en",
+      "form_loaded": true,
+      "visible_errors": false,
+      "controls": [
+        "Write",
+        "Preview",
+        "Sign in with GitHub"
+      ]
+    }
+  ],
+  "posted_comments_or_reactions": false,
+  "authenticated_submission_tested": false,
+  "mapping": "title; translations retain separate discussion threads"
+}
