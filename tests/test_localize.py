@@ -5,6 +5,7 @@ import os
 import posixpath
 import sys
 import tempfile
+from urllib.parse import parse_qs, urlsplit
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -37,7 +38,7 @@ def fixture():
         header += f'<li class="nav-item"><a class="nav-link active" href="./index.html" aria-current="page"><span class="menu-text">{label}</span></a></li>'
     return header + '''</ul></div><a class="quarto-color-scheme-toggle" href="" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a></nav></header>
 <main><a href="keep.html">Conteúdo intacto</a><script>const untouched = true;</script></main>
-<footer><span id="footer-copy">Feito com Quarto. Por Tales Gomes.</span></footer>
+<footer><span id="footer-copy">Feito com Quarto. Por Tales Gomes.</span><a href="textos.xml"><i class="bi bi-rss"></i></a></footer>
 <script src="site_libs/quarto-nav/quarto-nav.js"></script></body></html>'''
 
 
@@ -59,12 +60,17 @@ def test_localization():
                 assert ("active" in language_link["class"].split()) == active
             assert '<div id="quarto-search" title="Pesquisar"></div>' in result
             assert '<button class="navbar-toggler" data-bs-target="#navbarCollapse" aria-expanded="false">Menu</button>' in result
-            assert '<main><a href="keep.html">Conteúdo intacto</a><script>const untouched = true;</script></main>' in result
+            assert '<main><a href="keep.html">Conteúdo intacto</a><script>const untouched = true;</script>' in result
             assert '<script src="site_libs/quarto-nav/quarto-nav.js"></script>' in result
             toggle_name = "Switch between light and dark themes" if index else "Alternar entre tema claro e escuro"
             assert f'aria-label="{toggle_name}"' in result
             assert 'onclick="window.quartoToggleColorScheme(); return false;"' in result
-            assert result.count('rel="alternate"') == 3
+            assert result.count('rel="alternate" hreflang=') == 3
+            feeds = [link for link in links if link.get('type') == 'application/rss+xml']
+            assert len(feeds) == 1
+            feed_target = 'en/textos.xml' if index else 'textos.xml'
+            assert posixpath.normpath(posixpath.join(posixpath.dirname(page), feeds[0]['href'])) == feed_target
+            assert f'aria-label="{"Subscribe via RSS" if index else "Acompanhar publicações por RSS"}"' in result
             for language, target in (("pt-BR", pair[0]), ("en", pair[1]), ("x-default", pair[0])):
                 assert f'hreflang="{language}" href="{localize.SITE_URL}/{target}"' in result
             for label in (("Projects", "Writing", "About", "Contact") if index else ("Projetos", "Textos", "Sobre", "Contato")):
@@ -78,6 +84,18 @@ def test_localization():
     fallback = localize.localize(source, "other/page.html")
     assert 'hreflang="en"' in fallback and 'href="../en/index.html"' in fallback
     assert 'rel="alternate"' not in fallback
+
+    title = 'R & Python: "dados" e análise'
+    source = source.replace('<main>', '<main><h1>R &amp; Python: &quot;dados&quot; e análise</h1>')
+    result = localize.localize(source, 'posts/bellabeat/en.html')
+    links = Links(result).links
+    sharing = next(link for link in links if link.get('href', '').startswith('https://www.linkedin.com/shareArticle?'))
+    query = parse_qs(urlsplit(sharing['href']).query)
+    assert query['title'] == [title]
+    assert query['url'] == [localize.SITE_URL + '/posts/bellabeat/en.html']
+    assert sharing['rel'] == 'noopener noreferrer'
+    assert result.count('<!-- post-share -->') == 1
+    assert localize.localize(result, 'posts/bellabeat/en.html') == result
 
 
 def test_archive_controls():

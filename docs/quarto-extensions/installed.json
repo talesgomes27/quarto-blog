@@ -1,0 +1,274 @@
+{
+  "repository": "https://github.com/mcanouil/quarto-remember",
+  "commit": "200497b4fb8f3a4aff1150d48b359995bf4afae5",
+  "version": "1.4.1",
+  "quarto_required": ">=1.9.37",
+  "installed_path": "_extensions/mcanouil/remember",
+  "license": "MIT",
+  "checked_on": "2026-10-26",
+  "local_changes": [
+    "Portuguese prompt, button labels and accessible names in remember.js; original English preserved.",
+    "Theme colors are overridden in styles.css using existing site tokens."
+  ],
+  "files": [
+    {
+      "file": "LICENSE",
+      "upstream_sha256": "b1f74e5ebc221222d4f7301df8fc16a175b212d498d4bac86330846d0f1d3fb5",
+      "installed_sha256": "b1f74e5ebc221222d4f7301df8fc16a175b212d498d4bac86330846d0f1d3fb5"
+    },
+    {
+      "file": "_dependencies.yml",
+      "upstream_sha256": "2d56f5bf5bd3c0ae1c3eb5ac9f603f0cec1de2ea762c015abf26c7baee65cf3f",
+      "installed_sha256": "2d56f5bf5bd3c0ae1c3eb5ac9f603f0cec1de2ea762c015abf26c7baee65cf3f"
+    },
+    {
+      "file": "_extension.yml",
+      "upstream_sha256": "7958beaa91cbf6a03d0ab4e843b320b774a4f963698c69e8907144094d9e7c21",
+      "installed_sha256": "7958beaa91cbf6a03d0ab4e843b320b774a4f963698c69e8907144094d9e7c21"
+    },
+    {
+      "file": "_schema.yml",
+      "upstream_sha256": "d69e20fbe2406f704d170b8a8ac6603d87f86d7ffe4ec209b5e71d2538dd97a8",
+      "installed_sha256": "d69e20fbe2406f704d170b8a8ac6603d87f86d7ffe4ec209b5e71d2538dd97a8"
+    },
+    {
+      "file": "_vendor/quarto-lua-modules/LICENSE",
+      "upstream_sha256": "b1f74e5ebc221222d4f7301df8fc16a175b212d498d4bac86330846d0f1d3fb5",
+      "installed_sha256": "b1f74e5ebc221222d4f7301df8fc16a175b212d498d4bac86330846d0f1d3fb5"
+    },
+    {
+      "file": "_vendor/quarto-lua-modules/html.lua",
+      "upstream_sha256": "a7aae5e69c4effce399b85e90f3ee3261d0f84a5ac2f6c7ddeb1e358ba22ddc8",
+      "installed_sha256": "a7aae5e69c4effce399b85e90f3ee3261d0f84a5ac2f6c7ddeb1e358ba22ddc8"
+    },
+    {
+      "file": "_vendor/quarto-lua-modules/logging.lua",
+      "upstream_sha256": "5d99ceb89c813fbe4491310e42b4a4cff62e11dda42f01b4f61f969aa58e0706",
+      "installed_sha256": "5d99ceb89c813fbe4491310e42b4a4cff62e11dda42f01b4f61f969aa58e0706"
+    },
+    {
+      "file": "_vendor/quarto-lua-modules/schema-check.lua",
+      "upstream_sha256": "343c4846d4bced229de2b09f84b756051cb4061099787f8001384bce680e2987",
+      "installed_sha256": "343c4846d4bced229de2b09f84b756051cb4061099787f8001384bce680e2987"
+    },
+    {
+      "file": "_vendor/quarto-lua-modules/string.lua",
+      "upstream_sha256": "7801d2f217e803951313ef86f1f899cb6350a44cbb468b2d7c28dd6911a0fadc",
+      "installed_sha256": "7801d2f217e803951313ef86f1f899cb6350a44cbb468b2d7c28dd6911a0fadc"
+    },
+    {
+      "file": "_vendor/quarto-wizard/LICENSE",
+      "upstream_sha256": "b1f74e5ebc221222d4f7301df8fc16a175b212d498d4bac86330846d0f1d3fb5",
+      "installed_sha256": "b1f74e5ebc221222d4f7301df8fc16a175b212d498d4bac86330846d0f1d3fb5"
+    },
+    {
+      "file": "_vendor/quarto-wizard/schema.lua",
+      "upstream_sha256": "84e0a5a7bae8d71a6d601d581e3e819ace96613cc76c6e9dd3cf79eee629df78",
+      "installed_sha256": "84e0a5a7bae8d71a6d601d581e3e819ace96613cc76c6e9dd3cf79eee629df78"
+    },
+    {
+      "file": "remember.css",
+      "upstream_sha256": "f167e49fb9e6986f6c9885bd166146da8d8e8479b78133a7893183bbc3073ad9",
+      "installed_sha256": "f167e49fb9e6986f6c9885bd166146da8d8e8479b78133a7893183bbc3073ad9"
+    },
+    {
+      "file": "remember.js",
+      "upstream_sha256": "468df311f581d0b4d6ea90c0c189df514e6e9ab0b998dff15bf820dbb3f0a1f9",
+      "installed_sha256": "f255f8204cd5f9332fb1e0b5336cac0215c4727bdd45a65c088f55400a43cef8"
+    },
+    {
+      "file": "remember.lua",
+      "upstream_sha256": "605ac84ba6c54ea9374a1174a33a718a76624208509226776ebdc3c15ea87cd4",
+      "installed_sha256": "605ac84ba6c54ea9374a1174a33a718a76624208509226776ebdc3c15ea87cd4"
+    }
+  ],
+  "additional_extensions": [
+    {
+      "repository": "https://github.com/ravila4/quarto-link-previews",
+      "commit": "e646ac114bcdce4535d807dc1a7920d8d9a26cfe",
+      "version": "0.3.1",
+      "installed_path": "_extensions/ravila4/link-previews",
+      "local_changes": [
+        "Loading/unavailable messages localized from document lang."
+      ],
+      "files": [
+        {
+          "file": "LICENSE",
+          "upstream_sha256": "c54e94b4d4cf4102e433bb8c6427eecc35cfd245d4a51df65efc3976d344a99c",
+          "installed_sha256": "c54e94b4d4cf4102e433bb8c6427eecc35cfd245d4a51df65efc3976d344a99c"
+        },
+        {
+          "file": "_extension.yml",
+          "upstream_sha256": "0b41b02250c50850cfa05d98cbd99cbe64a8c94c9996af6fa43e0e34942328c7",
+          "installed_sha256": "0b41b02250c50850cfa05d98cbd99cbe64a8c94c9996af6fa43e0e34942328c7"
+        },
+        {
+          "file": "_schema.yml",
+          "upstream_sha256": "540242e63403cb0fb974c8623d865a45115233927bd29b83447c9050b7c8938f",
+          "installed_sha256": "540242e63403cb0fb974c8623d865a45115233927bd29b83447c9050b7c8938f"
+        },
+        {
+          "file": "_snippets.json",
+          "upstream_sha256": "ad3bc00370e8daeab7eec397d9a36e46cea6493752ff1f58fc865f9980cd13bb",
+          "installed_sha256": "ad3bc00370e8daeab7eec397d9a36e46cea6493752ff1f58fc865f9980cd13bb"
+        },
+        {
+          "file": "link-previews.css",
+          "upstream_sha256": "620a9023eaf3e6c27b15d6d2f8d4971c1df8db6e34bdeb76a3152e4ea9f8b54c",
+          "installed_sha256": "620a9023eaf3e6c27b15d6d2f8d4971c1df8db6e34bdeb76a3152e4ea9f8b54c"
+        },
+        {
+          "file": "link-previews.js",
+          "upstream_sha256": "b6d7dbc4682fc259e20f73a0c406cf5e347ebc732eb5af930d7021d999c7a6a4",
+          "installed_sha256": "d24259fc97669f02013189dbc8cd906ea00ecb135a50430f8ba5b509dafdfdeb"
+        },
+        {
+          "file": "link-previews.lua",
+          "upstream_sha256": "79bca81f2fd99f7e856430f85d74d22327f30c8752c15fa888560026ebbbebb6",
+          "installed_sha256": "79bca81f2fd99f7e856430f85d74d22327f30c8752c15fa888560026ebbbebb6"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/lsbjordao/quarto-cite-this",
+      "commit": "0525fbfaff1a27c293cc5f7b80755e6c2f478ec4",
+      "version": "1.0.4",
+      "installed_path": "_extensions/lsbjordao/cite-this",
+      "local_changes": [
+        "Restore PANDOC_SCRIPT_FILE after collecting citation data so Quarto lightbox resolves its own dependencies correctly."
+      ],
+      "files": [
+        {
+          "file": "LICENSE",
+          "upstream_sha256": "4b9378c1fd91b98d5ca1980215ebeeac1fbb94a72546557a2a18f94e0f67f471",
+          "installed_sha256": "4b9378c1fd91b98d5ca1980215ebeeac1fbb94a72546557a2a18f94e0f67f471"
+        },
+        {
+          "file": "_extension.yml",
+          "upstream_sha256": "7e86a66ba4f51e942a0124ba51c63595964cb36579efd70361242a1a2b5b190a",
+          "installed_sha256": "7e86a66ba4f51e942a0124ba51c63595964cb36579efd70361242a1a2b5b190a"
+        },
+        {
+          "file": "_schema.yml",
+          "upstream_sha256": "e2848466979d5eb9dcffde545c4f4b17b3488c91f3880f2aa915f5d3cfe03aa6",
+          "installed_sha256": "e2848466979d5eb9dcffde545c4f4b17b3488c91f3880f2aa915f5d3cfe03aa6"
+        },
+        {
+          "file": "_snippets.json",
+          "upstream_sha256": "044f3c2675b6078243718ccc34b06ab1881a0810e39e43699da10688421ef2fd",
+          "installed_sha256": "044f3c2675b6078243718ccc34b06ab1881a0810e39e43699da10688421ef2fd"
+        },
+        {
+          "file": "bibtex.lua",
+          "upstream_sha256": "f5647b79fb7d86027f8f027671a069bce5189d35eb0aae50187fff6e2e38ebb5",
+          "installed_sha256": "f5647b79fb7d86027f8f027671a069bce5189d35eb0aae50187fff6e2e38ebb5"
+        },
+        {
+          "file": "citation.lua",
+          "upstream_sha256": "b50d8d671351e1b3c1c97f513d9c23e34447cdc285febdf00e7bd9b625aa209e",
+          "installed_sha256": "b50d8d671351e1b3c1c97f513d9c23e34447cdc285febdf00e7bd9b625aa209e"
+        },
+        {
+          "file": "cite-this.css",
+          "upstream_sha256": "57569626f347bf0e0925cb5a2b096847b4102433ce687c920c8b7e4b67ab87ee",
+          "installed_sha256": "57569626f347bf0e0925cb5a2b096847b4102433ce687c920c8b7e4b67ab87ee"
+        },
+        {
+          "file": "cite-this.js",
+          "upstream_sha256": "01b4ee28ccc3dbb207866abbb42c0b19172d5a80dd797c47d5db6d2b97679447",
+          "installed_sha256": "01b4ee28ccc3dbb207866abbb42c0b19172d5a80dd797c47d5db6d2b97679447"
+        },
+        {
+          "file": "cite-this.lua",
+          "upstream_sha256": "6e2eafcdeceb24531028fab95f27ae5c88b417292a84d088c2581c5eb01d1676",
+          "installed_sha256": "d0a75417b0aaa646c32a32a3ceb1e0b35ff346b5b9a84d8bbda01030951b136b"
+        },
+        {
+          "file": "config.lua",
+          "upstream_sha256": "bd831e6fda6963aa2473f5524b14f9d07762e38be8f8299634f17a393dc3d190",
+          "installed_sha256": "bd831e6fda6963aa2473f5524b14f9d07762e38be8f8299634f17a393dc3d190"
+        },
+        {
+          "file": "csl.lua",
+          "upstream_sha256": "9d66e7a500eff4531049f57af9f620177164dd55054bb9db5b6ef91090035aed",
+          "installed_sha256": "9d66e7a500eff4531049f57af9f620177164dd55054bb9db5b6ef91090035aed"
+        },
+        {
+          "file": "data.lua",
+          "upstream_sha256": "8e08894234543eaed485d30280bd5b84e28f7a233ea4a638dffb9e4786bd8f67",
+          "installed_sha256": "8e08894234543eaed485d30280bd5b84e28f7a233ea4a638dffb9e4786bd8f67"
+        },
+        {
+          "file": "i18n.lua",
+          "upstream_sha256": "a989c065d289e1b874cd9f693fae879112e1853e6eea11efe0f83b47a47b10cf",
+          "installed_sha256": "a989c065d289e1b874cd9f693fae879112e1853e6eea11efe0f83b47a47b10cf"
+        },
+        {
+          "file": "icons.lua",
+          "upstream_sha256": "6bf61a279572ca344c1073df33104a2c5cd8da1123716a841c8f0c3c5614baf4",
+          "installed_sha256": "6bf61a279572ca344c1073df33104a2c5cd8da1123716a841c8f0c3c5614baf4"
+        },
+        {
+          "file": "project.lua",
+          "upstream_sha256": "51a83adb025948ee6dd3ef7faa0c0d1534f3e5af73d0f70cf088b188a6b8667a",
+          "installed_sha256": "51a83adb025948ee6dd3ef7faa0c0d1534f3e5af73d0f70cf088b188a6b8667a"
+        },
+        {
+          "file": "shortcode.lua",
+          "upstream_sha256": "985f444f17364ab5ff9a8acebb90bb8543aa2569118c44fec4c526ee6427a5fa",
+          "installed_sha256": "985f444f17364ab5ff9a8acebb90bb8543aa2569118c44fec4c526ee6427a5fa"
+        },
+        {
+          "file": "styles/LICENSE",
+          "upstream_sha256": "79124cb3168ea384d5aea6df419eb780ad36dfdf545b3c7ea7e35f9bde732ffb",
+          "installed_sha256": "79124cb3168ea384d5aea6df419eb780ad36dfdf545b3c7ea7e35f9bde732ffb"
+        },
+        {
+          "file": "styles/abnt.csl",
+          "upstream_sha256": "4f3f2eadb94c314476608e070acb889253f7007fbbe3e2c251ffc90e2163eaae",
+          "installed_sha256": "4f3f2eadb94c314476608e070acb889253f7007fbbe3e2c251ffc90e2163eaae"
+        },
+        {
+          "file": "styles/apa.csl",
+          "upstream_sha256": "1ece4fb3c295e66d04b4394e295aa58a87741ceeef1658192437eb9953c2f13e",
+          "installed_sha256": "1ece4fb3c295e66d04b4394e295aa58a87741ceeef1658192437eb9953c2f13e"
+        },
+        {
+          "file": "styles/chicago.csl",
+          "upstream_sha256": "002fade78d7e4fe9d42936a16b43a8066b097013f6255df40b1bfba6631eff9b",
+          "installed_sha256": "002fade78d7e4fe9d42936a16b43a8066b097013f6255df40b1bfba6631eff9b"
+        },
+        {
+          "file": "styles/harvard.csl",
+          "upstream_sha256": "0ca3d2c7c881cd98cdd81098b5349f5921edf430498aa9a5a41918621cf7cc45",
+          "installed_sha256": "0ca3d2c7c881cd98cdd81098b5349f5921edf430498aa9a5a41918621cf7cc45"
+        },
+        {
+          "file": "styles/ieee.csl",
+          "upstream_sha256": "b4c7619fc16c45a31e4cc3271eab94ffe83192d3b4c7fc729470a3b459448de3",
+          "installed_sha256": "b4c7619fc16c45a31e4cc3271eab94ffe83192d3b4c7fc729470a3b459448de3"
+        },
+        {
+          "file": "styles/mla.csl",
+          "upstream_sha256": "e1432698ef28938d044b06bd45ddcc57d6b974cec25f71007075646a11f99484",
+          "installed_sha256": "e1432698ef28938d044b06bd45ddcc57d6b974cec25f71007075646a11f99484"
+        },
+        {
+          "file": "styles/vancouver.csl",
+          "upstream_sha256": "492f7935df42054b33d515f7275122f419780df990ea35925dcbbff0fecf1137",
+          "installed_sha256": "492f7935df42054b33d515f7275122f419780df990ea35925dcbbff0fecf1137"
+        },
+        {
+          "file": "util.lua",
+          "upstream_sha256": "6f0d1d6ddac83da0cbb0bff720657c7e86cea56089a821ccc10b981a9230e4d5",
+          "installed_sha256": "6f0d1d6ddac83da0cbb0bff720657c7e86cea56089a821ccc10b981a9230e4d5"
+        },
+        {
+          "file": "widget.lua",
+          "upstream_sha256": "7205c3e24781c4fd0f16ae9eed399133f2cba7e96831adca965afae950d92323",
+          "installed_sha256": "7205c3e24781c4fd0f16ae9eed399133f2cba7e96831adca965afae950d92323"
+        }
+      ]
+    }
+  ]
+}

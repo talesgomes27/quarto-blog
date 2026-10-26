@@ -45,6 +45,9 @@ website:
   page-footer:
     left: '<span id="footer-copy">Feito com Quarto. Por Tales Gomes.</span>'
     right:
+      - icon: rss
+        href: textos.xml
+        aria-label: Acompanhar publicações por RSS
       - icon: github
         href: https://github.com/talesgomes27/
         aria-label: GitHub
@@ -56,6 +59,8 @@ website:
         aria-label: Email
 format:
   html:
+    filters:
+      - ravila4/link-previews
     theme:
       light:
         - default
@@ -69,6 +74,10 @@ format:
     lightbox: true
     citations-hover: true
     footnotes-hover: true
+extensions:
+  link-previews:
+    content: '#title-block-header, h1.title, #quarto-document-content > p:first-of-type'
+    max-width: 420
 comments:
   giscus:
     repo: talesgomes27/quarto-blog

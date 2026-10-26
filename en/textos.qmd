@@ -4,6 +4,10 @@ description: Data case studies and analyses, with code, context and results.
 comments: false
 body-classes: writing-archive
 listing:
+  feed:
+    type: partial
+    title: Writing and studies — Tales Gomes
+    language: en
   contents:
     - ../posts/bike-share-navigate/index.qmd
     - ../posts/bellabeat/en.qmd
@@ -18,3 +22,5 @@ listing:
 ---
 
 Explore the questions, code and results behind each analysis. Revisions document corrections and preserve the earlier sources.
+
+[Subscribe via RSS](textos.xml){.text-link .no-preview}

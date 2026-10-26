@@ -4,6 +4,10 @@ description: Estudos de caso e análises sobre dados, com código, contexto e re
 comments: false
 body-classes: writing-archive
 listing:
+  feed:
+    type: partial
+    title: Textos e estudos — Tales Gomes
+    language: pt-BR
   contents:
     - posts/bike-share-navigate/pt.qmd
     - posts/bellabeat/index.qmd
@@ -18,3 +22,5 @@ listing:
 ---
 
 Explore as perguntas, o código e os resultados de cada análise. As revisões documentam as correções e preservam as fontes anteriores.
+
+[Acompanhar publicações por RSS](textos.xml){.text-link .no-preview}

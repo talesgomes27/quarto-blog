@@ -7,6 +7,7 @@ import posixpath
 import re
 import shutil
 from pathlib import Path
+from urllib.parse import urlencode
 
 
 STYLE_VERSION = hashlib.sha256((Path(__file__).resolve().parents[1] / "styles.css").read_bytes()).hexdigest()[:12]
@@ -24,6 +25,7 @@ HEADER = re.compile(r'<header\b[^>]*\bid=["\']quarto-header["\'][^>]*>.*?</heade
 ANCHOR = re.compile(r"(<a\b[^>]*>)(.*?)</a>", re.S)
 MENU_TEXT = re.compile(r'(<span\b[^>]*\bclass=["\']menu-text["\'][^>]*>)(.*?)(</span>)', re.S)
 ALTERNATES = re.compile(r"\n?<!-- language-alternates -->.*?<!-- /language-alternates -->\n?", re.S)
+SHARE = re.compile(r"\n?<!-- post-share -->.*?<!-- /post-share -->\n?", re.S)
 
 
 def attribute(tag, name):
@@ -108,6 +110,31 @@ def localize(document, page):
         lambda match: match[1] + ("Made with Quarto. By Tales Gomes." if english else "Feito com Quarto. Por Tales Gomes.") + match[2],
         document, count=1, flags=re.S,
     )
+
+    def feed_anchor(match):
+        tag, body = match.groups()
+        if 'bi-rss' not in body:
+            return match[0]
+        target = 'en/textos.xml' if english else 'textos.xml'
+        label = 'Subscribe via RSS' if english else 'Acompanhar publicações por RSS'
+        return set_attribute(set_attribute(tag, 'href', relative(target, page)), 'aria-label', label) + body + '</a>'
+
+    document = re.sub(r'<footer\b[^>]*>.*?</footer>', lambda match: ANCHOR.sub(feed_anchor, match[0]), document, count=1, flags=re.S)
+    document = SHARE.sub('', document)
+    if page in PAGES and page.startswith('posts/'):
+        heading = re.search(r'<h1\b[^>]*>(.*?)</h1>', document, re.S)
+        title = html.unescape(re.sub(r'<[^>]+>', '', heading[1])).strip() if heading else 'Tales Gomes'
+        url = f'{SITE_URL}/{page}'
+        linkedin = 'https://www.linkedin.com/shareArticle?' + urlencode({'url': url, 'title': title})
+        email = 'mailto:?' + urlencode({'subject': title, 'body': url})
+        label = 'Share this study' if english else 'Compartilhar este estudo'
+        mail_label = 'Email' if english else 'E-mail'
+        block = ('\n<!-- post-share -->\n<section class="post-share" aria-labelledby="post-share-title">'
+                 f'<h2 id="post-share-title">{label}</h2><p>'
+                 f'<a class="btn btn-outline-primary" href="{html.escape(linkedin, quote=True)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>'
+                 f'<a class="btn btn-outline-primary" href="{html.escape(email, quote=True)}">{mail_label}</a>'
+                 '</p></section>\n<!-- /post-share -->\n')
+        document = document.replace('</main>', block + '</main>', 1)
     if page in ("textos.html", "en/textos.html"):
         document = re.sub(
             r'(src=["\'][^"\']*/quarto-listing\.js)(?:\?[^"\']*)?(["\'])',
@@ -129,7 +156,11 @@ def localize(document, page):
         alternatives = "\n<!-- language-alternates -->\n" + "\n".join(
             f'<link rel="alternate" hreflang="{lang}" href="{SITE_URL}/{target}">'
             for lang, target in (("pt-BR", pair[0]), ("en", pair[1]), ("x-default", pair[0]))
-        ) + "\n<!-- /language-alternates -->\n"
+        )
+        if not re.search(r'type=["\']application/rss\+xml["\']', document):
+            feed = relative('en/textos.xml' if english else 'textos.xml', page)
+            alternatives += f'\n<link rel="alternate" type="application/rss+xml" title="RSS" href="{feed}">'
+        alternatives += "\n<!-- /language-alternates -->\n"
         document = document.replace("</head>", alternatives + "</head>", 1)
     return document
 

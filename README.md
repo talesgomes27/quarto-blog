@@ -31,15 +31,27 @@ Para adicionar um projeto ou texto:
 1. Crie o conteúdo em `.qmd`, com título, descrição, data, idioma e imagem.
 2. Prepare e revise sua tradução em outro arquivo. `lang` localiza a interface do Quarto; não traduz o conteúdo.
 3. Adicione o par de caminhos HTML em `PAIRS`, em `scripts/localize.py`, e inclua cada versão na listagem do seu idioma. Para destacar um trabalho, atualize as duas homes.
-4. Renderize e execute a verificação acima. Confira o seletor em ambos os sentidos.
+4. Consulte o [guia local de extensões](docs/quarto-extensions/README.md); utilize uma extensão quando ela trouxer benefício concreto ao post.
+5. Renderize e execute a verificação acima. Confira o seletor em ambos os sentidos.
 
 Se o domínio mudar, atualize `website.site-url` em `_quarto.yml` e `SITE_URL` em `scripts/localize.py`.
 
+## Extensões
+
+O [mapa local](docs/quarto-extensions/README.md) reúne a avaliação para este blog e um catálogo pesquisável das quatro listagens oficiais. Consulte-o antes de buscar novamente na web. `remember` permite retomar a leitura dos quatro artigos; `link-previews` oferece prévias de links internos no portal; `cite-this` acrescenta citação ABNT/APA e download BibTeX aos estudos. Versões, origens, adaptações PT/EN e validação estão registradas no guia.
+
+RSS usa o recurso nativo do Quarto, com feeds separados em `textos.xml` e `en/textos.xml`. Compartilhamento por LinkedIn/e-mail usa links HTML gerados por `scripts/localize.py`, com o endereço da tradução aberta. Os recursos nativos continuam sendo a primeira escolha quando atenderem ao post.
+
+```bash
+python3 tests/test_quarto_extensions.py
+python3 tests/test_blog_features.py
+```
+
 ## Preservação das análises
 
-Os quatro artigos publicados usam `engine: markdown` e `freeze: false`: renderizar o site não recalcula as análises nem baixa dados. As duas versões de cada estudo compartilham resultados identificados e gráficos localizados. Os `_freeze/` históricos permanecem intactos, e os seis arquivos de entrada anteriores à correção foram preservados em `docs/revisions/2026-10-26/before/`, com manifesto SHA-256.
+Os quatro artigos publicados usam `engine: markdown` e `freeze: false`: renderizar o site não recalcula as análises nem baixa dados. As duas versões de cada estudo compartilham resultados identificados; figuras preservadas e traduções estão descritas na proveniência de cada edição. Os `_freeze/` históricos permanecem intactos, e os seis arquivos de entrada anteriores à correção foram preservados em `docs/revisions/2026-10-26/before/`, com manifesto SHA-256.
 
-O **Bike-share** é uma reconciliação dos agregados históricos. O script confere hashes, calcula os resultados apresentados e gera os gráficos; não reprocessa os CSVs completos nem usa o fallback sintético do repositório externo.
+O **Bike-share** atual é uma importação estática do relatório de 13/10/2026 do repositório `DAC8-Case-Study-1`, com tradução completa do texto e das tabelas para inglês. As imagens dos gráficos e o código R foram preservados. Origem, hashes e limites estão em `posts/bike-share-navigate/updated-2026-10-13/provenance.json`; a edição substituída foi arquivada em `docs/revisions/2026-10-26-bike-share-replacement/`. O script abaixo pertence à reconciliação histórica e não deve ser usado para regenerar os resultados da edição importada. O teste confere as duas edições separadamente.
 
 ```bash
 Rscript --vanilla scripts/reconcile_bikeshare.R

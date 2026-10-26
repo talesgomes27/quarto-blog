@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Writing and studies — Tales Gomes</title>
+<link>https://talesgomes27.github.io/quarto-blog/en/textos.html</link>
+<atom:link href="https://talesgomes27.github.io/quarto-blog/en/textos.xml" rel="self" type="application/rss+xml"/>
+<description>Data case studies and analyses, with code, context and results.</description>
+<language>en</language>
+<image>
+<url>https://talesgomes27.github.io/quarto-blog/social.jpg</url>
+<title>Writing and studies — Tales Gomes</title>
+<link>https://talesgomes27.github.io/quarto-blog/en/textos.html</link>
+</image>
+<generator>quarto-1.10.19</generator>
+<lastBuildDate>Tue, 13 Oct 2026 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Cyclistic Bike-Share: Usage Patterns and Rider Conversion</title>
+  <dc:creator>Tales Gomes</dc:creator>
+  <link>https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/</link>
+  <description><![CDATA[ Updated report covering the six Google Data Analytics phases, descriptive statistics, logistic regression and trip segmentation. ]]></description>
+  <category>visualização de dados</category>
+  <category>R</category>
+  <category>análise de dados</category>
+  <guid>https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/</guid>
+  <pubDate>Tue, 13 Oct 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/bike-share.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Bellabeat: activity, sleep and fitness tracker usage</title>
+  <dc:creator>Tales Gomes</dc:creator>
+  <link>https://talesgomes27.github.io/quarto-blog/posts/bellabeat/en.html</link>
+  <description><![CDATA[ An exploratory analysis of Fitbit records with corrected joins, variable-specific coverage and explicit limits on observed associations. ]]></description>
+  <category>data visualization</category>
+  <category>R</category>
+  <category>data analysis</category>
+  <guid>https://talesgomes27.github.io/quarto-blog/posts/bellabeat/en.html</guid>
+  <pubDate>Fri, 10 Sep 2021 03:00:00 GMT</pubDate>
+  <media:content url="https://talesgomes27.github.io/quarto-blog/posts/bellabeat/bellabeat.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

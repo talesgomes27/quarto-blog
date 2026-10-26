@@ -6,6 +6,17 @@ date-modified: "2026-10-26"
 categories: [data visualization, R, data analysis]
 image: "bellabeat.jpg"
 image-alt: "People taking part in a group exercise session."
+filters:
+  - remember
+  - cite-this
+extensions:
+  cite-this:
+    position: inline
+    scope: page
+    styles: [abnt, apa]
+    default-style: apa
+    page:
+      url: https://talesgomes27.github.io/quarto-blog/posts/bellabeat/en.html
 engine: markdown
 freeze: false
 lang: en
@@ -149,3 +160,5 @@ python3 tests/test_localize.py _site
 ```
 
 Site rendering consumes the script's generated results without downloading data or automatically rerunning the analysis. Individual-level records were not added to the published revision files.
+
+{{< cite-this page collapsed=true >}}

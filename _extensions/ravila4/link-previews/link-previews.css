@@ -1,0 +1,137 @@
+/* link-previews popover styling. Colors come from Quarto's `quarto` tippy
+ * theme so light/dark modes track the site theme; only layout lives here. */
+
+/* The quarto tippy theme borders with Bootstrap's stock gray (#dee2e6) in
+ * both modes, which vanishes on themes whose background sits near it.
+ * Derive the border from the text color instead so it contrasts with any
+ * palette, and lift the popover with a shadow. Both are overridable via
+ * custom properties set on :root. */
+.tippy-box[data-theme~="link-preview"] {
+  /* currentColor resolves where the property is used, so any user of
+   * --lp-border must carry the theme's text color (see the arrow rule). */
+  --lp-border: var(
+    --link-preview-border-color,
+    color-mix(in srgb, currentColor 30%, transparent)
+  );
+  border-color: var(--lp-border);
+  box-shadow: var(
+    --link-preview-shadow,
+    0 6px 24px rgb(0 0 0 / 0.12),
+    0 2px 6px rgb(0 0 0 / 0.08)
+  );
+}
+
+/* Content is clipped to the rounded corners here rather than on the box:
+ * overflow on the box would also clip the arrow, which sits outside it. */
+.tippy-box[data-theme~="link-preview"] .tippy-content {
+  padding: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* Arrow (the `arrow` option). Fill comes from Quarto's quarto theme, which
+ * tracks the popover background per light/dark mode; only the border layer
+ * needs to follow our derived border color. tippy's stock CSS pins the
+ * arrow's color to #333, which would skew that derivation in dark mode --
+ * re-inherit the theme text color the box border derives from. */
+.tippy-box[data-theme~="link-preview"] > .tippy-arrow {
+  color: inherit;
+}
+
+.tippy-box[data-theme~="link-preview"][data-placement^="top"] > .tippy-arrow::after {
+  border-top-color: var(--lp-border);
+}
+
+.tippy-box[data-theme~="link-preview"][data-placement^="bottom"] > .tippy-arrow::after {
+  border-bottom-color: var(--lp-border);
+}
+
+.tippy-box[data-theme~="link-preview"][data-placement^="left"] > .tippy-arrow::after {
+  border-left-color: var(--lp-border);
+}
+
+.tippy-box[data-theme~="link-preview"][data-placement^="right"] > .tippy-arrow::after {
+  border-right-color: var(--lp-border);
+}
+
+.link-preview-body {
+  --lp-pad-y: 0.6rem;
+  --lp-pad-x: 0.8rem;
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding: var(--lp-pad-y) var(--lp-pad-x);
+  /* The tippy box already sets 0.875rem; ride it rather than shrink
+   * further. Overridable via --link-preview-font-size on :root. */
+  font-size: var(--link-preview-font-size, 1em);
+  overflow-wrap: break-word;
+}
+
+.link-preview-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Quarto's page-columns grids (title banners, full-width layouts) assume the
+ * full page width and force a fixed multi-column track inside the popover;
+ * flatten them to normal flow at preview scale. */
+/* !important: Quarto's grid rules carry body-class selectors like
+ * body.fullcontent:not(.floating):not(.docked) .page-columns, which
+ * out-specify anything reasonable scoped to the preview body. */
+.link-preview-body .page-columns {
+  display: block !important;
+}
+
+.link-preview-body .page-columns > * {
+  width: auto;
+  max-width: 100%;
+}
+
+/* Banner title blocks carry their own background; bleed them to the popover
+ * edges and restore the internal padding the flattened grid used to
+ * provide, so title text does not sit flush against the color boundary. */
+.link-preview-body .quarto-title-banner {
+  margin: calc(-1 * var(--lp-pad-y)) calc(-1 * var(--lp-pad-x)) var(--lp-pad-y);
+  padding: var(--lp-pad-y) var(--lp-pad-x);
+  /* The banner sits inside the title-block header, itself a page-columns
+   * element, so the child width cap above would otherwise hold the right
+   * edge short of the bleed. */
+  max-width: none;
+}
+
+/* Long code lines wrap instead of forcing horizontal scroll. */
+.link-preview-body pre,
+.link-preview-body pre code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Tables cannot wrap; give them their own internal scroll instead of
+ * widening the popover. */
+.link-preview-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.link-preview-body h1 { font-size: 1.25em; }
+.link-preview-body h2 { font-size: 1.15em; }
+.link-preview-body h3,
+.link-preview-body h4,
+.link-preview-body h5 { font-size: 1.05em; }
+
+/* Chrome that reads as noise at preview scale. */
+.link-preview-body .anchorjs-link,
+.link-preview-body #quarto-margin-sidebar,
+.link-preview-body .cell-output-error,
+.link-preview-body .code-tools-button,
+.link-preview-body .code-copy-button {
+  display: none;
+}
+
+.link-preview-loading,
+.link-preview-unavailable {
+  opacity: 0.7;
+  font-style: italic;
+}

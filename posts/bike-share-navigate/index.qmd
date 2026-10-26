@@ -3,6 +3,17 @@ title: "Cyclistic Bike-Share: Usage Patterns and Rider Conversion"
 description: "Updated report covering the six Google Data Analytics phases, descriptive statistics, logistic regression and trip segmentation."
 date: "2026-10-13"
 date-modified: "2026-10-26"
+filters:
+  - remember
+  - cite-this
+extensions:
+  cite-this:
+    position: inline
+    scope: page
+    styles: [abnt, apa]
+    default-style: apa
+    page:
+      url: https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/index.html
 engine: markdown
 freeze: false
 lang: en
@@ -469,3 +480,5 @@ To address the final question in Google's case study regarding complementary dat
 - Replaced historical edition: [Portuguese](../../docs/revisions/2026-10-26-bike-share-replacement/pt.qmd.gz) and [English](../../docs/revisions/2026-10-26-bike-share-replacement/index.qmd.gz). Results from the earlier reconciliation remain in [results.json](revision-2026-10-26/results.json).
 
 This import preserves the supplied report's results and interpretations. It does not constitute a new reproduction of the trip-level data or a new scientific audit. The source repository prioritizes Parquet, then CSV files, and provides synthetic data when the full dataset is unavailable; that alternative was not run during this import. Original R code and the labels within the original chart images remain in Portuguese.
+
+{{< cite-this page collapsed=true >}}

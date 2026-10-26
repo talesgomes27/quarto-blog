@@ -53,3 +53,11 @@ Pedido: conferir comentários nos dois idiomas e adaptar Textos ao tema publicad
 - O CSS personalizado recebe query de versão pelo SHA-256 para impedir mistura de nova paleta e CSS antigo em cache. Teste cobre a transformação idempotente e presença da versão nas páginas.
 - Smoke final público: 17 páginas/recursos retornaram HTTP 200 e correspondem ao artefato local. Toggle, tons computados, área móvel de 44×44px, ausência de overflow e sincronização Giscus conferidos no navegador integrado; preferência restaurada ao light. Registro: `docs/dark-theme-smoke-2026-10-26.json`.
 - Não foram testados outros navegadores. Nenhum comentário de teste permaneceu; quatro conversas vazias criadas pelo Giscus foram mantidas.
+
+## Continuação — extensões e distribuição dos estudos
+
+- Modo contínuo: aplicação das recomendações autorizada; commit e push cobertos pelo pedido anterior nesta conversa. Destino preservado: `main` de `talesgomes27/quarto-blog`, com deploy pelo workflow Pages existente. Base: `a523e7c`.
+- Artefato preparado: `_site/` renderizado com Quarto 1.10.19. Prévias de links internos no portal; retomada de leitura e citação ABNT/APA nos quatro estudos; feeds RSS separados PT/EN; links de compartilhamento LinkedIn/e-mail. Resultados, código e execução estática das análises preservados.
+- Inventário local: 263 extensões distintas nas quatro listagens oficiais, guia de decisão, script de atualização e orientação permanente em `AGENTS.md`. Três dependências fixadas por commit, licenças e hashes em `docs/quarto-extensions/installed.json`.
+- Prontidão local: render completo, cinco verificações Python aprovadas e navegação dirigida no navegador. Prévias nos dois idiomas/temas, retomada de leitura, citação/BibTeX e layout de 375px conferidos; detalhes e limites no guia. Sem envio de compartilhamentos ou comentários.
+- Publicação: preparada para commit/push. O workflow deve validar o mesmo `_site/`; conclusão remota e smoke público ainda pendentes. Recuperação segue o mecanismo existente: novo commit de reversão da alteração identificada, com render e publicação, sem reescrever histórico; executar recuperação somente se autorizada.

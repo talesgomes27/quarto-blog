@@ -239,3 +239,22 @@ pre, code, table { font-variant-numeric: tabular-nums; }
 .writing-archive .quarto-post .metadata a { font-size: inherit; }
 
 .navbar .quarto-color-scheme-toggle { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+
+body .remember-overlay .remember-modal { background: var(--canvas); color: var(--ink); border-radius: 5px; }
+body .remember-overlay .remember-title { color: var(--ink); }
+body .remember-overlay .remember-message { color: var(--muted); }
+body .remember-overlay .remember-btn-accept { background: var(--accent); color: var(--button-text); }
+body .remember-overlay .remember-btn-accept:hover { background: var(--accent-hover); }
+body .remember-overlay .remember-btn-decline { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); }
+body .remember-overlay .remember-btn:focus-visible { outline-color: var(--accent); }
+
+/* A preview title remains visible when the current page hides its own title. */
+.link-preview-body #title-block-header { display: block !important; }
+.link-preview-body .quarto-title-meta, .link-preview-body .quarto-categories { display: none; }
+.nav-footer .nav-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+.cite-this .cite-this-btn { min-width: 44px; min-height: 44px; }
+.cite-this select { min-height: 44px; }
+.post-share { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.post-share h2 { font-size: 1.5rem; border: 0; margin: 0 0 1rem; padding: 0; }
+.post-share p { display: flex; gap: .75rem; flex-wrap: wrap; }
+.post-share a { display: inline-flex; align-items: center; min-height: 44px; }

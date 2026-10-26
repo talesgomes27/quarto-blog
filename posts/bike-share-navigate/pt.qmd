@@ -3,6 +3,17 @@ title: "Cyclistic Bike-Share: análise de padrões e conversão de usuários"
 description: "Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens."
 date: "2026-10-13"
 date-modified: "2026-10-26"
+filters:
+  - remember
+  - cite-this
+extensions:
+  cite-this:
+    position: inline
+    scope: page
+    styles: [abnt, apa]
+    default-style: abnt
+    page:
+      url: https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html
 engine: markdown
 freeze: false
 lang: pt-BR
@@ -465,3 +476,5 @@ Respondendo à questão final do roteiro da Google sobre dados complementares:
 - Edição histórica substituída: [português](../../docs/revisions/2026-10-26-bike-share-replacement/pt.qmd.gz) e [inglês](../../docs/revisions/2026-10-26-bike-share-replacement/index.qmd.gz), com os resultados da reconciliação anterior preservados em [results.json](revision-2026-10-26/results.json).
 
 A importação preserva os resultados e as interpretações do relatório fornecido. Não constitui uma nova reprodução dos microdados nem uma nova auditoria científica. O repositório de origem prioriza Parquet, depois CSVs, e oferece dados sintéticos quando os dados completos não estão disponíveis; essa alternativa não foi executada nesta importação.
+
+{{< cite-this page collapsed=true >}}

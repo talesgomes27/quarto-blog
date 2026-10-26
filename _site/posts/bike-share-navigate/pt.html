@@ -87,6 +87,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-ab451912df58b659aa41e4f600c7c52c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/link-previews-0.3.1/link-previews.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/link-previews-0.3.1/link-previews.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/remember-1.0.0/remember.js"></script>
+<link href="../../site_libs/quarto-contrib/remember-1.0.0/remember.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/cite-this-1.0.4/cite-this.js"></script>
+<link href="../../site_libs/quarto-contrib/cite-this-1.0.4/cite-this.css" rel="stylesheet">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -116,9 +122,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
+<script type="application/json" id="link-previews-config">[]</script>
+<script id="quarto-remember-config" type="application/json">{"page-exclude":[],"project-type":"website","separate-chapter-state":false}</script>
 
 
-<link rel="stylesheet" href="../../styles.css?v=ca039948466a">
+<link rel="stylesheet" href="../../styles.css?v=67c6ae25077f">
 <meta property="og:title" content="Cyclistic Bike-Share: análise de padrões e conversão de usuários – Tales Gomes">
 <meta property="og:description" content="Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens.">
 <meta property="og:image" content="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/bike-share.jpg">
@@ -134,6 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="alternate" hreflang="pt-BR" href="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html">
 <link rel="alternate" hreflang="en" href="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/index.html">
 <link rel="alternate" hreflang="x-default" href="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../textos.xml">
 <!-- /language-alternates -->
 </head>
 
@@ -1220,11 +1229,24 @@ Exibir código R
 <li>Edição histórica substituída: <a href="../../docs/revisions/2026-10-26-bike-share-replacement/pt.qmd.gz">português</a> e <a href="../../docs/revisions/2026-10-26-bike-share-replacement/index.qmd.gz">inglês</a>, com os resultados da reconciliação anterior preservados em <a href="revision-2026-10-26/results.json">results.json</a>.</li>
 </ul>
 <p>A importação preserva os resultados e as interpretações do relatório fornecido. Não constitui uma nova reprodução dos microdados nem uma nova auditoria científica. O repositório de origem prioriza Parquet, depois CSVs, e oferece dados sintéticos quando os dados completos não estão disponíveis; essa alternativa não foi executada nesta importação.</p>
+<div class="cite-this cite-this--inline" data-position="inline" data-corner="bottom-right" data-scope="page" data-default-scope="page" data-default-style="abnt" data-remember="true" data-copied-label="Copiado" data-copy-text-label="Copiar citação" data-copy-bibtex-label="Copiar BibTeX"><details class="cite-this-collapse"><summary><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M9.9 5.2C6.7 6.7 4.8 9.5 4.8 12.9v5.9h6.5v-6.6H8.1c.1-1.9 1.1-3.3 2.7-4.3L9.9 5.2zM19.3 5.2c-3.2 1.5-5.1 4.3-5.1 7.7v5.9h6.5v-6.6h-3.2c.1-1.9 1.1-3.3 2.7-4.3l-.9-2.7z"></path></svg>Como citar</summary><div class="cite-this-bar cite-this-bar--collapsed"><div class="cite-this-tabs cite-this-tabs--kind" role="tablist"><button type="button" role="tab" class="cite-this-tab" data-tab-kind="text" aria-selected="true" tabindex="0"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 11.5h15M6 17h11"></path></svg><span>Texto</span></button><button type="button" role="tab" class="cite-this-tab" data-tab-kind="bibtex" aria-selected="false" tabindex="-1"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4c-2.2 0-3 1.1-3 3.2v2.3c0 1.6-.6 2.5-2 2.5 1.4 0 2 .9 2 2.5v2.3c0 2.1.8 3.2 3 3.2M14 4c2.2 0 3 1.1 3 3.2v2.3c0 1.6.6 2.5 2 2.5-1.4 0-2 .9-2 2.5v2.3c0 2.1-.8 3.2-3 3.2"></path></svg><span>BibTeX</span></button></div><label class="cite-this-select" data-cite-this-style-wrap="">Estilo <select data-cite-this-style=""><option value="abnt" selected="">ABNT</option><option value="apa">APA</option></select></label></div><div class="cite-this-body"><div class="cite-this-variant" data-kind="text" data-scope="page" data-style="abnt"><div class="cite-this-rendered">GOMES, Tales. <strong>Cyclistic Bike-Share: análise de padrões e conversão de usuários</strong>. Disponível em: &lt;<a href="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html">https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html</a>&gt;. Acesso em: 26 out. 2026.</div><div class="cite-this-text" hidden="">GOMES, Tales. Cyclistic Bike-Share: análise de padrões e conversão de usuários. Disponível em: &lt;https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html&gt;. Acesso em: 26 out. 2026.</div></div><div class="cite-this-variant" data-kind="text" data-scope="page" data-style="apa" hidden=""><div class="cite-this-rendered">Gomes, T. (2026). <em>Cyclistic Bike-Share: análise de padrões e conversão de usuários</em>. Tales Gomes. <a href="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html">https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html</a></div><div class="cite-this-text" hidden="">Gomes, T. (2026). Cyclistic Bike-Share: análise de padrões e conversão de usuários. Tales Gomes. https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html</div></div><div class="cite-this-variant" data-kind="bibtex" data-scope="page" data-filename="gomes2026cyclistic.bib" hidden=""><pre class="cite-this-text">@misc{gomes2026cyclistic,
+  author       = {Gomes, Tales},
+  title        = {Cyclistic Bike-Share: análise de padrões e conversão de usuários},
+  year         = {2026},
+  howpublished = {\url{https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html}},
+  url          = {https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html},
+  urldate      = {2026-10-26},
+  note         = {Em: Tales Gomes. Acesso em: 26 out. 2026}
+}</pre></div></div><div class="cite-this-foot"><button type="button" class="cite-this-btn" data-cite-this-action="active" title="Copiar citação" aria-label="Copiar citação"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"></rect><path d="M5.5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5v1"></path></svg><span class="cite-this-done"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"></path></svg></span></button><button type="button" class="cite-this-btn" data-cite-this-action="download" title="Baixar .bib" aria-label="Baixar .bib"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11m0 0 4-4m-4 4-4-4"></path><path d="M4 16.5v2A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-2"></path></svg><span class="cite-this-done"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"></path></svg></span></button></div></details></div>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuso</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt_br">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuso</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt_br">CC BY-SA 4.0</a></div></div></section></div>
+<!-- post-share -->
+<section class="post-share" aria-labelledby="post-share-title"><h2 id="post-share-title">Compartilhar este estudo</h2><p><a class="btn btn-outline-primary" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fbike-share-navigate%2Fpt.html&amp;title=Cyclistic+Bike-Share%3A+an%C3%A1lise+de+padr%C3%B5es+e+convers%C3%A3o+de+usu%C3%A1rios" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn btn-outline-primary" href="mailto:?subject=Cyclistic+Bike-Share%3A+an%C3%A1lise+de+padr%C3%B5es+e+convers%C3%A3o+de+usu%C3%A1rios&amp;body=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fbike-share-navigate%2Fpt.html">E-mail</a></p></section>
+<!-- /post-share -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1681,6 +1703,12 @@ Exibir código R
     </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../textos.xml" aria-label="Acompanhar publicações por RSS">
+      <i class="bi bi-rss" role="img" aria-label="Acompanhar publicações por RSS">
+</i> 
+    </a>
+  </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/talesgomes27/">
       <i class="bi bi-github" role="img" aria-label="GitHub">

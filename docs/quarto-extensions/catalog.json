@@ -1,0 +1,2416 @@
+{
+  "checked_at": "2026-10-26",
+  "scope": "Four official Quarto extension listings; not the entire ecosystem.",
+  "validation": "Listed functionality only; installation and compatibility require separate review.",
+  "sources": [
+    {
+      "category": "shortcodes-filters",
+      "url": "https://quarto.org/docs/extensions/",
+      "entries": 157,
+      "sha256": "3d9ddd458a06b588cf413969984d962eea3e9292e8377d2c54af69f50602fcae"
+    },
+    {
+      "category": "journal-articles",
+      "url": "https://quarto.org/docs/extensions/listing-journals.html",
+      "entries": 23,
+      "sha256": "d40e95ca9360218f1c2a5ce93257769ae30c3d77f66ae5d3054a82a669beebbb"
+    },
+    {
+      "category": "custom-formats",
+      "url": "https://quarto.org/docs/extensions/listing-formats.html",
+      "entries": 43,
+      "sha256": "7c2a36c0c606d0d6b50ec9a8bdf5ae884a063c6a35555f205f6ed7f4be2c1d3a"
+    },
+    {
+      "category": "revealjs",
+      "url": "https://quarto.org/docs/extensions/listing-revealjs.html",
+      "entries": 55,
+      "sha256": "dc02d9bf93b80a666f2145d4e490bf44a815e9bd2103c6309188678e2877fcfd"
+    }
+  ],
+  "extension_count": 263,
+  "extensions": [
+    {
+      "name": "a11y",
+      "description": "A Quarto Reveal.js plugin providing accessibility (a11y) enhancements, including skip navigation, focus indicators, reduced motion support, high contrast mode, font size controls, screen reader announcements, and an accessibility settings menu.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-a11y",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "aaai2016",
+      "description": "Quarto template for submissions to the Association for Advancement of Artificial Intelligence (AAAI)",
+      "author": "Selbosh",
+      "repository": "https://github.com/Selbosh/aaai2026-quarto",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "abstract-section",
+      "description": "Write an article abstract in a normal section, not the YAML metadata.",
+      "author": "pandoc-ext",
+      "repository": "https://github.com/pandoc-ext/abstract-section",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "academic-typst",
+      "description": "A clean Typst template for academic manuscripts",
+      "author": "Kazuharu Yanagimoto",
+      "repository": "https://github.com/kazuyanagimoto/quarto-academic-typst",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "academicons",
+      "description": "Use Academicons in HTML documents",
+      "author": "schochastics",
+      "repository": "https://github.com/schochastics/academicons",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "accordion",
+      "description": "Shortcode to add Bootstrap accordion component for html format.",
+      "author": "Roy Francis",
+      "repository": "https://github.com/royfrancis/quarto-accordion",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "acm",
+      "description": "Association of Computing Machinery (ACM)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/acm",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "acs",
+      "description": "American Chemical Society (ACS)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/acs",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "add-code-files",
+      "description": "Filter to add code from source files as a code block that works with code-fold.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/add-code-files",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "admonitions",
+      "description": "An extension that adds AsciiDoc-style admonitions to Quarto.",
+      "author": "Nessan Fitzmaurice",
+      "repository": "https://github.com/nessan/admonitions",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "adsense",
+      "description": "Enable Google Adsense in HTML Documents",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/adsense",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "aea",
+      "description": "Working paper (preprint) format for the field of Economics",
+      "author": "hchulkim",
+      "repository": "https://github.com/hchulkim/econ-paper-template",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "agu",
+      "description": "American Geophysical Union (AGU)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/agu",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "altmetrics",
+      "description": "Shortcode for adding altmetrics to your personal site.",
+      "author": "Luis M. Montilla",
+      "repository": "https://github.com/luismmontilla/quarto-altmetrics/",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "animate",
+      "description": "Create animations from svg files, and integrate them to fragments",
+      "author": "François-David Collin",
+      "repository": "https://github.com/fradav/quarto-revealjs-animate",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "animate",
+      "description": "Shortcode for animating text using Animate.css.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-animate",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "animate-graph",
+      "description": "Create clear, step-by-step graph visualizations without any coding knowledge.",
+      "author": "Omer Faruk Koru",
+      "repository": "https://github.com/ofkoru/quarto-animate-graph",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "aog-article",
+      "description": "PDF format for high quality academic manuscripts",
+      "author": "Aaron Gullickson",
+      "repository": "https://github.com/AaronGullickson/aog-article-quarto",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "apa_and_amp",
+      "description": "Small Quarto filter extension for valid APA narrative citation (“and” instead of ampersand)",
+      "author": "Gregor Willenbrock",
+      "repository": "https://github.com/gwbrck/apa_and_amp",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "apaquarto",
+      "description": "Quarto template for American Psychological Association, Seventh Edition (APA7) style",
+      "author": "W. Joel Schneider",
+      "repository": "https://github.com/wjschne/apaquarto",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "appearance",
+      "description": "An animation extension that animates elements sequentially like in Powerpoint. Perfect for online portfolios or other presentations with images.",
+      "author": "martino",
+      "repository": "https://github.com/martinomagnifico/quarto-appearance",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "apsr",
+      "description": "American Political Science Review (APSR)",
+      "author": "christopherkenny",
+      "repository": "https://github.com/christopherkenny/apsr",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "arxiv",
+      "description": "Style and template for paper preprints (based on NIPS style)",
+      "author": "mikemahoney218",
+      "repository": "https://github.com/mikemahoney218/quarto-arxiv",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "asm",
+      "description": "Quarto template for ASM mSystems.",
+      "author": "kelly-sovacool",
+      "repository": "https://github.com/kelly-sovacool/asm-msystems",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "assign",
+      "description": "A Quarto Extension for educators writing assignments by combining instruction and solution authoring.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/assign",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "attribution",
+      "description": "Display attribution text along the right edge of slides.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/attribution",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "audio-slideshow",
+      "description": "Adds the option to add/record audio playback to each slide of the presentation.",
+      "author": "Lorenz A. Kapsner, Asvin Goel",
+      "repository": "https://github.com/kapsner/audio-slideshow",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "aufsatz",
+      "description": "Quarto template for academic reports via Typst",
+      "author": "sebastiansauer",
+      "repository": "https://github.com/sebastiansauer/quarto-typst-academic-template",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "authors-block",
+      "description": "Add author-related header block when rendering docx-documents.",
+      "author": "Lorenz A. Kapsner, Albert Krewinkel, Robert Winkler",
+      "repository": "https://github.com/kapsner/authors-block",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "auto-agenda",
+      "description": "Automatically creates agenda slides from H1 heading titles.",
+      "author": "andrie",
+      "repository": "https://github.com/andrie/reveal-auto-agenda",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "auto-dark",
+      "description": "Automatic dark mode for Quarto websites and slides.",
+      "author": "Garrick Aden-Buie",
+      "repository": "https://github.com/gadenbuie/quarto-auto-dark",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "awesomecv-typst",
+      "description": "Quarto Typst template for the Awesome CV",
+      "author": "Kazuharu Yanagimoto",
+      "repository": "https://github.com/kazuyanagimoto/quarto-awesomecv-typst",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "badge",
+      "description": "Badge is an extension for Quarto to provide a shortcode to display software version or anything as a badge.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-badge",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "base64",
+      "description": "A shortcode to embed base64-encoded files in Quarto documents. Useful with shinylive.",
+      "author": "Garrick Aden-Buie",
+      "repository": "https://github.com/gadenbuie/quarto-base64",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "bibentry",
+      "description": "A Quarto extension that replicates LaTeX’s \\bibentry command functionality. It allows you to display full bibliography entries inline within your document text.",
+      "author": "Fred Guth",
+      "repository": "https://github.com/fredguth/bibentry",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "biophysical",
+      "description": "Biophysical Journal (BJ)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/biophysical-journal",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "biorxiv",
+      "description": "Style and template for bioRxiv preprints (based on HenriquesLab template)",
+      "author": "chi-raag",
+      "repository": "https://github.com/chi-raag/biorxiv-quarto",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "black-formatter",
+      "description": "Format the codes in python code-chunk using black formatter.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/black-formatter",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "blackboard-revealjs",
+      "description": "Blackboard like format for Revealjs",
+      "author": "schochastics",
+      "repository": "https://github.com/schochastics/quarto-blackboard-theme",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "bluesky-comments",
+      "description": "Quarto Shortcode Extension to Embed Comments from Bluesky and add Bluesky-powered comment sections for websites and HTML outputs.",
+      "author": "Garrick Aden-Buie, James Joseph Balamuta",
+      "repository": "https://github.com/quarto-ext/bluesky-comments",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "bookly-typst",
+      "description": "Templates for writing books or theses via the bookly Typst package",
+      "author": "Mathieu Aucejo",
+      "repository": "https://github.com/maucejo/quarto-bookly",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "bookup",
+      "description": "HTML format providing light and dark themes and suitable for documents, books and websites",
+      "author": "juba",
+      "repository": "https://github.com/juba/bookup-html",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "bsicons",
+      "description": "Use Bootstrap Icons in HTML documents and Revealjs presentations.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/bsicons",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "bytefield",
+      "description": "Generate byte field diagrams using the bytefield-svg Node module.",
+      "author": "Cristian Bourceanu",
+      "repository": "https://github.com/crisbour/bytefield",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "callout-png",
+      "description": "Quarto extension enabling images within callout banners",
+      "author": "John Kulas",
+      "repository": "https://github.com/jtkulas/callout-png",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "callouty-theorem",
+      "description": "Wraps theorems and proofs in callout blocks for better visual appeal.",
+      "author": "sun123zxy",
+      "repository": "https://github.com/sun123zxy/quarto-callouty-theorem",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "cambridge",
+      "description": "Quarto Template for Cambridge University Press journals",
+      "author": "ihrke",
+      "repository": "https://github.com/ihrke/quarto-cambridge",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "cascade",
+      "description": "A Quarto filter that automatically repeats the heading chain for Reveal.js slides following the DRY principle.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-cascade",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "cite-this",
+      "description": "Add accessible “how to cite” controls to Quarto books and websites.",
+      "author": "Lucas S.B. Jordão",
+      "repository": "https://github.com/lsbjordao/quarto-cite-this",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "clean-revealjs",
+      "description": "A minimal and elegant theme for reveal.js, inspired by modern Beamer templates.",
+      "author": "Grant McDermott",
+      "repository": "https://github.com/grantmcdermott/quarto-revealjs-clean",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "clean-typst",
+      "description": "A minimalistic presentation theme for Quarto + Typst by Touying",
+      "author": "Kazuharu Yanagimoto",
+      "repository": "https://github.com/kazuyanagimoto/quarto-clean-typst",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "cnam-thesis",
+      "description": "Quarto template / set of extensions for Cnam (Conservatoire national des arts et métiers) doctoral theses. PDF/A-1b + navigable HTML - Produces a PDF that conforms to the official Cnam 2024–2025 template and a navigable HTML version for online sharing and accessibility.",
+      "author": "Eric Bavu",
+      "repository": "https://github.com/zinc75/quarto-cnam-thesis",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "code-appendix",
+      "description": "A lua filter to auto-generate an appendix from code chunks.",
+      "author": "CL Roberts",
+      "repository": "https://github.com/cl-roberts/code-appendix",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "code-folder",
+      "description": "Fold specific line / inline ranges in a code block and toggle them open or closed with a click.",
+      "author": "Hiroshi Suzuki",
+      "repository": "https://github.com/herosi/code-folder",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "code-fullscreen",
+      "description": "Filter that adds a fullscreen button in the code blocks in revealjs slides and html documents.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/code-fullscreen",
+      "categories": [
+        "shortcodes-filters",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "code-insertion",
+      "description": "Add markdown/html code immediately before and/or after a post.",
+      "author": "Ziyue Li",
+      "repository": "https://github.com/feynlee/code-insertion",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "code-line-deco",
+      "description": "Decorate multiple ranges within a single line in a code block with different effects.",
+      "author": "Hiroshi Suzuki",
+      "repository": "https://github.com/herosi/code-line-deco",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "code-visibility",
+      "description": "Directives for filtering code and stream output included within a document.",
+      "author": "jjallaire",
+      "repository": "https://github.com/jjallaire/code-visibility",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "code-window",
+      "description": "A Quarto filter that styles code blocks as macOS-style windows with traffic light buttons, Windows title bar buttons, or a plain filename bar. Supports HTML, Reveal.js, and Typst formats.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-code-window",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "codecelloptions",
+      "description": "Developer extension to parse options from custom code cells.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/codecelloptions",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "codefocus",
+      "description": "A plugin that lets you step through fragments and code higlights at the same time.",
+      "author": "Reuning",
+      "repository": "https://github.com/reuning/codeFocus",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "codefrag",
+      "description": "A Reveal.js plugin that enables fragment-based keyboard navigation through code annotations in Quarto presentations.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-codefrag",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "coeos-revealjs",
+      "description": "Dark grey / white based format for Revealjs",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-coeos",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "colab",
+      "description": "Quarto Extension to Transform Quarto Documents into Google Colaboratory Notebooks",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/colab",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "collapse-callout",
+      "description": "Filter that provides global options to make the Callout Blocks collapsible in HTML documents",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/collapse-callout",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "collapse-output",
+      "description": "A Quarto extension that provides the ability to collapse code cell outputs in HTML documents using collapsible <details> elements.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-collapse-output",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "collapse-social-embeds",
+      "description": "Filter to create collapsible callouts with social-embeds for HTML format.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/collapse-social-embeds",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "computo",
+      "description": "Template for contribution to the Computo journal.",
+      "author": "computorg",
+      "repository": "https://github.com/computorg/computo-quarto-extension",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "conditional-vars",
+      "description": "A Quarto extension for conditional content based on project-level variables defined in _variables.yml.",
+      "author": "Lucas S.B. Jordão",
+      "repository": "https://github.com/lsbjordao/quarto-conditional-vars",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "confetti",
+      "description": "Add some fun and send confetti into your presentation.",
+      "author": "ArthurData",
+      "repository": "https://github.com/ArthurData/quarto-confetti",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "countdown",
+      "description": "Add countdown timers to slides and HTML documents",
+      "author": "Garrick Aden-Buie and James Joseph Balamuta",
+      "repository": "https://github.com/gadenbuie/countdown",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "critic-markup",
+      "description": "Handle critic markup syntax for tracking changes.",
+      "author": "Mathias Louboutin",
+      "repository": "https://github.com/mloubout/critic-markup",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "custom-amsthm-environments",
+      "description": "Quarto extension for defining custom amsthm environments.",
+      "author": "Mateus Molina",
+      "repository": "https://github.com/MateusMolina/custom-amsthm-environments",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "custom-callout",
+      "description": "Create custom callouts with different colors, icons, and appearance in your document.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/custom-callout",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "d2",
+      "description": "Render D2 diagrams directly in your documents.",
+      "author": "Data Intuitive",
+      "repository": "https://github.com/data-intuitive/quarto-d2",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "details",
+      "description": "An alternative implementation for the details HTML tag that focuses on using Div blocks and preserving content across non-interactive formats.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/details",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "details",
+      "description": "Easily add collapsible details blocks to your HTML documents (e.g., for hints, answer keys, and supplemental information).",
+      "author": "Jeffrey Girard",
+      "repository": "https://github.com/jmgirard/details",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "detective",
+      "description": "Highlight specific code in your presentation.",
+      "author": "ThinkR-open",
+      "repository": "https://github.com/ThinkR-open/quarto-detective",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "diagram",
+      "description": "Generate diagrams from embedded code; supports Mermaid, Dot/GraphViz, PlantUML, Asymptote, and TikZ.",
+      "author": "Albert Krewinkel",
+      "repository": "https://github.com/pandoc-ext/diagram",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "diagram-zoom",
+      "description": "Add an Enlarge button to Mermaid and Graphviz diagrams in HTML documents, websites and books, opening a viewer with zoom and pan (wheel, pinch, drag, keyboard). Live demo.",
+      "author": "Lightbridge-KS",
+      "repository": "https://github.com/Lightbridge-KS/quarto-diagram-zoom",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "diaquarto",
+      "description": "easy slides via typst and the diatypst package - sensible defaults, easy syntax, well styled",
+      "author": "marten",
+      "repository": "https://github.com/skriptum/diatypst/blob/main/diaquarto",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "div-reuse",
+      "description": "The power of “code/content reuse” for seamless and efficient content creation.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-div-reuse",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "docfx",
+      "description": "Generate pages from .NET API documentation YAML generated by docfx.",
+      "author": "holistic-net GmbH",
+      "repository": "https://github.com/holistic-net/quarto-docfx",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "docx-horizontal-rule",
+      "description": "A simple tool to edit the format of a horizontal rule in .docx output",
+      "author": "Matt Capaldi",
+      "repository": "https://github.com/ttalVlatt/Quarto-Docx-Horizontal-Rule",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "downloadthis",
+      "description": "Shortcode that allows to implement a download button with embedded small text/csv/image files for html format.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/downloadthis",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "drop",
+      "description": "Drop down an interactive R or Python console, code editor, and plotting window from the top of your slides.",
+      "author": "George Stagg",
+      "repository": "https://github.com/r-wasm/quarto-drop",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "dtslides",
+      "description": "Quarto RevealJS themes — a clean academic theme (navy/slate) and a UNM-branded theme (cherry/turquoise) with shared layout architecture",
+      "author": "Data-Wise",
+      "repository": "https://github.com/Data-Wise/dtslides",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "elevator",
+      "description": "Shortcode for using Elevator.js in HTML documents.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-elevator",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "elsevier",
+      "description": "Format for journals published by Elsevier",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/elsevier",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "embed-sheet",
+      "description": "Quarto extension to embed spreadsheets (xls, xlsx, ods) as images using LibreOffice headless conversion.",
+      "author": "Pim Snel",
+      "repository": "https://github.com/wearetechnative/embed-sheet",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "embedio",
+      "description": "Variety of shortcodes for including files and content in HTML documents",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/embedio",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "embedpdf",
+      "description": "Easily embed PDF files within HTML documents.",
+      "author": "Jeffrey Girard",
+      "repository": "https://github.com/jmgirard/embedpdf",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "ergm-quarto",
+      "description": "Embed the ergm-js interactive network simulator in HTML documents, websites, books and revealjs decks with a single shortcode.",
+      "author": "George G. Vega Yon",
+      "repository": "https://github.com/gvegayon/ergm-quarto",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "excalidraw",
+      "description": "Adds an empty Excalidraw canvas to your slides for sketching hand-drawn like diagrams.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-excalidraw",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "external",
+      "description": "Quarto extension to include content or partial content from external file.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-external",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "fancy-doc",
+      "description": "A PDF format that brings LaTeX’s fancyhdr package into Quarto for miscellaneous documents.",
+      "author": "DamonCharlesRoberts",
+      "repository": "https://github.com/DamonCharlesRoberts/fancy-doc",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "fancy-epigraphs",
+      "description": "Shortcode for including nicely typeset epigraphs in HTML, Typst, LaTeX, and other formats",
+      "author": "Andrew Heiss",
+      "repository": "https://github.com/andrewheiss/fancy-epigraphs-quarto",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "fancy-text",
+      "description": "Output nicely formatted versions of fancy strings such as LaTeX and BibTeX in multiple formats.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/fancy-text",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "figure-table-formatter",
+      "description": "Format the cross-references for figures, supplementary figures, tables, and supplementary tables following their sequential order in the document.",
+      "author": "Iago Pinal-Fernandez",
+      "repository": "https://github.com/iagopinal/figure-table-formatter",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "first-line-indent",
+      "description": "Smart first-line indent for HTML/LaTeX/PDF outputs",
+      "author": "Dialoa/Julien Dutant",
+      "repository": "https://github.com/dialoa/first-line-indent",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "flashcards",
+      "description": "Adds flashcards in slides that you can flip and shuffle.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-flashcards",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "flourish",
+      "description": "Style code in rendered chunks.",
+      "author": "Kelly Bodwin",
+      "repository": "https://github.com/kbodwin/flourish",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "focus-mode",
+      "description": "Enable Focus Mode (distraction-free reading) and Presentation Mode (keyboard-driven section-by-section navigation) for Quarto Book and Website HTML outputs.",
+      "author": "Lucas S.B. Jordão",
+      "repository": "https://github.com/lsbjordao/quarto-focus-mode",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "fontawesome",
+      "description": "Use Font Awesome icons in HTML and PDF documents.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/fontawesome",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "forms",
+      "description": "Embed flexible HTML forms in documents.",
+      "author": "Jonathan Graves",
+      "repository": "https://github.com/jlgraves-ubc/forms",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "fragmention",
+      "description": "A Quarto filter that hoists fragment attributes to list items in Reveal.js presentations, making bullet markers appear and disappear with fragment content.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-fragmention",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "fragoff",
+      "description": "Adds a checkbox in the side panel to turn fragments on or off at runtime.",
+      "author": "Dan Chaltiel",
+      "repository": "https://github.com/DanChaltiel/quarto_fragoff",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "fullframegraphics",
+      "description": "Easily create and configure Beamer slides with full frame graphics.",
+      "author": "Pierre-Amiel Giraud",
+      "repository": "https://github.com/pagiraud/fullframegraphics",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "gbt9704",
+      "description": "GB/T 9704 Chinese government document format. Supports PDF (XeLaTeX), DOCX, and ConTeXt output.",
+      "author": "songwupei",
+      "repository": "https://github.com/songwupei/quarto-gbt9704",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "get-kroki",
+      "description": "Render Kroki diagrams in Quarto websites — including HTML and PDF output. This extension uses the Kroki API via HTTP GET requests. The Kroki service URL is customizable, and the output format (e.g. SVG, PNG, etc.) can be specified per diagram.",
+      "author": "Gabriel Café",
+      "repository": "https://github.com/resepemb/quarto-kroki",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "gfm-strip-disallowed",
+      "description": "Remove raw HTML blocks (such as ‘<style>’) that are disallowed by GFM.",
+      "author": "restlessronin",
+      "repository": "https://github.com/restlessronin/gfm-strip-disallowed",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "github",
+      "description": "Use GitHub short references (commits, issues, discussions, and pull request) directly into your Quarto documents.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-github",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "github-corner",
+      "description": "Add a Github Corner into your HTML document.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-github-corner",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "gitlink",
+      "description": "A Quarto filter that automatically converts Git hosting platform references (issues, pull requests, commits, users) into clickable links. Supports GitHub, GitLab, Codeberg, Gitea, and Bitbucket.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-gitlink",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "gradio",
+      "description": "Embed fully serverless, browser-based Gradio applications and Python coding playgrounds into your Quarto documents.",
+      "author": "Péter Ferenc Gyarmati",
+      "repository": "https://github.com/peter-gy/quarto-gradio",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "group-html-cell-outputs",
+      "description": "Group cell outputs by wrapping them with a parent container when rendering to HTML.",
+      "author": "Dixon Sean Low Yan Feng",
+      "repository": "https://github.com/dixslyf/quarto-group-html-cell-outputs",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "hide-comment",
+      "description": "Filter that provides comment-directive to hide comment from code chunk in the rendered document (works for html/revealjs/pdf format).",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/hide-comment",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "highlight-text",
+      "description": "Quarto extension that allows to highlight text in a document for various formats: HTML, LaTeX, Typst, Docx, PowerPoint, Reveal.js, and Beamer.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-highlight-text",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "hikmah-pdf",
+      "description": "Opinionated PDF format with support to biblatex-chicago and more.",
+      "author": "andrewheiss",
+      "repository": "https://github.com/andrewheiss/hikmah-academic-quarto",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "honeypot",
+      "description": "Add hidden instructions to HTML homework assignments to help detect cheating by unauthorized LLM usage.",
+      "author": "Jeffrey Girard",
+      "repository": "https://github.com/jmgirard/honeypot",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "i18n",
+      "description": "Transform your Quarto slides into multilingual presentations effortlessly.",
+      "author": "ArthurData",
+      "repository": "https://github.com/ArthurData/quarto-i18n",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "iconify",
+      "description": "Use Iconify icons in HTML documents.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-iconify",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "ieee",
+      "description": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "author": "dfolio",
+      "repository": "https://github.com/dfolio/quarto-ieee",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "illinois-revealjs",
+      "description": "University of Illinois Urbana-Champaign inspired theme for the reveal.js format based on Metropolis.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/illinois-revealjs",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "imagify",
+      "description": "Convert embedded LaTeX to images and use .tex/.tikz files as image sources.",
+      "author": "Dialoa",
+      "repository": "https://github.com/dialoa/imagify",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "ims",
+      "description": "Institute of Mathematical Statistics (IMS)",
+      "author": "robjhyndman",
+      "repository": "https://github.com/robjhyndman/quarto-ims-journals",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "include-code-files",
+      "description": "Filter to include code from source files.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/include-code-files",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "index",
+      "description": "Filter to build a book-quality subject index from format-neutral marks in your text, with back-ends for LaTeX/PDF and HTML.",
+      "author": "Jeffrey Girard",
+      "repository": "https://github.com/jmgirard/quarto-index",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "inline-svg",
+      "description": "This filter finds SVG files generated by the Quarto render process and inlines them into the output file. This is similar to the embed-resources rendering option, but specifically for SVG files.",
+      "author": "Adam Blake",
+      "repository": "https://github.com/coursekata/quarto-inline-svg",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "inrae",
+      "description": "INRAE formats for HTML, PDF, Docx, Revealjs, and Beamer",
+      "author": "davidcarayon",
+      "repository": "https://github.com/davidcarayon/quarto-inrae-extension",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "interactive-sql",
+      "description": "A Quarto filter to run SQL queries interactively from a SQLite database created at render time in html documents and Revealjs presentations.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/interactive-sql",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "invoice-typst",
+      "description": "Quarto Typst template extension to make invoices.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-invoice",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "jasa",
+      "description": "American Statistical Association (ASA)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/jasa",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "jss",
+      "description": "Journal of Statistical Software (JSS)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/jss",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "kroki",
+      "description": "Render Kroki diagrams in Quarto documents (HTML and PDF). This uses the Kroki HTTP API via curl, doing a POST request.",
+      "author": "fermarsan",
+      "repository": "https://github.com/fermarsan/quarto-kroki",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "language-cell-decorator",
+      "description": "Quarto extension to add a decorator to the code cells to display the language name.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-language-cell-decorator",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "language-name",
+      "description": "Filter for adding customizable language names to code block output",
+      "author": "Andrew Heiss",
+      "repository": "https://github.com/andrewheiss/language-name",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "latex-environment",
+      "description": "Output divs as custom LaTeX environments.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/latex-environment",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "leader-line",
+      "description": "Draw a line between HTML elements in your presentation using leader-line.",
+      "author": "Omer Faruk Koru",
+      "repository": "https://github.com/ofkoru/quarto-leader-line",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "leg-cite",
+      "description": "US federal legislation citation macros: expands citations into links to Congress.gov",
+      "author": "William Blackerby",
+      "repository": "https://github.com/blackerby/leg-cite",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "letter-pdf",
+      "description": "PDF format for creating letters.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-letter",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "lightbox",
+      "description": "Create lightbox treatments for images in your HTML documents.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/lightbox",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "line-highlight",
+      "description": "Filter to enable source code and output line highlighting for HTML documents (format: html) similar as how code-line-numbers works for RevealJs.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/line-highlight",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "link-previews",
+      "description": "Hover previews for internal links on websites, in the style of Quartz digital gardens.",
+      "author": "Ricardo Avila",
+      "repository": "https://github.com/ravila4/quarto-link-previews",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "linkate",
+      "description": "Automatically collect all URLs in a document and place them at the end under a “Links” section.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/linkate",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "linkrot",
+      "description": "Check for broken external links in your Quarto documents during rendering.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/linkrot",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "live-questions",
+      "description": "Live audience polls, quizzes, word clouds and rating scales written in Quarto markdown. A QR code on the slide opens a phone voting page and results update live, using a self-hosted Cloudflare Workers or Docker server.",
+      "author": "Sean Davis",
+      "repository": "https://github.com/seandavi/quarto-revealjs-live-questions",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "livefigures",
+      "description": "Render editable, version-controlled figure sources (Excalidraw, Vega-Lite, Graphviz, PlantUML, WaveDrom, D2, and more — 18 formats) at build time, as file references or fenced blocks, with caching and native figure semantics. Formats chosen so AI agents can author and revise figures as plain text.",
+      "author": "Sean Davis",
+      "repository": "https://github.com/seandavi/quarto-livefigures",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "lordicon",
+      "description": "Use Lordicon icons in HTML documents.",
+      "author": "Jeffrey Girard",
+      "repository": "https://github.com/jmgirard/lordicon",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "lua-env",
+      "description": "A filter/shortcode extension for Quarto to provide access to LUA objects as metadata.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-lua-env",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "lumo",
+      "description": "A clean and minimalist HTML custom format",
+      "author": "Holtz Yan",
+      "repository": "https://github.com/holtzy/lumo",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "masonry",
+      "description": "Quarto extension providing support for Masonry.js grid layout in HTML documents.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-masonry",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "material-icons",
+      "description": "Use Material Design Icons in HTML documents and Revealjs presentations.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/material-icons",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "mdpi",
+      "description": "Quarto Template for MDPI journals",
+      "author": "ihrke",
+      "repository": "https://github.com/ihrke/mdpi",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "metropolis-revealjs",
+      "description": "Beamer Metropolis like format for Revealjs.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/metropolis",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "modal",
+      "description": "A Quarto extension providing a simple way to create Bootstrap modals in your HTML documents.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-modal",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "molstar",
+      "description": "Shortcode to embed proteins and trajectories with Mol*.",
+      "author": "jmbuhr",
+      "repository": "https://github.com/jmbuhr/quarto-molstar",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "Move-abs-elems",
+      "description": "Allow interactive manipulation of .absolute elements in Quarto Reveal.js slides.",
+      "author": "Hiroshi Suzuki",
+      "repository": "https://github.com/herosi/move-abs-elems",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "mozilla-revealjs",
+      "description": "Theme for reveal.js based on the (old) Mozilla brand style guide.",
+      "author": "Daniel Kapitan",
+      "repository": "https://github.com/dkapitan/quarto-revealjs-mozilla",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "nameref",
+      "description": "Filter that allows to refer a section/image/table using a name for both pdf and HTML format.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/nameref",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "nature",
+      "description": "Quarto Template for Springer Nature Submissions",
+      "author": "christopherkenny",
+      "repository": "https://github.com/christopherkenny/nature",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "nes-revealjs",
+      "description": "NES.css format for Revealjs",
+      "author": "EmilHvitfeldt",
+      "repository": "https://github.com/EmilHvitfeldt/quarto-nes-theme",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "nutshell",
+      "description": "Embed Nutshell expandable explanations in HTML documents.",
+      "author": "schochastics",
+      "repository": "https://github.com/schochastics/quarto-nutshell",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "offcanvas",
+      "description": "Quarto extension to create Bootstrap offcanvas components in HTML documents.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-offcanvas",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "onyxia-revealjs",
+      "description": "Onyxia format for Revealjs",
+      "author": "InseeFrLab",
+      "repository": "https://github.com/InseeFrLab/onyxia-quarto",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "open-social-comments",
+      "description": "Enables adding Bluesky or Mastodon/Fediverse powered comments to posts and articles.",
+      "author": "AndreasThinks",
+      "repository": "https://github.com/AndreasThinks/quarto-open-social-comments",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "options",
+      "description": "Developer extension to work with option values.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/options",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "output-styling",
+      "description": "Style computational output, errors, warnings, and messages in HTML documents.",
+      "author": "Andrew Heiss",
+      "repository": "https://github.com/andrewheiss/quarto-output-styling",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "oxford-transfer",
+      "description": "Unofficial Oxford Transfer of Status PDF format for DPhil students.",
+      "author": "Dianyi Yang",
+      "repository": "https://github.com/kv9898/oxford-transfer-quarto-template",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "panelize",
+      "description": "A Quarto Extension that formats code cells into a tabset panel, displaying static and interactive code cells side-by-side with code cell options.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/panelize",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "partials",
+      "description": "A shortcode to include partial content templates using the mustache templating syntax.",
+      "author": "Garrick Aden-Buie",
+      "repository": "https://github.com/gadenbuie/quarto-partials",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "passage-xref",
+      "description": "Cross-reference arbitrary inline text passages with automatic numbering, clickable links, and hover previews, complementing Quarto’s native cross-reference system.",
+      "author": "Yun Jiang",
+      "repository": "https://github.com/jiangyun-fun/quarto-passage-xref",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "plos",
+      "description": "Public Library of Science (PLOS)",
+      "author": "quarto-journals",
+      "repository": "https://github.com/quarto-journals/plos",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "pointer",
+      "description": "Switch the cursor to a ‘pointer’ style element.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/pointer",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "pointer-sync",
+      "description": "Synchronize the pointer between the speaker view and the slides window.",
+      "author": "Hiroshi Suzuki",
+      "repository": "https://github.com/herosi/pointer-sync",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "PrettyPDF",
+      "description": "Quarto extension to generate a PDF with (pretty) LaTeX styling.",
+      "author": "Nicola Rennie",
+      "repository": "https://github.com/nrennie/PrettyPDF",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "preview-colour",
+      "description": "A Quarto extension to add preview colour as a coloured symbol next to colour code in HTML, PDF, Typst, Docx, Reveal.js, Beamer, and PowerPoint.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-preview-colour",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "progresSVG",
+      "description": "You can now progressively reveal/hide SVG elements in reveal.js presentations; Build up complex diagrams step by step using layer labels as element identifiers.",
+      "author": "Rodrigo J. Gonçalves",
+      "repository": "https://github.com/rodrigo-j-goncalves/progressvg",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "projector",
+      "description": "Quarto extension to generate Polylux slides using Typst with Beamer-style syntax",
+      "author": "Christopher Kenny",
+      "repository": "https://github.com/christopherkenny/projector",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "proofread-comments",
+      "description": "This extension adds collaboration-friendly annotations to Quarto documents. You can insert margin notes anywhere, or highlight existing text and attach a note to it. Comments, todos, notes, or questions. Annotations render as styled margin callouts and flowing in-text marks in HTML, as todonotes margin notes + marker-pen highlights in PDF/LaTeX. They can be toggled globally and coloured per reviewer.",
+      "author": "Eric Bavu",
+      "repository": "https://github.com/zinc75/quarto-proofread-comments",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "pseudocode",
+      "description": "A Quarto filter extension to render pseudocode for html and pdf format.",
+      "author": "范叶亮 > Leo Van",
+      "repository": "https://github.com/leovan/quarto-pseudocode",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "pyodide",
+      "description": "Embed Pyodide in HTML documents to enable interactive Python code cells without the need for a Python server.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/pyodide",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "qcode",
+      "description": "Extension that adds an interactive Python IDE to your page with the ability to run code directly in the browser, as well as search documentation for Python functions and methods.",
+      "author": "Pavel Khoroshevich",
+      "repository": "https://github.com/skyfroger/qcode",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "qdraw",
+      "description": "Adds drawing and erasing functionality to slides.",
+      "author": "Abdullah Al Mahmud",
+      "repository": "https://github.com/mahmudstat/qdraw",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "qountdown",
+      "description": "Countdown progress bar for Quarto presentations.",
+      "author": "Paolo Bosetti",
+      "repository": "https://github.com/pbosetti/qountdown",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "qrcode",
+      "description": "Shortcode to embed QR codes using qrcodejs.",
+      "author": "jmbuhr",
+      "repository": "https://github.com/jmbuhr/quarto-qrcode",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "qreacto",
+      "description": "Run standalone React components in your project!",
+      "author": "clearmatics",
+      "repository": "https://github.com/clearmatics/qreacto",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "quartable",
+      "description": "Filter that adds column spans, row spans, midrules, partial clines, vertical lines and per-cell alignment overrides to Markdown pipe tables. Targets HTML, Reveal.js and PDF/LaTeX from a single source. Heavily inspired by the LaTeX booktabs package.",
+      "author": "Eric Bavu",
+      "repository": "https://github.com/zinc75/quarto-quartable",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "quarto-foldcode",
+      "description": "Quarto Extension for folding non-executed code blocks.",
+      "author": "Beck Chan",
+      "repository": "https://github.com/beck-chan/quarto-foldcode",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "quarto-iframe",
+      "description": "Quarto Extension for embedding iframes.",
+      "author": "Beck Chan",
+      "repository": "https://github.com/beck-chan/quarto-iframe",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "quarto-letter",
+      "description": "A Quarto extension for generating PDF letters using Typst or LaTeX",
+      "author": "Jörg große Schlarmann",
+      "repository": "https://github.com/produnis/quarto-letter",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "quarto-live",
+      "description": "WebAssembly powered ‘live’ formats for Quarto HTML documents and Revealjs slides, adding interactive code blocks and exercises for R and Python.",
+      "author": "George Stagg",
+      "repository": "https://github.com/r-wasm/quarto-live",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "quarto-mobile-categories",
+      "description": "Quarto Extension for mobile-friendly listing category filters.",
+      "author": "Beck Chan",
+      "repository": "https://github.com/beck-chan/quarto-mobile-categories",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "quarto-preprint",
+      "description": "A clean & opinionated Typst (PDF) format with improved support for Typst functionality beyond Quarto’s standard template.",
+      "author": "Matti Vuorre",
+      "repository": "https://github.com/mvuorre/quarto-preprint",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "QuartoCards",
+      "description": "Generate cards for displaying URLs in your Quarto presentations.",
+      "author": "multimeric",
+      "repository": "https://github.com/WEHI-ResearchComputing/QuartoCards",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "quiz",
+      "description": "Adds multiple choice quiz questions to slides.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-quiz",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "quizdown",
+      "description": "Add an interactive quiz into your HTML document.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-quizdown",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "readable-resume",
+      "description": "One-page resume via Typst: serif type, centered section headings, and a plain single-column layout meant for applicant tracking systems.",
+      "author": "Super Lede",
+      "repository": "https://github.com/supertj/quarto-readable-resume",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "recursive-citeproc",
+      "description": "Handle self-citing bibliographies.",
+      "author": "Dialoa/Julien Dutant",
+      "repository": "https://github.com/dialoa/recursive-citeproc",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "regurgitate",
+      "description": "Automatic Code Appendix containing all shown code with an option to include results or group by language.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/regurgitate",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "remember",
+      "description": "An extension for Quarto to save and restore navigation position across page visits for both HTML documents and Reveal.js presentations.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-remember",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "reveal-header",
+      "description": "Add header text and header logo in all pages of RevealJs slide",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/reveal-header",
+      "categories": [
+        "shortcodes-filters",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "ripper",
+      "description": "Extract Quarto document code blocks into separate executable scripts on render.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/ripper",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "rladies-revealjs",
+      "description": "R-Ladies format for Revealjs",
+      "author": "beatrizmilz",
+      "repository": "https://github.com/beatrizmilz/quarto-rladies-theme",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "rlille-revealjs",
+      "description": "R Lille (R User Group) format for Revealjs",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/RLille/quarto-revealjs-rlille",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "roughnotation",
+      "description": "Uses the Rough Notation library to add animated annotations to presentations.",
+      "author": "EmilHvitfeldt",
+      "repository": "https://github.com/EmilHvitfeldt/quarto-roughnotation",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "scheduled-docs",
+      "description": "Publish blog posts or web pages on a schedule.",
+      "author": "Andrew Bray",
+      "repository": "https://github.com/qmd-lab/scheduled-docs",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "scientific-writing",
+      "description": "Turn a rendered HTML manuscript into an in-browser writing reviewer: linguistic diagnostics (long sentences, passive voice, hedging, nominalizations, connectors), NLP-based analysis, readability scores, a 70+ metric panel, and scholarly-structure audits of citations, DOIs, figure/table cross-references, and numeric evidence (parameterized vs. hard-coded values).",
+      "author": "Lucas S.B. Jordão",
+      "repository": "https://github.com/lsbjordao/quarto-scientific-writing",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "search-replace",
+      "description": "Automatically search and replace strings in quarto documents upon rendering",
+      "author": "Ute Hahn",
+      "repository": "https://github.com/ute/search-replace",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "section-biblios",
+      "description": "Filter that generates a bibliography for each top-level section / chapter.",
+      "author": "pandoc-ext",
+      "repository": "https://github.com/pandoc-ext/section-bibliographies",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "share-post",
+      "description": "Embed social media posts in documents and pages.",
+      "author": "dragonstyle",
+      "repository": "https://github.com/dragonstyle/share-post",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "shifu-academic-quarto",
+      "description": "An opinionated Typst (PDF) academic manuscript template.",
+      "author": "Cormac Monaghan",
+      "repository": "https://github.com/C-Monaghan/shifu-academic-quarto",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "shinylive",
+      "description": "This extension lets you embed Shinylive applications in a Quarto document.",
+      "author": "quarto-ext",
+      "repository": "https://github.com/quarto-ext/shinylive",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "shortiquiz",
+      "description": "Add interactive quiz questions to Quarto HTML documents: multiple-choice, text input, Parsons problems, flashcards, image hotspots, and more.",
+      "author": "Pavel Khoroshevich",
+      "repository": "https://github.com/skyfroger/shortiquiz",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "si",
+      "description": "This extension creates a shortcode si for easy type setting SI values and units. It should be agnostic of output formats.",
+      "author": "Georg Ramer",
+      "repository": "https://github.com/GeorgRamer/si",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "simple-vars",
+      "description": "An extension lets you replace ?var:name shortcode calls with simpler {name} one",
+      "author": "Nessan Fitzmaurice",
+      "repository": "https://github.com/nessan/simple-vars",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "simpleicons",
+      "description": "Use Simple Icons in HTML documents.",
+      "author": "Paolo Bosetti",
+      "repository": "https://github.com/pbosetti/simpleicons",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "simplemenu",
+      "description": "A simple extension for a menubar or a header or footer with an auto-generatedmenu.",
+      "author": "martino",
+      "repository": "https://github.com/martinomagnifico/quarto-simplemenu",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "sketchy-html",
+      "description": "Sketchy HTML document using Rough Notation",
+      "author": "schochastics",
+      "repository": "https://github.com/schochastics/quarto-sketchy-html",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "slideover",
+      "description": "Add collapsible content overlays that slide over your existing slides from the bottom, top, left, or right.",
+      "author": "Nik Richers",
+      "repository": "https://github.com/nrichers/slideover",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "social-embeds",
+      "description": "Embed content from across the web into HTML documents using a shortcode.",
+      "author": "sellorm",
+      "repository": "https://github.com/sellorm/quarto-social-embeds",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "social-share",
+      "description": "Add buttons to share articles on various social media platforms.",
+      "author": "schochastics",
+      "repository": "https://github.com/schochastics/quarto-social-share",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "sorting-hat",
+      "description": "Conditionally include rendered code blocks in a Quarto document’s output.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/sorting-hat",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "speakernotes",
+      "description": "Easily handle your speaker notes when exporting your presentation to other formats (mainly HTML, PDF, ODT and DOCX) to produce a handout.",
+      "author": "Pierre-Amiel Giraud",
+      "repository": "https://github.com/pagiraud/speakernotes",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "speech",
+      "description": "Adds speech recognition for you to navigate slides.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-speech",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "sportrxiv",
+      "description": "Manuscripts for the SportRxiv preprint server.",
+      "author": "smnnlt",
+      "repository": "https://github.com/smnnlt/sportrxiv",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "spotlight",
+      "description": "A Quarto extension for Reveal.js allowing to highlight the current mouse position with a spotlight.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-spotlight",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "stamp",
+      "description": "Quarto Extension for Embedding Render Information about the Document",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/stamp",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "stanford",
+      "description": "Unofficial Stanford University Themes for HTML, Revealjs, and Beamer",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/stanford",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "static-photo-gallery",
+      "description": "Build photo galleries from static images through PhotoSwipe",
+      "author": "Andrew Heiss",
+      "repository": "https://github.com/andrewheiss/quarto-static-photo-gallery",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "stepbystep",
+      "description": "Organize step-by-step tasks, track learner progress with checkboxes, and create interactive image highlighting with hotspots and tooltips.",
+      "author": "Pavel Khoroshevich",
+      "repository": "https://github.com/skyfroger/stepbystep",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "storybook-revealjs",
+      "description": "Medieval inspired format for Revealjs",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-storybook",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "study-flow",
+      "description": "Render CONSORT, STROBE, PRISMA 2020, TRIPOD+AI, and STARD participant-flow diagrams from structured YAML in the document frontmatter. Inline SVG for HTML, native TikZ for LaTeX/PDF; no external dependencies.",
+      "author": "Tiago Jacinto",
+      "repository": "https://github.com/tiagojct/quarto-study-flow",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "style-speaker-note",
+      "description": "Filter that allows to style the Speaker Notes of the RevealJs slides from a CSS file.",
+      "author": "Shafayet Khan Shafee",
+      "repository": "https://github.com/shafayetShafee/style-speaker-note",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "style-text",
+      "description": "A Quarto filter to render style text for html and pdf document.",
+      "author": "范叶亮 > Leo Van",
+      "repository": "https://github.com/leovan/quarto-style-text",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "subtitles",
+      "description": "Adds live captions for spoken words to slides.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-subtitles",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "support-this",
+      "description": "Include links to crowdfunding platforms like GitHub Sponsors, Patreon, Buy Me a Coffee, and others to support content creators.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/support-this",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "svgbob",
+      "description": "Render svgbob diagrams in quarto documents.",
+      "author": "kdheepak",
+      "repository": "https://github.com/kdheepak/quarto-svgbob",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "tabby",
+      "description": "Quarto Extension for Automatic Language Tabs",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/tabby",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "table-cell-merge",
+      "description": "Enable colspan and rowspan in Markdown tables.",
+      "author": "Hiroshi Suzuki",
+      "repository": "https://github.com/herosi/table-cell-merge",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "tabset",
+      "description": "A Reveal.js plugin enabling proper tabset navigation with fragment-based transitions and PDF export support for Quarto presentations.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-revealjs-tabset",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "tachyons",
+      "description": "Include Tachyons (utility CSS classes) in Quarto websites and slides.",
+      "author": "Garrick Aden-Buie",
+      "repository": "https://github.com/gadenbuie/quarto-tachyons",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "tandf",
+      "description": "Taylor and Francis style.",
+      "author": "mikemahoney218",
+      "repository": "https://github.com/mikemahoney218/quarto-tandf",
+      "categories": [
+        "journal-articles"
+      ]
+    },
+    {
+      "name": "TeXnative",
+      "description": "Elegant business PDF’s with dark/light themes, custom branding, and advanced table styling.",
+      "author": "Pim Snel",
+      "repository": "https://github.com/wearetechnative/TeXnative",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "tikz",
+      "description": "A filter that renders PGF/TikZ diagrams in HTML as SVG.",
+      "author": "danmackinlay",
+      "repository": "https://github.com/danmackinlay/quarto_tikz",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "titlepage-pdf",
+      "description": "PDF format with custom title page or book cover.",
+      "author": "nmfs-opensci",
+      "repository": "https://github.com/nmfs-opensci/quarto_titlepages",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "toc-depth",
+      "description": "A Quarto filter providing fine-grained control over table of contents depth at the header level using a toc-depth attribute.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-toc-depth",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "toggle",
+      "description": "Toggle Code Output in Quarto HTML Documents",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless-quarto/toggle",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "touying-typst",
+      "description": "Quarto extension for building slides with Touying, the Beamer-like presentation framework for Typst",
+      "author": "Kazuharu Yanagimoto",
+      "repository": "https://github.com/kazuyanagimoto/quarto-touying-typst",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "tts",
+      "description": "Adds text to speech for slides.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-tts",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "Tufte-Inspired",
+      "description": "Manuscript template inspired by the style of the books from Edward R. Tufte",
+      "author": "Fred Guth",
+      "repository": "https://github.com/fredguth/tufte-inspired",
+      "categories": [
+        "custom-formats"
+      ]
+    },
+    {
+      "name": "typst-equations",
+      "description": "Write equations in quarto math blocks using Typst Math syntax. Works for both Typst-PDF (raw) and HTML (via cached SVG rendering) output formats.",
+      "author": "Johann-Friedrich Salzmann",
+      "repository": "https://github.com/jfsalzmann/quarto-typst-equations",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "typst-function",
+      "description": "Output divs and spans as Typst functions.",
+      "author": "Christopher T. Kenny",
+      "repository": "https://github.com/christopherkenny/typst-function",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "typst-math",
+      "description": "Changes math block syntax from LaTeX to Typst math.",
+      "author": "Sverrir Arnórsson",
+      "repository": "https://github.com/sverrirarnors/typst-math",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "typst-render",
+      "description": "A Quarto filter that compiles Typst code blocks to images (PNG, SVG, or PDF) using the bundled Typst binary, making Typst usable across all output formats.",
+      "author": "Mickaël CANOUIL",
+      "repository": "https://github.com/mcanouil/quarto-typst-render",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "uaz-revealjs",
+      "description": "University of Arizona inspired theme for revealjs",
+      "author": "CCT Data Science Team",
+      "repository": "https://github.com/cct-datascience/uaz-revealjs",
+      "categories": [
+        "custom-formats",
+        "revealjs"
+      ]
+    },
+    {
+      "name": "unsplash",
+      "description": "Shortcode to use Unsplash images within documents.",
+      "author": "dragonstyle",
+      "repository": "https://github.com/dragonstyle/unsplash",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "verticator",
+      "description": "A plugin that adds indicators to show the amount of slides in a vertical stack.",
+      "author": "martino",
+      "repository": "https://github.com/martinomagnifico/quarto-verticator",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "watermark",
+      "description": "A Quarto filter to add watermark for html and pdf format output.",
+      "author": "范叶亮 > Leo Van",
+      "repository": "https://github.com/leovan/quarto-watermark",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "webcam",
+      "description": "Adds live webcam video feed to slides.",
+      "author": "Sam Parmar",
+      "repository": "https://github.com/parmsam/quarto-webcam",
+      "categories": [
+        "revealjs"
+      ]
+    },
+    {
+      "name": "webr",
+      "description": "Embed WebR in HTML documents to enable interactive R code cells without the need for an R server.",
+      "author": "James Joseph Balamuta",
+      "repository": "https://github.com/coatless/quarto-webr",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "wordcount",
+      "description": "Quarto extension for calculating accurate word counts",
+      "author": "Andrew Heiss",
+      "repository": "https://github.com/andrewheiss/quarto-wordcount",
+      "categories": [
+        "shortcodes-filters"
+      ]
+    },
+    {
+      "name": "Zoomit-ish",
+      "description": "Annotate your presentation by drawing shapes and adding text — inspired by ZoomIt, with Speaker View synchronization.",
+      "author": "Hiroshi Suzuki",
+      "repository": "https://github.com/herosi/Zoomit-ish",
+      "categories": [
+        "revealjs"
+      ]
+    }
+  ]
+}

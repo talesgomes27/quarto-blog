@@ -6,6 +6,17 @@ date-modified: "2026-10-26"
 categories: [visualização de dados, R, análise de dados]
 image: "bellabeat.jpg"
 image-alt: "Pessoas participando de uma atividade física em grupo."
+filters:
+  - remember
+  - cite-this
+extensions:
+  cite-this:
+    position: inline
+    scope: page
+    styles: [abnt, apa]
+    default-style: abnt
+    page:
+      url: https://talesgomes27.github.io/quarto-blog/posts/bellabeat/index.html
 engine: markdown
 freeze: false
 lang: pt-BR
@@ -152,3 +163,5 @@ python3 tests/test_localize.py _site
 ```
 
 A renderização do site usa os resultados gerados pelo script, sem baixar dados ou reexecutar a análise automaticamente. Os dados individuais não foram acrescentados aos arquivos publicados da revisão.
+
+{{< cite-this page collapsed=true >}}
