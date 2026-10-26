@@ -126,12 +126,14 @@ def localize(document, page):
         title = html.unescape(re.sub(r'<[^>]+>', '', heading[1])).strip() if heading else 'Tales Gomes'
         url = f'{SITE_URL}/{page}'
         linkedin = 'https://www.linkedin.com/shareArticle?' + urlencode({'url': url, 'title': title})
+        x_share = 'https://x.com/intent/tweet?' + urlencode({'url': url, 'text': title})
         email = 'mailto:?' + urlencode({'subject': title, 'body': url})
         label = 'Share this study' if english else 'Compartilhar este estudo'
         mail_label = 'Email' if english else 'E-mail'
         block = ('\n<!-- post-share -->\n<section class="post-share" aria-labelledby="post-share-title">'
                  f'<h2 id="post-share-title">{label}</h2><p>'
                  f'<a class="btn btn-outline-primary" href="{html.escape(linkedin, quote=True)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a>'
+                 f'<a class="btn btn-outline-primary" href="{html.escape(x_share, quote=True)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x" aria-hidden="true"></i>X</a>'
                  f'<a class="btn btn-outline-primary" href="{html.escape(email, quote=True)}"><i class="bi bi-envelope" aria-hidden="true"></i>{mail_label}</a>'
                  '</p></section>\n<!-- /post-share -->\n')
         document = document.replace('</main>', block + '</main>', 1)

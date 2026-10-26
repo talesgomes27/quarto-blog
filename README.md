@@ -40,7 +40,7 @@ Se o domínio mudar, atualize `website.site-url` em `_quarto.yml` e `SITE_URL` e
 
 O [mapa local](docs/quarto-extensions/README.md) reúne a avaliação para este blog e um catálogo pesquisável das quatro listagens oficiais. Consulte-o antes de buscar novamente na web. `remember` permite retomar a leitura dos quatro artigos; `link-previews` oferece prévias de links internos no portal; `cite-this` acrescenta citação ABNT/APA e download BibTeX aos estudos. Versões, origens, adaptações PT/EN e validação estão registradas no guia.
 
-RSS usa o recurso nativo do Quarto, com feeds separados em `textos.xml` e `en/textos.xml`. Compartilhamento por LinkedIn/e-mail usa links HTML gerados por `scripts/localize.py`, com o endereço da tradução aberta. Os recursos nativos continuam sendo a primeira escolha quando atenderem ao post.
+RSS usa o recurso nativo do Quarto, com feeds separados em `textos.xml` e `en/textos.xml`. Compartilhamento por LinkedIn, X e e-mail usa links HTML gerados por `scripts/localize.py`, com o endereço da tradução aberta. Os recursos nativos continuam sendo a primeira escolha quando atenderem ao post.
 
 ```bash
 python3 tests/test_quarto_extensions.py

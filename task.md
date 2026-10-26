@@ -70,3 +70,8 @@ Pedido: conferir comentários nos dois idiomas e adaptar Textos ao tema publicad
 - Atualização executada pelo pós-render existente e cópia do CSS, sem reexecutar análises. Cinco verificações Python passaram. Navegador local: PT desktop claro e EN em viewport de 375px escuro, ícones renderizados e sem transbordamento. Envios reais não testados.
 - Commit e push seguem a autorização anterior, com o workflow Pages e a recuperação já documentados.
 - Publicado no commit `e1e75540334b7649bffdb43828d0e771d9e49184`; workflow [40338132076](https://github.com/talesgomes27/quarto-blog/actions/runs/40338132076) concluído com sucesso. Os quatro artigos, CSS e fonte de ícones responderam HTTP 200 e corresponderam ao artefato local. Ícones e rótulos também conferidos no Bellabeat PT público. Evidência em `docs/share-icons-smoke-2026-10-26.json`.
+
+## Continuação — compartilhar no X
+
+- Pedido: acrescentar o X ao compartilhamento. Botão com ícone Bootstrap já disponível e rótulo X nos quatro estudos PT/EN, abrindo o Web Intent em outra aba com título e endereço da tradução aberta. Nenhum script remoto ou nova extensão.
+- Verificação: cinco testes Python passaram, incluindo caracteres especiais no título, URL por idioma, atributos de segurança e pós-render idempotente. Código e resultados dos estudos preservados; nenhum post enviado ao X.

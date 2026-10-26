@@ -48,6 +48,9 @@ def check():
             assert text.count('<!-- post-share -->') == 1
             sharing = next(link for link in links if link.get('href', '').startswith('https://www.linkedin.com/shareArticle?'))
             assert parse_qs(urlsplit(sharing['href']).query)['url'] == [url]
+            x_share = next(link for link in links if link.get('href', '').startswith('https://x.com/intent/tweet?'))
+            assert parse_qs(urlsplit(x_share['href']).query)['url'] == [url]
+            assert 'bi bi-twitter-x' in text and x_share['rel'] == 'noopener noreferrer'
             mail = next(link for link in links if link.get('href', '').startswith('mailto:?subject='))
             assert parse_qs(urlsplit(mail['href']).query)['body'] == [url]
             assert r'\url{' + url + '}' in text, page

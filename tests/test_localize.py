@@ -94,6 +94,9 @@ def test_localization():
     assert query['title'] == [title]
     assert query['url'] == [localize.SITE_URL + '/posts/bellabeat/en.html']
     assert sharing['rel'] == 'noopener noreferrer'
+    x_share = next(link for link in links if link.get('href', '').startswith('https://x.com/intent/tweet?'))
+    assert parse_qs(urlsplit(x_share['href']).query) == {'url': [localize.SITE_URL + '/posts/bellabeat/en.html'], 'text': [title]}
+    assert x_share['rel'] == 'noopener noreferrer'
     assert result.count('<!-- post-share -->') == 1
     assert localize.localize(result, 'posts/bellabeat/en.html') == result
 
