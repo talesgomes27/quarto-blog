@@ -26,4 +26,8 @@ Preservar histórico e reverter o commit de publicação, renderizar e enviar um
 
 ## Estado
 
-Preparado para commit e push; execução remota e smoke tests públicos pendentes.
+Concluído: commit de conteúdo `a07517f6097e3d05ffc3fb25f50a16fd9a617ea9` enviado para `main`. Workflow [40274283622](https://github.com/talesgomes27/quarto-blog/actions/runs/40274283622) terminou com sucesso.
+
+Smoke público: 16 páginas e recursos responderam HTTP 200 com conteúdo byte a byte idêntico ao `_site/` validado, incluindo as dez páginas PT/EN principais, foto corrigida, CSS, fonte, imagem de projeto e gráficos dos dois estudos. Evidência em `docs/pages-smoke-2026-10-26.json`. Página Sobre também conferida visualmente no endereço público.
+
+LinkedIn permanece sem confirmação automatizada (HTTP 999). Não foi testado envio de comentários Giscus. Esta atualização documental não altera o artefato publicado.

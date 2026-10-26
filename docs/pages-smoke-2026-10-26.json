@@ -1,0 +1,103 @@
+{
+  "base_url": "https://talesgomes27.github.io/quarto-blog/",
+  "commit": "a07517f6097e3d05ffc3fb25f50a16fd9a617ea9",
+  "run_id": 40274283622,
+  "results": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "2e252db64952c8d443f38b724295b0f04bdc120377d54605b38fe406c3a2aa86",
+      "matches_local": true
+    },
+    {
+      "path": "about.html",
+      "status": 200,
+      "sha256": "d82f56ac703bd26d5b566ddfd26e8bd55193272825e1d61a2f69ad22745d72f2",
+      "matches_local": true
+    },
+    {
+      "path": "en/index.html",
+      "status": 200,
+      "sha256": "caab50e39963ad9e7513d21760fe73af28d4b72556d57220863d9199aed67dc2",
+      "matches_local": true
+    },
+    {
+      "path": "en/about.html",
+      "status": 200,
+      "sha256": "26db9def1484435344486cc699140683373ca55ff8cfa0ca8bcd7977352be3cf",
+      "matches_local": true
+    },
+    {
+      "path": "textos.html",
+      "status": 200,
+      "sha256": "eb3d678ab2dea6ba71bbba301573d2d2e31ef6c10296786f7c6d51a125bdf35e",
+      "matches_local": true
+    },
+    {
+      "path": "en/textos.html",
+      "status": 200,
+      "sha256": "a0d3dc536fca0c6fa63ce6c57f1077ee6d887721a3e49cbe724d78859db757c1",
+      "matches_local": true
+    },
+    {
+      "path": "posts/bellabeat/index.html",
+      "status": 200,
+      "sha256": "a920e94316f246e0589d646e5f22fe917ae6293309a83de3c818e3205d06e050",
+      "matches_local": true
+    },
+    {
+      "path": "posts/bellabeat/en.html",
+      "status": 200,
+      "sha256": "4b102fbe62136c69c83a752daa8e1e4d19bfb9c6c81757f198c0a8f55ad0b2a4",
+      "matches_local": true
+    },
+    {
+      "path": "posts/bike-share-navigate/index.html",
+      "status": 200,
+      "sha256": "10345d668f1cbc9d7a9d19821461a1bf089b514dfb8ec28cdac13676a2f2f43f",
+      "matches_local": true
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.html",
+      "status": 200,
+      "sha256": "bf3b41b2a7111124e845819583e9f056c415627b599c1a150e678fa976cbccb7",
+      "matches_local": true
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "sha256": "5cf9157a98277832fb297b4599ea264075aa67d2a9c69309e826e8e2a5bb678c",
+      "matches_local": true
+    },
+    {
+      "path": "assets/profile/tales-gomes-clean.png",
+      "status": 200,
+      "sha256": "fdcd822982f1744e2ac8369133e3d4abe755c1102dc44c74b5919475f2cbb01e",
+      "matches_local": true
+    },
+    {
+      "path": "assets/fonts/mukta-malar-regular.ttf",
+      "status": 200,
+      "sha256": "51904041260855ef4ba2bf845c9bc6511ea330157b704a44c85b029195d32a73",
+      "matches_local": true
+    },
+    {
+      "path": "assets/plates/bike-photo.webp",
+      "status": 200,
+      "sha256": "3116cde5f1548f15a8b3cbf8c2b321b776c388fe3c7a5e7ee27a2e91df8d7870",
+      "matches_local": true
+    },
+    {
+      "path": "posts/bellabeat/revision-2026-10-26/weekday-pt.png",
+      "status": 200,
+      "sha256": "dc86eee8a97590fffb889c63afc5562854bcfe1da86780c5032d592a166f01c1",
+      "matches_local": true
+    },
+    {
+      "path": "posts/bike-share-navigate/revision-2026-10-26/monthly-trips-en.png",
+      "status": 200,
+      "sha256": "4a1020eaac20408991c4fbdc5017b17cdf9c453b23a12693f439b50e8f56c8b8",
+      "matches_local": true
+    }
+  ]
+}

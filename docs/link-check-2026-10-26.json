@@ -166,5 +166,12 @@
     "current_pdf": "https://www.fitabase.com/media/2197/fitabase-fitbit-data-dictionary-as-of-09022026.pdf",
     "verified_by": "web fetch official landing page and linked PDF; no file changes applied",
     "note": "Current dictionary revised 2026; assess suitability for historical 2016 data before citing a specific version."
+  },
+  "remediation": {
+    "broken_url": "https://www.fitabase.com/media/1748/fitabasedatadictionary.pdf",
+    "replacement": "https://www.fitabase.com/resources/knowledge-base/exporting-data/data-dictionaries/",
+    "replacement_confirmed": "Official page available; applied to Bellabeat PT and EN and verified in published HTML.",
+    "site_url": "Updated canonical site to https://talesgomes27.github.io/quarto-blog/; public smoke report records deployment availability.",
+    "unverified": "LinkedIn HTTP 999 blocks automated check."
   }
 }
