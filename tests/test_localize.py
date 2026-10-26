@@ -70,6 +70,10 @@ def test_localization():
             for label in (("Projects", "Writing", "About", "Contact") if index else ("Projetos", "Textos", "Sobre", "Contato")):
                 assert f'>{label}</span>' in result
             assert ("Made with Quarto. By Tales Gomes." in result) == bool(index)
+    styled = source.replace("</head>", '<link rel="stylesheet" href="../styles.css?old=1"></head>')
+    styled_result = localize.localize(styled, "en/index.html")
+    assert f'href="../styles.css?v={localize.STYLE_VERSION}"' in styled_result
+    assert localize.localize(styled_result, "en/index.html") == styled_result
     assert localize.localize(source, "posts/netflix-amazon-comparison/index.html") == source
     fallback = localize.localize(source, "other/page.html")
     assert 'hreflang="en"' in fallback and 'href="../en/index.html"' in fallback
@@ -133,6 +137,7 @@ def validate_site(root):
         document = (root / page).read_text()
         assert 'class="quarto-color-scheme-toggle' in document, page
         assert 'data-mode="dark"' in document and 'data-mode="light"' in document, page
+        assert f'styles.css?v={localize.STYLE_VERSION}' in document, page
     assert (root / "site_libs/quarto-listing/quarto-listing.js").read_bytes() == (Path(localize.__file__).parent / "vendor/quarto-listing.js").read_bytes()
     for pair in localize.PAIRS[-2:]:
         for page, locale in zip(pair, ("pt", "en")):

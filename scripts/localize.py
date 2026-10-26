@@ -1,6 +1,7 @@
 """Localize Quarto navigation after rendering, with usable links without JavaScript."""
 
 import html
+import hashlib
 import os
 import posixpath
 import re
@@ -8,6 +9,7 @@ import shutil
 from pathlib import Path
 
 
+STYLE_VERSION = hashlib.sha256((Path(__file__).resolve().parents[1] / "styles.css").read_bytes()).hexdigest()[:12]
 SITE_URL = "https://talesgomes27.github.io/quarto-blog"
 PAIRS = (
     ("index.html", "en/index.html"),
@@ -90,6 +92,15 @@ def localize(document, page):
         tag = set_attribute(tag, "class", " ".join(classes))
         return tag + body + "</a>"
 
+    # A new theme must not be combined with an older cached custom stylesheet.
+    def stylesheet(match):
+        tag = match[0]
+        path = attribute(tag, "href").partition("?")[0]
+        if path.rsplit("/", 1)[-1] == "styles.css":
+            return set_attribute(tag, "href", f"{path}?v={STYLE_VERSION}")
+        return tag
+
+    document = re.sub(r"<link\b[^>]*>", stylesheet, document)
     document = HEADER.sub(lambda match: ANCHOR.sub(anchor, match[0]), document, count=1)
     document = re.sub(r"<html\b[^>]*>", lambda match: set_attribute(match[0], "lang", "en" if english else "pt-BR"), document, count=1)
     document = re.sub(
