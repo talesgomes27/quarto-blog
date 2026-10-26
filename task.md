@@ -63,3 +63,9 @@ Pedido: conferir comentários nos dois idiomas e adaptar Textos ao tema publicad
 - Publicação concluída: commit `3c769511dceef66221d06511b0dda7b578c3d90f` enviado para `main`; workflow [40336453500](https://github.com/talesgomes27/quarto-blog/actions/runs/40336453500) terminou com sucesso. Smoke público: 24 páginas/recursos HTTP 200 e idênticos byte a byte ao artefato validado, incluindo os dois feeds e os assets das extensões. Registro em `docs/extensions-smoke-2026-10-26.json`.
 - Navegador público: prévia da home PT carregou título e descrição corretos; painel de citação do Bike Share PT abriu recolhível, com somente ABNT/APA e URL completa da tradução. Nenhum compartilhamento ou comentário enviado. Os demais testes interativos permanecem os locais documentados no guia.
 - Recuperação segue o mecanismo existente: novo commit de reversão da alteração identificada, com render e publicação, sem reescrever histórico; executar recuperação somente se autorizada.
+
+## Continuação — ícones de compartilhamento
+
+- Esclarecido que `social-share` não foi instalada: a funcionalidade usa links HTML locais. Adicionados os ícones Bootstrap de LinkedIn e envelope aos botões dos quatro estudos, mantendo rótulos PT/EN e URLs. Ícones decorativos usam `aria-hidden`; botões mantêm 44px.
+- Atualização executada pelo pós-render existente e cópia do CSS, sem reexecutar análises. Cinco verificações Python passaram. Navegador local: PT desktop claro e EN em viewport de 375px escuro, ícones renderizados e sem transbordamento. Envios reais não testados.
+- Commit e push seguem a autorização anterior, com o workflow Pages e a recuperação já documentados.

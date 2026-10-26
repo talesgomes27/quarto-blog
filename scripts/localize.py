@@ -131,8 +131,8 @@ def localize(document, page):
         mail_label = 'Email' if english else 'E-mail'
         block = ('\n<!-- post-share -->\n<section class="post-share" aria-labelledby="post-share-title">'
                  f'<h2 id="post-share-title">{label}</h2><p>'
-                 f'<a class="btn btn-outline-primary" href="{html.escape(linkedin, quote=True)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>'
-                 f'<a class="btn btn-outline-primary" href="{html.escape(email, quote=True)}">{mail_label}</a>'
+                 f'<a class="btn btn-outline-primary" href="{html.escape(linkedin, quote=True)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a>'
+                 f'<a class="btn btn-outline-primary" href="{html.escape(email, quote=True)}"><i class="bi bi-envelope" aria-hidden="true"></i>{mail_label}</a>'
                  '</p></section>\n<!-- /post-share -->\n')
         document = document.replace('</main>', block + '</main>', 1)
     if page in ("textos.html", "en/textos.html"):
