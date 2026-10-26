@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tales Gomes">
-<meta name="description" content="Reconciliação do estudo histórico de viagens Cyclistic: resultados arquivados, diferenças entre grupos e limites das recomendações.">
+<meta name="description" content="Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens.">
 
-<title>Bike-share: padrões de uso de bicicletas compartilhadas – Tales Gomes</title>
+<title>Cyclistic Bike-Share: análise de padrões e conversão de usuários – Tales Gomes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -84,13 +119,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css?v=ca039948466a">
-<meta property="og:title" content="Bike-share: padrões de uso de bicicletas compartilhadas – Tales Gomes">
-<meta property="og:description" content="Reconciliação do estudo histórico de viagens Cyclistic: resultados arquivados, diferenças entre grupos e limites das recomendações.">
+<meta property="og:title" content="Cyclistic Bike-Share: análise de padrões e conversão de usuários – Tales Gomes">
+<meta property="og:description" content="Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens.">
 <meta property="og:image" content="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/bike-share.jpg">
 <meta property="og:site_name" content="Tales Gomes">
 <meta property="og:image:alt" content="Bicicletas compartilhadas estacionadas em uma estação.">
-<meta name="twitter:title" content="Bike-share: padrões de uso de bicicletas compartilhadas – Tales Gomes">
-<meta name="twitter:description" content="Reconciliação do estudo histórico de viagens Cyclistic: resultados arquivados, diferenças entre grupos e limites das recomendações.">
+<meta name="twitter:title" content="Cyclistic Bike-Share: análise de padrões e conversão de usuários – Tales Gomes">
+<meta name="twitter:description" content="Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens.">
 <meta name="twitter:image" content="https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/bike-share.jpg">
 <meta name="twitter:image:alt" content="Bicicletas compartilhadas estacionadas em uma estação.">
 <meta name="twitter:card" content="summary_large_image">
@@ -318,21 +353,54 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Neste estudo</h2>
+    <h2 id="toc-title">Fases do projeto</h2>
    
   <ul>
-  <li><a href="#pergunta-e-contexto" id="toc-pergunta-e-contexto" class="nav-link active" data-scroll-target="#pergunta-e-contexto">Pergunta e contexto</a></li>
-  <li><a href="#dados-e-processamento-histórico" id="toc-dados-e-processamento-histórico" class="nav-link" data-scroll-target="#dados-e-processamento-histórico">Dados e processamento histórico</a></li>
-  <li><a href="#categorias-de-viagem-e-tipos-de-bicicleta" id="toc-categorias-de-viagem-e-tipos-de-bicicleta" class="nav-link" data-scroll-target="#categorias-de-viagem-e-tipos-de-bicicleta">Categorias de viagem e tipos de bicicleta</a></li>
-  <li><a href="#duração-média-mediana-e-extremos" id="toc-duração-média-mediana-e-extremos" class="nav-link" data-scroll-target="#duração-média-mediana-e-extremos">Duração: média, mediana e extremos</a></li>
-  <li><a href="#quando-as-viagens-ocorreram" id="toc-quando-as-viagens-ocorreram" class="nav-link" data-scroll-target="#quando-as-viagens-ocorreram">Quando as viagens ocorreram</a>
+  <li><a href="#ask-phase-definição-do-problema-e-hipóteses" id="toc-ask-phase-definição-do-problema-e-hipóteses" class="nav-link active" data-scroll-target="#ask-phase-definição-do-problema-e-hipóteses">1. Ask Phase (Definição do Problema e Hipóteses)</a>
   <ul class="collapse">
-  <li><a href="#meses-com-ano-explícito" id="toc-meses-com-ano-explícito" class="nav-link" data-scroll-target="#meses-com-ano-explícito">Meses com ano explícito</a></li>
-  <li><a href="#trimestres-civis-não-estações-meteorológicas" id="toc-trimestres-civis-não-estações-meteorológicas" class="nav-link" data-scroll-target="#trimestres-civis-não-estações-meteorológicas">Trimestres civis, não estações meteorológicas</a></li>
-  <li><a href="#dias-da-semana-e-horários" id="toc-dias-da-semana-e-horários" class="nav-link" data-scroll-target="#dias-da-semana-e-horários">Dias da semana e horários</a></li>
+  <li><a href="#declaração-da-tarefa-de-negócio-business-task" id="toc-declaração-da-tarefa-de-negócio-business-task" class="nav-link" data-scroll-target="#declaração-da-tarefa-de-negócio-business-task">1.1. Declaração da Tarefa de Negócio (<em>Business Task</em>)</a></li>
+  <li><a href="#mapeamento-de-stakeholders" id="toc-mapeamento-de-stakeholders" class="nav-link" data-scroll-target="#mapeamento-de-stakeholders">1.2. Mapeamento de Stakeholders</a></li>
+  <li><a href="#decomposição-em-hipóteses-estatísticas-formais" id="toc-decomposição-em-hipóteses-estatísticas-formais" class="nav-link" data-scroll-target="#decomposição-em-hipóteses-estatísticas-formais">1.3. Decomposição em Hipóteses Estatísticas Formais</a></li>
+  <li><a href="#enquadramento-financeiro-unit-economics" id="toc-enquadramento-financeiro-unit-economics" class="nav-link" data-scroll-target="#enquadramento-financeiro-unit-economics">1.4. Enquadramento Financeiro (<em>Unit Economics</em>)</a></li>
   </ul></li>
-  <li><a href="#conclusões-e-hipóteses-comerciais" id="toc-conclusões-e-hipóteses-comerciais" class="nav-link" data-scroll-target="#conclusões-e-hipóteses-comerciais">Conclusões e hipóteses comerciais</a></li>
-  <li><a href="#rastreabilidade-e-reprodução" id="toc-rastreabilidade-e-reprodução" class="nav-link" data-scroll-target="#rastreabilidade-e-reprodução">Rastreabilidade e reprodução</a></li>
+  <li><a href="#prepare-phase-origem-governança-roccc-e-metadados" id="toc-prepare-phase-origem-governança-roccc-e-metadados" class="nav-link" data-scroll-target="#prepare-phase-origem-governança-roccc-e-metadados">2. Prepare Phase (Origem, Governança ROCCC e Metadados)</a>
+  <ul class="collapse">
+  <li><a href="#origem-e-organização-dos-dados" id="toc-origem-e-organização-dos-dados" class="nav-link" data-scroll-target="#origem-e-organização-dos-dados">2.1. Origem e Organização dos Dados</a></li>
+  <li><a href="#avaliação-de-confiabilidade-pelo-framework-roccc" id="toc-avaliação-de-confiabilidade-pelo-framework-roccc" class="nav-link" data-scroll-target="#avaliação-de-confiabilidade-pelo-framework-roccc">2.2. Avaliação de Confiabilidade pelo Framework ROCCC</a></li>
+  <li><a href="#licenciamento-e-restrições-de-privacidade-pii" id="toc-licenciamento-e-restrições-de-privacidade-pii" class="nav-link" data-scroll-target="#licenciamento-e-restrições-de-privacidade-pii">2.3. Licenciamento e Restrições de Privacidade (PII)</a></li>
+  </ul></li>
+  <li><a href="#process-phase-engenharia-de-dados-e-integridade" id="toc-process-phase-engenharia-de-dados-e-integridade" class="nav-link" data-scroll-target="#process-phase-engenharia-de-dados-e-integridade">3. Process Phase (Engenharia de Dados e Integridade)</a>
+  <ul class="collapse">
+  <li><a href="#justificativa-tecnológica" id="toc-justificativa-tecnológica" class="nav-link" data-scroll-target="#justificativa-tecnológica">3.1. Justificativa Tecnológica</a></li>
+  <li><a href="#funil-de-integridade-e-qualidade-de-dados" id="toc-funil-de-integridade-e-qualidade-de-dados" class="nav-link" data-scroll-target="#funil-de-integridade-e-qualidade-de-dados">3.2. Funil de Integridade e Qualidade de Dados</a></li>
+  <li><a href="#engenharia-de-variáveis-derivadas" id="toc-engenharia-de-variáveis-derivadas" class="nav-link" data-scroll-target="#engenharia-de-variáveis-derivadas">3.3. Engenharia de Variáveis Derivadas</a></li>
+  </ul></li>
+  <li><a href="#analyze-phase-estatística-descritiva-inferência-e-modelagem" id="toc-analyze-phase-estatística-descritiva-inferência-e-modelagem" class="nav-link" data-scroll-target="#analyze-phase-estatística-descritiva-inferência-e-modelagem">4. Analyze Phase (Estatística Descritiva, Inferência e Modelagem)</a>
+  <ul class="collapse">
+  <li><a href="#estatística-descritiva-canônica" id="toc-estatística-descritiva-canônica" class="nav-link" data-scroll-target="#estatística-descritiva-canônica">4.1. Estatística Descritiva Canônica</a></li>
+  <li><a href="#inferência-estatística-e-tamanhos-de-efeito" id="toc-inferência-estatística-e-tamanhos-de-efeito" class="nav-link" data-scroll-target="#inferência-estatística-e-tamanhos-de-efeito">4.2. Inferência Estatística e Tamanhos de Efeito</a></li>
+  <li><a href="#regressão-logística-explicativa-modelo-de-propensão" id="toc-regressão-logística-explicativa-modelo-de-propensão" class="nav-link" data-scroll-target="#regressão-logística-explicativa-modelo-de-propensão">4.3. Regressão Logística Explicativa (Modelo de Propensão)</a></li>
+  <li><a href="#segmentação-quantitativa-dos-ciclistas-casuais" id="toc-segmentação-quantitativa-dos-ciclistas-casuais" class="nav-link" data-scroll-target="#segmentação-quantitativa-dos-ciclistas-casuais">4.4. Segmentação Quantitativa dos Ciclistas Casuais</a></li>
+  </ul></li>
+  <li><a href="#share-phase-storytelling-visual-e-descobertas" id="toc-share-phase-storytelling-visual-e-descobertas" class="nav-link" data-scroll-target="#share-phase-storytelling-visual-e-descobertas">5. Share Phase (Storytelling Visual e Descobertas)</a>
+  <ul class="collapse">
+  <li><a href="#dinâmica-horária-e-deslocamento-pendular" id="toc-dinâmica-horária-e-deslocamento-pendular" class="nav-link" data-scroll-target="#dinâmica-horária-e-deslocamento-pendular">5.1. Dinâmica Horária e Deslocamento Pendular</a></li>
+  <li><a href="#duração-mediana-ao-longo-do-dia" id="toc-duração-mediana-ao-longo-do-dia" class="nav-link" data-scroll-target="#duração-mediana-ao-longo-do-dia">5.2. Duração Mediana ao Longo do Dia</a></li>
+  <li><a href="#inversão-semanal-de-demanda" id="toc-inversão-semanal-de-demanda" class="nav-link" data-scroll-target="#inversão-semanal-de-demanda">5.3. Inversão Semanal de Demanda</a></li>
+  <li><a href="#sazonalidade-climática-de-chicago" id="toc-sazonalidade-climática-de-chicago" class="nav-link" data-scroll-target="#sazonalidade-climática-de-chicago">5.4. Sazonalidade Climática de Chicago</a></li>
+  <li><a href="#distribuição-de-densidade-da-duração" id="toc-distribuição-de-densidade-da-duração" class="nav-link" data-scroll-target="#distribuição-de-densidade-da-duração">5.5. Distribuição de Densidade da Duração</a></li>
+  <li><a href="#concentração-geográfica-e-rotas-circulares" id="toc-concentração-geográfica-e-rotas-circulares" class="nav-link" data-scroll-target="#concentração-geográfica-e-rotas-circulares">5.6. Concentração Geográfica e Rotas Circulares</a></li>
+  <li><a href="#forest-plot-da-regressão-logística" id="toc-forest-plot-da-regressão-logística" class="nav-link" data-scroll-target="#forest-plot-da-regressão-logística">5.7. Forest Plot da Regressão Logística</a></li>
+  <li><a href="#partição-das-personas-casuais" id="toc-partição-das-personas-casuais" class="nav-link" data-scroll-target="#partição-das-personas-casuais">5.8. Partição das Personas Casuais</a></li>
+  </ul></li>
+  <li><a href="#act-phase-recomendações-executivas-teste-ab-e-próximos-passos" id="toc-act-phase-recomendações-executivas-teste-ab-e-próximos-passos" class="nav-link" data-scroll-target="#act-phase-recomendações-executivas-teste-ab-e-próximos-passos">6. Act Phase (Recomendações Executivas, Teste A/B e Próximos Passos)</a>
+  <ul class="collapse">
+  <li><a href="#síntese-conclusiva" id="toc-síntese-conclusiva" class="nav-link" data-scroll-target="#síntese-conclusiva">6.1. Síntese Conclusiva</a></li>
+  <li><a href="#as-três-recomendações-estratégicas" id="toc-as-três-recomendações-estratégicas" class="nav-link" data-scroll-target="#as-três-recomendações-estratégicas">6.2. As Três Recomendações Estratégicas</a></li>
+  <li><a href="#desenho-experimental-do-teste-ab" id="toc-desenho-experimental-do-teste-ab" class="nav-link" data-scroll-target="#desenho-experimental-do-teste-ab">6.3. Desenho Experimental do Teste A/B</a></li>
+  <li><a href="#fontes-adicionais-de-dados-para-expansão-futura" id="toc-fontes-adicionais-de-dados-para-expansão-futura" class="nav-link" data-scroll-target="#fontes-adicionais-de-dados-para-expansão-futura">6.4. Fontes Adicionais de Dados para Expansão Futura</a></li>
+  </ul></li>
+  <li><a href="#fonte-e-histórico-de-versões" id="toc-fonte-e-histórico-de-versões" class="nav-link" data-scroll-target="#fonte-e-histórico-de-versões">Fonte e histórico de versões</a></li>
   </ul>
 </nav>
 </nav>
@@ -346,7 +414,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bike-share: padrões de uso de bicicletas compartilhadas</h1>
+<h1 class="title">Cyclistic Bike-Share: análise de padrões e conversão de usuários</h1>
   <div class="quarto-categories">
     <div class="quarto-category">visualização de dados</div>
     <div class="quarto-category">R</div>
@@ -356,7 +424,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Reconciliação do estudo histórico de viagens Cyclistic: resultados arquivados, diferenças entre grupos e limites das recomendações.
+    Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens.
   </div>
 </div>
 
@@ -373,7 +441,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">18 de setembro de 2021</p>
+      <p class="date">13 de outubro de 2026</p>
     </div>
   </div>
   
@@ -401,315 +469,757 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Revisão de <strong>26/10/2026</strong> do estudo publicado em 2021. A narrativa e os gráficos abaixo foram reconciliados com os agregados arquivados; os CSVs originais não foram reexecutados. A versão anterior, o código original e os hashes estão disponíveis na seção de rastreabilidade. Os valores históricos foram preservados, com correção de sua apresentação e interpretação.</p>
+<p>Esta é a versão atualizada de <strong>13/10/2026</strong> do <a href="https://talesgomes27.github.io/DAC8-Case-Study-1/">projeto Bike Share</a>, incorporada ao blog em 26/10/2026. As tabelas, os gráficos e o código foram importados do relatório renderizado do autor, sem reexecutar a análise ou revalidar suas interpretações estatísticas. Esta edição usa um pipeline diferente do estudo histórico; as versões anteriores estão preservadas na seção de rastreabilidade.</p>
 </div>
 </div>
-<section id="pergunta-e-contexto" class="level2">
-<h2 class="anchored" data-anchor-id="pergunta-e-contexto">Pergunta e contexto</h2>
-<p>Como as viagens de membros e usuários casuais diferem em um sistema de bicicletas compartilhadas? O estudo foi desenvolvido no contexto do caso Cyclistic, do certificado Google Data Analytics. A pergunta comercial era identificar padrões que pudessem orientar hipóteses de campanhas de adesão.</p>
-<p>A unidade observada é uma <strong>viagem</strong>. O registro não contém um identificador persistente de pessoa que permita medir frequência individual, retorno ou conversão em assinatura. Por isso, a análise descreve diferenças entre categorias de viagens e não explica por que uma pessoa decide assinar.</p>
-</section>
-<section id="dados-e-processamento-histórico" class="level2">
-<h2 class="anchored" data-anchor-id="dados-e-processamento-histórico">Dados e processamento histórico</h2>
-<p>A fonte declarada é o <a href="https://divvy-tripdata.s3.amazonaws.com/index.html">arquivo público de viagens Divvy</a>, de <strong>julho de 2020 a junho de 2021</strong>. O resultado arquivado registra 4.460.151 linhas na carga e <strong>4.335.006 viagens</strong> após o filtro <code>trip_duration &gt; 2</code>, em minutos. Viagens de exatamente dois minutos também foram excluídas. O limiar foi uma decisão analítica; ele não demonstra que toda viagem mais curta seja um erro.</p>
-<p>O processamento histórico calculou duração, mês, dia da semana, hora, faixa do dia e par de estações de origem/destino. Campos de localização ausentes foram mantidos na base geral. Os antigos rankings de estações/pares usavam apenas os registros com localização observada; não é possível afirmar que essa ausência não afetou sua representatividade. Usar R e RStudio, por si só, também não constitui uma verificação de integridade dos arquivos.</p>
-<p>Esta revisão usa os agregados preservados no resultado computacional, com hash SHA-256 verificado pelo script de reconciliação. Os microdados de viagem não estão neste checkout. Assim, não foram refeitos testes de duplicidade, perdas por grupo ou outros controles que dependem dos CSVs completos. Não há mistura com a versão mais recente do repositório: ela tem outros filtros, inclusive teto de duração e tratamento de coordenadas, e dispõe de uma alternativa sintética de execução.</p>
-</section>
-<section id="categorias-de-viagem-e-tipos-de-bicicleta" class="level2">
-<h2 class="anchored" data-anchor-id="categorias-de-viagem-e-tipos-de-bicicleta">Categorias de viagem e tipos de bicicleta</h2>
-<p>Das viagens preservadas, <strong>56,46%</strong> são de membros e <strong>43,54%</strong> de casuais. A bicicleta <code>docked_bike</code> lidera o total, seguida por <code>classic_bike</code> e <code>electric_bike</code>.</p>
-<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela: Categorias de viagem e tipos de bicicleta">
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Tipo</th>
-<th>Viagens</th>
-<th>Participação (%)</th>
+<th>Indicador do relatório</th>
+<th>Resultado</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>docked_bike</td>
-<td>1.998.627</td>
-<td>46,10</td>
+<td>Base analisada</td>
+<td>4.328.803 viagens válidas</td>
 </tr>
 <tr class="even">
-<td>classic_bike</td>
-<td>1.247.162</td>
-<td>28,77</td>
+<td>Membros anuais</td>
+<td>56,5% das viagens</td>
 </tr>
 <tr class="odd">
-<td>electric_bike</td>
-<td>1.089.217</td>
-<td>25,13</td>
+<td>Duração mediana casual</td>
+<td>19,65 min, contra 11,13 min para membros</td>
+</tr>
+<tr class="even">
+<td>Segmento “Comutador Oculto”</td>
+<td>16,8% das viagens casuais</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="revision-2026-10-26/bike-types-pt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Participação de cada tipo entre as 4.335.006 viagens arquivadas."><img src="revision-2026-10-26/bike-types-pt.png" class="img-fluid figure-img" alt="Barras: docked 46,10%, classic 28,77% e electric 25,13% das viagens."></a></p>
-<figcaption>Participação de cada tipo entre as 4.335.006 viagens arquivadas.</figcaption>
-</figure>
-</div>
-<p>A composição também precisa ser comparada dentro de cada grupo:</p>
-<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela: Categorias de viagem e tipos de bicicleta">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Grupo</th>
-<th>Tipo</th>
-<th>Viagens</th>
-<th>Percentual dentro do grupo (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Membros</td>
-<td>docked_bike</td>
-<td>1.043.233</td>
-<td>42,63</td>
-</tr>
-<tr class="even">
-<td>Membros</td>
-<td>electric_bike</td>
-<td>602.335</td>
-<td>24,61</td>
-</tr>
-<tr class="odd">
-<td>Membros</td>
-<td>classic_bike</td>
-<td>801.776</td>
-<td>32,76</td>
-</tr>
-<tr class="even">
-<td>Casuais</td>
-<td>docked_bike</td>
-<td>955.394</td>
-<td>50,61</td>
-</tr>
-<tr class="odd">
-<td>Casuais</td>
-<td>electric_bike</td>
-<td>486.882</td>
-<td>25,79</td>
-</tr>
-<tr class="even">
-<td>Casuais</td>
-<td>classic_bike</td>
-<td>445.386</td>
-<td>23,59</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Membros: docked &gt; classic &gt; electric. Casuais: docked &gt; electric &gt; classic. A participação de docked é maior entre casuais, mas seu número absoluto de viagens docked é menor que o dos membros. Percentual e volume respondem a perguntas diferentes.</p>
+<section id="ask-phase-definição-do-problema-e-hipóteses" class="level2">
+<h2 class="anchored" data-anchor-id="ask-phase-definição-do-problema-e-hipóteses">1. Ask Phase (Definição do Problema e Hipóteses)</h2>
+<section id="declaração-da-tarefa-de-negócio-business-task" class="level3">
+<h3 class="anchored" data-anchor-id="declaração-da-tarefa-de-negócio-business-task">1.1. Declaração da Tarefa de Negócio (<em>Business Task</em>)</h3>
+<p>A Cyclistic opera uma rede de 5.824 bicicletas distribuídas em 692 estações na cidade de Chicago. O modelo comercial oferece três modalidades de acesso: passes avulsos de corrida única (<em>single-ride</em>), passes diários (<em>full-day</em>) e assinaturas anuais. Clientes com passes avulsos ou diários são classificados como <strong>ciclistas casuais</strong>, enquanto contratantes do plano de 12 meses são <strong>membros anuais</strong>.</p>
+<p>A diretoria financeira concluiu que os membros anuais geram significativamente maior margem operacional e estabilidade de fluxo de caixa do que ciclistas casuais. O objetivo deste estudo é:</p>
+<ol type="1">
+<li>Identificar com rigor estatístico como membros e casuais utilizam o serviço de forma divergente.</li>
+<li>Determinar por que ciclistas casuais contratariam a assinatura anual.</li>
+<li>Projetar recomendações de mídia digital e produto para converter ciclistas casuais em membros anuais.</li>
+</ol>
 </section>
-<section id="duração-média-mediana-e-extremos" class="level2">
-<h2 class="anchored" data-anchor-id="duração-média-mediana-e-extremos">Duração: média, mediana e extremos</h2>
-<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela: Duração: média, mediana e extremos">
+<section id="mapeamento-de-stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="mapeamento-de-stakeholders">1.2. Mapeamento de Stakeholders</h3>
+<ul>
+<li><strong>Lily Moreno (Diretora de Marketing)</strong>: Patrocinadora do projeto. Responsável pelas campanhas institucionais e canais digitais (e-mail, redes sociais e mídias de performance).</li>
+<li><strong>Equipe de Marketing Analytics</strong>: Analistas de dados responsáveis por coletar, transformar e modelar dados para respaldar decisões de investimento.</li>
+<li><strong>Comitê Executivo da Cyclistic</strong>: Colegiado responsável por aprovar o orçamento e as diretrizes operacionais do novo programa comercial.</li>
+</ul>
+</section>
+<section id="decomposição-em-hipóteses-estatísticas-formais" class="level3">
+<h3 class="anchored" data-anchor-id="decomposição-em-hipóteses-estatísticas-formais">1.3. Decomposição em Hipóteses Estatísticas Formais</h3>
+<p>Traduzimos as três perguntas centrais da diretoria em testes de hipóteses mensuráveis:</p>
+<ul>
+<li><strong>Pergunta 1 (Diferença de Comportamento)</strong>:
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math>: As distribuições de duração e horários de deslocamento são idênticas entre membros anuais e ciclistas casuais.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>1</mn></msub><annotation encoding="application/x-tex">H_1</annotation></semantics></math>: Membros anuais apresentam tempos de viagem mais curtos com picos em horários comerciais, enquanto casuais exibem maior variância e concentração em fins de semana e tardes.</li>
+</ul></li>
+<li><strong>Pergunta 2 (Gatilhos de Adesão Anual)</strong>:
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math>: O uso de ciclistas casuais é estritamente pontual e sem repetição semanal.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>1</mn></msub><annotation encoding="application/x-tex">H_1</annotation></semantics></math>: Existe um subgrupo relevante de ciclistas casuais com uso regular em dias úteis no trajeto casa-trabalho, para os quais o custo acumulado em passes avulsos supera a anuidade.</li>
+</ul></li>
+<li><strong>Pergunta 3 (Impacto da Mídia Digital)</strong>:
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math>: Mensagens institucionais genéricas produzem a mesma taxa de resposta em qualquer horário ou estação.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>1</mn></msub><annotation encoding="application/x-tex">H_1</annotation></semantics></math>: Comunicações contextuais baseadas em geofencing e mensagens in-app disparadas após trajetos matinais recorrentes elevam a conversão.</li>
+</ul></li>
+</ul>
+</section>
+<section id="enquadramento-financeiro-unit-economics" class="level3">
+<h3 class="anchored" data-anchor-id="enquadramento-financeiro-unit-economics">1.4. Enquadramento Financeiro (<em>Unit Economics</em>)</h3>
+<p>Passes avulsos dependem de condições climáticas favoráveis. Chuvas e nevascas reduzem a receita transacional a quase zero no inverno de Chicago. A assinatura anual garante receita recorrente previsível, reduz o custo de aquisição por corrida e melhora a amortização dos custos fixos de manutenção da frota.</p>
+<hr>
+</section>
+</section>
+<section id="prepare-phase-origem-governança-roccc-e-metadados" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-phase-origem-governança-roccc-e-metadados">2. Prepare Phase (Origem, Governança ROCCC e Metadados)</h2>
+<section id="origem-e-organização-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="origem-e-organização-dos-dados">2.1. Origem e Organização dos Dados</h3>
+<p>Os dados correspondem aos registros históricos de viagens do sistema Divvy de Chicago, operado pela Motivate International Inc.&nbsp;A base é organizada em 12 arquivos mensais em formato CSV, abrangendo variáveis temporais, espaciais, tipo de bicicleta e categoria do ciclista.</p>
+</section>
+<section id="avaliação-de-confiabilidade-pelo-framework-roccc" class="level3">
+<h3 class="anchored" data-anchor-id="avaliação-de-confiabilidade-pelo-framework-roccc">2.2. Avaliação de Confiabilidade pelo Framework ROCCC</h3>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 30%">
+<col style="width: 38%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Grupo</th>
-<th>Viagens</th>
-<th>Participação (%)</th>
-<th>Média (min)</th>
-<th>Mediana (min)</th>
-<th>Q1–Q3 (min)</th>
-<th>Máximo (min)</th>
+<th style="text-align: left;">Critério</th>
+<th style="text-align: center;">Status</th>
+<th style="text-align: left;">Evidência Técnica</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Membros</td>
-<td>2.447.344</td>
-<td>56,46</td>
-<td>15,59</td>
-<td>11,13</td>
-<td>6,57–19,13</td>
-<td>33.421,37</td>
+<td style="text-align: left;"><strong>Reliable (Confiável)</strong></td>
+<td style="text-align: center;">Conforme</td>
+<td style="text-align: left;">Dados primários gerados automaticamente pelos sensores telemáticos das estações e pelo GPS integrado às bicicletas. Não são dados autodeclarados.</td>
 </tr>
 <tr class="even">
-<td>Casuais</td>
-<td>1.887.662</td>
-<td>43,54</td>
-<td>41,73</td>
-<td>19,70</td>
-<td>11,03–37,00</td>
-<td>55.944,15</td>
+<td style="text-align: left;"><strong>Original (Original)</strong></td>
+<td style="text-align: center;">Conforme</td>
+<td style="text-align: left;">Fonte primária oficial disponibilizada pelo operador do sistema público de Chicago.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Comprehensive (Abrangente)</strong></td>
+<td style="text-align: center;">Conforme</td>
+<td style="text-align: left;">Registros de 100% dos deslocamentos válidos realizados no sistema durante 12 meses consecutivos, sem amostragem restritiva.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Current (Atual)</strong></td>
+<td style="text-align: center;">Conforme</td>
+<td style="text-align: left;">Período consecutivo de um ano completo, capturando todas as variações sazonais do calendário de Chicago.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cited (Citado / Licenciado)</strong></td>
+<td style="text-align: center;">Conforme</td>
+<td style="text-align: left;">Distribuído sob licença pública oficial da City of Chicago e da Divvy Bikes.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>A média geral arquivada é aproximadamente <strong>26,97 minutos</strong>. Usando as médias por grupo já arredondadas, a razão casual/membro é <strong>2,68</strong>; a razão entre medianas é <strong>1,77</strong>. Os intervalos interquartis são aproximadamente <strong>12,57 minutos</strong> para membros e <strong>25,97 minutos</strong> para casuais. A comparação de média, mediana e quartis mostra a assimetria que a média sozinha omite.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="revision-2026-10-26/duration-summary-pt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Duração média e mediana das viagens por categoria."><img src="revision-2026-10-26/duration-summary-pt.png" class="img-fluid figure-img" alt="Membros: média 15,59 e mediana 11,13 minutos. Casuais: média 41,73 e mediana 19,70 minutos."></a></p>
-<figcaption>Duração média e mediana das viagens por categoria.</figcaption>
-</figure>
-</div>
-<p>O maior valor casual arquivado é 55.944,15 minutos, aproximadamente <strong>38,85 dias</strong>; entre membros, o máximo é aproximadamente <strong>23,21 dias</strong>. O processamento histórico não aplicou um teto. Esses valores limitam interpretações de médias por mês ou hora. Não há evidência para atribuir sua causa a erro de sistema, furto, manutenção ou lazer.</p>
-<p>Comparar média e mediana é uma verificação descritiva de sensibilidade, não uma reestimação após excluir extremos. A base agregada não permite calcular o efeito de novos tetos ou filtros. Por isso, esta revisão retira as antigas conclusões sobre maior duração em fevereiro ou na madrugada e não propõe campanhas noturnas com base nelas. Os gráficos antigos com título de contagem para uma média ou eixo mensal rotulado como hora foram substituídos pelos gráficos auditáveis desta versão.</p>
 </section>
-<section id="quando-as-viagens-ocorreram" class="level2">
-<h2 class="anchored" data-anchor-id="quando-as-viagens-ocorreram">Quando as viagens ocorreram</h2>
-<section id="meses-com-ano-explícito" class="level3">
-<h3 class="anchored" data-anchor-id="meses-com-ano-explícito">Meses com ano explícito</h3>
-<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela: Meses com ano explícito">
+<section id="licenciamento-e-restrições-de-privacidade-pii" class="level3">
+<h3 class="anchored" data-anchor-id="licenciamento-e-restrições-de-privacidade-pii">2.3. Licenciamento e Restrições de Privacidade (PII)</h3>
+<p>A licença proíbe expressamente a identificação de indivíduos. O conjunto de dados não armazena nomes, CPFs, números de cartão de crédito ou identificadores persistentes de usuários.</p>
+<blockquote class="blockquote">
+<p><strong>Implicação Metodológica</strong>: A unidade amostral é a <strong>viagem</strong> (<code>ride_id</code>), não o ciclista individual. Não é possível calcular diretamente a taxa de retenção por usuário sem identificador persistente. Para contornar essa restrição, analisamos padrões probabilísticos agregados de rotas recorrentes e janelas temporais de deslocamento.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="process-phase-engenharia-de-dados-e-integridade" class="level2">
+<h2 class="anchored" data-anchor-id="process-phase-engenharia-de-dados-e-integridade">3. Process Phase (Engenharia de Dados e Integridade)</h2>
+<section id="justificativa-tecnológica" class="level3">
+<h3 class="anchored" data-anchor-id="justificativa-tecnológica">3.1. Justificativa Tecnológica</h3>
+<p>Adotamos o ecossistema R estruturado em scripts modulares na pasta <code>R/</code>. O pipeline de ingestão desacoplado valida esquemas de colunas e impede estouro de memória através de leitura com tipagem rígida.</p>
+</section>
+<section id="funil-de-integridade-e-qualidade-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="funil-de-integridade-e-qualidade-de-dados">3.2. Funil de Integridade e Qualidade de Dados</h3>
+<p>Para certificar a higienização dos dados, aplicamos um funil sequencial de filtros técnicos:</p>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo do funil de integridade</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>funnel_summary <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Etapa, <span class="sc">~</span>Critério_Técnico, <span class="sc">~</span>Condição_Descarte, <span class="sc">~</span>Status,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"1. Carga Bruta"</span>, <span class="st">"Leitura de 12 arquivos CSV com tipagem fixa"</span>, <span class="st">"Arquivos corrompidos ou tipos divergentes"</span>, <span class="st">"100,0% Processado"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2. Validação Espacial"</span>, <span class="st">"Limites geográficos de Chicago (40°N-43°N / 89°O-86°O)"</span>, <span class="st">"Coordenadas NA, zeradas ou fora de Chicago"</span>, <span class="st">"Filtrado"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"3. Validação de Falso Início"</span>, <span class="st">"Duração mínima de 2 minutos"</span>, <span class="st">"Viagens negativas ou testes de doca (&lt; 2 min)"</span>, <span class="st">"Filtrado"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"4. Remoção de Outliers Extremos"</span>, <span class="st">"Duração máxima de 24 horas (1.440 min)"</span>, <span class="st">"Bicicletas esquecidas, furtadas ou com defeito (&gt; 24h)"</span>, <span class="st">"Filtrado"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"5. Base Consolidada"</span>, <span class="st">"Registros limpos e tipados prontos para modelagem"</span>, <span class="st">"Atende cumulativamente a todos os critérios"</span>, <span class="st">"Base Analítica Pronta"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(funnel_summary, <span class="at">caption =</span> <span class="st">"Tabela de Rastreabilidade e Funil de Qualidade de Dados"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic">
 <table class="caption-top table">
+<caption>Tabela de Rastreabilidade e Funil de Qualidade de Dados</caption>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 13%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Mês</th>
-<th>Viagens</th>
+<th style="text-align: left;">Etapa</th>
+<th style="text-align: left;">Critério_Técnico</th>
+<th style="text-align: left;">Condição_Descarte</th>
+<th style="text-align: left;">Status</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2020-07</td>
-<td>540.120</td>
+<td style="text-align: left;">1. Carga Bruta</td>
+<td style="text-align: left;">Leitura de 12 arquivos CSV com tipagem fixa</td>
+<td style="text-align: left;">Arquivos corrompidos ou tipos divergentes</td>
+<td style="text-align: left;">100,0% Processado</td>
 </tr>
 <tr class="even">
-<td>2020-08</td>
-<td>604.137</td>
+<td style="text-align: left;">2. Validação Espacial</td>
+<td style="text-align: left;">Limites geográficos de Chicago (40°N-43°N / 89°O-86°O)</td>
+<td style="text-align: left;">Coordenadas NA, zeradas ou fora de Chicago</td>
+<td style="text-align: left;">Filtrado</td>
 </tr>
 <tr class="odd">
-<td>2020-09</td>
-<td>516.748</td>
+<td style="text-align: left;">3. Validação de Falso Início</td>
+<td style="text-align: left;">Duração mínima de 2 minutos</td>
+<td style="text-align: left;">Viagens negativas ou testes de doca (&lt; 2 min)</td>
+<td style="text-align: left;">Filtrado</td>
 </tr>
 <tr class="even">
-<td>2020-10</td>
-<td>375.308</td>
+<td style="text-align: left;">4. Remoção de Outliers Extremos</td>
+<td style="text-align: left;">Duração máxima de 24 horas (1.440 min)</td>
+<td style="text-align: left;">Bicicletas esquecidas, furtadas ou com defeito (&gt; 24h)</td>
+<td style="text-align: left;">Filtrado</td>
 </tr>
 <tr class="odd">
-<td>2020-11</td>
-<td>251.678</td>
-</tr>
-<tr class="even">
-<td>2020-12</td>
-<td>127.450</td>
-</tr>
-<tr class="odd">
-<td>2021-01</td>
-<td>93.893</td>
-</tr>
-<tr class="even">
-<td>2021-02</td>
-<td>48.012</td>
-</tr>
-<tr class="odd">
-<td>2021-03</td>
-<td>222.701</td>
-</tr>
-<tr class="even">
-<td>2021-04</td>
-<td>328.578</td>
-</tr>
-<tr class="odd">
-<td>2021-05</td>
-<td>516.940</td>
-</tr>
-<tr class="even">
-<td>2021-06</td>
-<td>709.441</td>
+<td style="text-align: left;">5. Base Consolidada</td>
+<td style="text-align: left;">Registros limpos e tipados prontos para modelagem</td>
+<td style="text-align: left;">Atende cumulativamente a todos os critérios</td>
+<td style="text-align: left;">Base Analítica Pronta</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="revision-2026-10-26/monthly-trips-pt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Viagens por mês, em ordem cronológica de julho de 2020 a junho de 2021."><img src="revision-2026-10-26/monthly-trips-pt.png" class="img-fluid figure-img" alt="Junho de 2021 tem 709.441 viagens, seguido por agosto de 2020 com 604.137 e julho de 2020 com 540.120."></a></p>
-<figcaption>Viagens por mês, em ordem cronológica de julho de 2020 a junho de 2021.</figcaption>
-</figure>
-</div>
-<p>O total mensal é maior em <strong>junho de 2021</strong>, seguido por agosto de 2020, julho de 2020, maio de 2021 e setembro de 2020. Junho também lidera os dois grupos: 347.389 viagens de membros e 362.052 casuais. Entre membros, a sequência seguinte é agosto, setembro e julho; entre casuais, agosto, julho e maio. Os anos e a duração dos meses importam: estes são totais observados, não taxas normalizadas nem uma estimativa isolada de sazonalidade.</p>
 </section>
-<section id="trimestres-civis-não-estações-meteorológicas" class="level3">
-<h3 class="anchored" data-anchor-id="trimestres-civis-não-estações-meteorológicas">Trimestres civis, não estações meteorológicas</h3>
-<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela: Trimestres civis, não estações meteorológicas">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Trimestre civil</th>
-<th>Viagens</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2020-Q3</td>
-<td>1.661.005</td>
-</tr>
-<tr class="even">
-<td>2020-Q4</td>
-<td>754.436</td>
-</tr>
-<tr class="odd">
-<td>2021-Q1</td>
-<td>364.606</td>
-</tr>
-<tr class="even">
-<td>2021-Q2</td>
-<td>1.554.959</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Os rótulos antigos <code>winter</code>, <code>spring</code>, <code>summer</code> e <code>fall</code> agrupavam jan–mar, abr–jun, jul–set e out–dez. Nesta revisão, esses mesmos agregados são corretamente nomeados <strong>trimestres civis</strong>, preservando sua composição. Não representam as <a href="https://www.ncei.noaa.gov/news/meteorological-versus-astronomical-seasons">estações meteorológicas</a>. Para estudar essas estações, seria necessário reagrupar os registros ou os meses com uma definição explícita e conferir os resultados afetados.</p>
-</section>
-<section id="dias-da-semana-e-horários" class="level3">
-<h3 class="anchored" data-anchor-id="dias-da-semana-e-horários">Dias da semana e horários</h3>
-<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela: Dias da semana e horários">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Grupo</th>
-<th>Viagens no fim de semana</th>
-<th>Percentual dentro do grupo (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Membros</td>
-<td>676.393</td>
-<td>27,64</td>
-</tr>
-<tr class="even">
-<td>Casuais</td>
-<td>789.897</td>
-<td>41,85</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Fins de semana representam uma parcela maior das viagens casuais que das viagens de membros. Isso não significa que a maioria das viagens casuais ocorra no fim de semana: os dias úteis somam 1.097.765 viagens casuais. Comparar atividade típica por dia exigiria considerar a quantidade de dias e a exposição correspondente.</p>
-<p>O pico semanal geral é sábado e o menor total é segunda-feira. Para membros, os três maiores totais são quarta-feira, sábado e sexta-feira; para casuais, sábado, domingo e sexta-feira. Por hora, os maiores volumes gerais são 17h, 18h e 16h. As faixas do dia seguem tarde &gt; noite &gt; manhã &gt; madrugada. São contagens de viagens, sem demonstração de motivação individual, deslocamento para o trabalho ou efeito de uma campanha.</p>
-</section>
-</section>
-<section id="conclusões-e-hipóteses-comerciais" class="level2">
-<h2 class="anchored" data-anchor-id="conclusões-e-hipóteses-comerciais">Conclusões e hipóteses comerciais</h2>
-<p>As viagens casuais apresentam duração média e mediana maiores e maior concentração relativa no fim de semana que as de membros. Esses padrões podem orientar hipóteses de comunicação ou oferta, a serem avaliadas com dados e desenho adequados.</p>
-<p>A análise não mede probabilidade de conversão, elasticidade a preço, fidelidade ou efeito de descontos. Um teste comercial precisaria de desfecho de adesão, dados de exposição e critério de comparação. Antes de interpretar padrões de duração, também seria necessário verificar os extremos, a cobertura e a estabilidade dos resultados sob regras documentadas de limpeza.</p>
-</section>
-<section id="rastreabilidade-e-reprodução" class="level2">
-<h2 class="anchored" data-anchor-id="rastreabilidade-e-reprodução">Rastreabilidade e reprodução</h2>
+<section id="engenharia-de-variáveis-derivadas" class="level3">
+<h3 class="anchored" data-anchor-id="engenharia-de-variáveis-derivadas">3.3. Engenharia de Variáveis Derivadas</h3>
 <ul>
-<li><a href="revision-2026-10-26/results.json">Resultados e hashes desta reconciliação</a>: contagens, percentuais, médias/medianas, trimestres e hashes dos novos gráficos.</li>
-<li><a href="../../scripts/reconcile_bikeshare.R">Script de reconciliação e geração dos gráficos</a>: execute <code>Rscript --vanilla scripts/reconcile_bikeshare.R</code> na raiz do projeto. O script confere o hash do resultado histórico e a conservação das contagens. Requer os pacotes já usados nesta revisão: ggplot2, jsonlite e digest; não baixa dados nem executa a análise de viagens.</li>
-<li><a href="../../docs/reviews/evidence/bike-share-audit.json">Evidência dos agregados históricos</a>.</li>
-<li><a href="../../docs/revisions/2026-10-26/before/posts/bike-share-navigate/index.qmd.gz">Fonte original EN antes da correção</a> e <a href="../../docs/revisions/2026-10-26/before/posts/bike-share-navigate/pt.qmd.gz">tradução PT anterior</a>, comprimidas, com o processo completo preservado.</li>
-<li><a href="../../docs/revisions/2026-10-26/before/_freeze/posts/bike-share-navigate/index/execute-results/html.json.gz">Resultado computacional original preservado</a> e <a href="../../docs/revisions/2026-10-26/before-manifest.json">manifesto de hashes anterior à revisão</a>.</li>
-<li><a href="https://github.com/talesgomes27/DAC8-Case-Study-1/tree/5c21b988e46548d7592245d1937cee0c8af6993c">Repositório informado, no commit consultado</a>: versão posterior, com escolhas analíticas diferentes. Seus números não são usados como substitutos dos resultados históricos aqui apresentados.</li>
+<li><p><strong>Duração da Viagem</strong>: Calculada em minutos via <code>difftime(ended_at, started_at, units = "mins")</code>.</p></li>
+<li><p><strong>Distância Geodésica em km</strong>: Aplicada a fórmula vetorizada de Haversine entre <code>(start_lat, start_lng)</code> e <code>(end_lat, end_lng)</code>:</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Fórmula de Haversine">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>2</mn><mi>R</mi><mo>⋅</mo><mrow><mi mathvariant="normal">arcsin</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msqrt><mrow><msup><mrow><mi mathvariant="normal">sin</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi mathvariant="normal">Δ</mi><mi>ϕ</mi></mrow><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mrow><mi mathvariant="normal">cos</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>ϕ</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">cos</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>ϕ</mi><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo><msup><mrow><mi mathvariant="normal">sin</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi mathvariant="normal">Δ</mi><mi>λ</mi></mrow><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msqrt><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">d = 2R \cdot \arcsin\left(\sqrt{\sin^2\left(\frac{\Delta\phi}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\Delta\lambda}{2}\right)}\right)</annotation></semantics></math></p>
+</div>
+<p>onde <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mn>6.371</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> km</mtext></mrow></mrow><annotation encoding="application/x-tex">R = 6.371\text{ km}</annotation></semantics></math>.</p></li>
+<li><p><strong>Velocidade Média Estimada</strong>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><mfrac><mi>d</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mi>/</mi><mn>60</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> (km/h)</mtext></mrow></mrow><annotation encoding="application/x-tex">v = \frac{d}{(t / 60)}\text{ (km/h)}</annotation></semantics></math>.</p></li>
+<li><p><strong>Rotas Circulares</strong>: Flag booleana <code>start_station_name == end_station_name</code> identificando viagens recreativas sem deslocamento funcional.</p></li>
+<li><p><strong>Sazonalidade Meteorológica</strong>: Inverno (Dez-Fev), Primavera (Mar-Mai), Verão (Jun-Ago) e Outono (Set-Nov).</p></li>
 </ul>
-<p>Os gráficos novos foram calculados a partir de agregados arquivados; os gráficos anteriores permanecem como material histórico e não são apresentados como saídas atualizadas. A data original do estudo foi mantida e a data de revisão está separada. Uma reprodução dos CSVs completos continua pendente.</p>
+<hr>
+</section>
+</section>
+<section id="analyze-phase-estatística-descritiva-inferência-e-modelagem" class="level2">
+<h2 class="anchored" data-anchor-id="analyze-phase-estatística-descritiva-inferência-e-modelagem">4. Analyze Phase (Estatística Descritiva, Inferência e Modelagem)</h2>
+<section id="estatística-descritiva-canônica" class="level3">
+<h3 class="anchored" data-anchor-id="estatística-descritiva-canônica">4.1. Estatística Descritiva Canônica</h3>
+<p>A tabela abaixo atende rigorosamente às especificações do documento original do Google, incluindo média, desvio-padrão, mediana, intervalo interquartil (IQR), mínimo, máximo e a <strong>moda do dia da semana</strong>:</p>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>stats_res<span class="sc">$</span>descriptive <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Grupo</span><span class="st">`</span> <span class="ot">=</span> member_casual,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Total Viagens</span><span class="st">`</span> <span class="ot">=</span> total_viagens,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Média (min)</span><span class="st">`</span> <span class="ot">=</span> media_duracao_min,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Desvio (min)</span><span class="st">`</span> <span class="ot">=</span> desvio_duracao_min,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mediana (min)</span><span class="st">`</span> <span class="ot">=</span> mediana_duracao_min,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">IQR (min)</span><span class="st">`</span> <span class="ot">=</span> iqr_duracao_min,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mín (min)</span><span class="st">`</span> <span class="ot">=</span> min_duracao_min,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Máx (min)</span><span class="st">`</span> <span class="ot">=</span> max_duracao_min,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Moda Semanal</span><span class="st">`</span> <span class="ot">=</span> moda_dia_semana,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Dist. Mediana (km)</span><span class="st">`</span> <span class="ot">=</span> distancia_mediana_km,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Rotas Circulares (%)</span><span class="st">`</span> <span class="ot">=</span> taxa_rotas_circulares_pct</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Estatísticas Descritivas Canônicas por Categoria de Ciclista"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic">
+<table class="caption-top table">
+<caption>Estatísticas Descritivas Canônicas por Categoria de Ciclista</caption>
+<colgroup>
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: right;">Total Viagens</th>
+<th style="text-align: right;">Média (min)</th>
+<th style="text-align: right;">Desvio (min)</th>
+<th style="text-align: right;">Mediana (min)</th>
+<th style="text-align: right;">IQR (min)</th>
+<th style="text-align: right;">Mín (min)</th>
+<th style="text-align: right;">Máx (min)</th>
+<th style="text-align: left;">Moda Semanal</th>
+<th style="text-align: right;">distancia_media_km</th>
+<th style="text-align: right;">Dist. Mediana (km)</th>
+<th style="text-align: right;">Rotas Circulares (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Casual</td>
+<td style="text-align: right;">1883040</td>
+<td style="text-align: right;">33.61</td>
+<td style="text-align: right;">57.33</td>
+<td style="text-align: right;">19.65</td>
+<td style="text-align: right;">25.77</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1439.90</td>
+<td style="text-align: left;">sábado</td>
+<td style="text-align: right;">2.24</td>
+<td style="text-align: right;">1.71</td>
+<td style="text-align: right;">13.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Membro</td>
+<td style="text-align: right;">2445763</td>
+<td style="text-align: right;">15.10</td>
+<td style="text-align: right;">20.12</td>
+<td style="text-align: right;">11.13</td>
+<td style="text-align: right;">12.53</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1439.72</td>
+<td style="text-align: left;">quarta</td>
+<td style="text-align: right;">2.30</td>
+<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">3.29</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>Destaque Descritivo</strong>: A moda do dia da semana para membros é a <strong>quarta-feira</strong> (376.612 viagens no ápice do expediente corporativo da semana). Para ciclistas casuais, a moda é o <strong>sábado</strong> (429.785 viagens), confirmando a preferência por lazer e fins de semana.</li>
+</ul>
+</section>
+<section id="inferência-estatística-e-tamanhos-de-efeito" class="level3">
+<h3 class="anchored" data-anchor-id="inferência-estatística-e-tamanhos-de-efeito">4.2. Inferência Estatística e Tamanhos de Efeito</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Wilcoxon-Mann-Whitney para Duracao</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>w_dur <span class="ot">&lt;-</span> stats_res<span class="sc">$</span>wilcox_duration<span class="sc">$</span>test</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r_dur <span class="ot">&lt;-</span> stats_res<span class="sc">$</span>wilcox_duration<span class="sc">$</span>r</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Qui-quadrado para Fim de Semana</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>chi_wknd <span class="ot">&lt;-</span> stats_res<span class="sc">$</span>chisq_tests<span class="sc">$</span>weekend<span class="sc">$</span>test</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>v_wknd <span class="ot">&lt;-</span> stats_res<span class="sc">$</span>chisq_tests<span class="sc">$</span>weekend<span class="sc">$</span>v</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ul>
+<li><strong>Duração de Corrida</strong>: O teste de postos de Wilcoxon rejeita categoricamente a igualdade de tempos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mn>3.194</mn><mn>.595</mn><mn>.206</mn><mn>.038</mn></mrow><annotation encoding="application/x-tex">W = 3.194.595.206.038</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>2.2</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>16</mn></mrow></msup></mrow><annotation encoding="application/x-tex">p &lt; 2.2 \times 10^{-16}</annotation></semantics></math>). O tamanho de efeito <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mn>0.018</mn></mrow><annotation encoding="application/x-tex">r = 0.018</annotation></semantics></math> confirma uma magnitude substantiva e prática na discrepância de uso.</li>
+<li><strong>Associação Semanal</strong>: O teste qui-quadrado de independência entre categoria de usuário e tipo de dia (útil vs fim de semana) revelou forte associação (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>χ</mi><mn>2</mn></msup><mo>=</mo><mn>95.889</mn></mrow><annotation encoding="application/x-tex">\chi^2 = 95.889</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>0.001</mn></mrow><annotation encoding="application/x-tex">p &lt; 0.001</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> de Cramér</mtext></mrow><mo>=</mo><mn>0.149</mn></mrow><annotation encoding="application/x-tex">V\text{ de Cramér} = 0.149</annotation></semantics></math>).</li>
+</ul>
+</section>
+<section id="regressão-logística-explicativa-modelo-de-propensão" class="level3">
+<h3 class="anchored" data-anchor-id="regressão-logística-explicativa-modelo-de-propensão">4.3. Regressão Logística Explicativa (Modelo de Propensão)</h3>
+<p>Ajustamos um modelo logístico binomial com a variável resposta <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">Y = 1</annotation></semantics></math> (Membro) e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">Y = 0</annotation></semantics></math> (Casual) para mensurar a contribuição de cada fator:</p>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stats_res<span class="sc">$</span>odds_ratios <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Variável</span><span class="st">`</span> <span class="ot">=</span> variavel,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Coeficiente (β)</span><span class="st">`</span> <span class="ot">=</span> coeficiente,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Erro Padrão</span><span class="st">`</span> <span class="ot">=</span> erro_padrao,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Valor-p</span><span class="st">`</span> <span class="ot">=</span> p_valor,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Odds Ratio (OR)</span><span class="st">`</span> <span class="ot">=</span> odds_ratio,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">IC 95% Inf</span><span class="st">`</span> <span class="ot">=</span> ci_inf,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">IC 95% Sup</span><span class="st">`</span> <span class="ot">=</span> ci_sup</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Resultados da Regressão Logística e Razões de Chance (Odds Ratios)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic">
+<table class="caption-top table">
+<caption>Resultados da Regressão Logística e Razões de Chance (Odds Ratios)</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: right;">Coeficiente (β)</th>
+<th style="text-align: right;">Erro Padrão</th>
+<th style="text-align: right;">Valor-p</th>
+<th style="text-align: right;">Odds Ratio (OR)</th>
+<th style="text-align: right;">IC 95% Inf</th>
+<th style="text-align: right;">IC 95% Sup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.5858</td>
+<td style="text-align: right;">0.0052</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4.883</td>
+<td style="text-align: right;">4.834</td>
+<td style="text-align: right;">4.933</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">is_weekend_num</td>
+<td style="text-align: right;">-0.5969</td>
+<td style="text-align: right;">0.0021</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.550</td>
+<td style="text-align: right;">0.548</td>
+<td style="text-align: right;">0.553</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">is_commute_hours</td>
+<td style="text-align: right;">0.2969</td>
+<td style="text-align: right;">0.0021</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.346</td>
+<td style="text-align: right;">1.340</td>
+<td style="text-align: right;">1.351</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distance_km</td>
+<td style="text-align: right;">0.0239</td>
+<td style="text-align: right;">0.0005</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.024</td>
+<td style="text-align: right;">1.023</td>
+<td style="text-align: right;">1.025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rideable_typedocked_bike</td>
+<td style="text-align: right;">-0.5924</td>
+<td style="text-align: right;">0.0029</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.553</td>
+<td style="text-align: right;">0.550</td>
+<td style="text-align: right;">0.556</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rideable_typeelectric_bike</td>
+<td style="text-align: right;">-0.5486</td>
+<td style="text-align: right;">0.0029</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.578</td>
+<td style="text-align: right;">0.574</td>
+<td style="text-align: right;">0.581</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">seasonOutono</td>
+<td style="text-align: right;">-0.5533</td>
+<td style="text-align: right;">0.0054</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.575</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">0.581</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">seasonPrimavera</td>
+<td style="text-align: right;">-1.0608</td>
+<td style="text-align: right;">0.0052</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.346</td>
+<td style="text-align: right;">0.343</td>
+<td style="text-align: right;">0.350</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">seasonVerao</td>
+<td style="text-align: right;">-1.0604</td>
+<td style="text-align: right;">0.0052</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.346</td>
+<td style="text-align: right;">0.343</td>
+<td style="text-align: right;">0.350</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>Interpretação dos Odds Ratios</strong>: Viagens realizadas nos horários de pico comercial (7h–9h e 16h–18h) apresentam um <strong>Odds Ratio de 1,35</strong> (IC 95%: [1,34; 1,35], <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>0</mn><mo>,</mo><mn>001</mn></mrow><annotation encoding="application/x-tex">p &lt; 0,001</annotation></semantics></math>), elevando em 35% as chances de a viagem pertencer a um membro anual. Já viagens no fim de semana apresentam <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">OR</mtext><mo>=</mo><mn>0</mn><mo>,</mo><mn>55</mn></mrow><annotation encoding="application/x-tex">\text{OR} = 0,55</annotation></semantics></math> (redução de 45% na chance de ser membro), quantificando matematicamente o forte perfil de lazer dos ciclistas casuais.</li>
+</ul>
+</section>
+<section id="segmentação-quantitativa-dos-ciclistas-casuais" class="level3">
+<h3 class="anchored" data-anchor-id="segmentação-quantitativa-dos-ciclistas-casuais">4.4. Segmentação Quantitativa dos Ciclistas Casuais</h3>
+<p>Decompusemos a base de casuais em três personas quantificadas:</p>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stats_res<span class="sc">$</span>personas <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Persona</span><span class="st">`</span> <span class="ot">=</span> persona,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Volume de Viagens</span><span class="st">`</span> <span class="ot">=</span> volume_viagens,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Proporção (%)</span><span class="st">`</span> <span class="ot">=</span> proporcao_pct,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mediana Duração (min)</span><span class="st">`</span> <span class="ot">=</span> mediana_duracao_min,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mediana Distância (km)</span><span class="st">`</span> <span class="ot">=</span> mediana_distancia_km</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Segmentação de Personas entre Ciclistas Casuais"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic">
+<table class="caption-top table">
+<caption>Segmentação de Personas entre Ciclistas Casuais</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 17%">
+<col style="width: 14%">
+<col style="width: 21%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Persona</th>
+<th style="text-align: right;">Volume de Viagens</th>
+<th style="text-align: right;">Proporção (%)</th>
+<th style="text-align: right;">Mediana Duração (min)</th>
+<th style="text-align: right;">Mediana Distância (km)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Lazer de Fim de Semana</td>
+<td style="text-align: right;">928504</td>
+<td style="text-align: right;">49.3</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">1.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Espontaneo / Noite</td>
+<td style="text-align: right;">638333</td>
+<td style="text-align: right;">33.9</td>
+<td style="text-align: right;">17.5</td>
+<td style="text-align: right;">1.91</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Comutador Oculto</td>
+<td style="text-align: right;">316203</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">14.3</td>
+<td style="text-align: right;">2.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>O segmento <strong>“Comutador Oculto”</strong> concentra 16.8% do volume casual (316.203 viagens). Esses ciclistas utilizam o sistema para transporte diário em dias úteis, representando o alvo prioritário para a campanha de conversão de Lily Moreno.</p>
+<hr>
+</section>
+</section>
+<section id="share-phase-storytelling-visual-e-descobertas" class="level2">
+<h2 class="anchored" data-anchor-id="share-phase-storytelling-visual-e-descobertas">5. Share Phase (Storytelling Visual e Descobertas)</h2>
+<p>Abaixo apresentamos o painel gráfico gerado a partir do módulo <a href="https://github.com/talesgomes27/DAC8-Case-Study-1/blob/c4295b70c2fd8c850d11bf5382a52b9f04978288/R/04_theme_cyclistic.R"><code>R/04_theme_cyclistic.R</code></a>:</p>
+<section id="dinâmica-horária-e-deslocamento-pendular" class="level3">
+<h3 class="anchored" data-anchor-id="dinâmica-horária-e-deslocamento-pendular">5.1. Dinâmica Horária e Deslocamento Pendular</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trips_by_hour</span>(trips)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/hourly-trips.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Número de viagens por hora e categoria de ciclista."><img src="updated-2026-10-13/hourly-trips.png" class="img-fluid figure-img" alt="Número de viagens por hora e categoria de ciclista."></a></p>
+<figcaption>Número de viagens por hora e categoria de ciclista.</figcaption>
+</figure>
+</div>
+<p>Os membros apresentam curvas bimodais típicas de trânsito pendular corporativo, com picos evidentes às 8h e 17h. Casuais exibem crescimento gradual com platô vespertino.</p>
+</section>
+<section id="duração-mediana-ao-longo-do-dia" class="level3">
+<h3 class="anchored" data-anchor-id="duração-mediana-ao-longo-do-dia">5.2. Duração Mediana ao Longo do Dia</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_duration_by_hour</span>(trips)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/hourly-duration.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Duração mediana por hora e categoria de ciclista, em minutos."><img src="updated-2026-10-13/hourly-duration.png" class="img-fluid figure-img" alt="Duração mediana por hora e categoria de ciclista, em minutos."></a></p>
+<figcaption>Duração mediana por hora e categoria de ciclista, em minutos.</figcaption>
+</figure>
+</div>
+<p>Casuais pedalam com tempos medianos consistentemente superiores a 30 minutos na maior parte do dia. Membros mantêm trajets objetivos entre 12 e 14 minutos.</p>
+</section>
+<section id="inversão-semanal-de-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="inversão-semanal-de-demanda">5.3. Inversão Semanal de Demanda</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trips_by_weekday</span>(trips)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/weekday-trips.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Volume de viagens por dia da semana e categoria de ciclista."><img src="updated-2026-10-13/weekday-trips.png" class="img-fluid figure-img" alt="Volume de viagens por dia da semana e categoria de ciclista."></a></p>
+<figcaption>Volume de viagens por dia da semana e categoria de ciclista.</figcaption>
+</figure>
+</div>
+<p>O gráfico de colunas evidencia a troca de liderança: membros sustentam a frota de segunda a sexta-feira, enquanto casuais dominam amplamente sábado e domingo.</p>
+</section>
+<section id="sazonalidade-climática-de-chicago" class="level3">
+<h3 class="anchored" data-anchor-id="sazonalidade-climática-de-chicago">5.4. Sazonalidade Climática de Chicago</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_seasonal_trends</span>(trips)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/seasonal-trips.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Volume de viagens por estação meteorológica e categoria de ciclista."><img src="updated-2026-10-13/seasonal-trips.png" class="img-fluid figure-img" alt="Volume de viagens por estação meteorológica e categoria de ciclista."></a></p>
+<figcaption>Volume de viagens por estação meteorológica e categoria de ciclista.</figcaption>
+</figure>
+</div>
+<p>A severidade do inverno entre dezembro e fevereiro provoca uma contração de mais de 75% no volume casual. Membros exibem maior resiliência ao clima frio.</p>
+</section>
+<section id="distribuição-de-densidade-da-duração" class="level3">
+<h3 class="anchored" data-anchor-id="distribuição-de-densidade-da-duração">5.5. Distribuição de Densidade da Duração</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_density_duration</span>(trips)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/duration-density.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Distribuição da duração das viagens, em minutos, por categoria de ciclista."><img src="updated-2026-10-13/duration-density.png" class="img-fluid figure-img" alt="Distribuição da duração das viagens, em minutos, por categoria de ciclista."></a></p>
+<figcaption>Distribuição da duração das viagens, em minutos, por categoria de ciclista.</figcaption>
+</figure>
+</div>
+<p>A densidade empírica destaca a forte assimetria à direita dos ciclistas casuais, justificando o uso de métodos estatísticos não paramétricos.</p>
+</section>
+<section id="concentração-geográfica-e-rotas-circulares" class="level3">
+<h3 class="anchored" data-anchor-id="concentração-geográfica-e-rotas-circulares">5.6. Concentração Geográfica e Rotas Circulares</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_top_stations</span>(trips, <span class="at">top_n =</span> <span class="dv">8</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/top-stations.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Oito estações de origem com maior volume por categoria de ciclista."><img src="updated-2026-10-13/top-stations.png" class="img-fluid figure-img" alt="Oito estações de origem com maior volume por categoria de ciclista."></a></p>
+<figcaption>Oito estações de origem com maior volume por categoria de ciclista.</figcaption>
+</figure>
+</div>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_round_trips</span>(trips)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/round-trips.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Percentual de viagens circulares: casual 13,7%; membro 3,3%."><img src="updated-2026-10-13/round-trips.png" class="img-fluid figure-img" alt="Percentual de viagens circulares: casual 13,7%; membro 3,3%."></a></p>
+<figcaption>Percentual de viagens circulares: casual 13,7%; membro 3,3%.</figcaption>
+</figure>
+</div>
+<p>Ciclistas casuais registram taxa de viagens circulares mais de 4 vezes superior à dos membros (13,7% contra 3,3%), comprovando o uso para recreação e passeios na orla do Lago Michigan.</p>
+</section>
+<section id="forest-plot-da-regressão-logística" class="level3">
+<h3 class="anchored" data-anchor-id="forest-plot-da-regressão-logística">5.7. Forest Plot da Regressão Logística</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_forest_odds_ratios</span>(stats_res<span class="sc">$</span>odds_ratios)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/odds-ratios.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Razões de chance e intervalos de confiança de 95% do modelo logístico."><img src="updated-2026-10-13/odds-ratios.png" class="img-fluid figure-img" alt="Razões de chance e intervalos de confiança de 95% do modelo logístico."></a></p>
+<figcaption>Razões de chance e intervalos de confiança de 95% do modelo logístico.</figcaption>
+</figure>
+</div>
+<p>O <em>forest plot</em> ilustra claramente que os horários comerciais e a distância percorrida exercem os maiores efeitos positivos de propensão de uso como membro.</p>
+</section>
+<section id="partição-das-personas-casuais" class="level3">
+<h3 class="anchored" data-anchor-id="partição-das-personas-casuais">5.8. Partição das Personas Casuais</h3>
+<details>
+<summary>
+Exibir código R
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_persona_breakdown</span>(stats_res<span class="sc">$</span>personas)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="updated-2026-10-13/personas.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Participação dos segmentos de viagens casuais: comutador oculto, lazer de fim de semana e espontâneo ou noturno."><img src="updated-2026-10-13/personas.png" class="img-fluid figure-img" alt="Participação dos segmentos de viagens casuais: comutador oculto, lazer de fim de semana e espontâneo ou noturno."></a></p>
+<figcaption>Participação dos segmentos de viagens casuais: comutador oculto, lazer de fim de semana e espontâneo ou noturno.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="act-phase-recomendações-executivas-teste-ab-e-próximos-passos" class="level2">
+<h2 class="anchored" data-anchor-id="act-phase-recomendações-executivas-teste-ab-e-próximos-passos">6. Act Phase (Recomendações Executivas, Teste A/B e Próximos Passos)</h2>
+<section id="síntese-conclusiva" class="level3">
+<h3 class="anchored" data-anchor-id="síntese-conclusiva">6.1. Síntese Conclusiva</h3>
+<p>A análise comprova que a Cyclistic opera dois negócios paralelos na mesma malha:</p>
+<ol type="1">
+<li>Um serviço de <strong>mobilidade corporativa</strong> utilizado por membros anuais com alta previsibilidade e trajetos curtos em dias úteis.</li>
+<li>Um serviço de <strong>lazer e turismo</strong> utilizado por ciclistas casuais com trajetos longos e concentração em fins de semana ensolarados.</li>
+</ol>
+<p>A chave do crescimento financeiro não reside em tentar forçar o ciclista de lazer a pagar uma anuidade de inverno, mas em converter o segmento de <strong>Comutadores Ocultos</strong> (16.8% dos casuais) e criar produtos intermediários para o público recreativo.</p>
+</section>
+<section id="as-três-recomendações-estratégicas" class="level3">
+<h3 class="anchored" data-anchor-id="as-três-recomendações-estratégicas">6.2. As Três Recomendações Estratégicas</h3>
+<section id="recomendação-1-campanha-digital-hiper-segmentada-para-o-comutador-oculto" class="level4">
+<h4 class="anchored" data-anchor-id="recomendação-1-campanha-digital-hiper-segmentada-para-o-comutador-oculto">Recomendação 1: Campanha Digital Hiper-segmentada para o “Comutador Oculto”</h4>
+<ul>
+<li><strong>Ação</strong>: Disparar notificações no aplicativo e e-mails automatizados exclusivamente para usuários que destravam bicicletas entre 7h-9h e 16h-18h em dias úteis.</li>
+<li><strong>Mecânica de Conversão</strong>: Exibir uma calculadora in-app: <em>“Você realizou 4 viagens no horário comercial este mês. Com a assinatura anual, você teria economizado $18. Experimente o plano anual com crédito integral dos seus passes recentes.”</em></li>
+<li><strong>Incentivo</strong>: Reembolsar os passes avulsos adquiridos nos últimos 30 dias como desconto na anuidade.</li>
+</ul>
+</section>
+<section id="recomendação-2-lançamento-do-passe-sazonal-de-primaveraverão" class="level4">
+<h4 class="anchored" data-anchor-id="recomendação-2-lançamento-do-passe-sazonal-de-primaveraverão">Recomendação 2: Lançamento do Passe Sazonal de Primavera/Verão</h4>
+<ul>
+<li><strong>Ação</strong>: O inverno de Chicago inibe a contratação de assinaturas de 12 meses para ciclistas de lazer. Criar um plano semestral (Maio a Outubro) voltado especificamente para a temporada de clima quente.</li>
+<li><strong>Objetivo</strong>: Capturar o excedente do público de lazer que rejeita o plano anual tradicional devido à ociosidade nos meses de frio rigoroso.</li>
+</ul>
+</section>
+<section id="recomendação-3-ativação-no-ponto-de-uso-em-estações-turísticas-e-parques" class="level4">
+<h4 class="anchored" data-anchor-id="recomendação-3-ativação-no-ponto-de-uso-em-estações-turísticas-e-parques">Recomendação 3: Ativação no Ponto de Uso em Estações Turísticas e Parques</h4>
+<ul>
+<li><strong>Ação</strong>: Instalar totens com QR Codes e notificações por geofencing nas estações com maior volume de casuais (<em>Streeter Dr &amp; Grand Ave</em>, <em>Millennium Park</em> e <em>Theater on the Lake</em>).</li>
+<li><strong>Mecânica</strong>: Oferecer upgrade com desconto imediatamente após o encerramento de corridas longas aos sábados e domingos.</li>
+</ul>
+</section>
+</section>
+<section id="desenho-experimental-do-teste-ab" class="level3">
+<h3 class="anchored" data-anchor-id="desenho-experimental-do-teste-ab">6.3. Desenho Experimental do Teste A/B</h3>
+<p>Para validar a campanha do “Comutador Oculto” antes do lançamento nacional:</p>
+<ul>
+<li><strong>População do Teste</strong>: Ciclistas casuais que realizaram <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\ge 3</annotation></semantics></math> viagens em dias úteis nos horários de pico nos últimos 30 dias.</li>
+<li><strong>Divisão</strong>:
+<ul>
+<li><strong>Grupo de Controle (50%)</strong>: Recebe comunicação padrão de marketing sobre os benefícios institucionais da anuidade.</li>
+<li><strong>Grupo de Tratamento (50%)</strong>: Recebe mensagem personalizada com calculadora de economia e crédito dos passes avulsos recentes aplicado à anuidade.</li>
+</ul></li>
+<li><strong>Métrica Primária</strong>: Taxa de conversão para assinatura anual em 30 dias.</li>
+<li><strong>Métrica Secundária</strong>: Taxa de renovação e churn após 6 meses.</li>
+</ul>
+</section>
+<section id="fontes-adicionais-de-dados-para-expansão-futura" class="level3">
+<h3 class="anchored" data-anchor-id="fontes-adicionais-de-dados-para-expansão-futura">6.4. Fontes Adicionais de Dados para Expansão Futura</h3>
+<p>Respondendo à questão final do roteiro da Google sobre dados complementares:</p>
+<ol type="1">
+<li><strong>Dados Meteorológicos Horários da NOAA</strong>: Cruzar precipitação, sensação térmica e velocidade do vento por hora em Chicago para isolar a elasticidade-clima da demanda de cada grupo.</li>
+<li><strong>Integração com o Transporte Público de Chicago (CTA)</strong>: Mapear a distância das estações da Cyclistic até as linhas de trem (‘L’) e ônibus, identificando rotas onde a bicicleta atua como complemento de primeira/última milha (<em>first/last mile</em>).</li>
+</ol>
+</section>
+</section>
+<section id="fonte-e-histórico-de-versões" class="level2">
+<h2 class="anchored" data-anchor-id="fonte-e-histórico-de-versões">Fonte e histórico de versões</h2>
+<ul>
+<li><a href="https://talesgomes27.github.io/DAC8-Case-Study-1/">Projeto original</a> e <a href="https://github.com/talesgomes27/DAC8-Case-Study-1">repositório com scripts de reprodução</a>.</li>
+<li><a href="updated-2026-10-13/provenance.json">Proveniência, commit de origem e hashes dos arquivos</a>.</li>
+<li>Snapshots compactados da edição importada: <a href="updated-2026-10-13/source-report.html.gz">relatório HTML</a> e <a href="updated-2026-10-13/source-report.qmd.gz">fonte Quarto</a>.</li>
+<li>Edição histórica substituída: <a href="../../docs/revisions/2026-10-26-bike-share-replacement/pt.qmd.gz">português</a> e <a href="../../docs/revisions/2026-10-26-bike-share-replacement/index.qmd.gz">inglês</a>, com os resultados da reconciliação anterior preservados em <a href="revision-2026-10-26/results.json">results.json</a>.</li>
+</ul>
+<p>A importação preserva os resultados e as interpretações do relatório fornecido. Não constitui uma nova reprodução dos microdados nem uma nova auditoria científica. O repositório de origem prioriza Parquet, depois CSVs, e oferece dados sintéticos quando os dados completos não estão disponíveis; essa alternativa não foi executada nesta importação.</p>
 
 
 </section>

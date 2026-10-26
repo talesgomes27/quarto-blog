@@ -6,6 +6,10 @@ project:
     - posts/**/*.qmd
   resources:
     - assets/
+    - posts/bike-share-navigate/revision-2026-10-26/
+    - docs/revisions/2026-10-26/
+    - docs/reviews/evidence/bike-share-audit.json
+    - scripts/reconcile_bikeshare.R
   post-render:
     - python3 scripts/localize.py
 

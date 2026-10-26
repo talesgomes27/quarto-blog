@@ -22,11 +22,11 @@ I'm Tales Gomes. This is my space to share projects and learning about data scie
 ::: {.project-copy}
 ## [Bike-share / Cyclistic](../posts/bike-share-navigate/index.qmd)
 
-[Casual rider and subscriber habits]{.project-subtitle}
+[Usage patterns and conversion strategies]{.project-subtitle}
 
-[R · 2021]{.project-meta}
+[R · 2026]{.project-meta}
 
-An analysis of bike-sharing data to explore differences in behavior between casual riders and subscribers.
+An updated study with descriptive statistics, logistic regression and trip segmentation to inform conversion strategies.
 
 [Read study [→]{aria-hidden=true}](../posts/bike-share-navigate/index.qmd){.text-link} [Browse the archive [→]{aria-hidden=true}](textos.qmd){.text-link}
 :::

@@ -1,0 +1,80 @@
+{
+  "revision": "2026-10-26",
+  "before_manifest": "before-manifest.json",
+  "change_log": "changes.md",
+  "scope": {
+    "bike_share": "Historical aggregate reconciliation; original trip CSVs not rerun; newer repository metrics and synthetic fallback excluded",
+    "bellabeat": "Corrected R pipeline executed on the pinned upstream ZIP; duplicate sleep records removed; unique participant-day joins; localized outputs"
+  },
+  "current_files": [
+    {
+      "path": "posts/bike-share-navigate/index.qmd",
+      "sha256": "1137d7513feb06b14387ea7901bcec439473042fbcbecb37bf6ff44da90b0a3b"
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.qmd",
+      "sha256": "193085dff79fbccde4c85ec36f713ccb56ccde1e9648d410f0bcab814a6256f6"
+    },
+    {
+      "path": "posts/bellabeat/index.qmd",
+      "sha256": "2224d619add0997e21291a47084f62bb6793a928ddd98cb33022bbf7c6b488b7"
+    },
+    {
+      "path": "posts/bellabeat/en.qmd",
+      "sha256": "61527516ca266f7e4dabe99b93a25b043108a66831712fd881acf604774a21e8"
+    },
+    {
+      "path": "scripts/reconcile_bikeshare.R",
+      "sha256": "b5160a2fecd833715547b256a3bf39315b4f1bb63e7b2e00d1b8f2e3514aefa1"
+    },
+    {
+      "path": "scripts/rebuild_bellabeat.R",
+      "sha256": "e46ce8e6b3e2e6d899786bf1e09f79eb400039ec06f94dfa2de51aaf643819b9"
+    },
+    {
+      "path": "tests/test_bikeshare_revision.py",
+      "sha256": "3773d68128e987ce93622a1b8b0398dd1be8b0faae82de3ff0c7259fbb771c4b"
+    },
+    {
+      "path": "tests/test_study_corrections.py",
+      "sha256": "35d074732201cf14f5da94bfd81bf9b7f5f8bdb440ccf23fafa01993e6a1e557"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "fe1b9a98dcbf765244a0543a87520bad2d1ff7cb25f42ccbe63761759a0d62df"
+    },
+    {
+      "path": "posts/bike-share-navigate/revision-2026-10-26/results.json",
+      "sha256": "cbf172c4670a0e7dc3768107a189ea3415f8ed110bc6b24d2eeea6bb2710e637"
+    },
+    {
+      "path": "posts/bellabeat/revision-2026-10-26/results.json",
+      "sha256": "a6f2d5ece27283750ce6c44ac43607d7610566ab38323e55aa7d2387bd8aa89a"
+    },
+    {
+      "path": "posts/bellabeat/revision-2026-10-26/provenance.json",
+      "sha256": "5900d898484b80d370c10710c172d7a7cab9a6574c918baf31a6262182f4bf62"
+    }
+  ],
+  "validation": {
+    "commands_passed": [
+      "python3 tests/test_study_corrections.py",
+      "python3 tests/test_bikeshare_revision.py",
+      "python3 tests/test_localize.py _site",
+      "XDG_CACHE_HOME=/tmp/quarto-blog-cache quarto render"
+    ],
+    "independent_scientific_review": "ready; B01-B12 and BE01-BE10 corrected or unsupported inference withdrawn with explicit limits",
+    "original_frozen_outputs_unchanged": true,
+    "six_published_baseline_downloads_match_hashes": true,
+    "local_resources_and_language_pairs_verified": true,
+    "mobile_four_articles_no_document_overflow": true,
+    "source_records_exported": false,
+    "published": false
+  },
+  "limits": [
+    "Complete Bike-share raw data were not reprocessed",
+    "Upstream Fitbit ZIP binary identity with the original local Kaggle download is not established",
+    "No clinical or commercial causal effect was estimated",
+    "Live comments and production publication were not tested"
+  ]
+}

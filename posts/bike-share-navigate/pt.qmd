@@ -1,7 +1,7 @@
 ---
-title: "Bike-share: padrões de uso de bicicletas compartilhadas"
-description: "Reconciliação do estudo histórico de viagens Cyclistic: resultados arquivados, diferenças entre grupos e limites das recomendações."
-date: "2021-09-18"
+title: "Cyclistic Bike-Share: análise de padrões e conversão de usuários"
+description: "Relatório atualizado nas seis fases do Google Data Analytics, com estatística descritiva, regressão logística e segmentação de viagens."
+date: "2026-10-13"
 date-modified: "2026-10-26"
 engine: markdown
 freeze: false
@@ -10,154 +10,458 @@ comments:
   giscus:
     repo: talesgomes27/quarto-blog
     language: pt
-toc-title: Neste estudo
+toc-title: Fases do projeto
 translation-key: bike-share
 categories: [visualização de dados, R, análise de dados]
 image: bike-share.jpg
 image-alt: "Bicicletas compartilhadas estacionadas em uma estação."
 lightbox: true
+format:
+  html:
+    html-math-method: mathml
 ---
 
 ::: {.callout-note}
-Revisão de **26/10/2026** do estudo publicado em 2021. A narrativa e os gráficos abaixo foram reconciliados com os agregados arquivados; os CSVs originais não foram reexecutados. A versão anterior, o código original e os hashes estão disponíveis na seção de rastreabilidade. Os valores históricos foram preservados, com correção de sua apresentação e interpretação.
+Esta é a versão atualizada de **13/10/2026** do [projeto Bike Share](https://talesgomes27.github.io/DAC8-Case-Study-1/), incorporada ao blog em 26/10/2026. As tabelas, os gráficos e o código foram importados do relatório renderizado do autor, sem reexecutar a análise ou revalidar suas interpretações estatísticas. Esta edição usa um pipeline diferente do estudo histórico; as versões anteriores estão preservadas na seção de rastreabilidade.
 :::
 
-## Pergunta e contexto
-
-Como as viagens de membros e usuários casuais diferem em um sistema de bicicletas compartilhadas? O estudo foi desenvolvido no contexto do caso Cyclistic, do certificado Google Data Analytics. A pergunta comercial era identificar padrões que pudessem orientar hipóteses de campanhas de adesão.
-
-A unidade observada é uma **viagem**. O registro não contém um identificador persistente de pessoa que permita medir frequência individual, retorno ou conversão em assinatura. Por isso, a análise descreve diferenças entre categorias de viagens e não explica por que uma pessoa decide assinar.
-
-## Dados e processamento histórico
-
-A fonte declarada é o [arquivo público de viagens Divvy](https://divvy-tripdata.s3.amazonaws.com/index.html), de **julho de 2020 a junho de 2021**. O resultado arquivado registra 4.460.151 linhas na carga e **4.335.006 viagens** após o filtro `trip_duration > 2`, em minutos. Viagens de exatamente dois minutos também foram excluídas. O limiar foi uma decisão analítica; ele não demonstra que toda viagem mais curta seja um erro.
-
-O processamento histórico calculou duração, mês, dia da semana, hora, faixa do dia e par de estações de origem/destino. Campos de localização ausentes foram mantidos na base geral. Os antigos rankings de estações/pares usavam apenas os registros com localização observada; não é possível afirmar que essa ausência não afetou sua representatividade. Usar R e RStudio, por si só, também não constitui uma verificação de integridade dos arquivos.
-
-Esta revisão usa os agregados preservados no resultado computacional, com hash SHA-256 verificado pelo script de reconciliação. Os microdados de viagem não estão neste checkout. Assim, não foram refeitos testes de duplicidade, perdas por grupo ou outros controles que dependem dos CSVs completos. Não há mistura com a versão mais recente do repositório: ela tem outros filtros, inclusive teto de duração e tratamento de coordenadas, e dispõe de uma alternativa sintética de execução.
-
-## Categorias de viagem e tipos de bicicleta
-
-Das viagens preservadas, **56,46%** são de membros e **43,54%** de casuais. A bicicleta `docked_bike` lidera o total, seguida por `classic_bike` e `electric_bike`.
-
-::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Categorias de viagem e tipos de bicicleta"}
-
-| Tipo | Viagens | Participação (%) |
-| --- | --- | --- |
-| docked_bike | 1.998.627 | 46,10 |
-| classic_bike | 1.247.162 | 28,77 |
-| electric_bike | 1.089.217 | 25,13 |
-
-:::
-
-![Participação de cada tipo entre as 4.335.006 viagens arquivadas.](revision-2026-10-26/bike-types-pt.png){fig-alt="Barras: docked 46,10%, classic 28,77% e electric 25,13% das viagens."}
-
-A composição também precisa ser comparada dentro de cada grupo:
-
-::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Categorias de viagem e tipos de bicicleta"}
-
-| Grupo | Tipo | Viagens | Percentual dentro do grupo (%) |
-| --- | --- | --- | --- |
-| Membros | docked_bike | 1.043.233 | 42,63 |
-| Membros | electric_bike | 602.335 | 24,61 |
-| Membros | classic_bike | 801.776 | 32,76 |
-| Casuais | docked_bike | 955.394 | 50,61 |
-| Casuais | electric_bike | 486.882 | 25,79 |
-| Casuais | classic_bike | 445.386 | 23,59 |
-
-:::
-
-Membros: docked > classic > electric. Casuais: docked > electric > classic. A participação de docked é maior entre casuais, mas seu número absoluto de viagens docked é menor que o dos membros. Percentual e volume respondem a perguntas diferentes.
-
-## Duração: média, mediana e extremos
-
-::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Duração: média, mediana e extremos"}
-
-| Grupo | Viagens | Participação (%) | Média (min) | Mediana (min) | Q1–Q3 (min) | Máximo (min) |
-| --- | --- | --- | --- | --- | --- | --- |
-| Membros | 2.447.344 | 56,46 | 15,59 | 11,13 | 6,57–19,13 | 33.421,37 |
-| Casuais | 1.887.662 | 43,54 | 41,73 | 19,70 | 11,03–37,00 | 55.944,15 |
-
-:::
-
-A média geral arquivada é aproximadamente **26,97 minutos**. Usando as médias por grupo já arredondadas, a razão casual/membro é **2,68**; a razão entre medianas é **1,77**. Os intervalos interquartis são aproximadamente **12,57 minutos** para membros e **25,97 minutos** para casuais. A comparação de média, mediana e quartis mostra a assimetria que a média sozinha omite.
-
-![Duração média e mediana das viagens por categoria.](revision-2026-10-26/duration-summary-pt.png){fig-alt="Membros: média 15,59 e mediana 11,13 minutos. Casuais: média 41,73 e mediana 19,70 minutos."}
-
-O maior valor casual arquivado é 55.944,15 minutos, aproximadamente **38,85 dias**; entre membros, o máximo é aproximadamente **23,21 dias**. O processamento histórico não aplicou um teto. Esses valores limitam interpretações de médias por mês ou hora. Não há evidência para atribuir sua causa a erro de sistema, furto, manutenção ou lazer.
-
-Comparar média e mediana é uma verificação descritiva de sensibilidade, não uma reestimação após excluir extremos. A base agregada não permite calcular o efeito de novos tetos ou filtros. Por isso, esta revisão retira as antigas conclusões sobre maior duração em fevereiro ou na madrugada e não propõe campanhas noturnas com base nelas. Os gráficos antigos com título de contagem para uma média ou eixo mensal rotulado como hora foram substituídos pelos gráficos auditáveis desta versão.
-
-## Quando as viagens ocorreram
-
-### Meses com ano explícito
-
-::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Meses com ano explícito"}
-
-| Mês | Viagens |
+| Indicador do relatório | Resultado |
 | --- | --- |
-| 2020-07 | 540.120 |
-| 2020-08 | 604.137 |
-| 2020-09 | 516.748 |
-| 2020-10 | 375.308 |
-| 2020-11 | 251.678 |
-| 2020-12 | 127.450 |
-| 2021-01 | 93.893 |
-| 2021-02 | 48.012 |
-| 2021-03 | 222.701 |
-| 2021-04 | 328.578 |
-| 2021-05 | 516.940 |
-| 2021-06 | 709.441 |
+| Base analisada | 4.328.803 viagens válidas |
+| Membros anuais | 56,5% das viagens |
+| Duração mediana casual | 19,65 min, contra 11,13 min para membros |
+| Segmento “Comutador Oculto” | 16,8% das viagens casuais |
 
+## 1. Ask Phase (Definição do Problema e Hipóteses)
+
+### 1.1. Declaração da Tarefa de Negócio (*Business Task*)
+
+A Cyclistic opera uma rede de 5.824 bicicletas distribuídas em 692 estações na cidade de Chicago. O modelo comercial oferece três modalidades de acesso: passes avulsos de corrida única (*single-ride*), passes diários (*full-day*) e assinaturas anuais. Clientes com passes avulsos ou diários são classificados como **ciclistas casuais**, enquanto contratantes do plano de 12 meses são **membros anuais**.
+
+A diretoria financeira concluiu que os membros anuais geram significativamente maior margem operacional e estabilidade de fluxo de caixa do que ciclistas casuais. O objetivo deste estudo é:
+
+1. Identificar com rigor estatístico como membros e casuais utilizam o serviço de forma divergente.
+2. Determinar por que ciclistas casuais contratariam a assinatura anual.
+3. Projetar recomendações de mídia digital e produto para converter ciclistas casuais em membros anuais.
+
+### 1.2. Mapeamento de Stakeholders
+
+- **Lily Moreno (Diretora de Marketing)**: Patrocinadora do projeto. Responsável pelas campanhas institucionais e canais digitais (e-mail, redes sociais e mídias de performance).
+- **Equipe de Marketing Analytics**: Analistas de dados responsáveis por coletar, transformar e modelar dados para respaldar decisões de investimento.
+- **Comitê Executivo da Cyclistic**: Colegiado responsável por aprovar o orçamento e as diretrizes operacionais do novo programa comercial.
+
+### 1.3. Decomposição em Hipóteses Estatísticas Formais
+
+Traduzimos as três perguntas centrais da diretoria em testes de hipóteses mensuráveis:
+
+- **Pergunta 1 (Diferença de Comportamento)**:
+  - $H_0$: As distribuições de duração e horários de deslocamento são idênticas entre membros anuais e ciclistas casuais.
+  - $H_1$: Membros anuais apresentam tempos de viagem mais curtos com picos em horários comerciais, enquanto casuais exibem maior variância e concentração em fins de semana e tardes.
+- **Pergunta 2 (Gatilhos de Adesão Anual)**:
+  - $H_0$: O uso de ciclistas casuais é estritamente pontual e sem repetição semanal.
+  - $H_1$: Existe um subgrupo relevante de ciclistas casuais com uso regular em dias úteis no trajeto casa-trabalho, para os quais o custo acumulado em passes avulsos supera a anuidade.
+- **Pergunta 3 (Impacto da Mídia Digital)**:
+  - $H_0$: Mensagens institucionais genéricas produzem a mesma taxa de resposta em qualquer horário ou estação.
+  - $H_1$: Comunicações contextuais baseadas em geofencing e mensagens in-app disparadas após trajetos matinais recorrentes elevam a conversão.
+
+### 1.4. Enquadramento Financeiro (*Unit Economics*)
+
+Passes avulsos dependem de condições climáticas favoráveis. Chuvas e nevascas reduzem a receita transacional a quase zero no inverno de Chicago. A assinatura anual garante receita recorrente previsível, reduz o custo de aquisição por corrida e melhora a amortização dos custos fixos de manutenção da frota.
+
+------------------------------------------------------------------------
+
+## 2. Prepare Phase (Origem, Governança ROCCC e Metadados)
+
+### 2.1. Origem e Organização dos Dados
+
+Os dados correspondem aos registros históricos de viagens do sistema Divvy de Chicago, operado pela Motivate International Inc. A base é organizada em 12 arquivos mensais em formato CSV, abrangendo variáveis temporais, espaciais, tipo de bicicleta e categoria do ciclista.
+
+### 2.2. Avaliação de Confiabilidade pelo Framework ROCCC
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic"}
+| Critério | Status | Evidência Técnica |
+|:---------------------|:-------------------------:|:---------------------|
+| **Reliable (Confiável)** | Conforme | Dados primários gerados automaticamente pelos sensores telemáticos das estações e pelo GPS integrado às bicicletas. Não são dados autodeclarados. |
+| **Original (Original)** | Conforme | Fonte primária oficial disponibilizada pelo operador do sistema público de Chicago. |
+| **Comprehensive (Abrangente)** | Conforme | Registros de 100% dos deslocamentos válidos realizados no sistema durante 12 meses consecutivos, sem amostragem restritiva. |
+| **Current (Atual)** | Conforme | Período consecutivo de um ano completo, capturando todas as variações sazonais do calendário de Chicago. |
+| **Cited (Citado / Licenciado)** | Conforme | Distribuído sob licença pública oficial da City of Chicago e da Divvy Bikes. |
 :::
 
-![Viagens por mês, em ordem cronológica de julho de 2020 a junho de 2021.](revision-2026-10-26/monthly-trips-pt.png){fig-alt="Junho de 2021 tem 709.441 viagens, seguido por agosto de 2020 com 604.137 e julho de 2020 com 540.120."}
+### 2.3. Licenciamento e Restrições de Privacidade (PII)
 
-O total mensal é maior em **junho de 2021**, seguido por agosto de 2020, julho de 2020, maio de 2021 e setembro de 2020. Junho também lidera os dois grupos: 347.389 viagens de membros e 362.052 casuais. Entre membros, a sequência seguinte é agosto, setembro e julho; entre casuais, agosto, julho e maio. Os anos e a duração dos meses importam: estes são totais observados, não taxas normalizadas nem uma estimativa isolada de sazonalidade.
+A licença proíbe expressamente a identificação de indivíduos. O conjunto de dados não armazena nomes, CPFs, números de cartão de crédito ou identificadores persistentes de usuários.
 
-### Trimestres civis, não estações meteorológicas
+> **Implicação Metodológica**: A unidade amostral é a **viagem** (`ride_id`), não o ciclista individual. Não é possível calcular diretamente a taxa de retenção por usuário sem identificador persistente. Para contornar essa restrição, analisamos padrões probabilísticos agregados de rotas recorrentes e janelas temporais de deslocamento.
 
-::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Trimestres civis, não estações meteorológicas"}
+------------------------------------------------------------------------
 
-| Trimestre civil | Viagens |
-| --- | --- |
-| 2020-Q3 | 1.661.005 |
-| 2020-Q4 | 754.436 |
-| 2021-Q1 | 364.606 |
-| 2021-Q2 | 1.554.959 |
+## 3. Process Phase (Engenharia de Dados e Integridade)
 
+### 3.1. Justificativa Tecnológica
+
+Adotamos o ecossistema R estruturado em scripts modulares na pasta `R/`. O pipeline de ingestão desacoplado valida esquemas de colunas e impede estouro de memória através de leitura com tipagem rígida.
+
+### 3.2. Funil de Integridade e Qualidade de Dados
+
+Para certificar a higienização dos dados, aplicamos um funil sequencial de filtros técnicos:
+
+<details><summary>Exibir código R</summary>
+
+``` r
+# Resumo do funil de integridade
+funnel_summary <- tibble::tribble(
+  ~Etapa, ~Critério_Técnico, ~Condição_Descarte, ~Status,
+  "1. Carga Bruta", "Leitura de 12 arquivos CSV com tipagem fixa", "Arquivos corrompidos ou tipos divergentes", "100,0% Processado",
+  "2. Validação Espacial", "Limites geográficos de Chicago (40°N-43°N / 89°O-86°O)", "Coordenadas NA, zeradas ou fora de Chicago", "Filtrado",
+  "3. Validação de Falso Início", "Duração mínima de 2 minutos", "Viagens negativas ou testes de doca (< 2 min)", "Filtrado",
+  "4. Remoção de Outliers Extremos", "Duração máxima de 24 horas (1.440 min)", "Bicicletas esquecidas, furtadas ou com defeito (> 24h)", "Filtrado",
+  "5. Base Consolidada", "Registros limpos e tipados prontos para modelagem", "Atende cumulativamente a todos os critérios", "Base Analítica Pronta"
+)
+
+knitr::kable(funnel_summary, caption = "Tabela de Rastreabilidade e Funil de Qualidade de Dados")
+```
+
+</details>
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic"}
+| Etapa | Critério_Técnico | Condição_Descarte | Status |
+|:-------------|:-----------------------|:-----------------------|:---------|
+| 1\. Carga Bruta | Leitura de 12 arquivos CSV com tipagem fixa | Arquivos corrompidos ou tipos divergentes | 100,0% Processado |
+| 2\. Validação Espacial | Limites geográficos de Chicago (40°N-43°N / 89°O-86°O) | Coordenadas NA, zeradas ou fora de Chicago | Filtrado |
+| 3\. Validação de Falso Início | Duração mínima de 2 minutos | Viagens negativas ou testes de doca (\< 2 min) | Filtrado |
+| 4\. Remoção de Outliers Extremos | Duração máxima de 24 horas (1.440 min) | Bicicletas esquecidas, furtadas ou com defeito (\> 24h) | Filtrado |
+| 5\. Base Consolidada | Registros limpos e tipados prontos para modelagem | Atende cumulativamente a todos os critérios | Base Analítica Pronta |
+
+: Tabela de Rastreabilidade e Funil de Qualidade de Dados
 :::
 
-Os rótulos antigos `winter`, `spring`, `summer` e `fall` agrupavam jan–mar, abr–jun, jul–set e out–dez. Nesta revisão, esses mesmos agregados são corretamente nomeados **trimestres civis**, preservando sua composição. Não representam as [estações meteorológicas](https://www.ncei.noaa.gov/news/meteorological-versus-astronomical-seasons). Para estudar essas estações, seria necessário reagrupar os registros ou os meses com uma definição explícita e conferir os resultados afetados.
+### 3.3. Engenharia de Variáveis Derivadas
 
-### Dias da semana e horários
+- **Duração da Viagem**: Calculada em minutos via `difftime(ended_at, started_at, units = "mins")`.
+- **Distância Geodésica em km**: Aplicada a fórmula vetorizada de Haversine entre `(start_lat, start_lng)` e `(end_lat, end_lng)`:
 
-::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Dias da semana e horários"}
+  ::: {.table-responsive tabindex="0" role="region" aria-label="Fórmula de Haversine"}
+  $$d = 2R \cdot \arcsin\left(\sqrt{\sin^2\left(\frac{\Delta\phi}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\Delta\lambda}{2}\right)}\right)$$
+  :::
 
-| Grupo | Viagens no fim de semana | Percentual dentro do grupo (%) |
-| --- | --- | --- |
-| Membros | 676.393 | 27,64 |
-| Casuais | 789.897 | 41,85 |
+  onde $R = 6.371\text{ km}$.
+- **Velocidade Média Estimada**: $v = \frac{d}{(t / 60)}\text{ (km/h)}$.
+- **Rotas Circulares**: Flag booleana `start_station_name == end_station_name` identificando viagens recreativas sem deslocamento funcional.
+- **Sazonalidade Meteorológica**: Inverno (Dez-Fev), Primavera (Mar-Mai), Verão (Jun-Ago) e Outono (Set-Nov).
 
+------------------------------------------------------------------------
+
+## 4. Analyze Phase (Estatística Descritiva, Inferência e Modelagem)
+
+### 4.1. Estatística Descritiva Canônica
+
+A tabela abaixo atende rigorosamente às especificações do documento original do Google, incluindo média, desvio-padrão, mediana, intervalo interquartil (IQR), mínimo, máximo e a **moda do dia da semana**:
+
+<details><summary>Exibir código R</summary>
+
+``` r
+stats_res$descriptive |>
+  dplyr::rename(
+    `Grupo` = member_casual,
+    `Total Viagens` = total_viagens,
+    `Média (min)` = media_duracao_min,
+    `Desvio (min)` = desvio_duracao_min,
+    `Mediana (min)` = mediana_duracao_min,
+    `IQR (min)` = iqr_duracao_min,
+    `Mín (min)` = min_duracao_min,
+    `Máx (min)` = max_duracao_min,
+    `Moda Semanal` = moda_dia_semana,
+    `Dist. Mediana (km)` = distancia_mediana_km,
+    `Rotas Circulares (%)` = taxa_rotas_circulares_pct
+  ) |>
+  knitr::kable(caption = "Estatísticas Descritivas Canônicas por Categoria de Ciclista")
+```
+
+</details>
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic"}
+| Grupo | Total Viagens | Média (min) | Desvio (min) | Mediana (min) | IQR (min) | Mín (min) | Máx (min) | Moda Semanal | distancia_media_km | Dist. Mediana (km) | Rotas Circulares (%) |
+|:---|-----:|-----:|-----:|-----:|----:|----:|----:|:-----|-------:|-------:|--------:|
+| Casual | 1883040 | 33.61 | 57.33 | 19.65 | 25.77 | 2 | 1439.90 | sábado | 2.24 | 1.71 | 13.67 |
+| Membro | 2445763 | 15.10 | 20.12 | 11.13 | 12.53 | 2 | 1439.72 | quarta | 2.30 | 1.72 | 3.29 |
+
+: Estatísticas Descritivas Canônicas por Categoria de Ciclista
 :::
 
-Fins de semana representam uma parcela maior das viagens casuais que das viagens de membros. Isso não significa que a maioria das viagens casuais ocorra no fim de semana: os dias úteis somam 1.097.765 viagens casuais. Comparar atividade típica por dia exigiria considerar a quantidade de dias e a exposição correspondente.
+- **Destaque Descritivo**: A moda do dia da semana para membros é a **quarta-feira** (376.612 viagens no ápice do expediente corporativo da semana). Para ciclistas casuais, a moda é o **sábado** (429.785 viagens), confirmando a preferência por lazer e fins de semana.
 
-O pico semanal geral é sábado e o menor total é segunda-feira. Para membros, os três maiores totais são quarta-feira, sábado e sexta-feira; para casuais, sábado, domingo e sexta-feira. Por hora, os maiores volumes gerais são 17h, 18h e 16h. As faixas do dia seguem tarde > noite > manhã > madrugada. São contagens de viagens, sem demonstração de motivação individual, deslocamento para o trabalho ou efeito de uma campanha.
+### 4.2. Inferência Estatística e Tamanhos de Efeito
 
-## Conclusões e hipóteses comerciais
+<details><summary>Exibir código R</summary>
 
-As viagens casuais apresentam duração média e mediana maiores e maior concentração relativa no fim de semana que as de membros. Esses padrões podem orientar hipóteses de comunicação ou oferta, a serem avaliadas com dados e desenho adequados.
+``` r
+# Teste de Wilcoxon-Mann-Whitney para Duracao
+w_dur <- stats_res$wilcox_duration$test
+r_dur <- stats_res$wilcox_duration$r
 
-A análise não mede probabilidade de conversão, elasticidade a preço, fidelidade ou efeito de descontos. Um teste comercial precisaria de desfecho de adesão, dados de exposição e critério de comparação. Antes de interpretar padrões de duração, também seria necessário verificar os extremos, a cobertura e a estabilidade dos resultados sob regras documentadas de limpeza.
+# Teste de Qui-quadrado para Fim de Semana
+chi_wknd <- stats_res$chisq_tests$weekend$test
+v_wknd <- stats_res$chisq_tests$weekend$v
+```
 
-## Rastreabilidade e reprodução
+</details>
 
-- [Resultados e hashes desta reconciliação](revision-2026-10-26/results.json): contagens, percentuais, médias/medianas, trimestres e hashes dos novos gráficos.
-- [Script de reconciliação e geração dos gráficos](../../scripts/reconcile_bikeshare.R): execute `Rscript --vanilla scripts/reconcile_bikeshare.R` na raiz do projeto. O script confere o hash do resultado histórico e a conservação das contagens. Requer os pacotes já usados nesta revisão: ggplot2, jsonlite e digest; não baixa dados nem executa a análise de viagens.
-- [Evidência dos agregados históricos](../../docs/reviews/evidence/bike-share-audit.json).
-- [Fonte original EN antes da correção](../../docs/revisions/2026-10-26/before/posts/bike-share-navigate/index.qmd.gz) e [tradução PT anterior](../../docs/revisions/2026-10-26/before/posts/bike-share-navigate/pt.qmd.gz), comprimidas, com o processo completo preservado.
-- [Resultado computacional original preservado](../../docs/revisions/2026-10-26/before/_freeze/posts/bike-share-navigate/index/execute-results/html.json.gz) e [manifesto de hashes anterior à revisão](../../docs/revisions/2026-10-26/before-manifest.json).
-- [Repositório informado, no commit consultado](https://github.com/talesgomes27/DAC8-Case-Study-1/tree/5c21b988e46548d7592245d1937cee0c8af6993c): versão posterior, com escolhas analíticas diferentes. Seus números não são usados como substitutos dos resultados históricos aqui apresentados.
+- **Duração de Corrida**: O teste de postos de Wilcoxon rejeita categoricamente a igualdade de tempos ($W = 3.194.595.206.038$, $p < 2.2 \times 10^{-16}$). O tamanho de efeito $r = 0.018$ confirma uma magnitude substantiva e prática na discrepância de uso.
+- **Associação Semanal**: O teste qui-quadrado de independência entre categoria de usuário e tipo de dia (útil vs fim de semana) revelou forte associação ($\chi^2 = 95.889$, $p < 0.001$, $V\text{ de Cramér} = 0.149$).
 
-Os gráficos novos foram calculados a partir de agregados arquivados; os gráficos anteriores permanecem como material histórico e não são apresentados como saídas atualizadas. A data original do estudo foi mantida e a data de revisão está separada. Uma reprodução dos CSVs completos continua pendente.
+### 4.3. Regressão Logística Explicativa (Modelo de Propensão)
+
+Ajustamos um modelo logístico binomial com a variável resposta $Y = 1$ (Membro) e $Y = 0$ (Casual) para mensurar a contribuição de cada fator:
+
+<details><summary>Exibir código R</summary>
+
+``` r
+stats_res$odds_ratios |>
+  dplyr::rename(
+    `Variável` = variavel,
+    `Coeficiente (β)` = coeficiente,
+    `Erro Padrão` = erro_padrao,
+    `Valor-p` = p_valor,
+    `Odds Ratio (OR)` = odds_ratio,
+    `IC 95% Inf` = ci_inf,
+    `IC 95% Sup` = ci_sup
+  ) |>
+  knitr::kable(caption = "Resultados da Regressão Logística e Razões de Chance (Odds Ratios)")
+```
+
+</details>
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic"}
+| Variável | Coeficiente (β) | Erro Padrão | Valor-p | Odds Ratio (OR) | IC 95% Inf | IC 95% Sup |
+|:-----------------|----------:|--------:|-----:|----------:|-------:|-------:|
+| (Intercept) | 1.5858 | 0.0052 | 0 | 4.883 | 4.834 | 4.933 |
+| is_weekend_num | -0.5969 | 0.0021 | 0 | 0.550 | 0.548 | 0.553 |
+| is_commute_hours | 0.2969 | 0.0021 | 0 | 1.346 | 1.340 | 1.351 |
+| distance_km | 0.0239 | 0.0005 | 0 | 1.024 | 1.023 | 1.025 |
+| rideable_typedocked_bike | -0.5924 | 0.0029 | 0 | 0.553 | 0.550 | 0.556 |
+| rideable_typeelectric_bike | -0.5486 | 0.0029 | 0 | 0.578 | 0.574 | 0.581 |
+| seasonOutono | -0.5533 | 0.0054 | 0 | 0.575 | 0.569 | 0.581 |
+| seasonPrimavera | -1.0608 | 0.0052 | 0 | 0.346 | 0.343 | 0.350 |
+| seasonVerao | -1.0604 | 0.0052 | 0 | 0.346 | 0.343 | 0.350 |
+
+: Resultados da Regressão Logística e Razões de Chance (Odds Ratios)
+:::
+
+- **Interpretação dos Odds Ratios**: Viagens realizadas nos horários de pico comercial (7h--9h e 16h--18h) apresentam um **Odds Ratio de 1,35** (IC 95%: \[1,34; 1,35\], $p < 0,001$), elevando em 35% as chances de a viagem pertencer a um membro anual. Já viagens no fim de semana apresentam $\text{OR} = 0,55$ (redução de 45% na chance de ser membro), quantificando matematicamente o forte perfil de lazer dos ciclistas casuais.
+
+### 4.4. Segmentação Quantitativa dos Ciclistas Casuais
+
+Decompusemos a base de casuais em três personas quantificadas:
+
+<details><summary>Exibir código R</summary>
+
+``` r
+stats_res$personas |>
+  dplyr::rename(
+    `Persona` = persona,
+    `Volume de Viagens` = volume_viagens,
+    `Proporção (%)` = proporcao_pct,
+    `Mediana Duração (min)` = mediana_duracao_min,
+    `Mediana Distância (km)` = mediana_distancia_km
+  ) |>
+  knitr::kable(caption = "Segmentação de Personas entre Ciclistas Casuais")
+```
+
+</details>
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela do relatório Cyclistic"}
+| Persona | Volume de Viagens | Proporção (%) | Mediana Duração (min) | Mediana Distância (km) |
+|:----------------|------------:|----------:|---------------:|----------------:|
+| Lazer de Fim de Semana | 928504 | 49.3 | 24.8 | 1.41 |
+| Espontaneo / Noite | 638333 | 33.9 | 17.5 | 1.91 |
+| Comutador Oculto | 316203 | 16.8 | 14.3 | 2.05 |
+
+: Segmentação de Personas entre Ciclistas Casuais
+:::
+
+O segmento **"Comutador Oculto"** concentra 16.8% do volume casual (316.203 viagens). Esses ciclistas utilizam o sistema para transporte diário em dias úteis, representando o alvo prioritário para a campanha de conversão de Lily Moreno.
+
+------------------------------------------------------------------------
+
+## 5. Share Phase (Storytelling Visual e Descobertas)
+
+Abaixo apresentamos o painel gráfico gerado a partir do módulo [`R/04_theme_cyclistic.R`](https://github.com/talesgomes27/DAC8-Case-Study-1/blob/c4295b70c2fd8c850d11bf5382a52b9f04978288/R/04_theme_cyclistic.R):
+
+### 5.1. Dinâmica Horária e Deslocamento Pendular
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_trips_by_hour(trips)
+```
+
+</details>
+
+![Número de viagens por hora e categoria de ciclista.](updated-2026-10-13/hourly-trips.png)
+
+Os membros apresentam curvas bimodais típicas de trânsito pendular corporativo, com picos evidentes às 8h e 17h. Casuais exibem crescimento gradual com platô vespertino.
+
+### 5.2. Duração Mediana ao Longo do Dia
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_duration_by_hour(trips)
+```
+
+</details>
+
+![Duração mediana por hora e categoria de ciclista, em minutos.](updated-2026-10-13/hourly-duration.png)
+
+Casuais pedalam com tempos medianos consistentemente superiores a 30 minutos na maior parte do dia. Membros mantêm trajets objetivos entre 12 e 14 minutos.
+
+### 5.3. Inversão Semanal de Demanda
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_trips_by_weekday(trips)
+```
+
+</details>
+
+![Volume de viagens por dia da semana e categoria de ciclista.](updated-2026-10-13/weekday-trips.png)
+
+O gráfico de colunas evidencia a troca de liderança: membros sustentam a frota de segunda a sexta-feira, enquanto casuais dominam amplamente sábado e domingo.
+
+### 5.4. Sazonalidade Climática de Chicago
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_seasonal_trends(trips)
+```
+
+</details>
+
+![Volume de viagens por estação meteorológica e categoria de ciclista.](updated-2026-10-13/seasonal-trips.png)
+
+A severidade do inverno entre dezembro e fevereiro provoca uma contração de mais de 75% no volume casual. Membros exibem maior resiliência ao clima frio.
+
+### 5.5. Distribuição de Densidade da Duração
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_density_duration(trips)
+```
+
+</details>
+
+![Distribuição da duração das viagens, em minutos, por categoria de ciclista.](updated-2026-10-13/duration-density.png)
+
+A densidade empírica destaca a forte assimetria à direita dos ciclistas casuais, justificando o uso de métodos estatísticos não paramétricos.
+
+### 5.6. Concentração Geográfica e Rotas Circulares
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_top_stations(trips, top_n = 8)
+```
+
+</details>
+
+![Oito estações de origem com maior volume por categoria de ciclista.](updated-2026-10-13/top-stations.png)
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_round_trips(trips)
+```
+
+</details>
+
+![Percentual de viagens circulares: casual 13,7%; membro 3,3%.](updated-2026-10-13/round-trips.png)
+
+Ciclistas casuais registram taxa de viagens circulares mais de 4 vezes superior à dos membros (13,7% contra 3,3%), comprovando o uso para recreação e passeios na orla do Lago Michigan.
+
+### 5.7. Forest Plot da Regressão Logística
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_forest_odds_ratios(stats_res$odds_ratios)
+```
+
+</details>
+
+![Razões de chance e intervalos de confiança de 95% do modelo logístico.](updated-2026-10-13/odds-ratios.png)
+
+O *forest plot* ilustra claramente que os horários comerciais e a distância percorrida exercem os maiores efeitos positivos de propensão de uso como membro.
+
+### 5.8. Partição das Personas Casuais
+
+<details><summary>Exibir código R</summary>
+
+``` r
+plot_persona_breakdown(stats_res$personas)
+```
+
+</details>
+
+![Participação dos segmentos de viagens casuais: comutador oculto, lazer de fim de semana e espontâneo ou noturno.](updated-2026-10-13/personas.png)
+
+------------------------------------------------------------------------
+
+## 6. Act Phase (Recomendações Executivas, Teste A/B e Próximos Passos)
+
+### 6.1. Síntese Conclusiva
+
+A análise comprova que a Cyclistic opera dois negócios paralelos na mesma malha:
+
+1. Um serviço de **mobilidade corporativa** utilizado por membros anuais com alta previsibilidade e trajetos curtos em dias úteis.
+2. Um serviço de **lazer e turismo** utilizado por ciclistas casuais com trajetos longos e concentração em fins de semana ensolarados.
+
+A chave do crescimento financeiro não reside em tentar forçar o ciclista de lazer a pagar uma anuidade de inverno, mas em converter o segmento de **Comutadores Ocultos** (16.8% dos casuais) e criar produtos intermediários para o público recreativo.
+
+### 6.2. As Três Recomendações Estratégicas
+
+#### Recomendação 1: Campanha Digital Hiper-segmentada para o "Comutador Oculto"
+
+- **Ação**: Disparar notificações no aplicativo e e-mails automatizados exclusivamente para usuários que destravam bicicletas entre 7h-9h e 16h-18h em dias úteis.
+- **Mecânica de Conversão**: Exibir uma calculadora in-app: *"Você realizou 4 viagens no horário comercial este mês. Com a assinatura anual, você teria economizado \$18. Experimente o plano anual com crédito integral dos seus passes recentes."*
+- **Incentivo**: Reembolsar os passes avulsos adquiridos nos últimos 30 dias como desconto na anuidade.
+
+#### Recomendação 2: Lançamento do Passe Sazonal de Primavera/Verão
+
+- **Ação**: O inverno de Chicago inibe a contratação de assinaturas de 12 meses para ciclistas de lazer. Criar um plano semestral (Maio a Outubro) voltado especificamente para a temporada de clima quente.
+- **Objetivo**: Capturar o excedente do público de lazer que rejeita o plano anual tradicional devido à ociosidade nos meses de frio rigoroso.
+
+#### Recomendação 3: Ativação no Ponto de Uso em Estações Turísticas e Parques
+
+- **Ação**: Instalar totens com QR Codes e notificações por geofencing nas estações com maior volume de casuais (*Streeter Dr & Grand Ave*, *Millennium Park* e *Theater on the Lake*).
+- **Mecânica**: Oferecer upgrade com desconto imediatamente após o encerramento de corridas longas aos sábados e domingos.
+
+### 6.3. Desenho Experimental do Teste A/B
+
+Para validar a campanha do "Comutador Oculto" antes do lançamento nacional:
+
+* **População do Teste**: Ciclistas casuais que realizaram $\ge 3$ viagens em dias úteis nos horários de pico nos últimos 30 dias.
+* **Divisão**:
+  - **Grupo de Controle (50%)**: Recebe comunicação padrão de marketing sobre os benefícios institucionais da anuidade.
+  - **Grupo de Tratamento (50%)**: Recebe mensagem personalizada com calculadora de economia e crédito dos passes avulsos recentes aplicado à anuidade.
+* **Métrica Primária**: Taxa de conversão para assinatura anual em 30 dias.
+* **Métrica Secundária**: Taxa de renovação e churn após 6 meses.
+
+### 6.4. Fontes Adicionais de Dados para Expansão Futura
+
+Respondendo à questão final do roteiro da Google sobre dados complementares:
+
+1. **Dados Meteorológicos Horários da NOAA**: Cruzar precipitação, sensação térmica e velocidade do vento por hora em Chicago para isolar a elasticidade-clima da demanda de cada grupo.
+2. **Integração com o Transporte Público de Chicago (CTA)**: Mapear a distância das estações da Cyclistic até as linhas de trem ('L') e ônibus, identificando rotas onde a bicicleta atua como complemento de primeira/última milha (*first/last mile*).
+
+## Fonte e histórico de versões
+
+- [Projeto original](https://talesgomes27.github.io/DAC8-Case-Study-1/) e [repositório com scripts de reprodução](https://github.com/talesgomes27/DAC8-Case-Study-1).
+- [Proveniência, commit de origem e hashes dos arquivos](updated-2026-10-13/provenance.json).
+- Snapshots compactados da edição importada: [relatório HTML](updated-2026-10-13/source-report.html.gz) e [fonte Quarto](updated-2026-10-13/source-report.qmd.gz).
+- Edição histórica substituída: [português](../../docs/revisions/2026-10-26-bike-share-replacement/pt.qmd.gz) e [inglês](../../docs/revisions/2026-10-26-bike-share-replacement/index.qmd.gz), com os resultados da reconciliação anterior preservados em [results.json](revision-2026-10-26/results.json).
+
+A importação preserva os resultados e as interpretações do relatório fornecido. Não constitui uma nova reprodução dos microdados nem uma nova auditoria científica. O repositório de origem prioriza Parquet, depois CSVs, e oferece dados sintéticos quando os dados completos não estão disponíveis; essa alternativa não foi executada nesta importação.

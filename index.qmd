@@ -22,11 +22,11 @@ Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados e
 ::: {.project-copy}
 ## [Bike-share / Cyclistic](posts/bike-share-navigate/pt.qmd)
 
-[Hábitos de usuários casuais e assinantes]{.project-subtitle}
+[Padrões de uso e estratégias de conversão]{.project-subtitle}
 
-[R · 2021]{.project-meta}
+[R · 2026]{.project-meta}
 
-Análise de dados de um sistema de compartilhamento de bicicletas para explorar diferenças de comportamento entre usuários casuais e assinantes.
+Estudo atualizado com estatística descritiva, regressão logística e segmentação de viagens para orientar estratégias de conversão.
 
 [Ver estudo [→]{aria-hidden=true}](posts/bike-share-navigate/pt.qmd){.text-link} [Explorar o arquivo [→]{aria-hidden=true}](textos.qmd){.text-link}
 :::

@@ -1,0 +1,72 @@
+{
+  "source": {
+    "repository": "https://github.com/talesgomes27/DAC8-Case-Study-1",
+    "commit": "c4295b70c2fd8c850d11bf5382a52b9f04978288",
+    "rendered_path": "docs/index.html",
+    "qmd_path": "report/index.qmd",
+    "rendered_sha256": "3837c21306600e4b82137f00aa91f7458e73579979c083acbad584228a56b3e7",
+    "qmd_sha256": "bd5936f0d171b07ba85ad363311d4efe3557053a720c3d42adda611ef0afa0fb"
+  },
+  "imported_on": "2026-10-26",
+  "analysis_reexecuted": false,
+  "historical_articles": [
+    {
+      "path": "docs/revisions/2026-10-26-bike-share-replacement/pt.qmd.gz",
+      "sha256": "f5add99b9a3ed132708518447d0539b483e99c688e25395a3a6ee5cf22c68e97"
+    },
+    {
+      "path": "docs/revisions/2026-10-26-bike-share-replacement/index.qmd.gz",
+      "sha256": "834fcf398ca8de4a97b356d5bab232443945f2fb015f89ba445482acbb7f37ee"
+    }
+  ],
+  "figures": [
+    {
+      "file": "hourly-trips.png",
+      "sha256": "6c72107485ddc11d26fc0f3b67dd8598ccae58d09439b81ce07e641aa1c3c544"
+    },
+    {
+      "file": "hourly-duration.png",
+      "sha256": "61107f09b9ceddcc18c92755412bcbe981bfe888598f8f7082d2bc6522af650a"
+    },
+    {
+      "file": "weekday-trips.png",
+      "sha256": "c37f5fc751d50b715117f9762d53908f4d132f6d8c3588111692480c407614b3"
+    },
+    {
+      "file": "seasonal-trips.png",
+      "sha256": "17102468f2cc34919de1b92c91daa4f5e74c08de515df29034c1a3e85c78a01f"
+    },
+    {
+      "file": "duration-density.png",
+      "sha256": "1c3a809189ddf3a3747b241b99ea8b16899d4643646a7dae797bff59c10c3676"
+    },
+    {
+      "file": "top-stations.png",
+      "sha256": "d0c38eb2848b2d6e4147ab8183c9103776ab6ad3f37ce8e5aaa681af358f615d"
+    },
+    {
+      "file": "round-trips.png",
+      "sha256": "ad19142c648fc53e6e42442d8757954d20082f545419f9729d557fa1b65e17e5"
+    },
+    {
+      "file": "odds-ratios.png",
+      "sha256": "35a6151ac1e7d79452d14d6687abfc111d3dcbabe327808c482f971de38fc3e4"
+    },
+    {
+      "file": "personas.png",
+      "sha256": "c9c5445b79ab3fff5072742974de4289c54fc3c30e0e8b5744883a885d793818"
+    }
+  ],
+  "imported_counts": {
+    "figures": 9,
+    "code_blocks": 14,
+    "tables": 5
+  },
+  "import_method": "Quarto 1.10.19 Pandoc HTML AST to static Markdown; presentation wrappers removed, lists restored from source QMD, local file link replaced by pinned GitHub source, table and image descriptions translated for EN.",
+  "translation": {
+    "prose": "Complete English translation of all six phases",
+    "tables": "English labels with unchanged numerical cells and model variable names",
+    "code": "Original R code preserved verbatim",
+    "figures": "Original Portuguese chart images preserved byte for byte with English descriptions and glossary"
+  }
+}
