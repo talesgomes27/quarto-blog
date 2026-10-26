@@ -1,0 +1,18 @@
+---
+title: Writing and studies
+description: Data case studies and analyses, with code, context and results.
+comments: false
+listing:
+  contents:
+    - ../posts/bike-share-navigate/index.qmd
+    - ../posts/bellabeat/en.qmd
+  sort: "date desc"
+  type: default
+  categories: true
+  filter-ui: true
+  sort-ui: true
+  fields: [image, title, description, date, categories]
+  date-format: "MMM D, YYYY"
+---
+
+An archive of published projects and analyses. The studies below preserve the results from their original publication.

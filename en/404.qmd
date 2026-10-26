@@ -1,0 +1,9 @@
+---
+title: Page not found
+comments: false
+search: false
+---
+
+The address may have changed or the page may not exist.
+
+[Back to home](index.qmd){.btn .btn-primary} or [browse the archive](textos.qmd).

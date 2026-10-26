@@ -1,526 +1,149 @@
 ---
-title: "Análise de uso bellabets"
-description: "Neste projeto procuro encontrar tendências de uso em um  banco de dados que contém dados de 33 usuários, provenientes do *Fitibit*, um fitness tracker da *Bellabeats*."
+title: "Bellabeat: atividade, sono e uso de dispositivos fitness"
+description: "Análise exploratória de registros Fitbit, com junções corrigidas, cobertura por variável e limites das associações observadas."
 date: "2021-09-10"
-categories: [data visualization, R, data analysis]
+date-modified: "2026-10-26"
+categories: [visualização de dados, R, análise de dados]
 image: "bellabeat.jpg"
-draft: false
-filters:
-   - lightbox
-lightbox: auto
+engine: markdown
+freeze: false
+lang: pt-BR
+translation-key: bellabeat
+lightbox: true
 ---
 
-## Objetivo da análise
+::: {.callout-note title="Revisão de 26/10/2026"}
+Esta versão foi recalculada em R a partir do arquivo original de abril–maio de 2016. Três duplicatas exatas de sono foram removidas antes das junções. A narrativa e os gráficos foram atualizados nos dois idiomas; as fontes e os resultados anteriores permanecem disponíveis na seção de rastreabilidade.
+:::
 
-Neste projeto procuro encontrar tendências de uso em um  banco de dados que contém dados de 33 usuários, provenientes do *Fitibit*, um fitness tracker da *Bellabeats*.
+## Pergunta e alcance
 
+Como os registros de atividade, sono e frequência cardíaca variam nesta amostra de usuários Fitbit? O estudo usa esses dados como exercício exploratório no contexto de Bellabeat. Fitbit não é um produto Bellabeat, e o conjunto não identifica clientes dessa empresa.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-                      out.width= "100%",
-                      dpi=400,
-                      cache = TRUE,
-                      fig.align = "center"
-                      )
+A unidade de análise é o **participante-dia**. Uma mesma pessoa contribui com vários dias e pode aparecer em diferentes faixas de sono. As comparações descrevem os registros disponíveis; não identificam efeitos causais de sono, atividade ou intervenções comerciais.
+
+## Origem e cobertura dos dados
+
+A fonte indicada é [FitBit Fitness Tracker Data, no Kaggle](https://www.kaggle.com/datasets/arashnic/fitbit). Para esta revisão, foi usada a parcela de **12 de abril a 12 de maio de 2016**, disponível no [registro original de Furberg, Brinton, Keating e Ortiz no Zenodo](https://zenodo.org/records/53894).
+
+O arquivo de atividade contém **33 identificadores distintos**; a descrição do dataset declara 30 participantes. Essa divergência documental permanece sem explicação. Não foi inferido sexo, idade ou perfil de cliente a partir dos identificadores. Os dados são históricos e não representam necessariamente os usuários atuais de dispositivos fitness.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela: Origem e cobertura dos dados"}
+
+| Tabela de origem | Registros | IDs distintos | Tratamento |
+| --- | ---: | ---: | --- |
+| Atividade diária | 940 | 33 | Uma linha por participante-dia |
+| Sono | 413 | 24 | Remoção de três duplicatas exatas; 410 linhas restantes |
+| Frequência cardíaca | 2.483.658 | 14 | Média dos registros por participante-dia; 334 linhas diárias |
+| Peso e IMC | 67 | 8 | Chave participante-dia verificada; cobertura restrita |
+
+:::
+
+Os campos seguem o [dicionário Fitabase](https://www.fitabase.com/resources/knowledge-base/exporting-data/data-dictionaries/). `TotalDistance` registra distância total em quilômetros e `Calories` estima o gasto energético total em quilocalorias, incluindo componentes além do exercício.
+
+## Processamento corrigido
+
+O [script R desta revisão](../../scripts/rebuild_bellabeat.R) verifica a identidade do ZIP antes da leitura e aplica as seguintes regras:
+
+1. Padroniza datas e verifica a chave participante-dia em cada tabela.
+2. Remove somente duplicatas exatas de sono. Registros distintos com a mesma chave provocam falha de validação, em vez de serem descartados arbitrariamente.
+3. Agrega as leituras de frequência cardíaca por participante-dia e faz junções à esquerda a partir da atividade diária. A tabela final tem **940 linhas e 940 chaves únicas**.
+4. Converte minutos em horas, mantendo o tempo total na cama e criando uma variável separada para tempo na cama menos tempo dormido.
+5. Constrói o formato longo diretamente, com **3.760 linhas**, sem a junção muitos-para-muitos usada anteriormente.
+6. Preserva zeros e valores ausentes. Não supõe que um zero comprove inatividade real ou que a ausência de registro seja aleatória.
+
+A versão anterior tinha 943 linhas; sua junção em formato longo implicava 3.796 linhas. As novas médias e figuras usam a tabela corrigida, e não a versão com dias duplicados.
+
+## Comparação com o resultado anterior
+
+As médias históricas abaixo pertencem à tabela de 943 linhas preservada. A coluna corrigida usa 940 participantes-dias únicos; nenhuma das duas séries foi sobrescrita pela outra.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela de resultados: comparison"}
+
+{{< include revision-2026-10-26/comparison-pt.md >}}
+
+:::
+
+## Resumo com denominadores explícitos
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela de resultados: summary"}
+
+{{< include revision-2026-10-26/summary-pt.md >}}
+
+:::
+
+Cada média usa os registros não ausentes da variável correspondente, com peso igual por dia observado. Pessoas com mais dias contribuem mais para esse resumo. A cobertura de IMC, sono e frequência cardíaca é menor que a de atividade; seus valores não descrevem 33 participantes igualmente observados.
+
+A frequência cardíaca é a média das leituras disponíveis ao longo do dia, sem ponderação pela duração entre leituras. Não é uma medida de frequência cardíaca de repouso. Os minutos classificados como sedentários também dependem da cobertura e da classificação do dispositivo; não permitem concluir isoladamente quanto tempo a pessoa permaneceu fisiologicamente inativa.
+
+## Atividade por dia da semana
+
+O período contém cinco terças, quartas e quintas e quatro ocorrências dos demais dias. Por isso, somar todas as observações de cada dia da semana favorece categorias com maior exposição. A revisão usa **médias por participante-dia observado**, acompanhadas de contagens.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela de resultados: weekday"}
+
+{{< include revision-2026-10-26/weekday-pt.md >}}
+
+:::
+
+![Distância média registrada por participante-dia, com cobertura por dia da semana.](revision-2026-10-26/weekday-pt.png){fig-alt="Gráfico da distância média diária por dia da semana; cada barra usa os dias observados e informa sua cobertura."}
+
+As diferenças são descritivas. A normalização resolve a comparação desigual por totais, mas não equilibra automaticamente a composição dos participantes nem demonstra um padrão individual persistente.
+
+## Intensidade, tempo, passos e gasto energético
+
+![Distância registrada versus tempo, separados pela intensidade da atividade.](revision-2026-10-26/intensity_distance-pt.png){fig-alt="Pontos de distância em quilômetros versus tempo em horas, separados por intensidade da atividade."}
+
+![Gasto energético total estimado versus tempo por intensidade.](revision-2026-10-26/intensity_calories-pt.png){fig-alt="Pontos de gasto energético estimado em quilocalorias versus tempo em horas por intensidade."}
+
+![Passos diários versus tempo por intensidade.](revision-2026-10-26/intensity_steps-pt.png){fig-alt="Pontos do total de passos diários versus tempo em horas, separados pela intensidade."}
+
+Os gráficos mostram como medidas registradas no mesmo dia se distribuem conjuntamente. Essas variáveis vêm do mesmo sistema de monitoramento e estimação; sua associação não constitui uma validação independente da precisão do dispositivo. Nenhuma faixa de confiança foi apresentada como se os vários dias de uma mesma pessoa fossem observações independentes.
+
+## Sono: associações exploratórias
+
+As faixas de sono são inferiores a seis horas, de seis a dez horas inclusive e superiores a dez horas. Os denominadores variam conforme a disponibilidade simultânea de sono e da outra variável.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabela de resultados: sleep"}
+
+{{< include revision-2026-10-26/sleep-pt.md >}}
+
+:::
+
+![Passos e gasto energético estimado, separados pelas faixas de sono observado.](revision-2026-10-26/sleep_calories-pt.png){fig-alt="Pontos de passos diários versus gasto energético estimado, com painéis para três faixas de duração do sono."}
+
+![Distribuição da frequência cardíaca média diária por faixa de sono.](revision-2026-10-26/sleep_heart-pt.png){fig-alt="Boxplots e pontos das médias diárias de frequência cardíaca, por faixa de sono, com tamanho dos grupos."}
+
+A comparação de frequência cardíaca usa apenas registros em que as duas variáveis estão disponíveis. Uma diferença entre faixas pode refletir também composição dos participantes, atividade, cobertura das medições e outras características não controladas. A faixa acima de dez horas tem poucos registros, e os participantes das faixas não formam grupos independentes.
+
+A análise não mede doenças cardíacas nem estima o efeito de aumentar o sono. A conclusão preventiva presente na versão anterior foi retirada.
+
+## O que o estudo permite concluir
+
+- A cobertura varia muito entre variáveis; registrar sua ausência é parte da interpretação.
+- Comparações de atividade por dia da semana precisam considerar a quantidade de dias e registros disponíveis.
+- Atividade, sono e frequência cardíaca apresentam padrões descritivos que podem orientar perguntas futuras, sem estabelecer causalidade.
+- Para orientar decisões de produto, seria necessário verificar esses padrões com dados adequados do público-alvo e avaliar as intervenções propostas.
+
+As figuras foram refeitas com os dados corrigidos e rótulos em português e inglês. As conclusões se limitam a esta amostra de 2016.
+
+## Rastreabilidade e reprodução
+
+- [Resultados agregados corrigidos](revision-2026-10-26/results.json).
+- [Proveniência, versões e hashes dos arquivos](revision-2026-10-26/provenance.json).
+- [Script R reproduzível](../../scripts/rebuild_bellabeat.R).
+- [Fonte original do ZIP](https://zenodo.org/records/53894/files/mturkfitbit_export_4.12.16-5.12.16.zip).
+- [Artigo em português antes da correção, fonte Quarto comprimida](../../docs/revisions/2026-10-26/before/posts/bellabeat/index.qmd.gz).
+- [Artigo em inglês antes da correção, fonte Quarto comprimida](../../docs/revisions/2026-10-26/before/posts/bellabeat/en.qmd.gz).
+- [Resultado computacional original preservado](../../docs/revisions/2026-10-26/before/_freeze/posts/bellabeat/index/execute-results/html.json.gz).
+- [Manifesto das seis entradas preservadas](../../docs/revisions/2026-10-26/before-manifest.json).
+
+O ZIP validado tem MD5 `7afbecdce29814e1be2e9a7c94f8f165` e SHA-256 `4741dfabd18453de19b6dd0a7204e8fea6e45e70bc9ddbe396956c8e4fde02f8`. Não foi comprovada sua identidade binária com o download local do Kaggle usado originalmente; a revisão anterior verificou a correspondência das junções antigas com o resultado arquivado em sete campos.
+
+```bash
+Rscript --vanilla scripts/rebuild_bellabeat.R /caminho/mturkfitbit_export_4.12.16-5.12.16.zip
+quarto render
+python3 tests/test_localize.py _site
 ```
 
-
-## Preparação e processamento dos dados
-
-
-```{r}
-#| mensage: false
-
-
-# Carregamento bibliotecas ------------------------------------------------
-
-library(tidyverse)
-library(patchwork)
-
-
-# Definindo thema ggplot2 ------------------------------------------------
-
-theme_set(ggpubr::theme_pubclean())
-
-# Tratamento dos Dados diários --------------------------------------------------------------
-
-#Lendo o arquivos com dados diários e gravando em variáveis.
-#No processo está sendo limpo os nomes das variáveis para remoção de espaços e
-#letras maiúsculas. Bem como alterando o tipo da coluna que contem as datas
-#de todas as tabelas diárias
-
-#Lendo dados de "dailyActivity_merged.csv" e limpando os nomes das variáveis
-daily_activity <- "bellabeat_data/dailyActivity_merged.csv" |> 
-  data.table::fread(sep = ',') |> 
-  janitor::clean_names()
-#transformando a coluna de "activity_date" de string para o tipo data.
-#alterando o nome da coluna "activity_date" para "date"
-daily_activity <- daily_activity |> 
-  mutate(activity_date = lubridate::mdy(activity_date),
-         date = lubridate::date(activity_date)) |> 
-  select(-activity_date)
-
-
-#Lendo dados de "sleepDay_merged.csv" e limpando os nomes das variáveis
-daily_sleep <- "bellabeat_data/sleepDay_merged.csv" |> 
-  data.table::fread(sep = ',') |>
-  janitor::clean_names()
-#transformando a coluna de "sleep_day" de string para o tipo data.
-#alterando o nome da coluna "sleep_day" para "date"
-daily_sleep <- daily_sleep |> 
-  mutate(sleep_day = lubridate::mdy_hms(sleep_day),
-         date = lubridate::date(sleep_day)) |> 
-  select(-sleep_day)
-
-
-#Lendo dados de "heartrate_seconds_merged.csv" e limpando os nomes das variáveis
-heartrate <- "bellabeat_data/heartrate_seconds_merged.csv" |> 
-  data.table::fread(sep = ',') |>
-  janitor::clean_names()
-#transformando a coluna de "time" de string para o tipo data.
-#alterando o nome da coluna "time" para "date"
-heartrate <- heartrate |> 
-  mutate(time = lubridate::mdy_hms(time),
-         date = lubridate::date(time)) |>
-  select(-time) |> 
-  with_groups(c(id, date), summarise, heartrate = mean(value))
-#Na linha acima é feita a transformação dos valores
-#em segundos para valores diários
-
-
-#Lendo dados de "heartrate_seconds_merged.csv" e limpando os nomes das variáveis
-weight_log <- "bellabeat_data/weightLogInfo_merged.csv" |> 
-  data.table::fread(sep = ',') |>
-  janitor::clean_names()
-#transformando a coluna de "date" de string para o tipo data.
-weight_log <- weight_log |> 
-  mutate(date = lubridate::mdy_hms(date),
-         date = lubridate::date(date))
-
-```
-
-### Descrição dos dados
-
-Será utilizado o banco de dados do fitibit do [kaggle](https://www.kaggle.com/arashnic/fitbit), o qual é composto por 18 planilhas contendo dados de atividades, passos, calorias, sono e batimento cardíaco de uma lista de usuários que consentiram em compartilhar informações. O banco de dados está sob a licença [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/). Sendo que para esta tarefa especifica foi escolhido trabalhar com dados diários fornecidos pelos usuários, sendo utilizadas seguintes as tabelas:
-
--   *"dailyActivity_merged"* que contém dados de atividades diárias, como distância percorrida, passos, calorias gastas, tempo sedentário e de atividades leves, moderadas ou avançadas;
-
--   *"sleepDay_merged"* que contém informações de quantidade de sono, tempo na deitado cama e número de eventos de sono;
-
--   *"heartrate_seconds_merged"* que contém o registro dos batimentos cardíacos dos usuários por segundo;
-
--   *"weightLogInfo_merged"* que contém informações sobre peso, índice de massa corporal e percentual de gordura corporal.
-
-### Descrição da processo de limpeza dos dados
-
-Para desempenhar esta análise foi escolhido a linguagem de programação [R](https://www.r-project.org/) e para o tratamento de dados foram seguidos os seguintes passos:
-
--   Todas as tabelas foram carregadas no plataforma;
-
--   Em cada tabela a coluna responsável pelo armazenamento da data do registro foi alterada do tipo string para o tipo data, tendo seus nomes alterados para "date" afim de facilitar a manipulação dos dados;
-
--   Na tabela *"heartrate_seconds_merged"* foi alterada a escala temporal de segundos para diário e calculado a média de batimentos cardíacos por dia;
-
--   Foi feita a união das tabelas através de uma *left-join* entre a tabela *"dailyActivity_merged"* e as outras 3 tabelas;
-
--   A coluna que contém o ID dos usuários foi alterada para algo mais legível, foi escolhido o prefixo "U" seguido por um numeral. Como por exemplo "U1" para usuário 1;
-
--   A ordem das colunas foi alterada para que colunas correlacionadas fiquem adjacente uma a outra;
-
--   O resultado foi salvo na numa variável chamada *"daily_data"*.
-
-```{r}
-
-daily_data <- reduce(list(daily_activity,
-                          heartrate,
-                          daily_sleep,
-                          weight_log
-                          ),
-                     left_join,
-                     by = c("id", "date")) |> 
-  mutate(id = as.factor(id),
-         day_of_the_week = lubridate::wday(date,
-                                           label = TRUE),
-         total_time_asleep = total_minutes_asleep/60,
-         total_time_in_bed = total_time_in_bed/60,
-         sedentary_time = sedentary_minutes/60,
-         lightly_active_time = lightly_active_minutes/60,
-         fairly_active_time = fairly_active_minutes/60,
-         very_active_time = very_active_minutes/60,
-         id = fct_relabel(id, ~ paste0('U', 1:33))
-         ) |>
-  select(-c(total_minutes_asleep, sedentary_minutes, lightly_active_minutes,
-            fairly_active_minutes, very_active_minutes, log_id,
-            is_manual_report, weight_pounds, fat, logged_activities_distance)) |> 
-  relocate(where(is.numeric), .after = last_col())
-
-
-```
-
-## Análise e visualização
-
-### Resumo dos dados
-
-A tabela resultante pode ser encontrada a seguir:
-
-```{r}
-#| column: page
-
-library(kableExtra)
-rmarkdown::paged_table(daily_data)
-```
-
-### Sumário dos dados
-
-```{r}
-#| column: page
-
-skim_table_numeric <- daily_data |>
-  skimr::skim() |>
-  skimr::yank("numeric")
-
-skim_table <- daily_data |>
-  skimr::skim() |>
-  skimr::yank("factor")
-
-
-kbl(skim_table) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
-```
-
-
-```{r}
-#| column: page
-
-kbl(skim_table_numeric) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive", full_width = T))
-```
-
-
-Através do pacote *skimr* podemos gerar um relatório detalhado das variáveis da tabela resultante. Feito isso, podemos observar o seguinte:
-
--   a distância ativa média diária é de 5,5 km diários;
-
--   a média de passos diários é de 7652 passos por dia;
-
--   usuários queimam em média 2308 calorias por dia;
-
--   a média de frequência cardíaca é de 78 batimentos;
-
--   a média do índice de massa corporal é de 25,2;
-
--   usuários dormem em média, aproximadamente, 7 hora por dia;
-
--   o tempo médio de sedentário dos usuários é de 16,5 horas.
-
-Com os dados extraídos acima observamos que o tempo sedentário entre os usuários é alto e por mais que a média de sono dos usuários seja de 7 horas, os valores variam muito entre o valor mínimo de 1 hora e máximo de 13,3 horas diárias. Podemos analisar mais afundo e ver se há alguma variação entre esses achados com a queima de caloria, índice de massa corporal e outras variáveis.
-
-```{r}
-
-
-daily_data_long <- daily_data |>
-  select(
-    id,
-    date,
-    day_of_the_week,
-    light_active_distance,
-    sedentary_active_distance,
-    moderately_active_distance,
-    very_active_distance
-  ) |>
-  pivot_longer(
-    !c(id, date, day_of_the_week),
-    names_to = "activities_type",
-    values_to = "activities_dist"
-  ) |>
-  mutate(
-    activities_type = as.ordered(activities_type),
-    activities_type = fct_recode(
-      activities_type,
-      Sedentário = "sedentary_active_distance",
-      Leve = "light_active_distance",
-      Moderada = "moderately_active_distance",
-      Intensa = "very_active_distance"
-    ),
-    activities_type  = fct_relevel(
-      activities_type,
-      "Sedentário",
-      "Leve"
-    )
-  )
-
-
-daily_data_long <- daily_data |>
-  select(
-    id,
-    date,
-    calories,
-    heartrate,
-    weight_kg,
-    bmi,
-    total_steps,
-    day_of_the_week,
-    sedentary_time,
-    lightly_active_time,
-    fairly_active_time,
-    very_active_time
-    
-  ) |>
-  pivot_longer(
-    !c(id, date, day_of_the_week, calories, heartrate, weight_kg, bmi, total_steps),
-    names_to = "activities_type",
-    values_to = "activities_time"
-  ) |>
-  mutate(
-    activities_type = as.ordered(activities_type),
-    activities_type = fct_recode(
-      activities_type,
-      Sedentário = "sedentary_time",
-      Leve = "lightly_active_time",
-      Moderada = "fairly_active_time",
-      Intensa = "very_active_time"
-    ),
-    activities_type  = fct_relevel(
-      activities_type,
-      "Sedentário",
-      "Leve"
-    )
-  ) |> 
-  right_join(daily_data_long, by = c("id" = "id",
-                          "date" = "date",
-                          "day_of_the_week" = "day_of_the_week",
-                          "activities_type" = "activities_type"
-                          )
-            )
-
-
-
-
-```
-
-Primeiramente realizamos a comparação entre a distância ativa percorrida e tempo por tipo de atividade, ambos em relação ao dia da semana. Podemos observar que os dias mais ativos são terça, quarta e quinta. Bem como que por mais que atividades leves, moderadas e intensas sejam a menor parte do dia, são responsáveis por virtualmente 100% do tempo ativo dos usuários.
-
-```{r PLot Dia da semana Vs Distancia e calorias}
-# 
-plot1 <- ggplot(daily_data_long) +
-  geom_col(aes(x = day_of_the_week, y = activities_dist,
-               color = activities_type, fill = activities_type))+
-  labs(
-    x = "Dia da semana",
-    y = "Distância total (km)",
-  )
-
-plot2 <-  ggplot(daily_data_long) +
-  geom_col(aes(x = day_of_the_week, y = activities_time,
-               color = activities_type, fill = activities_type))+
-  labs(
-    x = "Dia da semana",
-    y = "Tempo (h)",
-  )
-
-
-patchwork1 <- plot1 + plot2 + plot_layout(guides='collect') & scale_color_viridis_d(aes(label = "Atividade")) &
-scale_fill_viridis_d(aes(label = "Atividade")) &
-theme(legend.position='bottom')
-
-patchwork1 + plot_annotation(
-  title = "Distância ativa percorrida e Tempo ativo por dia da semana",
-  subtitle = "Extratificado pela intensidade da atividade",
-  caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-)
-
-
-```
-
-No gráfico abaixo temos a relação entre a distância ativa percorrida e o tempo por atividade. Conseguimos confirmar que por mais que o usuários passem muito tempo sedentários esse tempo não contribui na distância ativa percorrida por dia, também podemos observar que a relação entre distância ativa e tempo de atividade vai crescendo com a intensidade da atividade.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-
-plot3 <- daily_data_long |> 
-  ggplot() +
-  geom_point(aes(x = activities_time, y = activities_dist,
-                 color = activities_type, fill = activities_type))+
-  geom_smooth(aes(x = activities_time, y = activities_dist), method = "lm")+
-  scale_color_viridis_d(aes(label = "Atividade")) +
-  scale_fill_viridis_d(aes(label = "Atividade")) +
-  facet_wrap(vars(activities_type))+
-  labs(
-    x = "Tempo (h)",
-    y = "Distância total (km)",
-    title = "Distândia ativa por atividade em relação ao total de calorias gastas",
-    subtitle = "Extratificado pela intensidade da atividade",
-    caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-  ) +
-  theme(legend.position='bottom')
-
-
-plot3
-
-
-```
-
-Abaixo temos a relação entre tempo da atividade em relação a queima de calorias diárias. verificamos que há uma relação inversa entre o tempo sedentário e a queima de calorias, em contrapartida queima de calorias tem uma relação positiva com a intensidade da atividade.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-
-plot4 <- ggplot(daily_data_long) +
-  geom_point(aes(x = activities_time, y =calories,
-                 color = activities_type, fill = activities_type))+
-  geom_smooth(aes(x = activities_time, y = calories), method = "lm")+
-  scale_color_viridis_d(aes(label = "Atividade")) +
-  scale_fill_viridis_d(aes(label = "Atividade")) +
-  facet_wrap(vars(activities_type))+
-  labs(
-    x = "Tempo (h)",
-    y = "Total de calorias",
-    title = "Tempo por atividade em relação ao total de calorias gastas",
-    subtitle = "Extratificado pela intensidade da atividade",
-    caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-  ) +
-  theme(legend.position='bottom')
-
-plot4
-
-```
-
-Da mesma forma há uma relação negativa com o tempo sedentário e a quantidade de passos diários totais entre os usuários e uma relação positiva entre a intensidade da atividade com a quantidade de passos diários. Em média, quanto mais sedentário um usuário permanece, menos calorias são gastas e passos são dados durante o dia.
-
-```{r}
-
-plot5 <- daily_data_long |> 
-  ggplot() +
-  geom_point(aes(x = activities_time, y = total_steps,
-                 color = activities_type, fill = activities_type))+
-  geom_smooth(aes(x = activities_time, y = total_steps), method = "lm")+
-  scale_color_viridis_d(aes(label = "Atividade")) +
-  scale_fill_viridis_d(aes(label = "Atividade")) +
-  facet_wrap(vars(activities_type))+
-  labs(
-    x = "Tempo (h)",
-    y = "Total de passos diários",
-    title = "Tempo por atividade em relação ao total de passos diários",
-    subtitle = "Extratificado pela intensidade da atividade",
-    caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-  ) +
-  theme(legend.position='bottom')
-
-plot5
-
-
-
-```
-
-```{r}
-
-sleep_data <- daily_data |>
-  select(
-    id,
-    date,
-    total_distance,
-    total_steps,
-    calories,
-    heartrate,
-    weight_kg,
-    bmi,
-    total_time_asleep,
-    total_time_in_bed
-  ) |>
-  #drop_na() |> 
-  with_groups(
-    c(id, date),
-    mutate,
-    total_time_in_bed = (total_time_in_bed - total_time_asleep),
-    range_sleep = case_when(
-      total_time_asleep < 6 ~ "Menos de 6 horas",
-      total_time_asleep >= 6 &
-        total_time_asleep <= 10 ~ "Entre 6 e 10 horas",
-      total_time_asleep > 10 ~ "Mais de 10 horas"
-    ),
-    range_sleep = factor(range_sleep),
-    range_sleep = fct_relevel(range_sleep,
-                              "Menos de 6 horas",
-                              "Entre 6 e 10 horas",
-                              "Mais de 10 horas"
-                              )
-  )
-
-```
-
-Analisando a relação do quantidade de horas dormidas e os passos diários observamos que usuários que dormem menos de 6 horas diários tendem a queimar menos calorias que usuários dormem de 6 a 10 horas por dia. Observamos também que a relação entre queima de calorias e passos diários não é tão forte entre os usuários que dormem mais de 10 horas diárias, contudo isso pode se dar pela baixa quantidade de usuários nessa faixa de sono o que requer dados adicionais para chegarmos a uma conclusão dessa faixa de usuários. Com os dados disponíveis podemos ver que a relação anterior entre passos diários e queima de calorias é quebrado, fazendo que mesmo que os usuários sejam ativo durante o dia a queima de caloria é diminuída em relação as usuários que tem ua boa relação com as hora de sono.
-
-```{r}
-
-
-plot6 <- sleep_data |> 
-  select(-c(heartrate, weight_kg, bmi)) |> 
-  drop_na() |> 
-  ggplot() +
-  geom_point(aes(x = total_steps, y = calories,
-                 color = range_sleep, fill = range_sleep))+
-  geom_smooth(aes(x = total_steps, y = calories), method = "lm")+
-  scale_color_viridis_d(aes(label = "Duração do sono")) +
-  scale_fill_viridis_d(aes(label = "Duração do sono")) +
-  facet_wrap(vars(range_sleep))+
-  labs(
-    x = "Total de passos",
-    y = "Total de calorias",
-    title = "Total de passos diários vs total de calorias gastas",
-    subtitle = "Extratificado pelo quantidade de horas dormidas",
-    caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-  ) +
-  theme(legend.position='none')
-
-plot6
-
-
-
-```
-
-Fazendo um paralelo entre as duração do sono e o média de batimentos cardíacos vemos que usuários que dormem menos de 6 horas diárias tendem a ter uma média batimentos cardíacos mais elevados do que usuários de dormem de 6 à 10 horas diárias. Uma boa noite de sono, ao que indicam os dados podem ajudar a evitar possível doenças cardíacas em pessoas com pré disposição a isso.
-
-```{r}
-#| warning: false
-#| mensage: false
-
-
-sleep_data |>
-  select(range_sleep, heartrate) |>
-  drop_na(range_sleep) |>
-  ggplot(aes(x = range_sleep, y = heartrate, color = range_sleep)) +
-  geom_boxplot() +
-  geom_jitter(alpha=0.2) +
-  scale_color_viridis_d(aes(label = "Frequência cardíaca média"))+
-  labs(
-    x = NULL,
-    y = "Frequência cardiáca",
-    title = "Média da frequência cardiaca em relação as horas dormidas diárias",
-    caption = "Período analisado de 12/04/2016 à 12/05/2016\n
-    Fonte: kaggle"
-  ) +
-  theme(legend.position='none')
-  
-
-
-```
-
-
-
-
-
-
-## Resumos do análise
-
-Analisando os dados encontramos as seguintes relações:
-
--   quanto mais tempo um usuário permanece sedentário menos passos/calorias esse usuário percorre/gasta durante o dia;
-
--   a relação entre passos diários, bem como calorias gastas, e o tempo da atividade é positiva e essa relação tende a aumentar com a intensidade da atividade;
-
--   usuários que dormem menos de 6 horas por dia tentem a gastar, em média, menos calorias por dia;
-
--   usuários que dormem menos de 6 horas tendem a ter a frequência cardíaca maior que usuários que dormem de 6 a 10 horas por dia.
+A renderização do site usa os resultados gerados pelo script, sem baixar dados ou reexecutar a análise automaticamente. Os dados individuais não foram acrescentados aos arquivos publicados da revisão.

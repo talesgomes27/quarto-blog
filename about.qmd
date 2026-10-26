@@ -1,34 +1,49 @@
 ---
-title: "About"
+title: Tales Gomes
+pagetitle: Sobre Tales Gomes
+description: Engenheiro de computação, analista de dados e autor deste portal sobre ciência de dados e tecnologia.
 comments: false
-image: profile.jpg
-open-graph: true
-twitter-card: true
+image: assets/profile/tales-gomes-clean.png
+body-classes: profile-about
 about:
-  template: jolla
+  template: trestles
+  image-shape: rectangle
+  image-width: 18rem
+  image-alt: "Retrato de Tales Gomes, sorrindo, sobre fundo vermelho-escuro."
   links:
     - icon: envelope
       text: Email
       href: mailto:talesgomes27@gmail.com
-    - icon: file-pdf
-      text: Resume
-      href: https://talesgomes27.github.io/curriculo/resume.html  
-    - icon: file-person
-      text: Datacamp
-      href: https://www.datacamp.com/profile/talesgomes27  
+    - icon: file-earmark-person
+      text: Currículo
+      href: https://talesgomes27.github.io/curriculo/resume.html
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/talesgomes27/
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/talesgomes27
-
 ---
 
+## Dados, código e contexto.
 
-::: {#hero-heading}
-Hi!
-My name is Tales Gomes a Computer Engineer from Brazil 🇧🇷.
+::: {.profile-lead}
+Sou engenheiro de computação brasileiro e [analista de dados certificado pela DataCamp](https://www.datacamp.com/certificate/DA0010574268485).
+:::
 
-I'm a [data analyst certified by Datacamp](https://www.datacamp.com/certificate/DA0010574268485).
+Este portal reúne meus projetos, análises e aprendizados em ciência de dados e tecnologia. Compartilho o contexto dos problemas, as escolhas da análise e as reflexões que surgem ao trabalhar com dados.
+
+Nos estudos, você encontra as perguntas, o código, as fontes e os resultados — com espaço para explicar também as limitações e o que ainda precisa ser investigado.
+
+::: {.profile-actions}
+[Explorar projetos](index.qmd#projetos){.btn .btn-primary}
+[Ler textos e estudos [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+
+::: {.profile-contact}
+## Vamos conversar?
+
+Para trocar ideias sobre dados e tecnologia ou conversar sobre oportunidades de colaboração.
+
+[Entrar em contato [→]{aria-hidden=true}](mailto:talesgomes27@gmail.com){.text-link}
 :::

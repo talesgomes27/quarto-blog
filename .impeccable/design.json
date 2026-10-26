@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T04:20:33.012980+00:00",
+  "title": "Design System: Portal de Tales Gomes",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta azul escura",
+        "canonical": "#172f3f",
+        "tonalRamp": [
+          "oklch(15% 0.0420 239.53)",
+          "oklch(26% 0.0420 239.53)",
+          "oklch(38% 0.0420 239.53)",
+          "oklch(49% 0.0420 239.53)",
+          "oklch(61% 0.0420 239.53)",
+          "oklch(72% 0.0420 239.53)",
+          "oklch(84% 0.0420 239.53)",
+          "oklch(95% 0.0420 239.53)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Tinta suavizada",
+        "canonical": "#4c6170",
+        "tonalRamp": [
+          "oklch(15% 0.0351 239.53)",
+          "oklch(26% 0.0351 239.53)",
+          "oklch(38% 0.0351 239.53)",
+          "oklch(49% 0.0351 239.53)",
+          "oklch(61% 0.0351 239.53)",
+          "oklch(72% 0.0351 239.53)",
+          "oklch(84% 0.0351 239.53)",
+          "oklch(95% 0.0351 239.53)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Verde petróleo",
+        "canonical": "#136c65",
+        "tonalRamp": [
+          "oklch(15% 0.0789 186.70)",
+          "oklch(26% 0.0789 186.70)",
+          "oklch(38% 0.0789 186.70)",
+          "oklch(49% 0.0789 186.70)",
+          "oklch(61% 0.0789 186.70)",
+          "oklch(72% 0.0789 186.70)",
+          "oklch(84% 0.0789 186.70)",
+          "oklch(95% 0.0789 186.70)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel verde pálido",
+        "canonical": "#eef5f1",
+        "tonalRamp": [
+          "oklch(15% 0.0091 161.35)",
+          "oklch(26% 0.0091 161.35)",
+          "oklch(38% 0.0091 161.35)",
+          "oklch(49% 0.0091 161.35)",
+          "oklch(61% 0.0091 161.35)",
+          "oklch(72% 0.0091 161.35)",
+          "oklch(84% 0.0091 161.35)",
+          "oklch(95% 0.0091 161.35)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Linha suave",
+        "canonical": "#dce5e3",
+        "tonalRamp": [
+          "oklch(15% 0.0100 181.39)",
+          "oklch(26% 0.0100 181.39)",
+          "oklch(38% 0.0100 181.39)",
+          "oklch(49% 0.0100 181.39)",
+          "oklch(61% 0.0100 181.39)",
+          "oklch(72% 0.0100 181.39)",
+          "oklch(84% 0.0100 181.39)",
+          "oklch(95% 0.0100 181.39)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Branco",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(26% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(49% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(72% 0.0000 89.88)",
+          "oklch(84% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Verde profundo",
+        "canonical": "#094b46",
+        "tonalRamp": [
+          "oklch(15% 0.0616 186.90)",
+          "oklch(26% 0.0616 186.90)",
+          "oklch(38% 0.0616 186.90)",
+          "oklch(49% 0.0616 186.90)",
+          "oklch(61% 0.0616 186.90)",
+          "oklch(72% 0.0616 186.90)",
+          "oklch(84% 0.0616 186.90)",
+          "oklch(95% 0.0616 186.90)"
+        ]
+      },
+      "code-background": {
+        "role": "neutral",
+        "displayName": "Fundo de código",
+        "canonical": "#f2f6f4",
+        "tonalRamp": [
+          "oklch(15% 0.0050 165.01)",
+          "oklch(26% 0.0050 165.01)",
+          "oklch(38% 0.0050 165.01)",
+          "oklch(49% 0.0050 165.01)",
+          "oklch(61% 0.0050 165.01)",
+          "oklch(72% 0.0050 165.01)",
+          "oklch(84% 0.0050 165.01)",
+          "oklch(95% 0.0050 165.01)"
+        ]
+      },
+      "code-text": {
+        "role": "neutral",
+        "displayName": "Texto de código",
+        "canonical": "#28574f",
+        "tonalRamp": [
+          "oklch(15% 0.0534 181.09)",
+          "oklch(26% 0.0534 181.09)",
+          "oklch(38% 0.0534 181.09)",
+          "oklch(49% 0.0534 181.09)",
+          "oklch(61% 0.0534 181.09)",
+          "oklch(72% 0.0534 181.09)",
+          "oklch(84% 0.0534 181.09)",
+          "oklch(95% 0.0534 181.09)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Título da abertura",
+        "purpose": "Título principal da página inicial em desktop amplo."
+      },
+      "body": {
+        "displayName": "Corpo",
+        "purpose": "Base tipográfica Quarto."
+      },
+      "project-title": {
+        "displayName": "Título de estudo",
+        "purpose": "Linhas de estudo em desktop amplo."
+      },
+      "intro": {
+        "displayName": "Introdução",
+        "purpose": "Apresentação curta da abertura."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "image-hover",
+        "value": "filter .22s ease-out",
+        "purpose": "Escurecimento leve da imagem clicável."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }",
+        "purpose": "Regra global implementada para movimento reduzido."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-padding",
+        "value": "min-width: 1600px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "max-width: 1200px"
+      },
+      {
+        "name": "single-column",
+        "value": "max-width: 991px"
+      },
+      {
+        "name": "mobile",
+        "value": "max-width: 575px"
+      }
+    ],
+    "focus": {
+      "value": "3px solid var(--accent)",
+      "offset": "5px",
+      "radius": "2px"
+    },
+    "sources": [
+      "styles.css",
+      "custom.scss",
+      "_quarto.yml",
+      "index.qmd",
+      "textos.qmd"
+    ],
+    "notes": [
+      "As rampas tonais são prévias sintetizadas para o painel, não tokens usados pelo site.",
+      "Snippets são recortes visuais dos componentes existentes; comportamentos de busca, colapso e lightbox continuam fornecidos pelo Quarto."
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão de contato",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Link de contato com aparência de botão.",
+      "html": "<a class=\"ds-contact\" href=\"mailto:talesgomes27@gmail.com\">Entrar em contato</a>",
+      "css": ".ds-contact{font-family:\"Mukta Malar\",sans-serif;display:inline-block;background:var(--accent);color:#fff;border:1px solid var(--accent);padding:.45rem 1.8rem;border-radius:4px;text-decoration:none}.ds-contact:hover{background:#094b46;border-color:#094b46}.ds-contact:focus-visible { outline:3px solid var(--accent); outline-offset:5px; border-radius:2px; }"
+    },
+    {
+      "name": "Link de leitura",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Ação textual recorrente nos estudos e na lateral.",
+      "html": "<a class=\"ds-read\" href=\"#estudo\">Ver estudo <span aria-hidden=\"true\">→</span></a>",
+      "css": ".ds-read{font-family:\"Mukta Malar\",sans-serif;color:var(--accent);font-weight:700;white-space:nowrap;text-underline-offset:.22em}.ds-read:hover{color:#094b46}.ds-read:focus-visible { outline:3px solid var(--accent); outline-offset:5px; border-radius:2px; }"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "description": "Recorte visual da navegação Quarto; colapso e busca pertencem ao Quarto.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Principal\"><a class=\"ds-brand\" href=\"#inicio\">Tales Gomes</a><a class=\"ds-navlink\" href=\"#projetos\" aria-current=\"page\">Projetos</a><a class=\"ds-navlink\" href=\"#textos\">Textos</a><a class=\"ds-navlink\" href=\"#pt\">PT</a><a class=\"ds-navlink\" href=\"#en\">EN</a></nav>",
+      "css": ".ds-nav{font-family:\"Mukta Malar\",sans-serif;display:flex;align-items:center;flex-wrap:wrap;padding:.6rem 3.9%;background:#fff;border-bottom:1px solid var(--rule);gap:1.3rem}.ds-nav a{color:var(--ink);text-decoration:none}.ds-brand{font-size:2rem;font-weight:700;line-height:1;margin-right:auto}.ds-navlink{font-size:1.08rem}.ds-navlink[aria-current=\"page\"]{color:var(--accent);text-decoration:underline;text-underline-offset:.4em}.ds-nav a:hover{color:#094b46}.ds-nav a:focus-visible { outline:3px solid var(--accent); outline-offset:5px; border-radius:2px; }"
+    },
+    {
+      "name": "Texto de estudo",
+      "kind": "custom",
+      "description": "Agrupamento tipográfico real da linha de estudo; a imagem pertence à composição da página.",
+      "html": "<article class=\"ds-study\"><h2><a href=\"#estudo\">Bike-share / Cyclistic</a></h2><p class=\"ds-subtitle\">Hábitos de usuários casuais e assinantes</p><p class=\"ds-meta\">R · 2021</p><p>Análise de dados de um sistema de compartilhamento de bicicletas.</p></article>",
+      "css": ".ds-study{font-family:\"Mukta Malar\",sans-serif;color:var(--ink)}.ds-study h2{font-size:2.05rem;font-weight:700;line-height:1.15;letter-spacing:-.025em;margin:0 0 .2rem}.ds-study h2 a{color:var(--ink);text-decoration:none}.ds-study h2 a:hover{color:var(--accent);text-decoration:underline}.ds-study h2 a:focus-visible { outline:3px solid var(--accent); outline-offset:5px; border-radius:2px; }.ds-study p{font-size:1.08rem;line-height:1.4;margin:0 0 .5rem}.ds-study .ds-subtitle{font-size:1.32rem;line-height:1.25}.ds-study .ds-meta{color:var(--muted);font-size:1rem;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Lateral editorial",
+      "kind": "custom",
+      "refersTo": "editorial-aside",
+      "description": "Superfície tonal com título e texto editorial.",
+      "html": "<aside class=\"ds-aside\"><h2>Textos</h2><p>Projetos, aprendizados e perspectivas sobre ciência de dados e tecnologia.</p></aside>",
+      "css": ".ds-aside{font-family:\"Mukta Malar\",sans-serif;color:var(--ink);background:var(--paper);padding:2.85rem 2.85rem 1.8rem}.ds-aside h2{font-size:2.4rem;line-height:1.15;letter-spacing:-.025em;margin:0 0 .5rem}.ds-aside p{font-size:1.14rem;line-height:1.35;margin:0 0 1.35rem}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Caderno de tecnologia",
+    "overview": "Portal claro de leitura e trabalho autoral, com tinta azul escura, verde petróleo e áreas verde pálido. A direção C aprovada combina uma apresentação curta, estudos com imagens e uma lateral editorial; a interface usa a mesma fonte humanista em títulos e texto.\n\nO branco e os separadores finos dão estrutura. Fotografias sintéticas ilustram os temas da página inicial; gráficos e resultados dentro dos estudos continuam sendo conteúdo dos artigos. Português é o idioma principal e a navegação expõe PT e EN.",
+    "keyCharacteristics": [
+      "Tipografia humanista local, em pesos 400 e 700.",
+      "Hierarquia por tamanho, espaço e separadores finos.",
+      "Verde petróleo para ação e verde pálido para a lateral."
+    ],
+    "rules": [],
+    "dos": [
+      "Do manter a navegação Quarto e o acesso explícito a PT e EN.",
+      "Do usar a paleta e a fonte locais já implementadas.",
+      "Do preservar o foco visível e a preferência por movimento reduzido.",
+      "Do identificar as imagens sintéticas como ilustrativas e preservar os gráficos dos estudos."
+    ],
+    "donts": [
+      "Don't tratar fotografias ilustrativas como resultados das análises.",
+      "Don't adicionar sombras ou cartões elevados ao padrão atual.",
+      "Don't substituir o conteúdo e os resultados dos artigos ao aplicar o sistema visual."
+    ]
+  }
+}

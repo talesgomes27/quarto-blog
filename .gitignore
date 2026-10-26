@@ -7,3 +7,12 @@ posts/bike-share-navigate/index_cache/
 
 posts/bellabeat/bellabeat_data/
 posts/bellabeat/index_cache/
+
+**/*.quarto_ipynb
+
+.impeccable/*
+!.impeccable/config.json
+!.impeccable/design.json
+!.impeccable/surfaces/
+!.impeccable/surfaces/*.md
+__pycache__/

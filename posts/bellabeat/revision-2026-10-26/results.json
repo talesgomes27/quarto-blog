@@ -1,0 +1,355 @@
+{
+  "revision": "2026-10-26",
+  "analysis": "Corrected descriptive Bellabeat case study; original upstream Fitbit records",
+  "period": ["2016-04-12", "2016-05-12"],
+  "rows": 940,
+  "users": 33,
+  "unique_user_days": 940,
+  "input_rows": {
+    "activity": 940,
+    "sleep": 413,
+    "heart_samples": 2483658,
+    "weight": 67
+  },
+  "removed_exact_sleep_duplicates": 3,
+  "long_rows": 3760,
+  "summary": {
+    "total_steps": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 7637.91063829787,
+      "median": 7405.5,
+      "q25": 3789.75,
+      "q75": 10727,
+      "min": 0,
+      "max": 36019
+    },
+    "total_distance": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 5.48970212191541,
+      "median": 5.24499988555908,
+      "q25": 2.61999988555908,
+      "q75": 7.71249997615814,
+      "min": 0,
+      "max": 28.0300006866455
+    },
+    "calories": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 2303.60957446809,
+      "median": 2134,
+      "q25": 1828.5,
+      "q75": 2793.25,
+      "min": 0,
+      "max": 4900
+    },
+    "heartrate": {
+      "observations": 334,
+      "users": 14,
+      "missing": 606,
+      "mean": 78.6140587290895,
+      "median": 77.4941794641332,
+      "q25": 70.4656786842857,
+      "q75": 84.9331709185885,
+      "min": 59.3771746694502,
+      "max": 109.789625360231
+    },
+    "bmi": {
+      "observations": 67,
+      "users": 8,
+      "missing": 873,
+      "mean": 25.1852237929159,
+      "median": 24.3899993896484,
+      "q25": 23.9599990844727,
+      "q75": 25.5599994659424,
+      "min": 21.4500007629395,
+      "max": 47.5400009155273
+    },
+    "total_time_asleep": {
+      "observations": 410,
+      "users": 24,
+      "missing": 530,
+      "mean": 6.98621951219512,
+      "median": 7.20833333333333,
+      "q25": 6.01666666666667,
+      "q75": 8.16666666666667,
+      "min": 0.966666666666667,
+      "max": 13.2666666666667
+    },
+    "sedentary_time": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 16.5201773049645,
+      "median": 17.625,
+      "q25": 12.1625,
+      "q75": 20.4916666666667,
+      "min": 0,
+      "max": 24
+    },
+    "total_time_in_bed": {
+      "observations": 410,
+      "users": 24,
+      "missing": 530,
+      "mean": 7.64138211382114,
+      "median": 7.71666666666667,
+      "q25": 6.72916666666667,
+      "q75": 8.76666666666667,
+      "min": 1.01666666666667,
+      "max": 16.0166666666667
+    },
+    "awake_time_in_bed": {
+      "observations": 410,
+      "users": 24,
+      "missing": 530,
+      "mean": 0.655162601626016,
+      "median": 0.425,
+      "q25": 0.283333333333333,
+      "q75": 0.666666666666667,
+      "min": 0,
+      "max": 6.18333333333333
+    }
+  },
+  "weekday": [
+    {
+      "weekday": 1,
+      "observations": 120,
+      "users": 32,
+      "dates": 4,
+      "mean_distance_km": 5.55291666022192,
+      "mean_steps": 7780.86666666667
+    },
+    {
+      "weekday": 2,
+      "observations": 152,
+      "users": 33,
+      "dates": 5,
+      "mean_distance_km": 5.83223680805072,
+      "mean_steps": 8125.00657894737
+    },
+    {
+      "weekday": 3,
+      "observations": 150,
+      "users": 33,
+      "dates": 5,
+      "mean_distance_km": 5.48833332783232,
+      "mean_steps": 7559.37333333333
+    },
+    {
+      "weekday": 4,
+      "observations": 147,
+      "users": 33,
+      "dates": 5,
+      "mean_distance_km": 5.31224492350656,
+      "mean_steps": 7405.83673469388
+    },
+    {
+      "weekday": 5,
+      "observations": 126,
+      "users": 33,
+      "dates": 4,
+      "mean_distance_km": 5.30992062132628,
+      "mean_steps": 7448.23015873016
+    },
+    {
+      "weekday": 6,
+      "observations": 124,
+      "users": 32,
+      "dates": 4,
+      "mean_distance_km": 5.8546774227082,
+      "mean_steps": 8152.97580645161
+    },
+    {
+      "weekday": 7,
+      "observations": 121,
+      "users": 32,
+      "dates": 4,
+      "mean_distance_km": 5.02719007369346,
+      "mean_steps": 6933.23140495868
+    }
+  ],
+  "sleep_groups": {
+    "lt6": {
+      "observations": 100,
+      "users": 22,
+      "heartrate": {
+        "observations": 31,
+        "users": 10,
+        "missing": 69,
+        "mean": 76.9598166422258,
+        "median": 77.8258383727323,
+        "q25": 67.9804667210997,
+        "q75": 83.4628544377321,
+        "min": 59.3771746694502,
+        "max": 104.871471993053
+      },
+      "calories": {
+        "observations": 100,
+        "users": 22,
+        "missing": 0,
+        "mean": 2262.25,
+        "median": 2073,
+        "q25": 1682.75,
+        "q75": 2896,
+        "min": 257,
+        "max": 3846
+      },
+      "total_steps": {
+        "observations": 100,
+        "users": 22,
+        "missing": 0,
+        "mean": 9484.03,
+        "median": 9814.5,
+        "q25": 6533.75,
+        "q75": 12425.75,
+        "min": 17,
+        "max": 22359
+      }
+    },
+    "6to10": {
+      "observations": 292,
+      "users": 20,
+      "heartrate": {
+        "observations": 141,
+        "users": 10,
+        "missing": 151,
+        "mean": 73.3332480630695,
+        "median": 73.0132242519332,
+        "q25": 67.8101706722396,
+        "q75": 77.5759737318841,
+        "min": 59.7035779576913,
+        "max": 99.5058139534884
+      },
+      "calories": {
+        "observations": 292,
+        "users": 20,
+        "missing": 0,
+        "mean": 2455.31164383562,
+        "median": 2252,
+        "q25": 1941.5,
+        "q75": 2955.5,
+        "min": 403,
+        "max": 4900
+      },
+      "total_steps": {
+        "observations": 292,
+        "users": 20,
+        "missing": 0,
+        "mean": 8423.05479452055,
+        "median": 8920,
+        "q25": 5219.75,
+        "q75": 10820.25,
+        "min": 42,
+        "max": 22770
+      }
+    },
+    "gt10": {
+      "observations": 18,
+      "users": 12,
+      "heartrate": {
+        "observations": 9,
+        "users": 5,
+        "missing": 9,
+        "mean": 67.9098791661583,
+        "median": 66.3913450292398,
+        "q25": 65.7799950112247,
+        "q75": 67.0740785498489,
+        "min": 60.0404175263988,
+        "max": 80.519598354706
+      },
+      "calories": {
+        "observations": 18,
+        "users": 12,
+        "missing": 0,
+        "mean": 2024.16666666667,
+        "median": 1811.5,
+        "q25": 1732.75,
+        "q75": 2177.25,
+        "min": 1463,
+        "max": 3363
+      },
+      "total_steps": {
+        "observations": 18,
+        "users": 12,
+        "missing": 0,
+        "mean": 4621,
+        "median": 4063,
+        "q25": 3558,
+        "q75": 5195.5,
+        "min": 678,
+        "max": 11207
+      }
+    }
+  },
+  "historical_comparison": {
+    "rows": 943,
+    "summary": {
+      "total_steps": {
+        "observations": 943,
+        "users": 33,
+        "missing": 0,
+        "mean": 7652.1887592789,
+        "min": 0,
+        "max": 36019
+      },
+      "total_distance": {
+        "observations": 943,
+        "users": 33,
+        "missing": 0,
+        "mean": 5.5028525980912,
+        "min": 0,
+        "max": 28.03
+      },
+      "calories": {
+        "observations": 943,
+        "users": 33,
+        "missing": 0,
+        "mean": 2307.5079533404,
+        "min": 0,
+        "max": 4900
+      },
+      "heartrate": {
+        "observations": 335,
+        "users": 14,
+        "missing": 608,
+        "mean": 78.5616024477612,
+        "min": 59.37717,
+        "max": 109.78963
+      },
+      "bmi": {
+        "observations": 67,
+        "users": 8,
+        "missing": 876,
+        "mean": 25.185223880597,
+        "min": 21.45,
+        "max": 47.54
+      },
+      "total_time_asleep": {
+        "observations": 413,
+        "users": 24,
+        "missing": 530,
+        "mean": 6.9911218779661,
+        "min": 0.9666667,
+        "max": 13.2666667
+      },
+      "sedentary_time": {
+        "observations": 943,
+        "users": 33,
+        "missing": 0,
+        "mean": 16.5058854717815,
+        "min": 0,
+        "max": 24
+      }
+    }
+  },
+  "interpretation": {
+    "unit": "Available participant-day records, not independent participants",
+    "zero_policy": "Zero values and missing auxiliary measurements retained; no inferred non-wear filter",
+    "heart_rate": "Arithmetic mean of available measurements per day, not resting heart rate",
+    "causal": "Descriptive associations only; no clinical outcome or causal effect estimated"
+  }
+}

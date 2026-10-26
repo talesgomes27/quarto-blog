@@ -1,0 +1,80 @@
+---
+title: "Projects, ideas and technology."
+description: "The Tales Gomes portal: projects, analyses and perspectives on data science and technology."
+page-layout: custom
+title-block-style: none
+body-classes: portal-home
+comments: false
+---
+
+::: {.portal-layout}
+::: {.portal-main}
+# Projects, ideas and technology.
+
+::: {.portal-intro}
+I'm Tales Gomes. This is my space to share projects and learning about data science and technology.
+:::
+
+::: {#projetos .project-list aria-label="Projects"}
+::: {.project-row}
+<a class="project-image" href="../posts/bike-share-navigate/index.html"><img src="../assets/plates/bike-photo.webp" alt="Shared bicycles at a station. Illustrative image." width="1000" height="641" loading="eager"></a>
+
+::: {.project-copy}
+## [Bike-share / Cyclistic](../posts/bike-share-navigate/index.qmd)
+
+[Casual rider and subscriber habits]{.project-subtitle}
+
+[R · 2021]{.project-meta}
+
+An analysis of bike-sharing data to explore differences in behavior between casual riders and subscribers.
+
+[Read study [→]{aria-hidden=true}](../posts/bike-share-navigate/index.qmd){.text-link} [Browse the archive [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+:::
+
+::: {.project-row}
+<a class="project-image" href="../posts/bellabeat/en.html"><img src="../assets/plates/bellabeat-photo.webp" alt="A fitness tracker. Illustrative image." width="1000" height="641" loading="eager"></a>
+
+::: {.project-copy}
+## [Bellabeat](../posts/bellabeat/en.qmd)
+
+[Fitness tracker usage]{.project-subtitle}
+
+[R · 2021]{.project-meta}
+
+An exploratory analysis of activity, sleep and fitness tracker data, focusing on usage patterns.
+
+[Read study [→]{aria-hidden=true}](../posts/bellabeat/en.qmd){.text-link} [Browse the archive [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+:::
+:::
+:::
+
+::: {.portal-aside role=complementary aria-label="Writing and about the author"}
+::: {.aside-section}
+## Writing
+
+Projects, learning and perspectives on data science and technology.
+
+[Browse the archive [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+
+::: {.aside-section}
+## About me
+
+I'm Tales Gomes. This is my space to share projects and learning.
+
+[About me [→]{aria-hidden=true}](about.qmd){.text-link}
+:::
+
+<img class="reading-image" src="../assets/plates/reading-photo.webp" alt="Books, a plant and a cup on a desk. Illustrative image." width="1000" height="567" loading="lazy">
+:::
+:::
+
+::: {#contato .contact-section}
+## Let's talk.
+
+Interested in exchanging ideas, discussing opportunities or collaborating on projects? I'd be happy to talk.
+
+[Get in touch](mailto:talesgomes27@gmail.com){.btn .btn-primary}
+:::

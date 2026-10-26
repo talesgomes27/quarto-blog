@@ -1,0 +1,127 @@
+{
+  "scope": "Reconciliation of archived results only; no raw-data or R reexecution",
+  "source": "_freeze/posts/bike-share-navigate/index/execute-results/html.json",
+  "sha256": "0ba0fc2832c6d5e93d3ee373e8bfef3f480e41c4d7058b8068322107ff536f27",
+  "raw_rows_archived": 4460151,
+  "retained_trip_rows": 4335006,
+  "counts": {
+    "bikes": {
+      "docked_bike": 1998627,
+      "electric_bike": 1089217,
+      "classic_bike": 1247162
+    },
+    "groups": {
+      "member": 2447344,
+      "casual": 1887662
+    },
+    "months": {
+      "jan": 93893,
+      "fev": 48012,
+      "mar": 222701,
+      "abr": 328578,
+      "mai": 516940,
+      "jun": 709441,
+      "jul": 540120,
+      "ago": 604137,
+      "set": 516748,
+      "out": 375308,
+      "nov": 251678,
+      "dez": 127450
+    },
+    "quarter_labels": {
+      "winter": 364606,
+      "spring": 1554959,
+      "summer": 1661005,
+      "fall": 754436
+    },
+    "weekend": {
+      "yes": 1466290,
+      "no": 2868716
+    },
+    "weekdays": {
+      "dom": 671449,
+      "seg": 531050,
+      "ter": 552165,
+      "qua": 587617,
+      "qui": 560207,
+      "sex": 637677,
+      "sáb": 794841
+    },
+    "day_parts": {
+      "dawn": 161392,
+      "morning": 968698,
+      "afternoon": 1988751,
+      "night": 1216165
+    }
+  },
+  "percentages": {
+    "bikes": {
+      "docked_bike": 46.1043652534737,
+      "electric_bike": 25.12607825686977,
+      "classic_bike": 28.769556489656534
+    },
+    "groups": {
+      "member": 56.45537745507158,
+      "casual": 43.54462254492842
+    },
+    "weekend": 33.824405318008786
+  },
+  "duration_table": [
+    [
+      "skim_variable",
+      "member_casual",
+      "n_missing",
+      "complete_rate",
+      "mean",
+      "sd",
+      "p0",
+      "p25",
+      "p50",
+      "p75",
+      "p100",
+      "hist"
+    ],
+    [
+      "trip_duration",
+      "member",
+      "0",
+      "1",
+      "15.59300",
+      "56.60104",
+      "2.016667",
+      "6.566667",
+      "11.13333",
+      "19.13333",
+      "33421.37",
+      "▇▁▁▁▁"
+    ],
+    [
+      "trip_duration",
+      "casual",
+      "0",
+      "1",
+      "41.72614",
+      "364.67240",
+      "2.016667",
+      "11.033333",
+      "19.70000",
+      "37.00000",
+      "55944.15",
+      "▇▁▁▁▁"
+    ]
+  ],
+  "duration_means_minutes": {
+    "member": 15.593,
+    "casual": 41.72614
+  },
+  "weighted_mean_from_rounded_group_means": 26.972577172137708,
+  "ratio_casual_to_member_from_rounded_means": 2.675953312383762,
+  "group_median_ratio": 1.7694616076232357,
+  "maximum_duration_days": 38.85010416666667,
+  "version_reviewed_remote": {
+    "commit": "5c21b988e46548d7592245d1937cee0c8af6993c",
+    "date": "2026-10-13T15:24:23Z",
+    "root": "https://github.com/talesgomes27/DAC8-Case-Study-1/tree/5c21b988e46548d7592245d1937cee0c8af6993c",
+    "warning": "Same nominal Jul2020-Jun2021 period, but changed filters and code; not equivalent to archived blog analysis. Synthetic fallback must not validate census metrics."
+  }
+}

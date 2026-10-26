@@ -1,0 +1,8 @@
+{
+  "source": "tales-gomes.jpg",
+  "source_sha256": "0d7eba1fe7ae5b38778fc55e8ddc09820d2b1c2a41da675707f534891aa7dc92",
+  "output": "tales-gomes-clean.png",
+  "output_sha256": "fdcd822982f1744e2ac8369133e3d4abe755c1102dc44c74b5919475f2cbb01e",
+  "tool": "built-in image_gen",
+  "prompt": "Remove only the tiny white Gemini sparkle mark at the bottom-right corner; preserve identity, smile, lighting, red background, composition and framing."
+}

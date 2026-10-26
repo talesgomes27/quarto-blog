@@ -1,54 +1,70 @@
 project:
   type: website
+  render:
+    - '*.qmd'
+    - en/*.qmd
+    - posts/**/*.qmd
+  resources:
+    - assets/
+  post-render:
+    - python3 scripts/localize.py
 
-
+lang: pt-BR
 website:
-  title: "Yet Another Data Blog"
-  description: "A blog about data science, learning and technology by Tales Gomes"  
+  title: Tales Gomes
+  description: Projetos, aprendizados e perspectivas sobre ciência de dados e tecnologia.
   image: social.jpg
-  twitter-card: true 
+  twitter-card: true
   open-graph: true
   favicon: favicon.png
-  site-url: https://blog-talesgomes.netlify.app
+  site-url: https://talesgomes27.github.io/quarto-blog
   repo-url: https://github.com/talesgomes27/quarto-blog
+  search:
+    type: overlay
+  navbar:
+    title: Tales Gomes
+    background: light
+    collapse-below: lg
+    pinned: true
+    right:
+      - text: Projetos
+        href: index.qmd#projetos
+      - text: Textos
+        href: textos.qmd
+      - text: Sobre
+        href: about.qmd
+      - text: Contato
+        href: mailto:talesgomes27@gmail.com
+      - text: PT
+        href: index.qmd
+      - text: EN
+        href: en/index.qmd
   page-footer:
-    left: "Blog made with 🤎 and [Quarto](https://quarto.org/), by Tales Gomes."
+    left: '<span id="footer-copy">Feito com Quarto. Por Tales Gomes.</span>'
     right:
       - icon: github
         href: https://github.com/talesgomes27/
+        aria-label: GitHub
       - icon: linkedin
         href: https://www.linkedin.com/in/talesgomes27/
+        aria-label: LinkedIn
       - icon: envelope
         href: mailto:talesgomes27@gmail.com
-  navbar:
-    logo: logo.png
-    title: "Yet Another Data Blog"
-    collapse-below: lg
-    right:
-      - text: Tales Gomes
-        href: about.qmd
-      - text: Resume
-        href: https://talesgomes27.github.io/curriculo/resume.html
-      - icon: github
-        href: https://github.com/talesgomes27/
-      - icon: twitter
-        href: https://twitter.com/talesgomes27/
-      - icon: linkedin
-        href: https://www.linkedin.com/in/talesgomes27/
+        aria-label: Email
 format:
   html:
-    smooth-scroll: true
     theme:
-        - default
-        - custom.scss 
+      - default
+      - custom.scss
     css: styles.css
+    toc: false
+    title-block-banner: false
+    lightbox: true
     citations-hover: true
     footnotes-hover: true
-
-
-
 comments:
   giscus:
     repo: talesgomes27/quarto-blog
-
-
+    repo-id: R_kgDOHeSMkg
+    category: General
+    category-id: DIC_kwDOHeSMks4CPoEN

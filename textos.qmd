@@ -1,0 +1,18 @@
+---
+title: Textos e estudos
+description: Estudos de caso e análises sobre dados, com código, contexto e resultados.
+comments: false
+listing:
+  contents:
+    - posts/bike-share-navigate/pt.qmd
+    - posts/bellabeat/index.qmd
+  sort: "date desc"
+  type: default
+  categories: true
+  filter-ui: true
+  sort-ui: true
+  fields: [image, title, description, date, categories]
+  date-format: "DD/MM/YYYY"
+---
+
+Um arquivo dos projetos e análises publicados. Os estudos abaixo preservam os resultados da época de publicação.

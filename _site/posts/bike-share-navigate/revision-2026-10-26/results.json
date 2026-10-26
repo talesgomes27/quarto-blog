@@ -1,0 +1,210 @@
+{
+  "revised": "2026-10-26",
+  "method": "Reconciliation of archived aggregates; raw CSVs and the historical R analysis were not rerun.",
+  "source": {
+    "audit_json": "docs/reviews/evidence/bike-share-audit.json",
+    "audit_sha256": "6bc06be92a0c0a2554034509689994db5a15303808e609d928ef1aa16c074158",
+    "frozen": "_freeze/posts/bike-share-navigate/index/execute-results/html.json",
+    "frozen_sha256": "0ba0fc2832c6d5e93d3ee373e8bfef3f480e41c4d7058b8068322107ff536f27"
+  },
+  "script": {
+    "path": "scripts/reconcile_bikeshare.R",
+    "sha256": "b5160a2fecd833715547b256a3bf39315b4f1bb63e7b2e00d1b8f2e3514aefa1"
+  },
+  "versions": {
+    "R": "R version 4.6.1 (2026-06-24)",
+    "ggplot2": "4.0.3",
+    "jsonlite": "2.0.0"
+  },
+  "retained_trip_rows": 4335006,
+  "bikes": [
+    {
+      "type": "docked_bike",
+      "trips": 1998627,
+      "percent": 46.1043652535
+    },
+    {
+      "type": "electric_bike",
+      "trips": 1089217,
+      "percent": 25.1260782569
+    },
+    {
+      "type": "classic_bike",
+      "trips": 1247162,
+      "percent": 28.7695564897
+    }
+  ],
+  "duration": [
+    {
+      "group": "member",
+      "trips": 2447344,
+      "mean_minutes": 15.593,
+      "q1_minutes": 6.566667,
+      "median_minutes": 11.13333,
+      "q3_minutes": 19.13333,
+      "maximum_minutes": 33421.37,
+      "iqr_minutes": 12.566663,
+      "percent": 56.4553774551
+    },
+    {
+      "group": "casual",
+      "trips": 1887662,
+      "mean_minutes": 41.72614,
+      "q1_minutes": 11.033333,
+      "median_minutes": 19.7,
+      "q3_minutes": 37,
+      "maximum_minutes": 55944.15,
+      "iqr_minutes": 25.966667,
+      "percent": 43.5446225449
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2020-07",
+      "trips": 540120
+    },
+    {
+      "month": "2020-08",
+      "trips": 604137
+    },
+    {
+      "month": "2020-09",
+      "trips": 516748
+    },
+    {
+      "month": "2020-10",
+      "trips": 375308
+    },
+    {
+      "month": "2020-11",
+      "trips": 251678
+    },
+    {
+      "month": "2020-12",
+      "trips": 127450
+    },
+    {
+      "month": "2021-01",
+      "trips": 93893
+    },
+    {
+      "month": "2021-02",
+      "trips": 48012
+    },
+    {
+      "month": "2021-03",
+      "trips": 222701
+    },
+    {
+      "month": "2021-04",
+      "trips": 328578
+    },
+    {
+      "month": "2021-05",
+      "trips": 516940
+    },
+    {
+      "month": "2021-06",
+      "trips": 709441
+    }
+  ],
+  "calendar_quarters": [
+    {
+      "period": "2020-Q3",
+      "trips": 1661005
+    },
+    {
+      "period": "2020-Q4",
+      "trips": 754436
+    },
+    {
+      "period": "2021-Q1",
+      "trips": 364606
+    },
+    {
+      "period": "2021-Q2",
+      "trips": 1554959
+    }
+  ],
+  "bikes_by_group": [
+    {
+      "group": "member",
+      "type": "docked_bike",
+      "trips": 1043233,
+      "percent_within_group": 42.627150086
+    },
+    {
+      "group": "member",
+      "type": "electric_bike",
+      "trips": 602335,
+      "percent_within_group": 24.611783223
+    },
+    {
+      "group": "member",
+      "type": "classic_bike",
+      "trips": 801776,
+      "percent_within_group": 32.7610666911
+    },
+    {
+      "group": "casual",
+      "type": "docked_bike",
+      "trips": 955394,
+      "percent_within_group": 50.6125566971
+    },
+    {
+      "group": "casual",
+      "type": "electric_bike",
+      "trips": 486882,
+      "percent_within_group": 25.792859103
+    },
+    {
+      "group": "casual",
+      "type": "classic_bike",
+      "trips": 445386,
+      "percent_within_group": 23.5945841999
+    }
+  ],
+  "weekend_by_group": [
+    {
+      "group": "member",
+      "weekend_trips": 676393,
+      "weekday_trips": 1770951,
+      "percent_within_group": 27.6378392249
+    },
+    {
+      "group": "casual",
+      "weekend_trips": 789897,
+      "weekday_trips": 1097765,
+      "percent_within_group": 41.8452561952
+    }
+  ],
+  "weighted_mean_from_rounded_group_means": 26.9725771721,
+  "mean_ratio": 2.6759533124,
+  "median_ratio": 1.7694616076,
+  "figures": [
+    {
+      "file": "monthly-trips-pt.png",
+      "sha256": "4b28bdcac5ab3b5fc85aa5d1f4d53f0db1262fda7ecab7b41cac309dbe46dc8d"
+    },
+    {
+      "file": "bike-types-pt.png",
+      "sha256": "41b371c4c609898f050538811339f7d6fc4458ca32ea21ec7c66d0a8ca0463b3"
+    },
+    {
+      "file": "duration-summary-pt.png",
+      "sha256": "b61324e348e38dcdc64c10a0efc0fdf445b0f01f036ae98ef3279345c1a8eb3f"
+    },
+    {
+      "file": "monthly-trips-en.png",
+      "sha256": "4a1020eaac20408991c4fbdc5017b17cdf9c453b23a12693f439b50e8f56c8b8"
+    },
+    {
+      "file": "bike-types-en.png",
+      "sha256": "2e0dd971c68b482a4a22c920cbcc8975e1a5191eeaa68eb2bc3261d482a8293d"
+    },
+    {
+      "file": "duration-summary-en.png",
+      "sha256": "94289d67d01317b1a936ab05502f7b4b488c1da40e4b24289fe5aea02ffa5591"
+    }
+  ]
+}

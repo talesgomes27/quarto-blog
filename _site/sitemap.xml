@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://blog-talesgomes.netlify.app/about.html</loc>
-    <lastmod>2023-07-10T17:04:50.574Z</lastmod>
+    <loc>https://talesgomes27.github.io/quarto-blog/textos.html</loc>
+    <lastmod>2026-10-26T04:12:29.807Z</lastmod>
   </url>
   <url>
-    <loc>https://blog-talesgomes.netlify.app/posts/bike-share-navigate/index.html</loc>
-    <lastmod>2023-07-10T17:03:57.660Z</lastmod>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html</loc>
+    <lastmod>2026-10-26T04:57:22.574Z</lastmod>
   </url>
   <url>
-    <loc>https://blog-talesgomes.netlify.app/posts/bellabeat/index.html</loc>
-    <lastmod>2023-07-10T17:03:23.293Z</lastmod>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/bellabeat/index.html</loc>
+    <lastmod>2026-10-26T05:24:31.707Z</lastmod>
   </url>
   <url>
-    <loc>https://blog-talesgomes.netlify.app/index.html</loc>
-    <lastmod>2023-07-10T17:03:44.181Z</lastmod>
+    <loc>https://talesgomes27.github.io/quarto-blog/index.html</loc>
+    <lastmod>2026-10-26T04:14:14.059Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/en/index.html</loc>
+    <lastmod>2026-10-26T04:16:50.940Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/en/404.html</loc>
+    <lastmod>2026-10-26T04:15:44.296Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/about.html</loc>
+    <lastmod>2026-10-26T05:25:15.571Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/en/about.html</loc>
+    <lastmod>2026-10-26T05:25:15.572Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/en/textos.html</loc>
+    <lastmod>2026-10-26T04:12:29.807Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/bellabeat/en.html</loc>
+    <lastmod>2026-10-26T05:24:31.708Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/index.html</loc>
+    <lastmod>2026-10-26T04:57:22.573Z</lastmod>
   </url>
 </urlset>

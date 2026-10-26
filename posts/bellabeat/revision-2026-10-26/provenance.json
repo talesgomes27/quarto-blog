@@ -1,0 +1,67 @@
+{
+  "revision": "2026-10-26",
+  "generated_at_utc": "2026-10-26 04:51:12 UTC",
+  "source": {
+    "url": "https://zenodo.org/records/53894/files/mturkfitbit_export_4.12.16-5.12.16.zip",
+    "md5": "7afbecdce29814e1be2e9a7c94f8f165",
+    "sha256": "4741dfabd18453de19b6dd0a7204e8fea6e45e70bc9ddbe396956c8e4fde02f8",
+    "bytes": 25291915,
+    "records": {
+      "activity": 940,
+      "sleep": 413,
+      "heart_samples": 2483658,
+      "weight": 67
+    },
+    "file_sha256": {
+      "dailyActivity_merged.csv": "4b8f557eb29cd929cee7cc2d2a5e7704578bbffbc42c352e7b0c42bc4f3c6ac8",
+      "sleepDay_merged.csv": "2d4250ca47dfc74263f1b61fe4ba3e338c83faab0d352fb0fefa93464b170e53",
+      "heartrate_seconds_merged.csv": "64b945c3d86f598b8b8a9d26e46585e1ccdc99b82ab1ecfd9784e84ab856d93d",
+      "weightLogInfo_merged.csv": "50b40176f926562e1a522dcb4e75f30c4f04441a7d5b8e570f704b1fbab2b738"
+    }
+  },
+  "historical_frozen_sha256": "9587af4709d3aa940f2c60119355c30d43edfe82506d84a10cc9b512e057d5e4",
+  "historical_audit_sha256": "bc5c7ff02d1a8536608c8ee840d71efb2eabe186208eab6da2d554f3c0896d95",
+  "script": "scripts/rebuild_bellabeat.R",
+  "script_sha256": "e46ce8e6b3e2e6d899786bf1e09f79eb400039ec06f94dfa2de51aaf643819b9",
+  "R": "R version 4.6.1 (2026-06-24)",
+  "graphics_device": "grDevices::png(type = cairo)",
+  "package_versions": {
+    "data.table": "1.18.6.1",
+    "dplyr": "1.2.1",
+    "ggplot2": "4.0.3",
+    "jsonlite": "2.0.0",
+    "digest": "0.6.39"
+  },
+  "checks": {
+    "activity_unique_user_days": 940,
+    "sleep_removed_exact_duplicates": 3,
+    "daily_rows": 940,
+    "long_rows": 3760,
+    "unique_keys_verified": true,
+    "raw_ids_exported": false
+  },
+  "outputs_sha256": {
+    "comparison-en.md": "21a664362bb7a297ced2861f287d4075be1e25247a08731bad3ded7d2eac5bf7",
+    "comparison-pt.md": "7a751604e141c4391d7c38493856b9044035ce20037e63c9756755a8cb4d9769",
+    "intensity_calories-en.png": "f2dceb0b4a6101c569649168585f9b0becaefe5a3c8ad2eff6625bd44025eac8",
+    "intensity_calories-pt.png": "b6f9805838f385552dd3e97ca47e19a22c9e10ddd16a6d50b092d6f149923c90",
+    "intensity_distance-en.png": "9dc9047ebc8aec960c88f21df22099f0db53f50f27811b5116ab697b7699ef10",
+    "intensity_distance-pt.png": "dbb178de533e0ba6efeeaef1c11f9f849c7000a6ca51234fde18cb8b7a10ad53",
+    "intensity_steps-en.png": "181f4933922488a24a764000f3fba46f925bff80dd0008e737720b1952af9a4e",
+    "intensity_steps-pt.png": "3cb63437474d298d8d98b4febc9e08adff44f204f0bdc673e2cbd8ad5afa51b2",
+    "results.json": "a6f2d5ece27283750ce6c44ac43607d7610566ab38323e55aa7d2387bd8aa89a",
+    "sleep_calories-en.png": "40f189f3cd13bfb5ccb9ab6e188cd53ae4771355bb9551e5fd24e195492a941a",
+    "sleep_calories-pt.png": "d8b58d5741f8a806b15b5d493cb3996eca883a33b4d0df17bdde81897fe84db1",
+    "sleep_heart-en.png": "d024cf017199aadf0d214de93a11eba1cf35545d0f32dd8ab2dbf90a12eb1841",
+    "sleep_heart-pt.png": "d0c93e1ca6143db6821ee16f6db6c187d7e7cc907293dd91ff48030619e78a79",
+    "sleep-en.md": "2dc8afd6163ae1ce4e4a7a498afb38ad8f56367b67383dad13f01412f695a8fb",
+    "sleep-pt.md": "e869dba81b34316288736958eab88a0e816320644f3e04cf6dffefa356840def",
+    "summary-en.md": "e73887f35d30b8ebeab63e0c5ad2cac2139a47e49b9711b46c2c3d87854a42d0",
+    "summary-pt.md": "22bc5567b5d984bbc2aef9c38ec46217f1f8fa028fdd37e53d3d6f8be2592ee6",
+    "weekday-en.md": "394c1927a621bac2671f5617db39f12a138150a232d57a82e9243a6ff9234912",
+    "weekday-en.png": "78ccf23848104f087eee5e19e3c51873c31a4095a5acdaf9cb83714722a5f4bf",
+    "weekday-pt.md": "41e0bb4f316bdd3101f09911c8ebc2260ab209012c37797500b21148963fda8d",
+    "weekday-pt.png": "dc86eee8a97590fffb889c63afc5562854bcfe1da86780c5032d592a166f01c1"
+  },
+  "policy": ["No individual rows or identifiers exported", "No wear-time or zero-value exclusion inferred", "Charts show repeated participant-days; no independent-observation CI or causal model", "This upstream archive is not proof of binary identity with the author's original Kaggle download"]
+}

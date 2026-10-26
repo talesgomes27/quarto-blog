@@ -1,1 +1,1 @@
-Sitemap: https://blog-talesgomes.netlify.app/sitemap.xml
+Sitemap: https://talesgomes27.github.io/quarto-blog/sitemap.xml

@@ -1,0 +1,170 @@
+{
+  "checked_at": "2026-10-26T05:24:04.507328+00:00",
+  "method": "HTTP GET following redirects; read first 1024 bytes; sources QMD/YAML excluding generated site and revisions",
+  "results": [
+    {
+      "url": "https://blog-talesgomes.netlify.app",
+      "sources": [
+        "_quarto.yml"
+      ],
+      "status": 200,
+      "final_url": "https://blog-talesgomes.netlify.app",
+      "classification": "ok"
+    },
+    {
+      "url": "https://github.com/talesgomes27/quarto-blog",
+      "sources": [
+        "_quarto.yml"
+      ],
+      "status": 200,
+      "final_url": "https://github.com/talesgomes27/quarto-blog",
+      "classification": "ok"
+    },
+    {
+      "url": "https://github.com/talesgomes27/",
+      "sources": [
+        "_quarto.yml"
+      ],
+      "status": 200,
+      "final_url": "https://github.com/talesgomes27/",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.linkedin.com/in/talesgomes27/",
+      "sources": [
+        "_quarto.yml",
+        "about.qmd",
+        "posts/_metadata.yml",
+        "en/about.qmd"
+      ],
+      "error": "HTTP Error 999: <none>",
+      "status": 999,
+      "classification": "automation_blocked"
+    },
+    {
+      "url": "https://talesgomes27.github.io/curriculo/resume.html",
+      "sources": [
+        "about.qmd",
+        "en/about.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://talesgomes27.github.io/curriculo/resume.html",
+      "classification": "ok"
+    },
+    {
+      "url": "https://github.com/talesgomes27",
+      "sources": [
+        "about.qmd",
+        "en/about.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://github.com/talesgomes27",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.datacamp.com/certificate/DA0010574268485",
+      "sources": [
+        "about.qmd",
+        "en/about.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://www.datacamp.com/certificate/DA0010574268485",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.kaggle.com/datasets/arashnic/fitbit",
+      "sources": [
+        "posts/bellabeat/index.qmd",
+        "posts/bellabeat/en.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://www.kaggle.com/datasets/arashnic/fitbit",
+      "classification": "ok"
+    },
+    {
+      "url": "https://zenodo.org/records/53894",
+      "sources": [
+        "posts/bellabeat/index.qmd",
+        "posts/bellabeat/en.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://zenodo.org/records/53894",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.fitabase.com/media/1748/fitabasedatadictionary.pdf",
+      "sources": [
+        "posts/bellabeat/index.qmd",
+        "posts/bellabeat/en.qmd"
+      ],
+      "error": "HTTP Error 404: Not Found",
+      "status": 404,
+      "classification": "broken"
+    },
+    {
+      "url": "https://zenodo.org/records/53894/files/mturkfitbit_export_4.12.16-5.12.16.zip",
+      "sources": [
+        "posts/bellabeat/index.qmd",
+        "posts/bellabeat/en.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://zenodo.org/records/53894/files/mturkfitbit_export_4.12.16-5.12.16.zip",
+      "classification": "ok"
+    },
+    {
+      "url": "https://divvy-tripdata.s3.amazonaws.com/index.html",
+      "sources": [
+        "posts/bike-share-navigate/index.qmd",
+        "posts/bike-share-navigate/pt.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://divvy-tripdata.s3.amazonaws.com/index.html",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.ncei.noaa.gov/news/meteorological-versus-astronomical-seasons",
+      "sources": [
+        "posts/bike-share-navigate/index.qmd",
+        "posts/bike-share-navigate/pt.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://www.ncei.noaa.gov/news/meteorological-versus-astronomical-seasons",
+      "classification": "ok"
+    },
+    {
+      "url": "https://github.com/talesgomes27/DAC8-Case-Study-1/tree/5c21b988e46548d7592245d1937cee0c8af6993c",
+      "sources": [
+        "posts/bike-share-navigate/index.qmd",
+        "posts/bike-share-navigate/pt.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://github.com/talesgomes27/DAC8-Case-Study-1/tree/5c21b988e46548d7592245d1937cee0c8af6993c",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.kaggle.com/datasets/victorsoeiro/netflix-tv-shows-and-movies",
+      "sources": [
+        "posts/netflix-amazon-comparison/index.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://www.kaggle.com/datasets/victorsoeiro/netflix-tv-shows-and-movies",
+      "classification": "ok"
+    },
+    {
+      "url": "https://www.kaggle.com/datasets/victorsoeiro/amazon-prime-tv-shows-and-movies",
+      "sources": [
+        "posts/netflix-amazon-comparison/index.qmd"
+      ],
+      "status": 200,
+      "final_url": "https://www.kaggle.com/datasets/victorsoeiro/amazon-prime-tv-shows-and-movies",
+      "classification": "ok"
+    }
+  ],
+  "replacement_suggestion": {
+    "old_url": "https://www.fitabase.com/media/1748/fitabasedatadictionary.pdf",
+    "official_landing_page": "https://www.fitabase.com/resources/knowledge-base/exporting-data/data-dictionaries/",
+    "current_pdf": "https://www.fitabase.com/media/2197/fitabase-fitbit-data-dictionary-as-of-09022026.pdf",
+    "verified_by": "web fetch official landing page and linked PDF; no file changes applied",
+    "note": "Current dictionary revised 2026; assess suitability for historical 2016 data before citing a specific version."
+  }
+}

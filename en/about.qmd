@@ -1,0 +1,49 @@
+---
+title: Tales Gomes
+pagetitle: About Tales Gomes
+description: Computer engineer, data analyst and author of this portal about data science and technology.
+comments: false
+image: ../assets/profile/tales-gomes-clean.png
+body-classes: profile-about
+about:
+  template: trestles
+  image-shape: rectangle
+  image-width: 18rem
+  image-alt: "Portrait of Tales Gomes smiling against a dark red background."
+  links:
+    - icon: envelope
+      text: Email
+      href: mailto:talesgomes27@gmail.com
+    - icon: file-earmark-person
+      text: Résumé
+      href: https://talesgomes27.github.io/curriculo/resume.html
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/talesgomes27/
+    - icon: github
+      text: GitHub
+      href: https://github.com/talesgomes27
+---
+
+## Data, code and context.
+
+::: {.profile-lead}
+I'm a computer engineer from Brazil and a [DataCamp-certified data analyst](https://www.datacamp.com/certificate/DA0010574268485).
+:::
+
+This portal brings together my projects, analyses and learning about data science and technology. I share the context behind the problems, the choices made during analysis and the reflections that come from working with data.
+
+The studies include the questions, code, sources and results, with room to explain their limitations and what still needs to be investigated.
+
+::: {.profile-actions}
+[Explore projects](index.qmd#projetos){.btn .btn-primary}
+[Browse writing and studies [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+
+::: {.profile-contact}
+## Let's talk.
+
+Get in touch to exchange ideas about data and technology or discuss opportunities to collaborate.
+
+[Get in touch [→]{aria-hidden=true}](mailto:talesgomes27@gmail.com){.text-link}
+:::

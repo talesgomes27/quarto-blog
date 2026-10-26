@@ -1,0 +1,297 @@
+{
+  "frozen_path": "_freeze/posts/bellabeat/index/execute-results/html.json",
+  "frozen_sha256": "9587af4709d3aa940f2c60119355c30d43edfe82506d84a10cc9b512e057d5e4",
+  "rows": 943,
+  "unique_user_days": 940,
+  "users": 33,
+  "first_date": "2016-04-12",
+  "last_date": "2016-05-12",
+  "duplicate_excess": 3,
+  "archived_summary": {
+    "total_steps": {
+      "observations": 943,
+      "users": 33,
+      "missing": 0,
+      "mean": 7652.188759278897,
+      "min": 0.0,
+      "max": 36019.0
+    },
+    "total_distance": {
+      "observations": 943,
+      "users": 33,
+      "missing": 0,
+      "mean": 5.502852598091199,
+      "min": 0.0,
+      "max": 28.03
+    },
+    "calories": {
+      "observations": 943,
+      "users": 33,
+      "missing": 0,
+      "mean": 2307.5079533404028,
+      "min": 0.0,
+      "max": 4900.0
+    },
+    "heartrate": {
+      "observations": 335,
+      "users": 14,
+      "missing": 608,
+      "mean": 78.56160244776119,
+      "min": 59.37717,
+      "max": 109.78963
+    },
+    "bmi": {
+      "observations": 67,
+      "users": 8,
+      "missing": 876,
+      "mean": 25.185223880597015,
+      "min": 21.45,
+      "max": 47.54
+    },
+    "total_time_asleep": {
+      "observations": 413,
+      "users": 24,
+      "missing": 530,
+      "mean": 6.991121877966101,
+      "min": 0.9666667,
+      "max": 13.2666667
+    },
+    "sedentary_time": {
+      "observations": 943,
+      "users": 33,
+      "missing": 0,
+      "mean": 16.50588547178155,
+      "min": 0.0,
+      "max": 24.0
+    }
+  },
+  "exact_user_day_deduplicated_sensitivity": {
+    "total_steps": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 7637.9106382978725,
+      "min": 0.0,
+      "max": 36019.0
+    },
+    "total_distance": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 5.489702127659575,
+      "min": 0.0,
+      "max": 28.03
+    },
+    "calories": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 2303.609574468085,
+      "min": 0.0,
+      "max": 4900.0
+    },
+    "heartrate": {
+      "observations": 334,
+      "users": 14,
+      "missing": 606,
+      "mean": 78.61405844311378,
+      "min": 59.37717,
+      "max": 109.78963
+    },
+    "bmi": {
+      "observations": 67,
+      "users": 8,
+      "missing": 873,
+      "mean": 25.185223880597015,
+      "min": 21.45,
+      "max": 47.54
+    },
+    "total_time_asleep": {
+      "observations": 410,
+      "users": 24,
+      "missing": 530,
+      "mean": 6.986219517560976,
+      "min": 0.9666667,
+      "max": 13.2666667
+    },
+    "sedentary_time": {
+      "observations": 940,
+      "users": 33,
+      "missing": 0,
+      "mean": 16.520177304851064,
+      "min": 0.0,
+      "max": 24.0
+    }
+  },
+  "long_table_rows_implied_by_code": 3796,
+  "long_table_rows_if_one_row_per_user_day": 3760,
+  "caveat": "Deduplication is a sensitivity check, not a correction applied to the published article.",
+  "sleep_groups": {
+    "<6": {
+      "observations": 100,
+      "users": 22,
+      "calories": {
+        "observations": 100,
+        "users": 22,
+        "missing": 0,
+        "mean": 2262.25,
+        "min": 257.0,
+        "max": 3846.0
+      },
+      "heartrate": {
+        "observations": 31,
+        "users": 10,
+        "missing": 69,
+        "mean": 76.95981580645162,
+        "min": 59.37717,
+        "max": 104.87147
+      }
+    },
+    "6-10": {
+      "observations": 295,
+      "users": 20,
+      "calories": {
+        "observations": 295,
+        "users": 20,
+        "missing": 0,
+        "mean": 2466.2305084745763,
+        "min": 403.0,
+        "max": 4900.0
+      },
+      "heartrate": {
+        "observations": 142,
+        "users": 10,
+        "missing": 153,
+        "mean": 73.24668464788732,
+        "min": 59.70358,
+        "max": 99.50581
+      }
+    },
+    ">10": {
+      "observations": 18,
+      "users": 12,
+      "calories": {
+        "observations": 18,
+        "users": 12,
+        "missing": 0,
+        "mean": 2024.1666666666667,
+        "min": 1463.0,
+        "max": 3363.0
+      },
+      "heartrate": {
+        "observations": 9,
+        "users": 5,
+        "missing": 9,
+        "mean": 67.90988,
+        "min": 60.04042,
+        "max": 80.5196
+      }
+    }
+  },
+  "weekday_sensitivity": {
+    "ter": {
+      "unique_user_days": 152,
+      "dates": 5,
+      "mean_distance_km": 5.832236842105263,
+      "mean_steps": 8125.006578947368
+    },
+    "qua": {
+      "unique_user_days": 150,
+      "dates": 5,
+      "mean_distance_km": 5.488333333333333,
+      "mean_steps": 7559.373333333333
+    },
+    "qui": {
+      "unique_user_days": 147,
+      "dates": 5,
+      "mean_distance_km": 5.312244897959184,
+      "mean_steps": 7405.836734693878
+    },
+    "sex": {
+      "unique_user_days": 126,
+      "dates": 4,
+      "mean_distance_km": 5.309920634920635,
+      "mean_steps": 7448.230158730159
+    },
+    "sáb": {
+      "unique_user_days": 124,
+      "dates": 4,
+      "mean_distance_km": 5.8546774193548385,
+      "mean_steps": 8152.975806451613
+    },
+    "dom": {
+      "unique_user_days": 121,
+      "dates": 4,
+      "mean_distance_km": 5.027190082644628,
+      "mean_steps": 6933.231404958678
+    },
+    "seg": {
+      "unique_user_days": 120,
+      "dates": 4,
+      "mean_distance_km": 5.5529166666666665,
+      "mean_steps": 7780.866666666667
+    }
+  },
+  "bmi_observation_counts_per_person_sorted": [
+    30,
+    24,
+    5,
+    2,
+    2,
+    2,
+    1,
+    1
+  ],
+  "upstream_source_check": {
+    "url": "https://zenodo.org/records/53894/files/mturkfitbit_export_4.12.16-5.12.16.zip",
+    "md5": "7afbecdce29814e1be2e9a7c94f8f165",
+    "sha256": "4741dfabd18453de19b6dd0a7204e8fea6e45e70bc9ddbe396956c8e4fde02f8",
+    "file_size_bytes": 25291915,
+    "tables": {
+      "dailyActivity_merged.csv": {
+        "rows": 940,
+        "users": 33,
+        "unique_user_days": 940,
+        "exact_duplicate_excess": 0,
+        "first_date": "2016-04-12",
+        "last_date": "2016-05-12"
+      },
+      "sleepDay_merged.csv": {
+        "rows": 413,
+        "users": 24,
+        "unique_user_days": 410,
+        "exact_duplicate_excess": 3,
+        "first_date": "2016-04-12",
+        "last_date": "2016-05-12"
+      },
+      "weightLogInfo_merged.csv": {
+        "rows": 67,
+        "users": 8,
+        "unique_user_days": 67,
+        "exact_duplicate_excess": 0,
+        "first_date": "2016-04-12",
+        "last_date": "2016-05-12"
+      },
+      "heartrate_seconds_merged.csv": {
+        "rows": 2483658,
+        "users": 14,
+        "unique_user_days": 334,
+        "first_date": "2016-04-12",
+        "last_date": "2016-05-12"
+      }
+    },
+    "reconstructed_left_join_rows": 943,
+    "reconstructed_rows_without_matching_archived_values": 0,
+    "comparison_fields": [
+      "total_steps",
+      "total_distance",
+      "calories",
+      "heartrate",
+      "bmi",
+      "total_time_asleep",
+      "sedentary_time"
+    ],
+    "comparison_absolute_tolerance": 1e-05,
+    "caveat": "Upstream Zenodo archive; equality to the original local Kaggle download cannot be asserted."
+  }
+}

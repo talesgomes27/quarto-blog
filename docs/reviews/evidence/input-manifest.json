@@ -1,0 +1,48 @@
+{
+  "review_date": "2026-10-26",
+  "timezone": "America/Belem",
+  "purpose": "Revisão dos estudos antigos, preservando os artigos durante o diagnóstico",
+  "inputs": [
+    {
+      "path": "posts/bike-share-navigate/index.qmd",
+      "sha256": "922c330497f3099ddd2945900e6af81a4eeb289511da42e3d525597283d52fdf",
+      "bytes": 22983
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.qmd",
+      "sha256": "449058311a0e5dcabc20c4b2a8ff74eadbc50bc4b16b74403d499fc5f0a96cf3",
+      "bytes": 61526
+    },
+    {
+      "path": "posts/bellabeat/index.qmd",
+      "sha256": "e4f0d4de9076f3c848c2868899cdd6df5d685cb1070010229244a5ba7c5c0e93",
+      "bytes": 18756
+    },
+    {
+      "path": "posts/bellabeat/en.qmd",
+      "sha256": "1327eec07298220b9e8922617f42ef983f79cd6ccac9d5b63d5f080c773b9afc",
+      "bytes": 287449
+    },
+    {
+      "path": "_freeze/posts/bike-share-navigate/index/execute-results/html.json",
+      "sha256": "0ba0fc2832c6d5e93d3ee373e8bfef3f480e41c4d7058b8068322107ff536f27",
+      "bytes": 64082
+    },
+    {
+      "path": "_freeze/posts/bellabeat/index/execute-results/html.json",
+      "sha256": "9587af4709d3aa940f2c60119355c30d43edfe82506d84a10cc9b512e057d5e4",
+      "bytes": 369526
+    }
+  ],
+  "remote_bike_share": {
+    "repository": "https://github.com/talesgomes27/DAC8-Case-Study-1",
+    "commit": "5c21b988e46548d7592245d1937cee0c8af6993c",
+    "commit_date_utc": "2026-10-13T15:24:23Z",
+    "commit_message": "docs: alinha metricas textuais e interpretacoes com a base censitaria real"
+  },
+  "bellabeat_sources": [
+    "https://www.kaggle.com/datasets/arashnic/fitbit",
+    "https://zenodo.org/records/53894"
+  ],
+  "execution": "Diagnostic review: original R analyses were not executed; article sources and frozen outputs were preserved. Separate audit checks may read archived output and upstream public data."
+}

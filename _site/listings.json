@@ -1,9 +1,16 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/textos.html",
+    "items": [
+      "/posts/bike-share-navigate/pt.html",
+      "/posts/bellabeat/index.html"
+    ]
+  },
+  {
+    "listing": "/en/textos.html",
     "items": [
       "/posts/bike-share-navigate/index.html",
-      "/posts/bellabeat/index.html"
+      "/posts/bellabeat/en.html"
     ]
   }
 ]

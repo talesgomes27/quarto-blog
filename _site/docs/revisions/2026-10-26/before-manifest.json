@@ -1,0 +1,42 @@
+{
+  "captured": "2026-10-26",
+  "scope": "Before authorized corrections of both studies",
+  "files": [
+    {
+      "source": "posts/bike-share-navigate/index.qmd",
+      "archive": "before/posts/bike-share-navigate/index.qmd.gz",
+      "sha256": "922c330497f3099ddd2945900e6af81a4eeb289511da42e3d525597283d52fdf",
+      "bytes": 22983
+    },
+    {
+      "source": "posts/bike-share-navigate/pt.qmd",
+      "archive": "before/posts/bike-share-navigate/pt.qmd.gz",
+      "sha256": "449058311a0e5dcabc20c4b2a8ff74eadbc50bc4b16b74403d499fc5f0a96cf3",
+      "bytes": 61526
+    },
+    {
+      "source": "posts/bellabeat/index.qmd",
+      "archive": "before/posts/bellabeat/index.qmd.gz",
+      "sha256": "e4f0d4de9076f3c848c2868899cdd6df5d685cb1070010229244a5ba7c5c0e93",
+      "bytes": 18756
+    },
+    {
+      "source": "posts/bellabeat/en.qmd",
+      "archive": "before/posts/bellabeat/en.qmd.gz",
+      "sha256": "1327eec07298220b9e8922617f42ef983f79cd6ccac9d5b63d5f080c773b9afc",
+      "bytes": 287449
+    },
+    {
+      "source": "_freeze/posts/bike-share-navigate/index/execute-results/html.json",
+      "archive": "before/_freeze/posts/bike-share-navigate/index/execute-results/html.json.gz",
+      "sha256": "0ba0fc2832c6d5e93d3ee373e8bfef3f480e41c4d7058b8068322107ff536f27",
+      "bytes": 64082
+    },
+    {
+      "source": "_freeze/posts/bellabeat/index/execute-results/html.json",
+      "archive": "before/_freeze/posts/bellabeat/index/execute-results/html.json.gz",
+      "sha256": "9587af4709d3aa940f2c60119355c30d43edfe82506d84a10cc9b512e057d5e4",
+      "bytes": 369526
+    }
+  ]
+}

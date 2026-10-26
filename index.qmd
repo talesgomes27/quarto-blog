@@ -1,19 +1,80 @@
 ---
-title: "Yet Another Data Blog"
-description: "A blog about data science, learning and technology by Tales Gomes"
-image: social.jpg
-twitter-card: true
-open-graph: true
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: true
-  filter-ui: true
-page-layout: full
-title-block-banner: false
+title: "Projetos, ideias e tecnologia."
+description: "O portal de Tales Gomes: projetos, análises e perspectivas sobre ciência de dados e tecnologia."
+page-layout: custom
+title-block-style: none
+body-classes: portal-home
 comments: false
 ---
 
+::: {.portal-layout}
+::: {.portal-main}
+# Projetos, ideias e tecnologia.
 
+::: {.portal-intro}
+Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados em ciência de dados e tecnologia.
+:::
+
+::: {#projetos .project-list aria-label="Projetos"}
+::: {.project-row}
+<a class="project-image" href="posts/bike-share-navigate/pt.html"><img src="assets/plates/bike-photo.webp" alt="Bicicletas compartilhadas em uma estação. Imagem ilustrativa." width="1000" height="641" loading="eager"></a>
+
+::: {.project-copy}
+## [Bike-share / Cyclistic](posts/bike-share-navigate/pt.qmd)
+
+[Hábitos de usuários casuais e assinantes]{.project-subtitle}
+
+[R · 2021]{.project-meta}
+
+Análise de dados de um sistema de compartilhamento de bicicletas para explorar diferenças de comportamento entre usuários casuais e assinantes.
+
+[Ver estudo [→]{aria-hidden=true}](posts/bike-share-navigate/pt.qmd){.text-link} [Explorar o arquivo [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+:::
+
+::: {.project-row}
+<a class="project-image" href="posts/bellabeat/index.html"><img src="assets/plates/bellabeat-photo.webp" alt="Dispositivo fitness. Imagem ilustrativa." width="1000" height="641" loading="eager"></a>
+
+::: {.project-copy}
+## [Bellabeat](posts/bellabeat/index.qmd)
+
+[Uso de dispositivos fitness]{.project-subtitle}
+
+[R · 2021]{.project-meta}
+
+Análise exploratória de dados de atividade física, sono e uso de dispositivos fitness, com foco em padrões de uso.
+
+[Ver estudo [→]{aria-hidden=true}](posts/bellabeat/index.qmd){.text-link} [Explorar o arquivo [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+:::
+:::
+:::
+
+::: {.portal-aside role=complementary aria-label="Textos e sobre o autor"}
+::: {.aside-section}
+## Textos
+
+Projetos, aprendizados e perspectivas sobre ciência de dados e tecnologia.
+
+[Explorar o arquivo [→]{aria-hidden=true}](textos.qmd){.text-link}
+:::
+
+::: {.aside-section}
+## Sobre mim
+
+Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados.
+
+[Sobre mim [→]{aria-hidden=true}](about.qmd){.text-link}
+:::
+
+<img class="reading-image" src="assets/plates/reading-photo.webp" alt="Livros, uma planta e uma xícara sobre uma mesa. Imagem ilustrativa." width="1000" height="567" loading="lazy">
+:::
+:::
+
+::: {#contato .contact-section}
+## Vamos conversar?
+
+Você tem interesse em trocar ideias, falar sobre oportunidades ou colaborar em projetos? Será um prazer conversar.
+
+[Entrar em contato](mailto:talesgomes27@gmail.com){.btn .btn-primary}
+:::

@@ -1,0 +1,17 @@
+{
+  "checks": [
+    {
+      "project": "bike-share-navigate",
+      "translation": "pt.qmd",
+      "code_and_output_blocks": 53,
+      "byte_equal_block_bodies": true
+    },
+    {
+      "project": "bellabeat",
+      "translation": "en.qmd",
+      "code_and_output_blocks": 16,
+      "byte_equal_block_bodies": true
+    }
+  ],
+  "review_inputs_unchanged": true
+}
