@@ -1,0 +1,36 @@
+{
+  "commit": "9ec805676faf31a8124c1eafc96c998cf6de0435",
+  "run_id": 40338804948,
+  "base_url": "https://talesgomes27.github.io/quarto-blog/",
+  "results": [
+    {
+      "path": "posts/bellabeat/index.html",
+      "status": 200,
+      "matches_local": true,
+      "x_share_url": "https://x.com/intent/tweet?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fbellabeat%2Findex.html&text=Bellabeat%3A+atividade%2C+sono+e+uso+de+dispositivos+fitness",
+      "sha256": "0e019b55c6c8938f4e144445bfd66c426bfcecf5e2991855498327af5bb55f77"
+    },
+    {
+      "path": "posts/bellabeat/en.html",
+      "status": 200,
+      "matches_local": true,
+      "x_share_url": "https://x.com/intent/tweet?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fbellabeat%2Fen.html&text=Bellabeat%3A+activity%2C+sleep+and+fitness+tracker+usage",
+      "sha256": "827f7377d9266ba8793f49b89802d1b5586cae4efff95885b22528052c3121fe"
+    },
+    {
+      "path": "posts/bike-share-navigate/index.html",
+      "status": 200,
+      "matches_local": true,
+      "x_share_url": "https://x.com/intent/tweet?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fbike-share-navigate%2Findex.html&text=Cyclistic+Bike-Share%3A+Usage+Patterns+and+Rider+Conversion",
+      "sha256": "5d6bd40ee04eac3e98ead8df8c00a8249fc7fd8efd0182e22f2687f12ce65b65"
+    },
+    {
+      "path": "posts/bike-share-navigate/pt.html",
+      "status": 200,
+      "matches_local": true,
+      "x_share_url": "https://x.com/intent/tweet?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fbike-share-navigate%2Fpt.html&text=Cyclistic+Bike-Share%3A+an%C3%A1lise+de+padr%C3%B5es+e+convers%C3%A3o+de+usu%C3%A1rios",
+      "sha256": "2afd60d510833bfdbea595da462b3e91f85146a51a08895706fb3a16b19b4c9f"
+    }
+  ],
+  "limits": "No post submitted to X."
+}

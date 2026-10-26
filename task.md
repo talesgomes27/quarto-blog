@@ -75,3 +75,4 @@ Pedido: conferir comentários nos dois idiomas e adaptar Textos ao tema publicad
 
 - Pedido: acrescentar o X ao compartilhamento. Botão com ícone Bootstrap já disponível e rótulo X nos quatro estudos PT/EN, abrindo o Web Intent em outra aba com título e endereço da tradução aberta. Nenhum script remoto ou nova extensão.
 - Verificação: cinco testes Python passaram, incluindo caracteres especiais no título, URL por idioma, atributos de segurança e pós-render idempotente. Código e resultados dos estudos preservados; nenhum post enviado ao X.
+- Publicado no commit `9ec805676faf31a8124c1eafc96c998cf6de0435`; workflow [40338804948](https://github.com/talesgomes27/quarto-blog/actions/runs/40338804948) terminou com sucesso. Quatro artigos públicos idênticos ao artefato local, com o título e endereço corretos no link do X. Layout PT móvel local e EN desktop público conferidos sem transbordamento. Evidência em `docs/x-sharing-smoke-2026-10-26.json`.
