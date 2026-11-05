@@ -16,6 +16,62 @@ Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados e
 :::
 
 ::: {#projetos .project-list aria-label="Projetos"}
+::: {.project-row .project-summary}
+::: {.project-copy}
+## [E-Commerce Sales & Customer Analytics](https://talesgomes27.github.io/ecommerce_sales_customer_analytics/)
+
+[Vendas, segmentação de clientes e simulação de margem]{.project-subtitle}
+
+[Python · Polars · LightGBM · Streamlit · 2026]{.project-meta}
+
+Pipeline com dados sintéticos de comércio eletrônico, contratos de dados, segmentação RFM e modelagem de risco. Inclui um simulador de margem e descontos, com exportação de relatório executivo em PDF.
+
+[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/ecommerce_sales_customer_analytics/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/ecommerce_sales_customer_analytics){.text-link}
+:::
+:::
+
+::: {.project-row .project-summary}
+::: {.project-copy}
+## [Sherlock Document Search](https://talesgomes27.github.io/sherlock-document-search/)
+
+[Busca em documentos com referências rastreáveis]{.project-subtitle}
+
+[Python · scikit-learn · TF-IDF · BM25 · 2026]{.project-meta}
+
+Busca literal e por relevância em textos de Sherlock Holmes, com resultados que indicam o arquivo e as linhas de origem. Compara três métodos de busca e avalia também consultas sem resposta no contexto examinado.
+
+[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/sherlock-document-search/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/sherlock-document-search){.text-link}
+:::
+:::
+
+::: {.project-row .project-summary}
+::: {.project-copy}
+## [Detecção e análise de fraudes bancárias](https://talesgomes27.github.io/credit_card_fraud_detection/)
+
+[Detecção, modalidades e estimativa de perda financeira]{.project-subtitle}
+
+[Python · pandas · LightGBM · scikit-learn · 2026]{.project-meta}
+
+Estudo com dataset público e pipeline de três estágios: detecção de fraude, classificação da modalidade e estimativa de perda financeira. Emprega particionamento temporal e limiares de decisão orientados a custo.
+
+[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/credit_card_fraud_detection/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/credit_card_fraud_detection){.text-link}
+:::
+:::
+
+::: {.project-row .project-summary}
+::: {.project-copy}
+## [Predição de vídeos virais no YouTube](https://talesgomes27.github.io/youtube_viral_video_prediction/)
+
+[Alcance, viralidade e influência do tamanho do canal]{.project-subtitle}
+
+[Python · scikit-learn · LightGBM · Quarto · 2026]{.project-meta}
+
+Classificação e regressão com dados sintéticos de vídeos, comparando atributos disponíveis antes e depois da publicação. Inclui controles de vazamento de informação e análise da influência do número de inscritos.
+
+[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/youtube_viral_video_prediction/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/youtube_viral_video_prediction){.text-link}
+:::
+:::
+
 ::: {.project-row}
 <a class="project-image" href="posts/bike-share-navigate/pt.html"><img src="assets/plates/bike-photo.webp" alt="Bicicletas compartilhadas em uma estação. Imagem ilustrativa." width="1000" height="641" loading="eager"></a>
 

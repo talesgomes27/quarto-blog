@@ -93,6 +93,14 @@ Limites observados no código de origem: uma única posição é armazenada por 
 
 Validação local concluída em 26/10/2026: render completo das 13 páginas; filtro presente nos quatro estudos e ausente da home/arquivo/404; testes dos estudos e navegação preservados; hashes dos arquivos instalados conferidos. No navegador, aceitar retomou a seção salva do Bike Share; Tab percorreu os dois botões em ciclo; Escape fechou o aviso; começar do início no Bellabeat EN fechou o aviso e manteve a página no topo. O aviso em português foi conferido em desktop claro e celular de 375px em tema escuro, sem transbordamento. As análises não foram reexecutadas. Esta é uma validação funcional dirigida, não uma auditoria de segurança completa da dependência.
 
+## Projetos recentes na home — 05/11/2026
+
+As homes PT/EN passaram a apresentar os quatro projetos públicos selecionados no [currículo](https://talesgomes27.github.io/curriculo/#projetos): E-Commerce Sales & Customer Analytics, Sherlock Document Search, fraudes bancárias e vídeos virais no YouTube. Os resumos foram conferidos nos READMEs dos respectivos repositórios, com links para o código e os relatórios existentes. O TCC ficou fora desta atualização por solicitação do autor. As versões inglesas identificam os relatórios externos como conteúdo em português.
+
+Após consulta ao catálogo local (`cards`, `listing`, `icon`, `preview`), foi mantida a estrutura Quarto/HTML existente: resumos com título, tecnologias e links não precisam de nova extensão. Uma regra em `styles.css` dispõe as entradas sem imagem em uma coluna. Bike-share, Bellabeat, seus resultados, código e políticas de execução foram preservados.
+
+Validação: Quarto 1.10.19, render completo das 13 páginas, cinco verificadores Python aprovados e quatro relatórios externos com HTTP 200. As homes foram conferidas no navegador em PT/EN, desktop e viewport móvel de 375px, com temas claro/escuro; a largura do conteúdo não excedeu a área disponível no celular. O render utilizou `XDG_CACHE_HOME=/tmp/quarto-blog-projects-cache` para manter o cache dentro da área gravável desta sessão. Não houve reexecução de análises nem teste em aparelho físico.
+
 ## Atualizar o índice
 
 ```bash
