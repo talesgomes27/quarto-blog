@@ -2,6 +2,10 @@
   {
     "listing": "/textos.html",
     "items": [
+      "/posts/sherlock/index.html",
+      "/posts/ecommerce/index.html",
+      "/posts/fraud/index.html",
+      "/posts/youtube/index.html",
       "/posts/bike-share-navigate/pt.html",
       "/posts/bellabeat/index.html"
     ]
@@ -9,6 +13,10 @@
   {
     "listing": "/en/textos.html",
     "items": [
+      "/posts/sherlock/en.html",
+      "/posts/ecommerce/en.html",
+      "/posts/fraud/en.html",
+      "/posts/youtube/en.html",
       "/posts/bike-share-navigate/index.html",
       "/posts/bellabeat/en.html"
     ]

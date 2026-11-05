@@ -103,6 +103,18 @@ Validação: Quarto 1.10.19, render completo das 13 páginas, cinco verificadore
 
 Na revisão visual seguinte, as quatro entradas receberam fotografias ilustrativas geradas com `image_gen`, seguindo as imagens existentes: luz natural, madeira/pedra clara e folhagem em tons suaves. Arquivos: `assets/plates/{ecommerce,sherlock,fraud,youtube}-photo.webp`, com prompts e origem nos JSONs adjacentes. A conversão para WebP usa `cwebp -q 84 -resize 1000 0`, preservando a proporção. As imagens usam a mesma estrutura HTML/CSS dos estudos anteriores, textos alternativos em PT/EN e carregamento adiado após o primeiro projeto; a regra temporária das entradas sem imagem foi removida. Imagens HTML nativas atendem à necessidade, sem nova extensão. A validação mantém render completo, cinco verificadores e inspeção responsiva PT/EN em temas claro/escuro; nenhuma análise foi reexecutada.
 
+## Quatro novos estudos PT/EN — 05/11/2026
+
+E-commerce, Sherlock, fraudes bancárias e YouTube passaram a ter páginas próprias em `posts/{ecommerce,sherlock,fraud,youtube}/`, nas listagens PT/EN e nos respectivos feeds. As homes apontam para o estudo do idioma aberto e preservam o acesso ao GitHub. São seis estudos em doze páginas, além do rascunho anterior excluído das listagens.
+
+Após nova consulta ao catálogo local por `remember`, `cite-this`, `lightbox` e inclusão de código, foram reutilizadas as versões e adaptações já registradas em `installed.json`. Os oito QMDs ativam `remember` e `cite-this` localmente; o lightbox continua nativo (`lightbox: true`). Não foi necessária instalação nem atualização de extensão. Comentários Giscus herdam repositório/categoria/temas do projeto, com idioma explícito por post. Sumário, busca, categorias, troca PT/EN e compartilhamento usam os mecanismos existentes.
+
+Os relatórios publicados foram importados sem executar células, com `engine: markdown` e `freeze: false`. Cada pasta conserva a fonte Quarto obtida do GitHub e o HTML público em arquivos `.gz`, além da origem, identificação do blob e hashes SHA-256 em `provenance.json`. As capturas de QMD e HTML são independentes e não constituem prova de reprodução entre si. Foram preservados os arquivos de 25 figuras, valores de 25 tabelas e o código exibido no corpo dos relatórios. As traduções mantêm os rótulos dos gráficos de origem e traduzem texto, legendas, cabeçalhos e controles. As capas geradas por IA continuam identificadas como ilustrativas.
+
+Os verificadores cobrem preservação de fontes/figuras/tabelas/código, datas originais das citações, recursos disponíveis no artefato, links internos, RSS por idioma e localização dos comentários. Não foram enviados comentários de teste nem reexecutadas análises; a publicação não valida a origem dos datasets nem corrige divergências científicas das fontes, que estão identificadas nos estudos.
+
+Validação concluída com Quarto 1.10.19: render completo das 21 páginas (incluindo o rascunho preservado), seis verificadores Python e revisão independente sem achados acionáveis. As fontes QMD arquivadas também correspondem exatamente aos blobs GitHub registrados. No navegador, os arquivos PT/EN exibiram os seis estudos; citação, confirmação de cópia, conteúdo BibTeX, galeria lightbox e comentários Giscus em PT/EN foram conferidos. Os temas claro/escuro foram inspecionados, e as oito páginas novas mantiveram largura de conteúdo igual à área disponível no viewport móvel de 375px. Fórmulas longas receberam regiões focáveis com rolagem, sem alterar seu conteúdo. Não houve teste em aparelho físico.
+
 ## Atualizar o índice
 
 ```bash

@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tales Gomes">
+<meta name="dcterms.date" content="2026-10-25">
+<meta name="description" content="A comparison of literal search, TF-IDF and BM25 over traceable paragraphs, examining retrieved references and questions without answers.">
+
+<title>Sherlock Document Search: retrieval and its limits – Tales Gomes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ab451912df58b659aa41e4f600c7c52c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/link-previews-0.3.1/link-previews.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/link-previews-0.3.1/link-previews.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/remember-1.0.0/remember.js"></script>
+<link href="../../site_libs/quarto-contrib/remember-1.0.0/remember.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/cite-this-1.0.4/cite-this.js"></script>
+<link href="../../site_libs/quarto-contrib/cite-this-1.0.4/cite-this.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" id="link-previews-config">[]</script>
+<script id="quarto-remember-config" type="application/json">{"page-exclude":[],"project-type":"website","separate-chapter-state":false}</script>
+
+
+<link rel="stylesheet" href="../../styles.css?v=750c32c94127">
+<meta property="og:title" content="Sherlock Document Search: retrieval and its limits – Tales Gomes">
+<meta property="og:description" content="A comparison of literal search, TF-IDF and BM25 over traceable paragraphs, examining retrieved references and questions without answers.">
+<meta property="og:image" content="https://talesgomes27.github.io/quarto-blog/assets/plates/sherlock-photo.webp">
+<meta property="og:site_name" content="Tales Gomes">
+<meta property="og:image:alt" content="Illustrative photograph of an open book and a magnifying glass on a table.">
+<meta name="twitter:title" content="Sherlock Document Search: retrieval and its limits – Tales Gomes">
+<meta name="twitter:description" content="A comparison of literal search, TF-IDF and BM25 over traceable paragraphs, examining retrieved references and questions without answers.">
+<meta name="twitter:image" content="https://talesgomes27.github.io/quarto-blog/assets/plates/sherlock-photo.webp">
+<meta name="twitter:image:alt" content="Illustrative photograph of an open book and a magnifying glass on a table.">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- language-alternates -->
+<link rel="alternate" hreflang="pt-BR" href="https://talesgomes27.github.io/quarto-blog/posts/sherlock/index.html">
+<link rel="alternate" hreflang="en" href="https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html">
+<link rel="alternate" hreflang="x-default" href="https://talesgomes27.github.io/quarto-blog/posts/sherlock/index.html">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../en/textos.xml">
+<!-- /language-alternates -->
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../en/index.html">
+    <span class="navbar-title">Tales Gomes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a href="../../en/index.html#projetos" class="nav-link"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="../../en/textos.html" class="nav-link"> 
+<span class="menu-text">Writing</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="../../en/about.html" class="nav-link"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="mailto:talesgomes27@gmail.com" class="nav-link"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="index.html" hreflang="pt-BR" lang="pt-BR" class="nav-link"> 
+<span class="menu-text">PT</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="en.html" hreflang="en" lang="en" aria-current="true" class="nav-link active"> 
+<span class="menu-text">EN</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" aria-label="Switch between light and dark themes" title="Switch between light and dark themes"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In this study</h2>
+   
+  <ul class="collapse">
+  <li><a href="#from-txt-files-to-verifiable-references" id="toc-from-txt-files-to-verifiable-references" class="nav-link active" data-scroll-target="#from-txt-files-to-verifiable-references">From TXT files to verifiable references</a></li>
+  <li><a href="#three-methods-over-the-same-paragraphs" id="toc-three-methods-over-the-same-paragraphs" class="nav-link" data-scroll-target="#three-methods-over-the-same-paragraphs">Three methods over the same paragraphs</a></li>
+  <li><a href="#a-test-set-separated-before-execution" id="toc-a-test-set-separated-before-execution" class="nav-link" data-scroll-target="#a-test-set-separated-before-execution">A test set separated before execution</a></li>
+  <li><a href="#more-references-retrieved-with-unwanted-results" id="toc-more-references-retrieved-with-unwanted-results" class="nav-link" data-scroll-target="#more-references-retrieved-with-unwanted-results">More references retrieved, with unwanted results</a></li>
+  <li><a href="#reproducing-and-checking-the-evidence" id="toc-reproducing-and-checking-the-evidence" class="nav-link" data-scroll-target="#reproducing-and-checking-the-evidence">Reproducing and checking the evidence</a></li>
+  <li><a href="#import-traceability" id="toc-import-traceability" class="nav-link" data-scroll-target="#import-traceability">Import traceability</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Sherlock Document Search: retrieval and its limits</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">information retrieval</div>
+    <div class="quarto-category">text processing</div>
+    <div class="quarto-category">Python</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A comparison of literal search, TF-IDF and BM25 over traceable paragraphs, examining retrieved references and questions without answers.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tales Gomes </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 25, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">November 5, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Report dated October 25, 2026, imported to the blog on November 5, 2026">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Report dated October 25, 2026, imported to the blog on November 5, 2026
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a static import of the public report, without rerunning the analysis or performing new searches. Tables and figures preserve the published results. The narrative, captions and alternative text are translated; original figure labels remain in Portuguese, and numerical punctuation is preserved. The Quarto source and published HTML were archived separately, without verifying whether that HTML was generated from this exact source revision.</p>
+</div>
+</div>
+<p>The project locates passages and reports their source file and line numbers so readers can check them. In the v2 test, positive queries are those with known references; BM25 found these references for more queries than the other methods. Negative queries ask for plausible details that do not appear in the inspected context. TF-IDF and BM25 returned passages for all of them.</p>
+<p>The project demonstrates how to locate references when reading a collection and how a passage related to a topic can still fail to provide the requested detail. This workflow could help small teams that need to return to source documents when looking up information. The portfolio covers text preparation, method comparison and evaluation; the literature experiment does not measure performance on client documents.</p>
+<section id="from-txt-files-to-verifiable-references" class="level2">
+<h2 class="anchored" data-anchor-id="from-txt-files-to-verifiable-references">From TXT files to verifiable references</h2>
+<p>The collection comes from the <a href="https://www.kaggle.com/datasets/talesgomes27/sherleck-books">Sherlock Holmes Series dataset on Kaggle</a>. The nine TXT files identify Arthur Conan Doyle and declare English in their headers. A list of identifiers calculated from the files, called hashes, makes it possible to check which files were used, as described in the <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/docs/provenance.md">provenance documentation</a>.</p>
+<p>Preparation reads the files as UTF-8, handles the BOM marker (which can appear at the beginning of a file) and line endings in memory, and preserves the originals. Editorial cuts remove credits, prefaces, tables of contents and footers identified during review. Each paragraph retains the work, file and source line range, including both endpoints. Line counting starts at 1 in the original TXT file. Internal editorial notes and some headings may remain because the project has no general routine for separating every story or chapter.</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Counts from the preparation report; word counts follow the Unicode rule recorded in the source.">
+<div id="tbl-corpus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corpus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Counts from the preparation report; word counts follow the Unicode rule recorded in the source.
+</figcaption>
+<div aria-describedby="tbl-corpus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TXT files</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>Retained paragraphs</td>
+<td>15.598</td>
+</tr>
+<tr class="odd">
+<td>Retained words</td>
+<td>656.884</td>
+</tr>
+<tr class="even">
+<td>Words excluded by editorial cuts</td>
+<td>29.566</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div id="fig-corpus" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Horizontal bar chart of retained words in the nine works. The Return of Sherlock Holmes has the largest volume, with 112.364 words, and The Sign of the Four the smallest, with 43.107.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corpus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/01-corpus_size.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Retained words by work after editorial cuts. The chart shows text volume, without measuring search performance."><img src="figures/01-corpus_size.png" class="img-fluid figure-img" alt="Horizontal bar chart of retained words in the nine works. The Return of Sherlock Holmes has the largest volume, with 112.364 words, and The Sign of the Four the smallest, with 43.107."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corpus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Retained words by work after editorial cuts. The chart shows text volume, without measuring search performance.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-corpus">Figure 1</a> compares the text volume of each work. <a href="#tbl-corpus">Table 1</a> summarizes the prepared material. The number of excluded words does not measure all editorial interference or search quality.</p>
+</section>
+<section id="three-methods-over-the-same-paragraphs" class="level2">
+<h2 class="anchored" data-anchor-id="three-methods-over-the-same-paragraphs">Three methods over the same paragraphs</h2>
+<p>Each method can return up to five paragraphs, with their locations. Literal search looks for an exact sequence. TF-IDF turns terms into vectors and ranks paragraphs by cosine similarity, a measure of similarity between vectors. The implementation uses <code>TfidfVectorizer(stop_words="english")</code>, following the <a href="https://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">scikit-learn documentation</a>. BM25 considers term frequency and paragraph length. The parameter <code>k1=1,2</code> controls how much repeating a term increases its weight; <code>b=0,75</code> controls length normalization. The <a href="https://lucene.apache.org/core/10_3_1/core/org/apache/lucene/search/similarities/BM25Similarity.html">Lucene documentation</a> describes these parameters and the IDF formula used as a reference for the project’s own implementation.</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Comparison of the three search methods and their limits.">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Ranking signal</th>
+<th>Relevant limit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Literal</td>
+<td>Occurrences of the exact sequence</td>
+<td>A paraphrase may not match.</td>
+</tr>
+<tr class="even">
+<td>TF-IDF</td>
+<td>Cosine similarity between term vectors</td>
+<td>A shared term may produce an insufficient result.</td>
+</tr>
+<tr class="odd">
+<td>BM25</td>
+<td>Term weights, frequency and length</td>
+<td>A high score may reflect only a topical relationship.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>TF-IDF and BM25 use <code>min_score=0,0</code>, but discard results with a zero score. Any match between terms with positive weight can enter the top five results. Scores have different scales and are not probabilities of an answer.</p>
+</section>
+<section id="a-test-set-separated-before-execution" class="level2">
+<h2 class="anchored" data-anchor-id="a-test-set-separated-before-execution">A test set separated before execution</h2>
+<p>During v2 development, 36 queries were assembled: 27 positive and nine negative. A different curator created the 24 final queries. Positive references come from different regions of the text, and a review checked for overlapping intents. The author approved both groups in the chat before freezing them. This record does not establish an individual human audit of each query.</p>
+<p>The final evaluation uses 18 positive queries, divided equally among exact questions, paraphrases and context questions, plus six negative queries. A positive query has known references, although that list may be incomplete. A negative query asks for a plausible detail that does not appear in the inspected context. This review does not prove that the detail is absent from the entire collection.</p>
+<p>The <a href="https://github.com/talesgomes27/sherlock-document-search/commit/14a0913">freeze at <code>14a0913</code></a> took place before the final run. Parameters, labels and editorial cuts were not changed afterward. The <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/evaluation/v2/configuration_decision.json">configuration decision</a> records that a BM25 threshold of 32 was rejected during development: it eliminated all 12 known positive hits. In the final evaluation, BM25 only ranked the results, without an additional rule for declining to answer when evidence is insufficient.</p>
+</section>
+<section id="more-references-retrieved-with-unwanted-results" class="level2">
+<h2 class="anchored" data-anchor-id="more-references-retrieved-with-unwanted-results">More references retrieved, with unwanted results</h2>
+<p><a href="#tbl-results">Table 2</a> compares the methods on the same 24 queries. For positive queries, a hit means that at least one known reference appears among the top five results. This result may provide only partial evidence. For negative queries, any returned passage counts as a false positive.</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Final v2 test: denominators of 18 positive and six negative queries, evaluated separately.">
+<div id="tbl-results" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Final v2 test: denominators of 18 positive and six negative queries, evaluated separately.
+</figcaption>
+<div aria-describedby="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Positive queries with a reference in the top 5</th>
+<th>Negative queries with a result</th>
+<th>MRR@5 on positive queries</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Literal</td>
+<td>6/18</td>
+<td>0/6</td>
+<td>0,2963</td>
+</tr>
+<tr class="even">
+<td>TF-IDF</td>
+<td>10/18</td>
+<td>6/6</td>
+<td>0,3981</td>
+</tr>
+<tr class="odd">
+<td>BM25</td>
+<td>12/18</td>
+<td>6/6</td>
+<td>0,4907</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<p>MRR@5 is the mean of a score calculated for the 18 positive queries: it is 1 if the first known reference appears in the first position, 1/2 if it appears in the second, 1/3 in the third, and so on through the fifth. A query receives zero if no known reference appears among the top five. The score reflects the available annotations, which may not include every reference.</p>
+<div id="fig-comparison" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two horizontal bar charts. For positive queries, literal search finds a known reference in 6 of 18 queries, TF-IDF in 10 and BM25 in 12. For the six negative queries, returned results are zero, six and six, respectively.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/02-final_comparison.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Three methods in the same v2 test: retrieval of known references among 18 positive queries and returned results among six negative queries."><img src="figures/02-final_comparison.png" class="img-fluid figure-img" alt="Two horizontal bar charts. For positive queries, literal search finds a known reference in 6 of 18 queries, TF-IDF in 10 and BM25 in 12. For the six negative queries, returned results are zero, six and six, respectively."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Three methods in the same v2 test: retrieval of known references among 18 positive queries and returned results among six negative queries.
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-comparison">Figure 2</a>, BM25 finds known references for two more positive queries than TF-IDF and has a higher MRR@5. Both methods returned passages for all six negative queries. Literal search found fewer references and returned no passages for those questions. Information expressed in different words may go undetected by literal search. The test is small and curated; its results do not establish general superiority.</p>
+<section id="for-which-queries-did-a-reference-appear" class="level3">
+<h3 class="anchored" data-anchor-id="for-which-queries-did-a-reference-appear">For which queries did a reference appear?</h3>
+<p><a href="#fig-positions">Figure 3</a> allows readers to follow each question rather than looking only at totals. A number shows the position of the first known reference; the × mark means that it did not appear among the top five results. This does not rule out the relevance of other passages or confirm that all requested evidence was retrieved.</p>
+<div id="fig-positions" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Matrix with 18 queries and three methods. Five queries have no known reference retrieved by any method. For query 08, TF-IDF finds the reference in third position and BM25 does not find it among the top five. The totals of queries with a reference are six, ten and twelve.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-positions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/03-query_positions.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Position of the first known reference for the 18 positive v2 queries."><img src="figures/03-query_positions.png" class="img-fluid figure-img" alt="Matrix with 18 queries and three methods. Five queries have no known reference retrieved by any method. For query 08, TF-IDF finds the reference in third position and BM25 does not find it among the top five. The totals of queries with a reference are six, ten and twelve."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-positions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Position of the first known reference for the 18 positive v2 queries.
+</figcaption>
+</figure>
+</div>
+<p>Five queries had no known reference in the top five for any of the three methods. Query 08 shows a loss for BM25 relative to TF-IDF; queries 02 and 18 have known references retrieved only by BM25. Full IDs and questions are available in the <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/evaluation/v2/final.json">published final queries</a>. The matrix describes this test, without using it to tune the search.</p>
+</section>
+<section id="why-a-question-without-an-answer-receives-a-result" class="level3">
+<h3 class="anchored" data-anchor-id="why-a-question-without-an-answer-receives-a-result">Why a question without an answer receives a result</h3>
+<p><a href="#tbl-negatives">Table 3</a> shows the scores already calculated for the six negative queries. The descriptions summarize the <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/evaluation/v2/final.json">published final queries</a>. Values come from the report, not from a new search.</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Six negative queries: top-result scores and number of literal-search results. TF-IDF and BM25 scales are not comparable.">
+<div id="tbl-negatives" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-negatives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Six negative queries: top-result scores and number of literal-search results. TF-IDF and BM25 scales are not comparable.
+</figcaption>
+<div aria-describedby="tbl-negatives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Requested detail</th>
+<th>TF-IDF top 1</th>
+<th>BM25 top 1</th>
+<th>Literal-search results</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>v2-final-19</td>
+<td>Ages of Jefferson Hope’s horses</td>
+<td>0,5001</td>
+<td>29,1164</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>v2-final-20</td>
+<td>Price of the coffin delivered to Poultney Square</td>
+<td>0,3204</td>
+<td>12,8802</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>v2-final-21</td>
+<td>Railway fare from Reading to Eyford</td>
+<td>0,3152</td>
+<td>14,7155</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>v2-final-22</td>
+<td>Name of the ship expected for Selden</td>
+<td>0,3733</td>
+<td>13,5115</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>v2-final-23</td>
+<td>Exact weight of the empty Agra strongbox</td>
+<td>0,3430</td>
+<td>16,9264</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>v2-final-24</td>
+<td>Caliber of the ammunition that killed Menzies</td>
+<td>0,3241</td>
+<td>17,2732</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<p>The <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/docs/v2-no-answer-analysis.md">top-result diagnosis</a> compares the passage’s topic with the requested attribute. Mentions of horses and a place do not provide ages; a delivery and an address do not indicate a price. Passages about a journey, South America, treasure or an attack may likewise fail to provide the fare, ship name, weight or caliber. These relationships help explain why the methods returned the passages even though they do not answer the questions.</p>
+<p>A future version would need to treat ranking and the decision to decline an answer separately. It could test whether passages cover the requested attributes, whether there is a sufficient margin between candidates, or use an evaluator of question–passage pairs. Before tuning the methods, a new independent test would have to be reserved because the v2 sets have already been examined and published.</p>
+</section>
+</section>
+<section id="reproducing-and-checking-the-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="reproducing-and-checking-the-evidence">Reproducing and checking the evidence</h2>
+<p>The source report reads existing JSON files and checks their hashes before generating the tables. Rendering the source page does not fit models or run searches. The two summary figures come from approved artifacts; the query-level matrix was assembled from the same saved results. The code and results allow readers to check the steps connecting the data to the conclusions:</p>
+<ul>
+<li><a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/notebooks/portfolio/sherlock_document_search_v2.ipynb">v2 notebook for reading and Kaggle</a> and <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/notebooks/portfolio/sherlock_document_search_v1.ipynb">v1 notebook for reading and Kaggle</a>, with code to run after attaching the dataset. These are presentation editions; the <a href="https://github.com/talesgomes27/sherlock-document-search/tree/main/notebooks">original validated notebooks</a> remain preserved.</li>
+<li><a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/v2/final.json">Final v2 results by query</a>, <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/m1_quality.json">corpus counts</a> and <a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/v2/validation.json">v2 validation</a>.</li>
+<li><a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/docs/v2-final-evaluation.md">Reproduction protocol and commands</a>, using a new output location to preserve the original snapshot.</li>
+</ul>
+<p>The results and notebooks have recorded local validation; execution of the notebook hosted on Kaggle has not yet been verified. The delivered material is an evidence report, and the interactive application remains a future stage. The page publishes counts, metadata and paraphrases of the queries. The provenance documentation still lists verification of the terms of use and attribution for displaying passages from the works as pending.</p>
+<section id="v1-history-another-set-different-denominators" class="level3">
+<h3 class="anchored" data-anchor-id="v1-history-another-set-different-denominators">v1 history: another set, different denominators</h3>
+<p>The <a href="https://github.com/talesgomes27/sherlock-document-search/commit/8f179855a8c1c445afb122bf70ef4dd8512f9e7f">v1 preserved at <code>8f17985</code></a> evaluated 20 queries: 16 positive queries with known references and four negative queries containing anachronistic questions, which include elements from another period. <a href="#tbl-history">Table 4</a> shows the original v1 results. Their percentages should not be combined or directly compared with the v2 evaluation, which used 24 queries.</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="v1 history: 16 positive and four negative queries, according to the original report.">
+<div id="tbl-history" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-history-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: v1 history: 16 positive and four negative queries, according to the original report.
+</figcaption>
+<div aria-describedby="tbl-history-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 52%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Positive queries with a reference in the top 5</th>
+<th>Negative queries with a result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Literal</td>
+<td>7/16</td>
+<td>0/4</td>
+</tr>
+<tr class="even">
+<td>TF-IDF</td>
+<td>8/16</td>
+<td>4/4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<p><a href="https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/m4_final.json">Original v1 report</a>.</p>
+</section>
+</section>
+<section id="import-traceability" class="level2">
+<h2 class="anchored" data-anchor-id="import-traceability">Import traceability</h2>
+<ul>
+<li><a href="https://talesgomes27.github.io/sherlock-document-search/">Original public report</a>.</li>
+<li><a href="https://github.com/talesgomes27/sherlock-document-search">Project repository</a>.</li>
+<li><a href="source/report.qmd.gz">Compressed original Quarto source</a>.</li>
+<li><a href="source/report.html.gz">Compressed original published HTML</a>.</li>
+<li><a href="provenance.json">Provenance, dates and hashes of imported files</a>.</li>
+</ul>
+<div class="cite-this cite-this--inline" data-position="inline" data-corner="bottom-right" data-scope="page" data-default-scope="page" data-default-style="apa" data-remember="true" data-copied-label="Copied" data-copy-text-label="Copy citation" data-copy-bibtex-label="Copy BibTeX"><details class="cite-this-collapse"><summary><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M9.9 5.2C6.7 6.7 4.8 9.5 4.8 12.9v5.9h6.5v-6.6H8.1c.1-1.9 1.1-3.3 2.7-4.3L9.9 5.2zM19.3 5.2c-3.2 1.5-5.1 4.3-5.1 7.7v5.9h6.5v-6.6h-3.2c.1-1.9 1.1-3.3 2.7-4.3l-.9-2.7z"></path></svg>Cite this</summary><div class="cite-this-bar cite-this-bar--collapsed"><div class="cite-this-tabs cite-this-tabs--kind" role="tablist"><button type="button" role="tab" class="cite-this-tab" data-tab-kind="text" aria-selected="true" tabindex="0"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 11.5h15M6 17h11"></path></svg><span>Text</span></button><button type="button" role="tab" class="cite-this-tab" data-tab-kind="bibtex" aria-selected="false" tabindex="-1"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4c-2.2 0-3 1.1-3 3.2v2.3c0 1.6-.6 2.5-2 2.5 1.4 0 2 .9 2 2.5v2.3c0 2.1.8 3.2 3 3.2M14 4c2.2 0 3 1.1 3 3.2v2.3c0 1.6.6 2.5 2 2.5-1.4 0-2 .9-2 2.5v2.3c0 2.1-.8 3.2-3 3.2"></path></svg><span>BibTeX</span></button></div><label class="cite-this-select" data-cite-this-style-wrap="">Style <select data-cite-this-style=""><option value="abnt">ABNT</option><option value="apa" selected="">APA</option></select></label></div><div class="cite-this-body"><div class="cite-this-variant" data-kind="text" data-scope="page" data-style="abnt" hidden=""><div class="cite-this-rendered">GOMES, Tales. <strong>Sherlock Document Search: retrieval and its limits</strong>. Disponível em: &lt;<a href="https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html">https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html</a>&gt;. Acesso em: 5 nov. 2026.</div><div class="cite-this-text" hidden="">GOMES, Tales. Sherlock Document Search: retrieval and its limits. Disponível em: &lt;https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html&gt;. Acesso em: 5 nov. 2026.</div></div><div class="cite-this-variant" data-kind="text" data-scope="page" data-style="apa"><div class="cite-this-rendered">Gomes, T. (2026). <em>Sherlock Document Search: retrieval and its limits</em>. Tales Gomes. <a href="https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html">https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html</a></div><div class="cite-this-text" hidden="">Gomes, T. (2026). Sherlock Document Search: retrieval and its limits. Tales Gomes. https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html</div></div><div class="cite-this-variant" data-kind="bibtex" data-scope="page" data-filename="gomes2026sherlock.bib" hidden=""><pre class="cite-this-text">@misc{gomes2026sherlock,
+  author       = {Gomes, Tales},
+  title        = {Sherlock Document Search: retrieval and its limits},
+  year         = {2026},
+  howpublished = {\url{https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html}},
+  url          = {https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html},
+  urldate      = {2026-11-05},
+  note         = {In: Tales Gomes. Accessed: Nov. 5, 2026}
+}</pre></div></div><div class="cite-this-foot"><button type="button" class="cite-this-btn" data-cite-this-action="active" title="Copy citation" aria-label="Copy citation"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"></rect><path d="M5.5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5v1"></path></svg><span class="cite-this-done"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"></path></svg></span></button><button type="button" class="cite-this-btn" data-cite-this-action="download" title="Download .bib" aria-label="Download .bib"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11m0 0 4-4m-4 4-4-4"></path><path d="M4 16.5v2A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-2"></path></svg><span class="cite-this-done"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"></path></svg></span></button></div></details></div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section></div>
+<!-- post-share -->
+<section class="post-share" aria-labelledby="post-share-title"><h2 id="post-share-title">Share this study</h2><p><a class="btn btn-outline-primary" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fsherlock%2Fen.html&amp;title=Sherlock+Document+Search%3A+retrieval+and+its+limits" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a><a class="btn btn-outline-primary" href="https://x.com/intent/tweet?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fsherlock%2Fen.html&amp;text=Sherlock+Document+Search%3A+retrieval+and+its+limits" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x" aria-hidden="true"></i>X</a><a class="btn btn-outline-primary" href="mailto:?subject=Sherlock+Document+Search%3A+retrieval+and+its+limits&amp;body=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Fsherlock%2Fen.html"><i class="bi bi-envelope" aria-hidden="true"></i>Email</a></p></section>
+<!-- /post-share -->
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/talesgomes27\.github\.io\/quarto-blog");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "talesgomes27/quarto-blog";
+    script.dataset.repoId = "R_kgDOHeSMkg";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOHeSMks4CPoEN";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span id="footer-copy">Made with Quarto. By Tales Gomes.</span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../en/textos.xml" aria-label="Subscribe via RSS">
+      <i class="bi bi-rss" role="img" aria-label="Acompanhar publicações por RSS">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/talesgomes27/">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/talesgomes27/">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:talesgomes27@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

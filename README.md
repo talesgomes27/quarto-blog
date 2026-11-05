@@ -23,6 +23,10 @@ O diretório `_site/` já era versionado neste projeto e contém o site renderiz
 | Sobre | `about.qmd` | `en/about.qmd` |
 | Bike-share | `posts/bike-share-navigate/pt.qmd` | `posts/bike-share-navigate/index.qmd` |
 | Bellabeat | `posts/bellabeat/index.qmd` | `posts/bellabeat/en.qmd` |
+| E-commerce | `posts/ecommerce/index.qmd` | `posts/ecommerce/en.qmd` |
+| Sherlock Document Search | `posts/sherlock/index.qmd` | `posts/sherlock/en.qmd` |
+| Fraudes bancárias | `posts/fraud/index.qmd` | `posts/fraud/en.qmd` |
+| Vídeos no YouTube | `posts/youtube/index.qmd` | `posts/youtube/en.qmd` |
 
 Os endereços antigos dos estudos foram preservados. `scripts/localize.py` roda após o render e adapta a navbar nativa do Quarto: rótulos, links de navegação, idioma do HTML e alternates `hreflang`. O seletor PT/EN aponta para a página equivalente por links HTML estáticos. A busca, o menu responsivo e as listagens continuam nativos do Quarto.
 
@@ -49,7 +53,13 @@ python3 tests/test_blog_features.py
 
 ## Preservação das análises
 
-Os quatro artigos publicados usam `engine: markdown` e `freeze: false`: renderizar o site não recalcula as análises nem baixa dados. As duas versões de cada estudo compartilham resultados identificados; figuras preservadas e traduções estão descritas na proveniência de cada edição. Os `_freeze/` históricos permanecem intactos, e os seis arquivos de entrada anteriores à correção foram preservados em `docs/revisions/2026-10-26/before/`, com manifesto SHA-256.
+Os doze artigos publicados usam `engine: markdown` e `freeze: false`: renderizar o site não recalcula as análises nem baixa dados. As duas versões de cada estudo compartilham resultados identificados; figuras preservadas e traduções estão descritas na proveniência de cada edição. Os `_freeze/` históricos permanecem intactos, e os seis arquivos de entrada anteriores à correção foram preservados em `docs/revisions/2026-10-26/before/`, com manifesto SHA-256.
+
+E-commerce, Sherlock, fraudes bancárias e YouTube foram incorporados como estudos completos PT/EN em 05/11/2026. Cada pasta tem `provenance.json`, capturas comprimidas da fonte Quarto e do HTML publicado em `source/` e figuras originais em `figures/`. As duas capturas são independentes; não foi verificado que o QMD arquivado gera exatamente o HTML capturado. Os resultados importados não foram recalculados. As traduções mantêm valores numéricos, código exibido e rótulos originais dos gráficos, com legendas traduzidas. Divergências já presentes nas fontes são identificadas no texto. O TCC permanece fora do blog.
+
+```bash
+python3 tests/test_project_posts.py
+```
 
 O **Bike-share** atual é uma importação estática do relatório de 13/10/2026 do repositório `DAC8-Case-Study-1`, com tradução completa do texto e das tabelas para inglês. As imagens dos gráficos e o código R foram preservados. Origem, hashes e limites estão em `posts/bike-share-navigate/updated-2026-10-13/provenance.json`; a edição substituída foi arquivada em `docs/revisions/2026-10-26-bike-share-replacement/`. O script abaixo pertence à reconciliação histórica e não deve ser usado para regenerar os resultados da edição importada. O teste confere as duas edições separadamente.
 

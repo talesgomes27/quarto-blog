@@ -19,6 +19,10 @@ PAIRS = (
     ("404.html", "en/404.html"),
     ("posts/bike-share-navigate/pt.html", "posts/bike-share-navigate/index.html"),
     ("posts/bellabeat/index.html", "posts/bellabeat/en.html"),
+    ("posts/ecommerce/index.html", "posts/ecommerce/en.html"),
+    ("posts/sherlock/index.html", "posts/sherlock/en.html"),
+    ("posts/fraud/index.html", "posts/fraud/en.html"),
+    ("posts/youtube/index.html", "posts/youtube/en.html"),
 )
 PAGES = {path: (pair, index) for pair in PAIRS for index, path in enumerate(pair)}
 HEADER = re.compile(r'<header\b[^>]*\bid=["\']quarto-header["\'][^>]*>.*?</header>', re.S)

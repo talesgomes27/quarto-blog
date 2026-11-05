@@ -9,6 +9,10 @@ listing:
     title: Writing and studies — Tales Gomes
     language: en
   contents:
+    - ../posts/ecommerce/en.qmd
+    - ../posts/sherlock/en.qmd
+    - ../posts/fraud/en.qmd
+    - ../posts/youtube/en.qmd
     - ../posts/bike-share-navigate/index.qmd
     - ../posts/bellabeat/en.qmd
   sort: "date desc"

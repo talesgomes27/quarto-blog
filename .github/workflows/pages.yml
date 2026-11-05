@@ -30,6 +30,7 @@ jobs:
           python3 tests/test_bikeshare_revision.py
           python3 tests/test_quarto_extensions.py
           python3 tests/test_blog_features.py
+          python3 tests/test_project_posts.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

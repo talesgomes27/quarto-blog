@@ -9,6 +9,10 @@ listing:
     title: Textos e estudos — Tales Gomes
     language: pt-BR
   contents:
+    - posts/ecommerce/index.qmd
+    - posts/sherlock/index.qmd
+    - posts/fraud/index.qmd
+    - posts/youtube/index.qmd
     - posts/bike-share-navigate/pt.qmd
     - posts/bellabeat/index.qmd
   sort: "date desc"

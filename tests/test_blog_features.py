@@ -25,11 +25,13 @@ class Links(HTMLParser):
 
 
 def check():
-    for prefix, language, expected in [('', 'pt-BR', ['posts/bike-share-navigate/pt.html', 'posts/bellabeat/index.html']),
-                                       ('en/', 'en', ['posts/bike-share-navigate/index.html', 'posts/bellabeat/en.html'])]:
+    post_pairs = [pair for pair in localize.PAIRS if pair[0].startswith('posts/')]
+    for index, (prefix, language) in enumerate([('', 'pt-BR'), ('en/', 'en')]):
+        expected = [pair[index] for pair in post_pairs]
         feed = ET.parse(ROOT / '_site' / (prefix + 'textos.xml')).getroot().find('channel')
         assert feed.findtext('language') == language
-        assert [item.findtext('link') for item in feed.findall('item')] == [localize.SITE_URL + '/' + path.removesuffix('index.html') for path in expected]
+        assert len(feed.findall('item')) == 6
+        assert {item.findtext('link') for item in feed.findall('item')} == {localize.SITE_URL + '/' + path.removesuffix('index.html') for path in expected}
         assert 'netflix' not in ET.tostring(feed, encoding='unicode').lower()
     for pair in localize.PAIRS:
         for page in pair:
@@ -54,7 +56,7 @@ def check():
             mail = next(link for link in links if link.get('href', '').startswith('mailto:?subject='))
             assert parse_qs(urlsplit(mail['href']).query)['body'] == [url]
             assert r'\url{' + url + '}' in text, page
-            year = '2026' if 'bike-share' in page else '2021'
+            year = '2021' if 'bellabeat' in page else '2026'
             assert f'year         = {{{year}}}' in text
     print('Blog features: separate RSS feeds, language discovery, previews, original citation years and exact PT/EN share/citation URLs passed.')
 

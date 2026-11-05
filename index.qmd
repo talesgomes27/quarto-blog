@@ -17,10 +17,10 @@ Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados e
 
 ::: {#projetos .project-list aria-label="Projetos"}
 ::: {.project-row}
-<a class="project-image" href="https://talesgomes27.github.io/ecommerce_sales_customer_analytics/"><img src="assets/plates/ecommerce-photo.webp" alt="Caixas de encomendas e notebook sobre uma mesa. Imagem ilustrativa." width="1000" height="644" loading="eager"></a>
+<a class="project-image" href="posts/ecommerce/index.html"><img src="assets/plates/ecommerce-photo.webp" alt="Caixas de encomendas e notebook sobre uma mesa. Imagem ilustrativa." width="1000" height="644" loading="eager"></a>
 
 ::: {.project-copy}
-## [E-Commerce Sales & Customer Analytics](https://talesgomes27.github.io/ecommerce_sales_customer_analytics/)
+## [E-Commerce Sales & Customer Analytics](posts/ecommerce/index.qmd)
 
 [Vendas, segmentação de clientes e simulação de margem]{.project-subtitle}
 
@@ -28,15 +28,15 @@ Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados e
 
 Pipeline com dados sintéticos de comércio eletrônico, contratos de dados, segmentação RFM e modelagem de risco. Inclui um simulador de margem e descontos, com exportação de relatório executivo em PDF.
 
-[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/ecommerce_sales_customer_analytics/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/ecommerce_sales_customer_analytics){.text-link}
+[Ver estudo [→]{aria-hidden=true}](posts/ecommerce/index.qmd){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/ecommerce_sales_customer_analytics){.text-link}
 :::
 :::
 
 ::: {.project-row}
-<a class="project-image" href="https://talesgomes27.github.io/sherlock-document-search/"><img src="assets/plates/sherlock-photo.webp" alt="Livro aberto e lupa sobre uma mesa de leitura. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
+<a class="project-image" href="posts/sherlock/index.html"><img src="assets/plates/sherlock-photo.webp" alt="Livro aberto e lupa sobre uma mesa de leitura. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
 
 ::: {.project-copy}
-## [Sherlock Document Search](https://talesgomes27.github.io/sherlock-document-search/)
+## [Sherlock Document Search](posts/sherlock/index.qmd)
 
 [Busca em documentos com referências rastreáveis]{.project-subtitle}
 
@@ -44,15 +44,15 @@ Pipeline com dados sintéticos de comércio eletrônico, contratos de dados, seg
 
 Busca literal e por relevância em textos de Sherlock Holmes, com resultados que indicam o arquivo e as linhas de origem. Compara três métodos de busca e avalia também consultas sem resposta no contexto examinado.
 
-[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/sherlock-document-search/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/sherlock-document-search){.text-link}
+[Ver estudo [→]{aria-hidden=true}](posts/sherlock/index.qmd){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/sherlock-document-search){.text-link}
 :::
 :::
 
 ::: {.project-row}
-<a class="project-image" href="https://talesgomes27.github.io/credit_card_fraud_detection/"><img src="assets/plates/fraud-photo.webp" alt="Cartão sem identificação e celular sobre uma superfície de pedra. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
+<a class="project-image" href="posts/fraud/index.html"><img src="assets/plates/fraud-photo.webp" alt="Cartão sem identificação e celular sobre uma superfície de pedra. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
 
 ::: {.project-copy}
-## [Detecção e análise de fraudes bancárias](https://talesgomes27.github.io/credit_card_fraud_detection/)
+## [Detecção e análise de fraudes bancárias](posts/fraud/index.qmd)
 
 [Detecção, modalidades e estimativa de perda financeira]{.project-subtitle}
 
@@ -60,15 +60,15 @@ Busca literal e por relevância em textos de Sherlock Holmes, com resultados que
 
 Estudo com dataset público e pipeline de três estágios: detecção de fraude, classificação da modalidade e estimativa de perda financeira. Emprega particionamento temporal e limiares de decisão orientados a custo.
 
-[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/credit_card_fraud_detection/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/credit_card_fraud_detection){.text-link}
+[Ver estudo [→]{aria-hidden=true}](posts/fraud/index.qmd){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/credit_card_fraud_detection){.text-link}
 :::
 :::
 
 ::: {.project-row}
-<a class="project-image" href="https://talesgomes27.github.io/youtube_viral_video_prediction/"><img src="assets/plates/youtube-photo.webp" alt="Câmera em um pequeno tripé sobre uma mesa. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
+<a class="project-image" href="posts/youtube/index.html"><img src="assets/plates/youtube-photo.webp" alt="Câmera em um pequeno tripé sobre uma mesa. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
 
 ::: {.project-copy}
-## [Predição de vídeos virais no YouTube](https://talesgomes27.github.io/youtube_viral_video_prediction/)
+## [Predição de vídeos virais no YouTube](posts/youtube/index.qmd)
 
 [Alcance, viralidade e influência do tamanho do canal]{.project-subtitle}
 
@@ -76,7 +76,7 @@ Estudo com dataset público e pipeline de três estágios: detecção de fraude,
 
 Classificação e regressão com dados sintéticos de vídeos, comparando atributos disponíveis antes e depois da publicação. Inclui controles de vazamento de informação e análise da influência do número de inscritos.
 
-[Ver relatório [→]{aria-hidden=true}](https://talesgomes27.github.io/youtube_viral_video_prediction/){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/youtube_viral_video_prediction){.text-link}
+[Ver estudo [→]{aria-hidden=true}](posts/youtube/index.qmd){.text-link} [Código no GitHub [→]{aria-hidden=true}](https://github.com/talesgomes27/youtube_viral_video_prediction){.text-link}
 :::
 :::
 

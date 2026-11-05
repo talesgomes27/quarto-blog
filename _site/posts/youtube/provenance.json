@@ -1,0 +1,56 @@
+{
+  "repository": "https://github.com/talesgomes27/youtube_viral_video_prediction",
+  "report_url": "https://talesgomes27.github.io/youtube_viral_video_prediction/",
+  "source_path": "index.qmd",
+  "source_blob_sha": "da933677ded3ceea32470fb1672c24251e0e3e40",
+  "report_date": "2026-10-15",
+  "imported_on": "2026-11-05",
+  "analysis_reexecuted": false,
+  "snapshots": [
+    {
+      "file": "source/report.html.gz",
+      "uncompressed_sha256": "0931015eaad3837e3bec554c4257c09d6692a923a881a9d06fd69b01e6726887"
+    },
+    {
+      "file": "source/report.qmd.gz",
+      "uncompressed_sha256": "6bffd33a5f751fef2c8c68879818291c2f86ac5146cb299ecd8e4ad8602a10ce"
+    }
+  ],
+  "figures": [
+    {
+      "file": "figures/01-fig01_distributions_and_threshold.png",
+      "sha256": "9e9d38c7d7f6d8c68b31740217c746bf5f675c5b1dbc39a035eb6ce62d8191dd",
+      "bytes": 663734,
+      "source": "https://talesgomes27.github.io/youtube_viral_video_prediction/reports/figures/fig01_distributions_and_threshold.png"
+    },
+    {
+      "file": "figures/02-fig02_simpson_paradox_categories.png",
+      "sha256": "f8460952fe2b525d1d474a10e264de8d3c33131ad37298f25b0ac3fc7de344dc",
+      "bytes": 440288,
+      "source": "https://talesgomes27.github.io/youtube_viral_video_prediction/reports/figures/fig02_simpson_paradox_categories.png"
+    },
+    {
+      "file": "figures/03-fig03_creator_levers_and_timing.png",
+      "sha256": "7e298689aaa68a3d4f3916b6d7ce6542d55f83f4e11b2031a140af0b17583b0b",
+      "bytes": 386054,
+      "source": "https://talesgomes27.github.io/youtube_viral_video_prediction/reports/figures/fig03_creator_levers_and_timing.png"
+    },
+    {
+      "file": "figures/04-fig04_dual_modeling_performance.png",
+      "sha256": "8dcb78860d2ba5bea6348756d3ca2ad2f3b7f8295ddfdd2ae8618694e1468730",
+      "bytes": 832981,
+      "source": "https://talesgomes27.github.io/youtube_viral_video_prediction/reports/figures/fig04_dual_modeling_performance.png"
+    },
+    {
+      "file": "figures/05-fig05_scenario_a_vs_b_importance.png",
+      "sha256": "ac7fbbb5b920ba19bcd1f7dc6a3f66cc977cde5f9ff66ad258ba8e5defb2ae15",
+      "bytes": 350895,
+      "source": "https://talesgomes27.github.io/youtube_viral_video_prediction/reports/figures/fig05_scenario_a_vs_b_importance.png"
+    }
+  ],
+  "notes": [
+    "Published outputs were imported without running source code.",
+    "Source QMD and published HTML are independently archived; their mutual build identity was not verified.",
+    "English narrative and captions are translated; original figure labels and numerical values are preserved."
+  ]
+}

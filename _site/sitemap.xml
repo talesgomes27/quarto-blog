@@ -2,7 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/textos.html</loc>
-    <lastmod>2026-10-26T13:36:35.871Z</lastmod>
+    <lastmod>2026-11-05T03:44:46.131Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/youtube/en.html</loc>
+    <lastmod>2026-11-05T03:58:37.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html</loc>
+    <lastmod>2026-11-05T03:52:03.253Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html</loc>
+    <lastmod>2026-11-05T03:52:03.253Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/ecommerce/index.html</loc>
+    <lastmod>2026-11-05T03:58:37.670Z</lastmod>
   </url>
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/pt.html</loc>
@@ -14,11 +30,11 @@
   </url>
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/index.html</loc>
-    <lastmod>2026-11-05T03:22:12.120Z</lastmod>
+    <lastmod>2026-11-05T03:44:46.566Z</lastmod>
   </url>
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/en/index.html</loc>
-    <lastmod>2026-11-05T03:22:12.120Z</lastmod>
+    <lastmod>2026-11-05T03:44:46.567Z</lastmod>
   </url>
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/en/404.html</loc>
@@ -34,7 +50,7 @@
   </url>
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/en/textos.html</loc>
-    <lastmod>2026-10-26T13:36:35.920Z</lastmod>
+    <lastmod>2026-11-05T03:44:46.180Z</lastmod>
   </url>
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/posts/bellabeat/en.html</loc>
@@ -43,5 +59,21 @@
   <url>
     <loc>https://talesgomes27.github.io/quarto-blog/posts/bike-share-navigate/index.html</loc>
     <lastmod>2026-10-26T13:43:31.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/ecommerce/en.html</loc>
+    <lastmod>2026-11-05T03:58:37.668Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/fraud/en.html</loc>
+    <lastmod>2026-11-05T03:52:03.254Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/sherlock/index.html</loc>
+    <lastmod>2026-11-05T03:52:03.253Z</lastmod>
+  </url>
+  <url>
+    <loc>https://talesgomes27.github.io/quarto-blog/posts/youtube/index.html</loc>
+    <lastmod>2026-11-05T03:58:37.669Z</lastmod>
   </url>
 </urlset>

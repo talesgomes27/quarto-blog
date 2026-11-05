@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tales Gomes">
+<meta name="description" content="Estudo em três estágios com particionamento temporal, decisões orientadas a custo e estimativa de perda financeira.">
+
+<title>Fraudes bancárias: detecção, modalidades e perdas – Tales Gomes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ab451912df58b659aa41e4f600c7c52c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c487718837e3f41f7dce7355c3d97f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/link-previews-0.3.1/link-previews.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/link-previews-0.3.1/link-previews.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/remember-1.0.0/remember.js"></script>
+<link href="../../site_libs/quarto-contrib/remember-1.0.0/remember.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/cite-this-1.0.4/cite-this.js"></script>
+<link href="../../site_libs/quarto-contrib/cite-this-1.0.4/cite-this.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<script type="application/json" id="link-previews-config">[]</script>
+<script id="quarto-remember-config" type="application/json">{"page-exclude":[],"project-type":"website","separate-chapter-state":false}</script>
+
+
+<link rel="stylesheet" href="../../styles.css?v=750c32c94127">
+<meta property="og:title" content="Fraudes bancárias: detecção, modalidades e perdas – Tales Gomes">
+<meta property="og:description" content="Estudo em três estágios com particionamento temporal, decisões orientadas a custo e estimativa de perda financeira.">
+<meta property="og:image" content="https://talesgomes27.github.io/quarto-blog/assets/plates/fraud-photo.webp">
+<meta property="og:site_name" content="Tales Gomes">
+<meta property="og:image:alt" content="Cartão sem identificação e celular sobre pedra. Imagem ilustrativa.">
+<meta name="twitter:title" content="Fraudes bancárias: detecção, modalidades e perdas – Tales Gomes">
+<meta name="twitter:description" content="Estudo em três estágios com particionamento temporal, decisões orientadas a custo e estimativa de perda financeira.">
+<meta name="twitter:image" content="https://talesgomes27.github.io/quarto-blog/assets/plates/fraud-photo.webp">
+<meta name="twitter:image:alt" content="Cartão sem identificação e celular sobre pedra. Imagem ilustrativa.">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- language-alternates -->
+<link rel="alternate" hreflang="pt-BR" href="https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html">
+<link rel="alternate" hreflang="en" href="https://talesgomes27.github.io/quarto-blog/posts/fraud/en.html">
+<link rel="alternate" hreflang="x-default" href="https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../textos.xml">
+<!-- /language-alternates -->
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Tales Gomes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a href="../../index.html#projetos" class="nav-link"> 
+<span class="menu-text">Projetos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="../../textos.html" class="nav-link"> 
+<span class="menu-text">Textos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="../../about.html" class="nav-link"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="mailto:talesgomes27@gmail.com" class="nav-link"> 
+<span class="menu-text">Contato</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="index.html" hreflang="pt-BR" lang="pt-BR" aria-current="true" class="nav-link active"> 
+<span class="menu-text">PT</span></a>
+  </li>  
+  <li class="nav-item">
+    <a href="en.html" hreflang="en" lang="en" class="nav-link"> 
+<span class="menu-text">EN</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" aria-label="Alternar entre tema claro e escuro" title="Alternar entre tema claro e escuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Neste estudo</h2>
+   
+  <ul class="collapse">
+  <li><a href="#resumo-executivo" id="toc-resumo-executivo" class="nav-link active" data-scroll-target="#resumo-executivo">Resumo executivo</a></li>
+  <li><a href="#contexto-de-negócio-hipóteses-business-understanding-ask" id="toc-contexto-de-negócio-hipóteses-business-understanding-ask" class="nav-link" data-scroll-target="#contexto-de-negócio-hipóteses-business-understanding-ask">Contexto de Negócio &amp; Hipóteses (Business Understanding / Ask)</a></li>
+  <li><a href="#auditoria-de-dados-contratos-data-understanding-prepare" id="toc-auditoria-de-dados-contratos-data-understanding-prepare" class="nav-link" data-scroll-target="#auditoria-de-dados-contratos-data-understanding-prepare">Auditoria de Dados &amp; Contratos (Data Understanding / Prepare)</a></li>
+  <li><a href="#análise-exploratória-engenharia-de-atributos-data-prep-eda-process" id="toc-análise-exploratória-engenharia-de-atributos-data-prep-eda-process" class="nav-link" data-scroll-target="#análise-exploratória-engenharia-de-atributos-data-prep-eda-process">Análise Exploratória &amp; Engenharia de Atributos (Data Prep &amp; EDA / Process)</a></li>
+  <li><a href="#modelagem-estatística-machine-learning-modeling-construct" id="toc-modelagem-estatística-machine-learning-modeling-construct" class="nav-link" data-scroll-target="#modelagem-estatística-machine-learning-modeling-construct">Modelagem Estatística &amp; Machine Learning (Modeling / Construct)</a></li>
+  <li><a href="#avaliação-diagnóstico-explicabilidade-evaluation-share" id="toc-avaliação-diagnóstico-explicabilidade-evaluation-share" class="nav-link" data-scroll-target="#avaliação-diagnóstico-explicabilidade-evaluation-share">Avaliação, Diagnóstico &amp; Explicabilidade (Evaluation / Share)</a></li>
+  <li><a href="#recomendações-executivas-plano-de-ação-deployment-act" id="toc-recomendações-executivas-plano-de-ação-deployment-act" class="nav-link" data-scroll-target="#recomendações-executivas-plano-de-ação-deployment-act">Recomendações Executivas &amp; Plano de Ação (Deployment / Act)</a></li>
+  <li><a href="#rastreabilidade-e-reprodução" id="toc-rastreabilidade-e-reprodução" class="nav-link" data-scroll-target="#rastreabilidade-e-reprodução">Rastreabilidade e reprodução</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fraudes bancárias: detecção, modalidades e perdas</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">aprendizado de máquina</div>
+    <div class="quarto-category">análise de dados</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Estudo em três estágios com particionamento temporal, decisões orientadas a custo e estimativa de perda financeira.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tales Gomes </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data de Publicação</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">16 de outubro de 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Data de Modificação</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">5 de novembro de 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Relatório incorporado ao blog em 05/11/2026">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Relatório incorporado ao blog em 05/11/2026
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta edição adapta o relatório de 16/10/2026. Tabelas e figuras foram importadas da página publicada, sem executar a análise; os arquivos originais estão na seção de rastreabilidade. A redação limita as conclusões ao conjunto examinado. A importação não revalida a origem dos dados, a calibração ou a aplicação dos modelos fora deste estudo.</p>
+</div>
+</div>
+<section id="resumo-executivo" class="level2">
+<h2 class="anchored" data-anchor-id="resumo-executivo">Resumo executivo</h2>
+<p>Este projeto estabelece um pipeline analítico ponta a ponta sobre 100.000 transações de cartão de crédito cobrindo o ano de 2026. Empregando uma arquitetura em três estágios (<em>Hurdle Model</em>), o sistema substitui abordagens tradicionais mono-estágio por um fluxo modular e auditável:</p>
+<ol type="1">
+<li><strong>Detecção Binária (<code>is_fraud</code>):</strong> Priorização por <strong>PR-AUC</strong> com calibragem de limiar financeiro mínimo (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo>∑</mo><mtext mathvariant="normal">FN</mtext><mo>⋅</mo><mtext mathvariant="normal">Loss</mtext><mo>+</mo><mi>$</mi><mn>3</mn><mo>,</mo><mn>50</mn><mo>⋅</mo><mtext mathvariant="normal">FP</mtext></mrow><annotation encoding="application/x-tex">C(t) = \sum \text{FN} \cdot \text{Loss} + \$3,50 \cdot \text{FP}</annotation></semantics></math>).</li>
+<li><strong>Tipificação de Fraude (<code>fraud_type</code>):</strong> Discriminação multiclasse entre 4 subtipos de ataque via <strong>Macro F1-Score</strong>.</li>
+<li><strong>Quantificação de Perda Residual (<code>fraud_amount_lost</code>):</strong> Estimação condicional em dólares do prejuízo não recuperado via <strong>RMSE</strong> e <strong>MAE</strong>.</li>
+</ol>
+</section>
+<section id="contexto-de-negócio-hipóteses-business-understanding-ask" class="level2">
+<h2 class="anchored" data-anchor-id="contexto-de-negócio-hipóteses-business-understanding-ask">Contexto de Negócio &amp; Hipóteses (Business Understanding / Ask)</h2>
+<p>A mitigação de fraudes em meios de pagamento envolve um balanço severo entre perda material e fricção com clientes legítimos. Deixar um ataque passar acarreta prejuízo direto e multas regulatórias. Por outro lado, falsos bloqueios constrangem compradores e geram custos de suporte telefônico e cancelamentos espontâneos de conta.</p>
+<p>A base utilizada reúne 40 atributos operacionais e comportamentais utilizados na construção de regras e modelos explicáveis. Formulamos oito perguntas de negócio norteadoras:</p>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Perguntas de negócio e hipóteses">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Identificador</th>
+<th style="text-align: left;">Pergunta de Negócio</th>
+<th style="text-align: left;">Métrica / Hipótese</th>
+<th style="text-align: left;">Figura Vinculada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>P1</strong></td>
+<td style="text-align: left;">Qual o horário de maior vulnerabilidade transacional?</td>
+<td style="text-align: left;">Taxa horária e Odds Ratio da madrugada (H1).</td>
+<td style="text-align: left;"><a href="#fig-01">Figura&nbsp;1</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>P2</strong></td>
+<td style="text-align: left;">Qual a concentração de risco por país do estabelecimento?</td>
+<td style="text-align: left;">Taxa de fraude nacional vs.&nbsp;baseline global (H2).</td>
+<td style="text-align: left;"><a href="#fig-02">Figura&nbsp;2</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>P3</strong></td>
+<td style="text-align: left;">O uso de chip e senha física reduz o risco a zero?</td>
+<td style="text-align: left;">Risco relativo por nível de autenticação EMV (H3).</td>
+<td style="text-align: left;"><a href="#fig-03">Figura&nbsp;3</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>P4</strong></td>
+<td style="text-align: left;">Disparadas de velocidade e desvios de ticket indicam fraude?</td>
+<td style="text-align: left;">Incidência por janelas de velocidade e razão de valor (H4, H5).</td>
+<td style="text-align: left;"><a href="#fig-04">Figura&nbsp;4</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>P5</strong></td>
+<td style="text-align: left;">Qual o ponto de corte ótimo sob a ótica financeira?</td>
+<td style="text-align: left;">Minimização da curva de custo total <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">C(t)</annotation></semantics></math> (H6).</td>
+<td style="text-align: left;"><a href="#fig-05">Figura&nbsp;5</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>P6</strong></td>
+<td style="text-align: left;">Quais variáveis mais pesam nas decisões do classificador?</td>
+<td style="text-align: left;">Valores SHAP médios absolutos globais e locais.</td>
+<td style="text-align: left;"><a href="#fig-06">Figura&nbsp;6</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>P7</strong></td>
+<td style="text-align: left;">O modelo consegue distinguir as 4 modalidades de fraude?</td>
+<td style="text-align: left;">Macro F1-Score e matriz normalizada por linha (H7).</td>
+<td style="text-align: left;"><a href="#fig-07">Figura&nbsp;7</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>P8</strong></td>
+<td style="text-align: left;">Quão precisa é a estimativa de perda para fraudes confirmadas?</td>
+<td style="text-align: left;">RMSE e distribuição de resíduos pós-recuperação (H8).</td>
+<td style="text-align: left;"><a href="#fig-08">Figura&nbsp;8</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="assimetria-de-custos-operacionais" class="level3">
+<h3 class="anchored" data-anchor-id="assimetria-de-custos-operacionais">Assimetria de custos operacionais</h3>
+<p>O corte padrão de probabilidade em 0,50 ignora a economia unitária bancária. Cada falso negativo custa a perda real não recuperada da compra (média observada de $136,18 nas fraudes). Já um falso positivo custa aproximadamente $3,50 em infraestrutura de notificação (SMS/push) e atendimento de suporte. O modelo busca minimizar essa despesa combinada.</p>
+</section>
+</section>
+<section id="auditoria-de-dados-contratos-data-understanding-prepare" class="level2">
+<h2 class="anchored" data-anchor-id="auditoria-de-dados-contratos-data-understanding-prepare">Auditoria de Dados &amp; Contratos (Data Understanding / Prepare)</h2>
+<p>O relatório descreve os seguintes tratamentos para a base de 100.000 registros:</p>
+<ul>
+<li><strong>Preservação de Categoria Válida:</strong> O valor <code>'N/A'</code> na coluna <code>browser</code> foi preservado para compras físicas presenciais (<em>In-store</em>) e caixas eletrônicos (<em>ATM</em>), totalizando 27.617 ocorrências legítimas e evitando imputações indevidas.</li>
+<li><strong>Ordenação Temporal Estável:</strong> Corrigiu-se a inversão pontual detectada em 28 de fevereiro de 2026, restabelecendo a sequência cronológica contínua.</li>
+<li><strong>Particionamento Out-of-Time Estrito:</strong> A divisão temporal garantiu isolamento completo de janelas futuras:</li>
+<li><strong>Treino:</strong> 01/01/2026 a 31/08/2026 (66.388 transações, 1.341 fraudes / 2,02%).</li>
+<li><strong>Validação:</strong> 01/09/2026 a 31/10/2026 (16.905 transações, 362 fraudes / 2,14%).</li>
+<li><strong>Teste Cego:</strong> 01/11/2026 a 31/12/2026 (16.707 transações, 352 fraudes / 2,11%).</li>
+<li><strong>Total Acumulado:</strong> 100.000 transações e 2.055 fraudes confirmadas (2,055% de prevalência).</li>
+<li><strong>Isolamento de Alvos e Transformadores:</strong> Todas as estatísticas móveis, desvios e encodings foram ajustados unicamente com dados da partição de Treino, impedindo qualquer vazamento de distribuição (<em>data leakage</em>).</li>
+</ul>
+</section>
+<section id="análise-exploratória-engenharia-de-atributos-data-prep-eda-process" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória-engenharia-de-atributos-data-prep-eda-process">Análise Exploratória &amp; Engenharia de Atributos (Data Prep &amp; EDA / Process)</h2>
+<p>Para alimentar a modelagem preditiva, quatro famílias principais de atributos derivados foram desenvolvidas em <code>src/features/pipeline.py</code>:</p>
+<ol type="1">
+<li><strong>Temporalidade Cíclica e Janela Crítica:</strong>
+<ul>
+<li>Decomposição periódica da hora em componentes ortogonais (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">sin</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>π</mi><mi>h</mi><mi>/</mi><mn>24</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\sin(2\pi h / 24)</annotation></semantics></math> e <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">cos</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>π</mi><mi>h</mi><mi>/</mi><mn>24</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\cos(2\pi h / 24)</annotation></semantics></math>).</li>
+<li>Sinalizador booleano de madrugada vulnerável (<code>is_night_window</code> cobrindo 01h às 04h).</li>
+</ul></li>
+<li><strong>Dinâmica Espacial e Salto Geográfico:</strong>
+<ul>
+<li>Estimativa da velocidade aparente de deslocamento entre a transação atual e a imediatamente anterior do mesmo cartão (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>a</mi><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi></mrow></msub><mo>=</mo><mtext mathvariant="normal">distância</mtext><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Δ</mi><mi>t</mi><mo>+</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">V_{aparente} = \text{distância} / (\Delta t + 0,1)</annotation></semantics></math> em km/h).</li>
+</ul></li>
+<li><strong>Desvio Comportamental de Consumo:</strong>
+<ul>
+<li>Razão do ticket sobre a média histórica de 30 dias (<code>amount_vs_avg_ratio</code>).</li>
+<li>Escore padronizado de anomalia de gastos (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">amount</mtext><mo>−</mo><msub><mi>μ</mi><mrow><mn>30</mn><mi>d</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>σ</mi><mrow><mn>30</mn><mi>d</mi></mrow></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Z = (\text{amount} - \mu_{30d}) / (\sigma_{30d} + 1)</annotation></semantics></math>).</li>
+</ul></li>
+<li><strong>Velocidade de Frequência e Alavancagem:</strong>
+<ul>
+<li>Indicador de disparada de compras em janela curta (<code>transactions_last_1h &gt;= 3</code>).</li>
+<li>Taxa instantânea de utilização do limite de crédito (<code>credit_utilization_ratio</code>).</li>
+</ul></li>
+</ol>
+</section>
+<section id="modelagem-estatística-machine-learning-modeling-construct" class="level2">
+<h2 class="anchored" data-anchor-id="modelagem-estatística-machine-learning-modeling-construct">Modelagem Estatística &amp; Machine Learning (Modeling / Construct)</h2>
+<p>A solução implementa uma arquitetura em três estágios acoplados condicionalmente (<em>Hurdle Model</em>). Cada estágio foi avaliado formalmente contra <em>Baselines</em> ingênuos para justificar a adição de complexidade algorítmica:</p>
+<section id="tabela-comparativa-multi-métrica-com-baselines" class="level3">
+<h3 class="anchored" data-anchor-id="tabela-comparativa-multi-métrica-com-baselines">Tabela Comparativa Multi-Métrica com Baselines</h3>
+<div class="table-responsive" tabindex="0" role="region" aria-label="Comparação dos modelos e baselines">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Estágio do Pipeline</th>
+<th style="text-align: left;">Modelo Avaliado</th>
+<th style="text-align: center;">Métrica Primária</th>
+<th style="text-align: center;">Métrica Secundária</th>
+<th style="text-align: left;">Custo Operacional / Diagnóstico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Estágio 1: Binário</strong> (<code>is_fraud</code>)</td>
+<td style="text-align: left;"><em>Baseline Aleatório Estratificado</em></td>
+<td style="text-align: center;">PR-AUC: 0,021</td>
+<td style="text-align: center;">ROC-AUC: 0,500</td>
+<td style="text-align: left;">Custo Total: $48.210 (Corte 0,50)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>LightGBM Calibrado (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo>*</mo></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>170</mn></mrow><annotation encoding="application/x-tex">t^*=0,170</annotation></semantics></math>)</strong></td>
+<td style="text-align: center;"><strong>PR-AUC: 0,848</strong></td>
+<td style="text-align: center;"><strong>ROC-AUC: 0,848</strong></td>
+<td style="text-align: left;"><strong>Custo Total: $13.250 (Economia &gt; 40%)</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Estágio 2: Multiclasse</strong> (<code>fraud_type</code>)</td>
+<td style="text-align: left;"><em>Baseline Classe Majoritária</em></td>
+<td style="text-align: center;">Macro F1: 0,167</td>
+<td style="text-align: center;">Balanced Acc: 0,250</td>
+<td style="text-align: left;">Inútil (prevê apenas CNP)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>LightGBM Multiclasse</strong></td>
+<td style="text-align: center;"><strong>Macro F1: 0,477</strong></td>
+<td style="text-align: center;"><strong>Balanced Acc: 0,492</strong></td>
+<td style="text-align: left;"><strong>Discrimina 4 subtipos de ataque</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Estágio 3: Regressão</strong> (<code>amount_lost</code>)</td>
+<td style="text-align: left;"><em>Baseline Dummy Mean</em></td>
+<td style="text-align: center;">RMSE: $214,10</td>
+<td style="text-align: center;">MAE: $98,40</td>
+<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>000</mn></mrow><annotation encoding="application/x-tex">R^2 = 0,000</annotation></semantics></math> (média constante)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>LightGBM Regressor</strong></td>
+<td style="text-align: center;"><strong>RMSE: $63,86</strong></td>
+<td style="text-align: center;"><strong>MAE: $18,98</strong></td>
+<td style="text-align: left;"><strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>929</mn></mrow><annotation encoding="application/x-tex">R^2 = 0,929</annotation></semantics></math> (alinhado à perda real)</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="calibração-do-limiar-financeiro-ótimo" class="level3">
+<h3 class="anchored" data-anchor-id="calibração-do-limiar-financeiro-ótimo">Calibração do Limiar Financeiro Ótimo</h3>
+<p>O classificador binário do Estágio 1 foi calibrado na partição de validação para minimizar a função de perda financeira real: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mtext mathvariant="normal">FN</mtext><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow></munder><msub><mtext mathvariant="normal">Loss</mtext><mi>i</mi></msub><mo>+</mo><mi>$</mi><mn>3</mn><mo>,</mo><mn>50</mn><mo>⋅</mo><mo stretchy="false" form="prefix">|</mo><mtext mathvariant="normal">FP</mtext><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">C(t) = \sum_{i \in \text{FN}(t)} \text{Loss}_i + \$3,50 \cdot |\text{FP}(t)|</annotation></semantics></math></p>
+<p>O ponto ótimo obtido em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo>*</mo></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>170</mn></mrow><annotation encoding="application/x-tex">t^* = 0,170</annotation></semantics></math> captura fraudes volumosas precocemente, reduzindo em mais de 40% a perda combinada frente ao corte ingênuo em 0,50.</p>
+</section>
+</section>
+<section id="avaliação-diagnóstico-explicabilidade-evaluation-share" class="level2">
+<h2 class="anchored" data-anchor-id="avaliação-diagnóstico-explicabilidade-evaluation-share">Avaliação, Diagnóstico &amp; Explicabilidade (Evaluation / Share)</h2>
+<p>Apresentamos a validação empírica detalhada respondendo às oito perguntas de negócio formuladas na Seção 1.</p>
+<section id="pergunta-1-risco-horário-e-vulnerabilidade-da-madrugada" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-1-risco-horário-e-vulnerabilidade-da-madrugada">Pergunta 1: Risco Horário e Vulnerabilidade da Madrugada</h3>
+<p>A distribuição temporal revela um padrão pronunciado de atividade criminosa durante a madrugada.</p>
+<div id="fig-01" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/01-fig01_hourly_fraud_risk.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1: Taxa de fraude horária e janela de alto risco na madrugada."><img src="figures/01-fig01_hourly_fraud_risk.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Taxa de fraude horária e janela de alto risco na madrugada.
+</figcaption>
+</figure>
+</div>
+<p>Enquanto o volume total de transações diminui consideravelmente entre 01h e 04h, a proporção de ataques atinge seu ápice em 8,5%, o que equivale a 4,15 vezes o baseline geral de 2,06% (<a href="#fig-01">Figura&nbsp;1</a>). O padrão observado neste conjunto não identifica seus mecanismos causais nem comprova comportamento de grupos criminosos.</p>
+</section>
+<section id="pergunta-2-concentração-geográfica-e-jurisdições-críticas" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-2-concentração-geográfica-e-jurisdições-críticas">Pergunta 2: Concentração Geográfica e Jurisdições Críticas</h3>
+<p>O país onde o terminal de captura está registrado atua como forte preditor de risco.</p>
+<div id="fig-02" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/02-fig02_country_risk_multiplier.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;2: Taxa de incidência de fraude por país do lojista com baseline global."><img src="figures/02-fig02_country_risk_multiplier.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Taxa de incidência de fraude por país do lojista com baseline global.
+</figcaption>
+</figure>
+</div>
+<p>Quatro jurisdições específicas (Rússia, Nigéria, Romênia e China) registram taxas médias de fraude de 11,1%, representando um multiplicador de 5,4x em relação aos países da União Europeia e América do Norte (<a href="#fig-02">Figura&nbsp;2</a>). Essas associações pertencem à base examinada; não justificam atribuir risco a pessoas ou países fora desse contexto.</p>
+</section>
+<section id="pergunta-3-eficácia-do-escudo-emv-chip-pin" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-3-eficácia-do-escudo-emv-chip-pin">Pergunta 3: Eficácia do Escudo EMV (Chip &amp; PIN)</h3>
+<p>O estudo compara as taxas observadas em combinações de mecanismos de autenticação, sem identificar um efeito causal isolado do chip.</p>
+<div id="fig-03" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/03-fig03_authentication_shield.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;3: Comparativo de taxa de fraude por mecanismos de autenticação física e remota."><img src="figures/03-fig03_authentication_shield.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Comparativo de taxa de fraude por mecanismos de autenticação física e remota.
+</figcaption>
+</figure>
+</div>
+<p>Transações presenciais que exigem conjuntamente a leitura do chip EMV e a digitação da senha numérica pessoal (PIN) apresentam taxa de fraude de apenas 0,78% (<a href="#fig-03">Figura&nbsp;3</a>). Por outro lado, transações digitais desprovidas de chip e senha exibem incidência de 3,46%, indicando uma associação entre o tipo de autenticação e a ocorrência de fraude nesta amostra.</p>
+</section>
+<section id="pergunta-4-anomalias-de-frequência-e-ticket-médio" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-4-anomalias-de-frequência-e-ticket-médio">Pergunta 4: Anomalias de Frequência e Ticket Médio</h3>
+<p>O comportamento recente da conta fornece sinais antecedentes decisivos.</p>
+<div id="fig-04" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/04-fig04_velocity_amount_anomaly.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figura&nbsp;4: Painel duplo mostrando o risco de fraude por volume transacional na última hora e razão em relação ao ticket médio."><img src="figures/04-fig04_velocity_amount_anomaly.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: Painel duplo mostrando o risco de fraude por volume transacional na última hora e razão em relação ao ticket médio.
+</figcaption>
+</figure>
+</div>
+<p>O painel (a) de <a href="#fig-04">Figura&nbsp;4</a> evidencia que clientes com três ou mais transações na mesma hora sofrem fraude em 5,6% das ocorrências (2,7x a média). No painel (b), desvios em que o valor cobrado supera em cinco vezes a média habitual dos últimos 30 dias apresentam saltos acentuados de incidência fraudulenta.</p>
+</section>
+<section id="pergunta-5-curva-precision-recall-e-minimização-de-custos" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-5-curva-precision-recall-e-minimização-de-custos">Pergunta 5: Curva Precision-Recall e Minimização de Custos</h3>
+<p>A calibração do threshold operacional sobre a base de validação out-of-time gerou as curvas características de desempenho financeiro.</p>
+<div id="fig-05" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/05-fig05_model_performance_cost.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figura&nbsp;5: Curva Precision-Recall (a) e curva de custo financeiro total em dólares (b)."><img src="figures/05-fig05_model_performance_cost.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5: Curva Precision-Recall (a) e curva de custo financeiro total em dólares (b).
+</figcaption>
+</figure>
+</div>
+<p>O painel (a) de <a href="#fig-05">Figura&nbsp;5</a> demonstra que o modelo sustenta precisão de 0,80 com recall próximo a 0,40, atingindo PR-AUC de 0,848. O painel (b) comprova que o ponto de mínimo custo financeiro ocorre em <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo>*</mo></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>170</mn></mrow><annotation encoding="application/x-tex">t^* = 0,170</annotation></semantics></math>, bem abaixo do limiar simétrico de 0,50. Esse ponto de corte depende dos custos atribuídos aos erros no experimento, incluindo o custo de falsos alarmes ($3,50 por intervenção).</p>
+</section>
+<section id="pergunta-6-explicabilidade-global-via-valores-shap" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-6-explicabilidade-global-via-valores-shap">Pergunta 6: Explicabilidade Global via Valores SHAP</h3>
+<p>A auditoria regulatória e interna é suportada pela análise de atribuição aditiva de Shapley.</p>
+<div id="fig-06" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/06-fig06_shap_explainability.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figura&nbsp;6: Ranking das 15 variáveis mais determinantes pelo ganho médio absoluto de SHAP."><img src="figures/06-fig06_shap_explainability.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6: Ranking das 15 variáveis mais determinantes pelo ganho médio absoluto de SHAP.
+</figcaption>
+</figure>
+</div>
+<p>Conforme ilustrado em <a href="#fig-06">Figura&nbsp;6</a>, os fatores que mais exercem pressão sobre o log-odds de fraude são:</p>
+<ol type="1">
+<li><code>amount_vs_avg_ratio</code>: discrepância em relação ao consumo padrão.</li>
+<li><code>transactions_last_1h</code>: indicador de rajada transacional.</li>
+<li><code>is_night_window</code>: transações ocorridas entre 01h e 04h.</li>
+<li><code>used_chip</code> e <code>used_pin</code>: presença de autenticação forte como redutor de risco.</li>
+<li><code>high_risk_country</code>: registros provenientes de regiões de risco elevado.</li>
+</ol>
+</section>
+<section id="pergunta-7-capacidade-de-discriminação-multiclasse" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-7-capacidade-de-discriminação-multiclasse">Pergunta 7: Capacidade de Discriminação Multiclasse</h3>
+<p>A matriz de confusão do Estágio 2 avalia a separação entre as quatro formas de ataque detectadas.</p>
+<div id="fig-07" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/07-fig07_multiclass_confusion_matrix.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figura&nbsp;7: Matriz de confusão normalizada por linha para o classificador multiclasse de tipos de fraude."><img src="figures/07-fig07_multiclass_confusion_matrix.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7: Matriz de confusão normalizada por linha para o classificador multiclasse de tipos de fraude.
+</figcaption>
+</figure>
+</div>
+<p>Como detalhado em <a href="#fig-07">Figura&nbsp;7</a>, modalidades como <em>Card-Not-Present</em> e <em>Account-Takeover</em> são identificadas com sensibilidade acima de 55%, ao passo que <em>Synthetic-Identity</em> apresenta maior sobreposição de padrões, justificando monitoramento especializado de abertura de cadastros.</p>
+</section>
+<section id="pergunta-8-acurácia-da-perda-monetária-prevista" class="level3">
+<h3 class="anchored" data-anchor-id="pergunta-8-acurácia-da-perda-monetária-prevista">Pergunta 8: Acurácia da Perda Monetária Prevista</h3>
+<p>O modelo do Estágio 3 estima o prejuízo remanescente caso a fraude não seja evitada a tempo.</p>
+<div id="fig-08" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/08-fig08_fraud_amount_residuals.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figura&nbsp;8: Dispersão de perda real vs.&nbsp;prevista (a) e histograma de resíduos (b)."><img src="figures/08-fig08_fraud_amount_residuals.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8: Dispersão de perda real vs.&nbsp;prevista (a) e histograma de resíduos (b).
+</figcaption>
+</figure>
+</div>
+<p>O painel (a) de <a href="#fig-08">Figura&nbsp;8</a> exibe forte alinhamento com a reta diagonal de identidade (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn><mo>,</mo><mn>929</mn></mrow><annotation encoding="application/x-tex">R^2 = 0,929</annotation></semantics></math>), no conjunto de teste descrito pela fonte; isso não valida, por si só, o uso das estimativas para reservas de capital. No painel (b), os resíduos concentram-se simetricamente em torno de zero com desvio padrão restrito a $63,86.</p>
+</section>
+</section>
+<section id="recomendações-executivas-plano-de-ação-deployment-act" class="level2">
+<h2 class="anchored" data-anchor-id="recomendações-executivas-plano-de-ação-deployment-act">Recomendações Executivas &amp; Plano de Ação (Deployment / Act)</h2>
+<p>O relatório propõe os seguintes cenários operacionais. São recomendações do estudo para avaliação posterior; esta publicação não comprova sua eficácia em produção:</p>
+<ol type="1">
+<li><strong>Gatilhos Automáticos de Autenticação Forte (Hard-Stop Noturno):</strong>
+<ul>
+<li>Transações que excedam 3x a média habitual de 30 dias executadas entre 01h e 04h devem ser imediatamente desafiadas por biometria facial ou token bancário antes da autorização.</li>
+</ul></li>
+<li><strong>Triagem Inteligente de Backoffice:</strong>
+<ul>
+<li>Casos com escore <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">fraude</mtext><mo stretchy="false" form="postfix">)</mo><mo>≥</mo><mn>0</mn><mo>,</mo><mn>17</mn></mrow><annotation encoding="application/x-tex">P(\text{fraude}) \ge 0,17</annotation></semantics></math> e perda estimada superior a $250 devem ser alocados no topo da fila da equipe de análise de risco para contato preventivo com o portador em menos de 15 minutos.</li>
+</ul></li>
+<li><strong>Proteção Geográfica por Parâmetros de Risco:</strong>
+<ul>
+<li>Compras internacionais sem histórico prévio direcionadas a lojistas nos quatro países críticos devem acionar bloqueio preventivo temporário até confirmação expressa do cliente no aplicativo móvel.</li>
+</ul></li>
+<li><strong>Governança de Modelos e Monitoramento de Deriva (<em>Drift</em>):</strong>
+<ul>
+<li>Executar auditorias mensais de estabilidade populacional (Population Stability Index - PSI) sobre as variáveis de velocidade transacional e reavaliar trimestralmente o ponto de corte <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>t</mi><mo>*</mo></msup><annotation encoding="application/x-tex">t^*</annotation></semantics></math>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="rastreabilidade-e-reprodução" class="level2">
+<h2 class="anchored" data-anchor-id="rastreabilidade-e-reprodução">Rastreabilidade e reprodução</h2>
+<ul>
+<li><a href="https://talesgomes27.github.io/credit_card_fraud_detection/">Relatório de origem</a>.</li>
+<li><a href="https://github.com/talesgomes27/credit_card_fraud_detection">Repositório e instruções de reprodução</a>.</li>
+<li><a href="source/report.qmd.gz">Fonte Quarto arquivada</a> e <a href="source/report.html.gz">HTML publicado arquivado</a>.</li>
+<li><a href="provenance.json">Proveniência e hashes dos arquivos</a>.</li>
+</ul>
+<p>As tabelas mantêm os valores publicados e os gráficos preservam os arquivos e rótulos originais. A foto de capa é ilustrativa. A captura da fonte Quarto e a do HTML são independentes; esta importação não comprovou que um arquivo reproduz exatamente o outro.</p>
+<div class="cite-this cite-this--inline" data-position="inline" data-corner="bottom-right" data-scope="page" data-default-scope="page" data-default-style="abnt" data-remember="true" data-copied-label="Copiado" data-copy-text-label="Copiar citação" data-copy-bibtex-label="Copiar BibTeX"><details class="cite-this-collapse"><summary><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M9.9 5.2C6.7 6.7 4.8 9.5 4.8 12.9v5.9h6.5v-6.6H8.1c.1-1.9 1.1-3.3 2.7-4.3L9.9 5.2zM19.3 5.2c-3.2 1.5-5.1 4.3-5.1 7.7v5.9h6.5v-6.6h-3.2c.1-1.9 1.1-3.3 2.7-4.3l-.9-2.7z"></path></svg>Como citar</summary><div class="cite-this-bar cite-this-bar--collapsed"><div class="cite-this-tabs cite-this-tabs--kind" role="tablist"><button type="button" role="tab" class="cite-this-tab" data-tab-kind="text" aria-selected="true" tabindex="0"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 11.5h15M6 17h11"></path></svg><span>Texto</span></button><button type="button" role="tab" class="cite-this-tab" data-tab-kind="bibtex" aria-selected="false" tabindex="-1"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4c-2.2 0-3 1.1-3 3.2v2.3c0 1.6-.6 2.5-2 2.5 1.4 0 2 .9 2 2.5v2.3c0 2.1.8 3.2 3 3.2M14 4c2.2 0 3 1.1 3 3.2v2.3c0 1.6.6 2.5 2 2.5-1.4 0-2 .9-2 2.5v2.3c0 2.1-.8 3.2-3 3.2"></path></svg><span>BibTeX</span></button></div><label class="cite-this-select" data-cite-this-style-wrap="">Estilo <select data-cite-this-style=""><option value="abnt" selected="">ABNT</option><option value="apa">APA</option></select></label></div><div class="cite-this-body"><div class="cite-this-variant" data-kind="text" data-scope="page" data-style="abnt"><div class="cite-this-rendered">GOMES, Tales. <strong>Fraudes bancárias: detecção, modalidades e perdas</strong>. Disponível em: &lt;<a href="https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html">https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html</a>&gt;. Acesso em: 5 nov. 2026.</div><div class="cite-this-text" hidden="">GOMES, Tales. Fraudes bancárias: detecção, modalidades e perdas. Disponível em: &lt;https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html&gt;. Acesso em: 5 nov. 2026.</div></div><div class="cite-this-variant" data-kind="text" data-scope="page" data-style="apa" hidden=""><div class="cite-this-rendered">Gomes, T. (2026). <em>Fraudes bancárias: detecção, modalidades e perdas</em>. Tales Gomes. <a href="https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html">https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html</a></div><div class="cite-this-text" hidden="">Gomes, T. (2026). Fraudes bancárias: detecção, modalidades e perdas. Tales Gomes. https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html</div></div><div class="cite-this-variant" data-kind="bibtex" data-scope="page" data-filename="gomes2026fraudes.bib" hidden=""><pre class="cite-this-text">@misc{gomes2026fraudes,
+  author       = {Gomes, Tales},
+  title        = {Fraudes bancárias: detecção, modalidades e perdas},
+  year         = {2026},
+  howpublished = {\url{https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html}},
+  url          = {https://talesgomes27.github.io/quarto-blog/posts/fraud/index.html},
+  urldate      = {2026-11-05},
+  note         = {Em: Tales Gomes. Acesso em: 5 nov. 2026}
+}</pre></div></div><div class="cite-this-foot"><button type="button" class="cite-this-btn" data-cite-this-action="active" title="Copiar citação" aria-label="Copiar citação"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"></rect><path d="M5.5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5v1"></path></svg><span class="cite-this-done"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"></path></svg></span></button><button type="button" class="cite-this-btn" data-cite-this-action="download" title="Baixar .bib" aria-label="Baixar .bib"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11m0 0 4-4m-4 4-4-4"></path><path d="M4 16.5v2A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-2"></path></svg><span class="cite-this-done"><svg class="cite-this-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"></path></svg></span></button></div></details></div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuso</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt_br">CC BY-SA 4.0</a></div></div></section></div>
+<!-- post-share -->
+<section class="post-share" aria-labelledby="post-share-title"><h2 id="post-share-title">Compartilhar este estudo</h2><p><a class="btn btn-outline-primary" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Ffraud%2Findex.html&amp;title=Fraudes+banc%C3%A1rias%3A+detec%C3%A7%C3%A3o%2C+modalidades+e+perdas" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a><a class="btn btn-outline-primary" href="https://x.com/intent/tweet?url=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Ffraud%2Findex.html&amp;text=Fraudes+banc%C3%A1rias%3A+detec%C3%A7%C3%A3o%2C+modalidades+e+perdas" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x" aria-hidden="true"></i>X</a><a class="btn btn-outline-primary" href="mailto:?subject=Fraudes+banc%C3%A1rias%3A+detec%C3%A7%C3%A3o%2C+modalidades+e+perdas&amp;body=https%3A%2F%2Ftalesgomes27.github.io%2Fquarto-blog%2Fposts%2Ffraud%2Findex.html"><i class="bi bi-envelope" aria-hidden="true"></i>E-mail</a></p></section>
+<!-- /post-share -->
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/talesgomes27\.github\.io\/quarto-blog");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "talesgomes27/quarto-blog";
+    script.dataset.repoId = "R_kgDOHeSMkg";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOHeSMks4CPoEN";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "pt";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span id="footer-copy">Feito com Quarto. Por Tales Gomes.</span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../textos.xml" aria-label="Acompanhar publicações por RSS">
+      <i class="bi bi-rss" role="img" aria-label="Acompanhar publicações por RSS">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/talesgomes27/">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/talesgomes27/">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:talesgomes27@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

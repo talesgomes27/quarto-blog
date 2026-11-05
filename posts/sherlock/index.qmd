@@ -1,0 +1,183 @@
+---
+title: "Sherlock Document Search: busca e seus limites"
+description: "Comparação de busca literal, TF-IDF e BM25 em parágrafos rastreáveis, com referências recuperadas e limites diante de perguntas sem resposta."
+author: "Tales Gomes"
+date: "2026-10-25"
+date-modified: "2026-11-05"
+categories: [busca de informação, processamento de texto, Python]
+image: "../../assets/plates/sherlock-photo.webp"
+image-alt: "Fotografia ilustrativa de um livro aberto e uma lupa sobre uma mesa."
+filters:
+  - remember
+  - cite-this
+extensions:
+  cite-this:
+    position: inline
+    scope: page
+    styles: [abnt, apa]
+    default-style: abnt
+    page:
+      url: https://talesgomes27.github.io/quarto-blog/posts/sherlock/index.html
+engine: markdown
+freeze: false
+lang: pt-BR
+comments:
+  giscus:
+    repo: talesgomes27/quarto-blog
+    language: pt
+translation-key: sherlock
+lightbox: true
+toc: true
+toc-depth: 2
+toc-title: Neste estudo
+format:
+  html:
+    html-math-method: mathml
+    code-fold: true
+    code-summary: "Mostrar código"
+---
+
+::: {.callout-note title="Relatório de 25/10/2026, incorporado ao blog em 05/11/2026"}
+Esta é uma importação estática do relatório público, sem reexecução da análise ou novas buscas. As tabelas e figuras preservam os resultados publicados; os rótulos originais das figuras estão em português. A fonte Quarto e o HTML publicado foram arquivados separadamente, sem verificar se o HTML foi gerado exatamente dessa revisão da fonte.
+:::
+
+O projeto localiza passagens e informa o arquivo e as linhas de origem para que o leitor possa conferi-las. No teste v2, consultas positivas são aquelas para as quais há referências conhecidas; BM25 encontrou essas referências em mais consultas do que os outros métodos. Consultas negativas pedem detalhes plausíveis que não aparecem no contexto examinado. TF-IDF e BM25 retornaram passagens para todas elas.
+
+O projeto demonstra como localizar referências ao ler um acervo e como uma passagem relacionada ao tema ainda pode deixar de informar o detalhe pedido. Esse fluxo pode ajudar pequenas equipes que precisam voltar à fonte ao consultar documentos. O portfólio reúne preparação de texto, comparação de métodos e avaliação; o experimento com literatura não mede desempenho em documentos de clientes.
+
+## Do TXT à referência verificável
+
+O acervo vem do [dataset Sherlock Holmes Series no Kaggle](https://www.kaggle.com/datasets/talesgomes27/sherleck-books). Os nove TXT identificam Arthur Conan Doyle e declaram inglês nos cabeçalhos. Uma lista de identificadores calculados a partir dos arquivos, chamados hashes, permite conferir quais arquivos foram utilizados, conforme a [proveniência documentada](https://github.com/talesgomes27/sherlock-document-search/blob/main/docs/provenance.md).
+
+A preparação lê os arquivos em UTF-8, trata em memória o marcador BOM (que pode aparecer no início do arquivo) e os terminadores de linha, e preserva os originais. Os recortes editoriais removem créditos, prefácios, sumários e rodapés definidos durante a revisão. Cada parágrafo mantém a obra, o arquivo e o intervalo de linhas de origem, incluindo as duas extremidades. A contagem começa em 1 no TXT original. Notas editoriais internas e alguns títulos ainda podem permanecer, pois o projeto não tem uma rotina geral para separar todos os contos ou capítulos.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Contagens do relatório de preparação; palavras seguem a regra Unicode registrada na fonte."}
+
+| Medida                            | Quantidade |
+|-----------------------------------|------------|
+| Arquivos TXT                      | 9          |
+| Parágrafos retidos                | 15.598     |
+| Palavras retidas                  | 656.884    |
+| Palavras excluídas pelos recortes | 29.566     |
+
+: Contagens do relatório de preparação; palavras seguem a regra Unicode registrada na fonte. {#tbl-corpus}
+
+:::
+
+![Palavras retidas por obra após os recortes editoriais. O gráfico mostra volume de texto, sem medir desempenho de busca.](figures/01-corpus_size.png){#fig-corpus fig-alt="Gráfico de barras horizontais das palavras retidas nas nove obras. The Return of Sherlock Holmes tem o maior volume, com 112.364 palavras, e The Sign of the Four o menor, com 43.107."}
+
+A [Figura 1](#fig-corpus) compara o volume de texto de cada obra. A [Tabela 1](#tbl-corpus) resume o material preparado. O total de palavras excluídas não mede toda a interferência editorial nem a qualidade da busca.
+
+## Três métodos sobre os mesmos parágrafos
+
+Cada método pode devolver até cinco parágrafos, com a localização de cada um. A busca literal procura uma sequência exata. TF-IDF transforma os termos em vetores e ordena os parágrafos pela similaridade de cosseno, uma medida de semelhança entre vetores. A implementação usa `TfidfVectorizer(stop_words="english")`, conforme a [documentação do scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting). BM25 considera a frequência dos termos e o comprimento do parágrafo. O parâmetro `k1=1,2` controla quanto a repetição de um termo aumenta seu peso; `b=0,75` controla a normalização pelo tamanho. A [documentação do Lucene](https://lucene.apache.org/core/10_3_1/core/org/apache/lucene/search/similarities/BM25Similarity.html) descreve esses parâmetros e a fórmula IDF que serviu de referência para a implementação própria.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Comparação dos três métodos de busca e de seus limites."}
+
+| Método | Sinal usado para ordenar | Limite relevante |
+|------------------------|------------------------|------------------------|
+| Literal | Ocorrências da sequência exata | Uma paráfrase pode não corresponder. |
+| TF-IDF | Similaridade de cosseno entre vetores de termos | Um termo compartilhado pode gerar retorno insuficiente. |
+| BM25 | Pesos dos termos, frequência e tamanho | Um score alto pode refletir apenas relação temática. |
+
+:::
+
+TF-IDF e BM25 usam `min_score=0,0`, mas descartam resultados com score zero. Qualquer correspondência entre termos com peso positivo pode entrar entre os cinco primeiros resultados. As pontuações têm escalas diferentes e não são probabilidades de resposta.
+
+## Um teste separado antes da execução
+
+Durante o desenvolvimento da v2, foram reunidas 36 consultas: 27 positivas e nove negativas. Um curador diferente criou as 24 consultas finais. As referências positivas vêm de regiões diferentes, e houve revisão para identificar intenções sobrepostas. O autor aprovou os dois grupos no chat antes do congelamento. Esse registro não comprova uma auditoria humana individual de cada consulta.
+
+A avaliação final usa 18 consultas positivas, divididas igualmente entre perguntas exatas, paráfrases e perguntas de contexto, além de seis negativas. Uma consulta positiva tem referências conhecidas, embora a lista possa estar incompleta. Uma consulta negativa pede um detalhe plausível que não aparece no contexto examinado. Essa revisão não prova que o detalhe esteja ausente de todo o acervo.
+
+O [congelamento em `14a0913`](https://github.com/talesgomes27/sherlock-document-search/commit/14a0913) aconteceu antes da execução final. Depois dele, não foram alterados parâmetros, rótulos nem recortes. A [decisão de configuração](https://github.com/talesgomes27/sherlock-document-search/blob/main/evaluation/v2/configuration_decision.json) registra que o corte BM25 32 foi rejeitado durante o desenvolvimento: ele eliminou todos os 12 acertos positivos conhecidos. Na avaliação final, BM25 apenas ordenou os resultados, sem uma regra adicional para não responder quando a evidência é insuficiente.
+
+## Mais referências recuperadas, com retornos indevidos
+
+A [Tabela 2](#tbl-results) compara os métodos nas mesmas 24 consultas. Para as positivas, conta-se um acerto quando ao menos uma referência conhecida aparece entre os cinco primeiros resultados. Esse resultado pode ser evidência parcial. Para as negativas, qualquer passagem retornada conta como falso positivo.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Teste final v2: denominadores de 18 positivas e seis negativas, avaliadas separadamente."}
+
+| Método | Positivas com referência no top 5 | Negativas com retorno | MRR@5 nas positivas |
+|------------------|------------------|------------------|------------------|
+| Literal | 6/18 | 0/6 | 0,2963 |
+| TF-IDF | 10/18 | 6/6 | 0,3981 |
+| BM25 | 12/18 | 6/6 | 0,4907 |
+
+: Teste final v2: denominadores de 18 positivas e seis negativas, avaliadas separadamente. {#tbl-results}
+
+:::
+
+MRR@5 é a média de um escore calculado nas 18 consultas positivas: vale 1 se a primeira referência conhecida aparece na primeira posição, 1/2 se aparece na segunda, 1/3 na terceira, e assim por diante até a quinta. A consulta recebe zero se não aparece entre os cinco primeiros. O escore reflete as anotações disponíveis, que podem não incluir todas as referências.
+
+![Três métodos no mesmo teste v2: recuperação de referências conhecidas entre 18 positivas e retorno entre seis negativas.](figures/02-final_comparison.png){#fig-comparison fig-alt="Dois gráficos de barras horizontais. Nas positivas, literal encontra referência conhecida em 6 de 18 consultas, TF-IDF em 10 e BM25 em 12. Nas seis negativas, os retornos são zero, seis e seis, respectivamente."}
+
+Na [Figura 2](#fig-comparison), BM25 encontra referências conhecidas em duas consultas positivas a mais que TF-IDF e tem MRR@5 maior. Os dois métodos retornaram passagens nas seis consultas negativas. A busca literal encontrou menos referências e não retornou passagens para essas perguntas. Uma informação pode estar escrita com outras palavras e passar despercebida pela busca literal. O teste é pequeno e foi curado; seus resultados não demonstram superioridade geral.
+
+### Em quais consultas a referência apareceu?
+
+A [Figura 3](#fig-positions) permite acompanhar cada pergunta, em vez de olhar apenas os totais. Um número mostra a posição da primeira referência conhecida; a marca × indica que ela não apareceu entre os cinco primeiros resultados. Isso não descarta a relevância de outros trechos nem confirma que toda a evidência pedida foi recuperada.
+
+![Posição da primeira referência conhecida nas 18 consultas positivas da v2.](figures/03-query_positions.png){#fig-positions fig-alt="Matriz com 18 consultas e três métodos. Cinco consultas não têm referência conhecida recuperada por nenhum método. Na consulta 08, TF-IDF encontra a referência na terceira posição e BM25 não a encontra nos cinco primeiros. Os totais de consultas com referência são seis, dez e doze."}
+
+Cinco consultas ficaram sem referência conhecida no top 5 dos três métodos. A consulta 08 mostra uma perda do BM25 em relação ao TF-IDF; já as consultas 02 e 18 têm referência conhecida recuperada apenas pelo BM25. Os IDs completos e as perguntas estão nas [consultas finais publicadas](https://github.com/talesgomes27/sherlock-document-search/blob/main/evaluation/v2/final.json). A matriz descreve este teste, sem ajustar a busca a partir dele.
+
+### Por que uma pergunta sem resposta recebe resultado
+
+A [Tabela 3](#tbl-negatives) mostra as pontuações já calculadas para as seis consultas negativas. As descrições resumem as [consultas finais publicadas](https://github.com/talesgomes27/sherlock-document-search/blob/main/evaluation/v2/final.json). Os valores vêm do relatório e não de uma nova busca.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Seis consultas negativas: scores do primeiro resultado e quantidade de retornos literais. As escalas TF-IDF e BM25 não são comparáveis."}
+
+| ID | Detalhe solicitado | TF-IDF top 1 | BM25 top 1 | Retornos literais |
+|---------------|---------------|---------------|---------------|---------------|
+| v2-final-19 | Idades dos cavalos de Jefferson Hope | 0,5001 | 29,1164 | 0 |
+| v2-final-20 | Preço do caixão entregue em Poultney Square | 0,3204 | 12,8802 | 0 |
+| v2-final-21 | Tarifa ferroviária de Reading a Eyford | 0,3152 | 14,7155 | 0 |
+| v2-final-22 | Nome do navio esperado para Selden | 0,3733 | 13,5115 | 0 |
+| v2-final-23 | Peso exato do cofre vazio de Agra | 0,3430 | 16,9264 | 0 |
+| v2-final-24 | Calibre da munição que matou Menzies | 0,3241 | 17,2732 | 0 |
+
+: Seis consultas negativas: scores do primeiro resultado e quantidade de retornos literais. As escalas TF-IDF e BM25 não são comparáveis. {#tbl-negatives}
+
+:::
+
+O [diagnóstico dos top 1](https://github.com/talesgomes27/sherlock-document-search/blob/main/docs/v2-no-answer-analysis.md) compara o tema da passagem com o atributo pedido. Menções a cavalos e a um local não informam idade; uma entrega e um endereço não indicam preço. Passagens sobre jornada, América do Sul, tesouro ou ataque também podem não informar tarifa, nome do navio, peso ou calibre. Essas relações ajudam a entender por que os métodos retornaram os trechos, embora eles não respondam às perguntas.
+
+Uma versão futura precisaria tratar separadamente a ordem dos resultados e a decisão de não responder. Seria possível testar se os trechos cobrem os atributos pedidos, se há uma margem suficiente entre candidatos ou usar um avaliador de pares de pergunta e passagem. Antes de ajustar os métodos, seria necessário reservar um novo teste independente, pois os conjuntos v2 já foram examinados e divulgados.
+
+## Reproduzir e conferir a evidência
+
+O relatório de origem lê arquivos JSON existentes e confere seus hashes antes de gerar as tabelas. Ao renderizar a página de origem, não ajusta modelos nem executa buscas. As duas figuras de resumo vêm dos artefatos aprovados; a matriz por consulta foi montada a partir dos mesmos resultados salvos. O código e os resultados permitem conferir as etapas que ligam os dados às conclusões:
+
+- [Notebook v2 para leitura e Kaggle](https://github.com/talesgomes27/sherlock-document-search/blob/main/notebooks/portfolio/sherlock_document_search_v2.ipynb) e [notebook v1 para leitura e Kaggle](https://github.com/talesgomes27/sherlock-document-search/blob/main/notebooks/portfolio/sherlock_document_search_v1.ipynb), com código para executar após anexar o dataset. São edições de apresentação; os [notebooks originais validados](https://github.com/talesgomes27/sherlock-document-search/tree/main/notebooks) permanecem preservados.
+- [Resultado final v2 por consulta](https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/v2/final.json), [contagens do corpus](https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/m1_quality.json) e [validação v2](https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/v2/validation.json).
+- [Protocolo e comandos de reprodução](https://github.com/talesgomes27/sherlock-document-search/blob/main/docs/v2-final-evaluation.md), com saída nova para preservar o snapshot original.
+
+Os resultados e notebooks têm validação local registrada; a execução do notebook hospedado no Kaggle ainda não foi verificada. O material entregue é um relatório de evidências, e a aplicação interativa continua como etapa futura. A página publica contagens, metadados e paráfrases das consultas. A documentação de proveniência ainda registra como pendente a verificação das condições de uso e atribuição para exibir trechos das obras.
+
+### Histórico v1: outro conjunto, outros denominadores
+
+A [v1 preservada em `8f17985`](https://github.com/talesgomes27/sherlock-document-search/commit/8f179855a8c1c445afb122bf70ef4dd8512f9e7f) avaliou 20 consultas: 16 positivas, com referências conhecidas, e quatro negativas com perguntas anacrônicas, que incluem elementos de outra época. A [Tabela 4](#tbl-history) mostra os resultados originais da v1. Seus percentuais não devem ser combinados nem comparados diretamente com os da avaliação v2, que usou 24 consultas.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Histórico v1: 16 positivas e quatro negativas, segundo o relatório original."}
+
+| Método  | Positivas com referência no top 5 | Negativas com retorno |
+|---------|-----------------------------------|-----------------------|
+| Literal | 7/16                              | 0/4                   |
+| TF-IDF  | 8/16                              | 4/4                   |
+
+: Histórico v1: 16 positivas e quatro negativas, segundo o relatório original. {#tbl-history}
+
+:::
+
+[Relatório v1 original](https://github.com/talesgomes27/sherlock-document-search/blob/main/reports/m4_final.json).
+
+## Rastreabilidade da importação
+
+- [Relatório público de origem](https://talesgomes27.github.io/sherlock-document-search/).
+- [Repositório do projeto](https://github.com/talesgomes27/sherlock-document-search).
+- [Fonte Quarto original comprimida](source/report.qmd.gz).
+- [HTML publicado original comprimido](source/report.html.gz).
+- [Proveniência, datas e hashes dos arquivos importados](provenance.json).
+
+{{< cite-this page collapsed=true >}}

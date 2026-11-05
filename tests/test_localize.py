@@ -160,7 +160,7 @@ def validate_site(root):
         assert 'data-mode="dark"' in document and 'data-mode="light"' in document, page
         assert f'styles.css?v={localize.STYLE_VERSION}' in document, page
     assert (root / "site_libs/quarto-listing/quarto-listing.js").read_bytes() == (Path(localize.__file__).parent / "vendor/quarto-listing.js").read_bytes()
-    for pair in localize.PAIRS[-2:]:
+    for pair in (pair for pair in localize.PAIRS if pair[0].startswith('posts/')):
         for page, locale in zip(pair, ("pt", "en")):
             document = (root / page).read_text()
             assert 'script.src = "https://giscus.app/client.js";' in document, page

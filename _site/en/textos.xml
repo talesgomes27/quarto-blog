@@ -16,7 +16,56 @@
 <link>https://talesgomes27.github.io/quarto-blog/en/textos.html</link>
 </image>
 <generator>quarto-1.10.19</generator>
-<lastBuildDate>Tue, 13 Oct 2026 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 25 Oct 2026 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Sherlock Document Search: retrieval and its limits</title>
+  <dc:creator>Tales Gomes</dc:creator>
+  <link>https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html</link>
+  <description><![CDATA[ A comparison of literal search, TF-IDF and BM25 over traceable paragraphs, examining retrieved references and questions without answers. ]]></description>
+  <category>information retrieval</category>
+  <category>text processing</category>
+  <category>Python</category>
+  <guid>https://talesgomes27.github.io/quarto-blog/posts/sherlock/en.html</guid>
+  <pubDate>Sun, 25 Oct 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://talesgomes27.github.io/quarto-blog/assets/plates/sherlock-photo.webp" medium="image" type="image/webp"/>
+</item>
+<item>
+  <title>E-commerce: sales, customers and operational risk</title>
+  <dc:creator>Tales Gomes</dc:creator>
+  <link>https://talesgomes27.github.io/quarto-blog/posts/ecommerce/en.html</link>
+  <description><![CDATA[ A synthetic-data study of discounts, acquisition, RFM segmentation and the prediction of cancellations and returns. ]]></description>
+  <category>e-commerce</category>
+  <category>data analysis</category>
+  <category>machine learning</category>
+  <category>Python</category>
+  <guid>https://talesgomes27.github.io/quarto-blog/posts/ecommerce/en.html</guid>
+  <pubDate>Fri, 16 Oct 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://talesgomes27.github.io/quarto-blog/assets/plates/ecommerce-photo.webp" medium="image" type="image/webp"/>
+</item>
+<item>
+  <title>Banking fraud: detection, fraud types and losses</title>
+  <dc:creator>Tales Gomes</dc:creator>
+  <link>https://talesgomes27.github.io/quarto-blog/posts/fraud/en.html</link>
+  <description><![CDATA[ A three-stage study with temporal splits, cost-based decisions and estimates of financial loss. ]]></description>
+  <category>Python</category>
+  <category>machine learning</category>
+  <category>data analysis</category>
+  <guid>https://talesgomes27.github.io/quarto-blog/posts/fraud/en.html</guid>
+  <pubDate>Fri, 16 Oct 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://talesgomes27.github.io/quarto-blog/assets/plates/fraud-photo.webp" medium="image" type="image/webp"/>
+</item>
+<item>
+  <title>YouTube: reach, virality and channel size</title>
+  <dc:creator>Tales Gomes</dc:creator>
+  <link>https://talesgomes27.github.io/quarto-blog/posts/youtube/en.html</link>
+  <description><![CDATA[ A synthetic-data experiment on pre-publication prediction, leakage, channel size and the limits of content metadata. ]]></description>
+  <category>machine learning</category>
+  <category>Python</category>
+  <category>data analysis</category>
+  <guid>https://talesgomes27.github.io/quarto-blog/posts/youtube/en.html</guid>
+  <pubDate>Thu, 15 Oct 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://talesgomes27.github.io/quarto-blog/assets/plates/youtube-photo.webp" medium="image" type="image/webp"/>
+</item>
 <item>
   <title>Cyclistic Bike-Share: Usage Patterns and Rider Conversion</title>
   <dc:creator>Tales Gomes</dc:creator>

@@ -1,0 +1,74 @@
+{
+  "repository": "https://github.com/talesgomes27/credit_card_fraud_detection",
+  "report_url": "https://talesgomes27.github.io/credit_card_fraud_detection/",
+  "source_path": "index.qmd",
+  "source_blob_sha": "92e51babea6a5c138b764603543a2b393fa6d551",
+  "report_date": "2026-10-16",
+  "imported_on": "2026-11-05",
+  "analysis_reexecuted": false,
+  "snapshots": [
+    {
+      "file": "source/report.html.gz",
+      "uncompressed_sha256": "691c46cd50b181487394e756ba8f7bf550f16689d2b18daf0542525d2993f9ff"
+    },
+    {
+      "file": "source/report.qmd.gz",
+      "uncompressed_sha256": "9d06f01a2b95c58d03bcbd1b91590fe3d6b4bd04a4faae4b3f3926911a31cfbd"
+    }
+  ],
+  "figures": [
+    {
+      "file": "figures/01-fig01_hourly_fraud_risk.png",
+      "sha256": "cb9ede884a9edf71cb79b7fe8168f408d1386c76398b58f4d97956c2e3590a81",
+      "bytes": 229453,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig01_hourly_fraud_risk.png"
+    },
+    {
+      "file": "figures/02-fig02_country_risk_multiplier.png",
+      "sha256": "6f0f52a27cd066181697fe31c808a8de10ecdad191d0bcc7563fd3c1a7207310",
+      "bytes": 270716,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig02_country_risk_multiplier.png"
+    },
+    {
+      "file": "figures/03-fig03_authentication_shield.png",
+      "sha256": "2e1d0170cfaa9cbf45327166689cedabf553cf93f34ca3b96130633b60f01abf",
+      "bytes": 187135,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig03_authentication_shield.png"
+    },
+    {
+      "file": "figures/04-fig04_velocity_amount_anomaly.png",
+      "sha256": "7537f9600f0d33c88953701615d8c9104876d0ed89dcc95f0f94dfec6346b147",
+      "bytes": 179426,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig04_velocity_amount_anomaly.png"
+    },
+    {
+      "file": "figures/05-fig05_model_performance_cost.png",
+      "sha256": "3a2131a97fda0b8519ec5130b8464c4bb4ff4e556eacc479fd098c16cda848d4",
+      "bytes": 288790,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig05_model_performance_cost.png"
+    },
+    {
+      "file": "figures/06-fig06_shap_explainability.png",
+      "sha256": "c1571f26c912e1c0d0e7c36c5996615c2692ca19fd0b5480b893814f9779eb99",
+      "bytes": 275888,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig06_shap_explainability.png"
+    },
+    {
+      "file": "figures/07-fig07_multiclass_confusion_matrix.png",
+      "sha256": "c7b1b167457daa45c92a6d230f5045924ba3ecb3dba1cf8f70aa295322d358a2",
+      "bytes": 237483,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig07_multiclass_confusion_matrix.png"
+    },
+    {
+      "file": "figures/08-fig08_fraud_amount_residuals.png",
+      "sha256": "836961439d2b8b47b47145e088b848d36aaf899ce443508a0a50895b2bb16599",
+      "bytes": 274805,
+      "source": "https://talesgomes27.github.io/credit_card_fraud_detection/reports/figures/fig08_fraud_amount_residuals.png"
+    }
+  ],
+  "notes": [
+    "Published outputs were imported without running source code.",
+    "Source QMD and published HTML are independently archived; their mutual build identity was not verified.",
+    "English narrative and captions are translated; original figure labels and numerical values are preserved."
+  ]
+}

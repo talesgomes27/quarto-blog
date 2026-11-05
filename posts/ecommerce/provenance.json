@@ -1,0 +1,80 @@
+{
+  "repository": "https://github.com/talesgomes27/ecommerce_sales_customer_analytics",
+  "report_url": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/",
+  "source_path": "index.qmd",
+  "source_blob_sha": "dcec32e2341a6d351a992d5898f158c9e7867739",
+  "report_date": "2026-10-16",
+  "imported_on": "2026-11-05",
+  "analysis_reexecuted": false,
+  "snapshots": [
+    {
+      "file": "source/report.html.gz",
+      "uncompressed_sha256": "a3729b35ad2aaa7c8685830271a6b9e1a483ab9e48ae091eff39986316c8144d"
+    },
+    {
+      "file": "source/report.qmd.gz",
+      "uncompressed_sha256": "94889cdc40a296b748c2d8100155b80dfbf0bb0936bef82505847991c0044e0d"
+    }
+  ],
+  "figures": [
+    {
+      "file": "figures/01-fig_timeline_leakage.png",
+      "sha256": "53074c51e43e125a38fa349a7377f626db838b45d21e9c7f0c08f945720ed81f",
+      "bytes": 471849,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_timeline_leakage.png"
+    },
+    {
+      "file": "figures/02-fig_01_pricing_elasticity.png",
+      "sha256": "3a873229690966d22a8774a34e0d8329abc4464df77b0a206dc9788f13938cbf",
+      "bytes": 783136,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_01_pricing_elasticity.png"
+    },
+    {
+      "file": "figures/03-fig_02_acquisition_efficiency.png",
+      "sha256": "3b8dfe16903e6bbc52458b9789b3443f828951cf07446e4c61a5b64e7441b273",
+      "bytes": 169857,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_02_acquisition_efficiency.png"
+    },
+    {
+      "file": "figures/04-fig_03_rfm_segmentation.png",
+      "sha256": "30b78ce848ef451cded91ca519a6650cc12adf111241a7b80e479bea979d490e",
+      "bytes": 973976,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_03_rfm_segmentation.png"
+    },
+    {
+      "file": "figures/05-fig_06_category_quadrant_analysis.png",
+      "sha256": "df6a8b64a89889ee992b59e9eb7af729481ba270faa3c46711af3d3c84a0154d",
+      "bytes": 439573,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_06_category_quadrant_analysis.png"
+    },
+    {
+      "file": "figures/06-fig_04_at_purchase_evaluation.png",
+      "sha256": "4aece497e7090d74c43e5ca9e06e33f10c425681915702857f08aaf479f04cda",
+      "bytes": 286901,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_04_at_purchase_evaluation.png"
+    },
+    {
+      "file": "figures/07-fig_08_model_calibration_and_cost_curve.png",
+      "sha256": "d08fcc3bd5516851696d3c315a5f3926fabfdccfbf76eb2e458235d42e303bb8",
+      "bytes": 340467,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_08_model_calibration_and_cost_curve.png"
+    },
+    {
+      "file": "figures/08-fig_05_delivery_delay_impact.png",
+      "sha256": "a524505891677055215464d5e2db5a258255ec6e2fbc93e89a57860a67a9a3ee",
+      "bytes": 155431,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_05_delivery_delay_impact.png"
+    },
+    {
+      "file": "figures/09-fig_07_operational_diagnostics_returns_payments.png",
+      "sha256": "91674587a5569ca24dd294b1096ea43f95117c3f97060055c140b61d994333b2",
+      "bytes": 276070,
+      "source": "https://talesgomes27.github.io/ecommerce_sales_customer_analytics/reports/figures/fig_07_operational_diagnostics_returns_payments.png"
+    }
+  ],
+  "notes": [
+    "Published outputs were imported without running source code.",
+    "Source QMD and published HTML are independently archived; their mutual build identity was not verified.",
+    "English narrative and captions are translated; original figure labels and numerical values are preserved."
+  ]
+}

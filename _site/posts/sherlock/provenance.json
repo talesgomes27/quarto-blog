@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/talesgomes27/sherlock-document-search",
+  "report_url": "https://talesgomes27.github.io/sherlock-document-search/",
+  "source_path": "site/index.qmd",
+  "source_blob_sha": "bb6e862baa855593e9291e48c1ce378d835c6f54",
+  "report_date": "2026-10-25",
+  "imported_on": "2026-11-05",
+  "analysis_reexecuted": false,
+  "snapshots": [
+    {
+      "file": "source/report.html.gz",
+      "uncompressed_sha256": "e68cfbc15e3ac9b3055347dcd81542cff0281aee39cb714d9ed0d9e8d4609da5"
+    },
+    {
+      "file": "source/report.qmd.gz",
+      "uncompressed_sha256": "a691370590e89315b23c645e12ed8f4cb77ec31e8fb7f4c59421b4c28ebec162"
+    }
+  ],
+  "figures": [
+    {
+      "file": "figures/01-corpus_size.png",
+      "sha256": "66fec0927b7f4f4e0b8992e4d30452206f4bbb5ed6cb4c9694bfb9c171cd56ab",
+      "bytes": 104578,
+      "source": "https://talesgomes27.github.io/sherlock-document-search/assets/corpus_size.png"
+    },
+    {
+      "file": "figures/02-final_comparison.png",
+      "sha256": "0c716f7c4037ca855c7b5c2fe96ad9d6b7e5ce125b37aaf61932ffd438b1f439",
+      "bytes": 99641,
+      "source": "https://talesgomes27.github.io/sherlock-document-search/assets/final_comparison.png"
+    },
+    {
+      "file": "figures/03-query_positions.png",
+      "sha256": "db6384835dca797a1f4ed5056159343c97428ced5226707978174eb3bab5d171",
+      "bytes": 121541,
+      "source": "https://talesgomes27.github.io/sherlock-document-search/assets/query_positions.png"
+    }
+  ],
+  "notes": [
+    "Published outputs were imported without running source code.",
+    "Source QMD and published HTML are independently archived; their mutual build identity was not verified.",
+    "English narrative and captions are translated; original figure labels and numerical values are preserved."
+  ]
+}
