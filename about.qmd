@@ -16,7 +16,7 @@ about:
       href: mailto:talesgomes27@gmail.com
     - icon: file-earmark-person
       text: Currículo
-      href: https://talesgomes27.github.io/curriculo/resume.html
+      href: https://talesgomes27.github.io/curriculo/
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/talesgomes27/
@@ -28,8 +28,10 @@ about:
 ## Dados, código e contexto.
 
 ::: {.profile-lead}
-Sou engenheiro de computação brasileiro e [analista de dados certificado pela DataCamp](https://www.datacamp.com/certificate/DA0010574268485).
+Sou engenheiro da Computação pela UFPA, especialista em Direito Civil e Direito Processual Civil e estudante do MBA em Data Science e Analytics da USP/ESALQ.
 :::
+
+Atuo no Tribunal de Justiça do Estado do Pará desde 2013. Meus interesses conectam análise de dados, ciência de dados e jurimetria, com projetos em Python, R e SQL.
 
 Este portal reúne meus projetos, análises e aprendizados em ciência de dados e tecnologia. Compartilho o contexto dos problemas, as escolhas da análise e as reflexões que surgem ao trabalhar com dados.
 
