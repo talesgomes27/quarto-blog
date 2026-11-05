@@ -137,7 +137,7 @@ Um link com aparência de botão Quarto abre o endereço de contato. Usa fundo e
 
 ### Linha de estudo e lateral editorial
 
-A linha de estudo agrupa imagem clicável, título, subtítulo, metadados, descrição e links. As três imagens WebP da abertura têm (1000px) de largura, são sintéticas e trazem texto alternativo que as identifica como ilustrativas; os arquivos JSON adjacentes registram sua proveniência. Elas não substituem as figuras de análise dos artigos. A imagem do estudo escurece levemente no hover, com transição de filtro de (.22s ease-out).
+A linha de estudo agrupa imagem clicável, título, subtítulo, metadados, descrição e links. As imagens WebP da abertura têm (1000px) de largura, são sintéticas e trazem texto alternativo que as identifica como ilustrativas; os arquivos JSON adjacentes registram sua proveniência. Elas não substituem as figuras de análise dos artigos. A imagem do estudo escurece levemente no hover, com transição de filtro de (.22s ease-out).
 
 A lateral reúne seções editoriais, separador interno e imagem de leitura sobre papel verde. No mobile, preserva a sequência de leitura abaixo dos estudos. O rodapé recebe borda superior e texto suavizado.
 

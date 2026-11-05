@@ -16,7 +16,9 @@ I'm Tales Gomes. This is my space to share projects and learning about data scie
 :::
 
 ::: {#projetos .project-list aria-label="Projects"}
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/ecommerce_sales_customer_analytics/"><img src="../assets/plates/ecommerce-photo.webp" alt="Shipping parcels and a laptop on a desk. Illustrative image." width="1000" height="644" loading="eager"></a>
+
 ::: {.project-copy}
 ## [E-Commerce Sales & Customer Analytics](https://talesgomes27.github.io/ecommerce_sales_customer_analytics/)
 
@@ -30,7 +32,9 @@ An analytics pipeline using synthetic e-commerce data, with data contracts, RFM 
 :::
 :::
 
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/sherlock-document-search/"><img src="../assets/plates/sherlock-photo.webp" alt="An open book and magnifying glass on a reading table. Illustrative image." width="1000" height="644" loading="lazy"></a>
+
 ::: {.project-copy}
 ## [Sherlock Document Search](https://talesgomes27.github.io/sherlock-document-search/)
 
@@ -44,7 +48,9 @@ Literal and relevance-based search over Sherlock Holmes texts, with results poin
 :::
 :::
 
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/credit_card_fraud_detection/"><img src="../assets/plates/fraud-photo.webp" alt="An unmarked payment card and phone on a stone surface. Illustrative image." width="1000" height="644" loading="lazy"></a>
+
 ::: {.project-copy}
 ## [Banking fraud detection and analysis](https://talesgomes27.github.io/credit_card_fraud_detection/)
 
@@ -58,7 +64,9 @@ A study using a public dataset and a three-stage pipeline: fraud detection, frau
 :::
 :::
 
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/youtube_viral_video_prediction/"><img src="../assets/plates/youtube-photo.webp" alt="A camera on a small tabletop tripod. Illustrative image." width="1000" height="644" loading="lazy"></a>
+
 ::: {.project-copy}
 ## [YouTube viral video prediction](https://talesgomes27.github.io/youtube_viral_video_prediction/)
 

@@ -101,6 +101,8 @@ Após consulta ao catálogo local (`cards`, `listing`, `icon`, `preview`), foi m
 
 Validação: Quarto 1.10.19, render completo das 13 páginas, cinco verificadores Python aprovados e quatro relatórios externos com HTTP 200. As homes foram conferidas no navegador em PT/EN, desktop e viewport móvel de 375px, com temas claro/escuro; a largura do conteúdo não excedeu a área disponível no celular. O render utilizou `XDG_CACHE_HOME=/tmp/quarto-blog-projects-cache` para manter o cache dentro da área gravável desta sessão. Não houve reexecução de análises nem teste em aparelho físico.
 
+Na revisão visual seguinte, as quatro entradas receberam fotografias ilustrativas geradas com `image_gen`, seguindo as imagens existentes: luz natural, madeira/pedra clara e folhagem em tons suaves. Arquivos: `assets/plates/{ecommerce,sherlock,fraud,youtube}-photo.webp`, com prompts e origem nos JSONs adjacentes. A conversão para WebP usa `cwebp -q 84 -resize 1000 0`, preservando a proporção. As imagens usam a mesma estrutura HTML/CSS dos estudos anteriores, textos alternativos em PT/EN e carregamento adiado após o primeiro projeto; a regra temporária das entradas sem imagem foi removida. Imagens HTML nativas atendem à necessidade, sem nova extensão. A validação mantém render completo, cinco verificadores e inspeção responsiva PT/EN em temas claro/escuro; nenhuma análise foi reexecutada.
+
 ## Atualizar o índice
 
 ```bash

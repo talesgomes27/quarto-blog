@@ -73,7 +73,6 @@ h1, h2, h3 { color: var(--ink); text-wrap: balance; letter-spacing: -.025em; }
 .portal-intro { color: var(--muted); font-size: 1.42rem; line-height: 1.4; margin-bottom: 1.6rem; max-width: 66ch; }
 .portal-intro p { margin: 0; }
 .project-row { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.04fr); gap: 2.5rem; padding: 0 0 1.2rem; }
-.project-row.project-summary { grid-template-columns: minmax(0, 1fr); max-width: 75ch; }
 .project-row + .project-row { border-top: 1px solid var(--rule); padding-top: 1.3rem; }
 .project-row > p { margin: 0; }
 .project-image { display: block; overflow: hidden; border-radius: 5px; }

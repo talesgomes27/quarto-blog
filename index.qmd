@@ -16,7 +16,9 @@ Sou Tales Gomes. Este é meu espaço para compartilhar projetos e aprendizados e
 :::
 
 ::: {#projetos .project-list aria-label="Projetos"}
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/ecommerce_sales_customer_analytics/"><img src="assets/plates/ecommerce-photo.webp" alt="Caixas de encomendas e notebook sobre uma mesa. Imagem ilustrativa." width="1000" height="644" loading="eager"></a>
+
 ::: {.project-copy}
 ## [E-Commerce Sales & Customer Analytics](https://talesgomes27.github.io/ecommerce_sales_customer_analytics/)
 
@@ -30,7 +32,9 @@ Pipeline com dados sintéticos de comércio eletrônico, contratos de dados, seg
 :::
 :::
 
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/sherlock-document-search/"><img src="assets/plates/sherlock-photo.webp" alt="Livro aberto e lupa sobre uma mesa de leitura. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
+
 ::: {.project-copy}
 ## [Sherlock Document Search](https://talesgomes27.github.io/sherlock-document-search/)
 
@@ -44,7 +48,9 @@ Busca literal e por relevância em textos de Sherlock Holmes, com resultados que
 :::
 :::
 
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/credit_card_fraud_detection/"><img src="assets/plates/fraud-photo.webp" alt="Cartão sem identificação e celular sobre uma superfície de pedra. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
+
 ::: {.project-copy}
 ## [Detecção e análise de fraudes bancárias](https://talesgomes27.github.io/credit_card_fraud_detection/)
 
@@ -58,7 +64,9 @@ Estudo com dataset público e pipeline de três estágios: detecção de fraude,
 :::
 :::
 
-::: {.project-row .project-summary}
+::: {.project-row}
+<a class="project-image" href="https://talesgomes27.github.io/youtube_viral_video_prediction/"><img src="assets/plates/youtube-photo.webp" alt="Câmera em um pequeno tripé sobre uma mesa. Imagem ilustrativa." width="1000" height="644" loading="lazy"></a>
+
 ::: {.project-copy}
 ## [Predição de vídeos virais no YouTube](https://talesgomes27.github.io/youtube_viral_video_prediction/)
 
