@@ -33,6 +33,8 @@ I'm a Computer Engineering graduate from UFPA, with a postgraduate specializatio
 
 I have worked at the Pará State Court of Justice since 2013. My interests connect data analytics, data science and legal analytics, with projects in Python, R and SQL.
 
+At TJPA, I received the Functional Merit Medal (2022) and the Good Service Medal for 10 years of service (2026).
+
 This portal brings together my projects, analyses and learning about data science and technology. I share the context behind the problems, the choices made during analysis and the reflections that come from working with data.
 
 The studies include the questions, code, sources and results, with room to explain their limitations and what still needs to be investigated.
